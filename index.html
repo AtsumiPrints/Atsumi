@@ -337,6 +337,14 @@
             color: var(--autism-yellow);
         }
         
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+        
         .copyright {
             text-align: center;
             padding-top: 20px;
@@ -376,7 +384,7 @@
                         <li><a href="#">Oefeningen</a></li>
                         <li><a href="#">Autisme</a></li>
                         <li><a href="#">Leeftijden</a></li>
-                        <li><a href="#">Over ons</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -540,11 +548,11 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <ul>
-                        <li>Email: info@atsumi.nl</li>
-                        <li>Telefoon: 012-3456789</li>
-                        <li>Volg ons op sociale media</li>
-                    </ul>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                        <div><strong>Volg ons op sociale media</strong></div>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -564,9 +572,6 @@
                 
                 // Voeg actieve klasse toe aan geklikte tab
                 this.classList.add('active');
-                
-                // Hier zou je normaal gesproken de oefeningen filteren op leeftijd
-                // Voor deze demo doen we alleen de UI verandering
             });
         });
         
@@ -575,7 +580,6 @@
             const searchTerm = document.querySelector('.search-box input').value;
             if (searchTerm.trim() !== '') {
                 alert('Zoeken naar: ' + searchTerm);
-                // Hier zou je normaal gesproken de zoekresultaten tonen
             }
         });
         
