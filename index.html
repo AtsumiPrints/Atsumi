@@ -963,65 +963,112 @@
             }
         });
         
-        // Chatbot functionaliteit
-        const chatbotToggle = document.querySelector('.chatbot-toggle');
-        const chatbot = document.querySelector('.chatbot');
-        const chatbotInput = document.querySelector('.chatbot-footer input');
-        const chatbotSend = document.querySelector('.chatbot-footer button');
-        const chatbotBody = document.querySelector('.chatbot-body');
+        // Chatbot functionaliteit - Minho de Pinguïn
+const chatbotToggle = document.querySelector('.chatbot-toggle');
+const chatbot = document.querySelector('.chatbot');
+const chatbotInput = document.querySelector('.chatbot-footer input');
+const chatbotSend = document.querySelector('.chatbot-footer button');
+const chatbotBody = document.querySelector('.chatbot-body');
+const minimizeBtn = document.querySelector('.minimize-btn');
+
+// Zorg dat de toggle knop altijd zichtbaar is
+if (chatbotToggle) {
+    chatbotToggle.style.display = 'flex';
+    chatbotToggle.style.zIndex = '10000';
+}
+
+// Toggle chatbot open/dicht
+chatbotToggle.addEventListener('click', function(e) {
+    e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
+    if (chatbot.style.display === 'flex') {
+        chatbot.style.display = 'none';
+    } else {
+        chatbot.style.display = 'flex';
+        if (chatbotInput) chatbotInput.focus();
+    }
+});
+
+// Minimaliseer knop
+if (minimizeBtn) {
+    minimizeBtn.addEventListener('click', function(e) {
+        e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
+        chatbot.style.display = 'none';
+    });
+}
+
+// Verstuur bericht
+chatbotSend.addEventListener('click', sendMessage);
+chatbotInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+function sendMessage() {
+    const message = chatbotInput.value.trim();
+    if (message !== '') {
+        // Voeg gebruikersbericht toe
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user-message');
+        userMessage.textContent = message;
+        chatbotBody.appendChild(userMessage);
         
-        chatbotToggle.addEventListener('click', function() {
-            if (chatbot.style.display === 'flex') {
-                chatbot.style.display = 'none';
+        // Reset invoerveld
+        chatbotInput.value = '';
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        
+        // Minho antwoordt
+        setTimeout(() => {
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot-message');
+            
+            // Minho's antwoorden
+            if (message.toLowerCase().includes('hallo') || message.toLowerCase().includes('hoi') || message.toLowerCase().includes('hey')) {
+                botMessage.textContent = 'Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?';
+            } else if (message.toLowerCase().includes('oefening') || message.toLowerCase().includes('spraak')) {
+                botMessage.textContent = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
+            } else if (message.toLowerCase().includes('alfabet')) {
+                botMessage.textContent = 'Het alfabet vind je bij Spraakproblemen oefeningen! Klik op de letters om ze te horen. 🔤';
+            } else if (message.toLowerCase().includes('autisme')) {
+                botMessage.textContent = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
+            } else if (message.toLowerCase().includes('download')) {
+                botMessage.textContent = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw. 📥';
+            } else if (message.toLowerCase().includes('dank') || message.toLowerCase().includes('bedankt')) {
+                botMessage.textContent = 'Graag gedaan! Blijf oefenen, je doet het geweldig! 🌟';
+            } else if (message.toLowerCase().includes('pinguïn') || message.toLowerCase().includes('minho')) {
+                botMessage.textContent = 'Ja, ik ben Minho de pinguïn! 🐧 Ik help kinderen met leren. Pinguïns zijn heel sociaal, net als wij!';
             } else {
-                chatbot.style.display = 'flex';
+                botMessage.textContent = 'Leuke vraag! Voor oefeningen kun je naar "Spraakproblemen" gaan om letters te oefenen. 🐧';
             }
-        });
+            
+            chatbotBody.appendChild(botMessage);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }, 1000);
+    }
+}
+
+// Verbeterde click outside functionaliteit
+document.addEventListener('click', function(event) {
+    // Controleer of de chatbot open is
+    if (chatbot.style.display === 'flex') {
+        const isChatbot = event.target.closest('.chatbot');
+        const isToggle = event.target.closest('.chatbot-toggle');
         
-        chatbotSend.addEventListener('click', sendMessage);
-        chatbotInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message !== '') {
-                // Voeg gebruikersbericht toe
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user-message');
-                userMessage.textContent = message;
-                chatbotBody.appendChild(userMessage);
-                
-                // Simuleer antwoord van de bot
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot-message');
-                    
-                    // Eenvoudige antwoorden op basis van trefwoorden
-                    if (message.toLowerCase().includes('oefening')) {
-                        botMessage.textContent = 'Ik kan je helpen bij het vinden van geschikte oefeningen. Welk onderwerp zoek je?';
-                    } else if (message.toLowerCase().includes('autisme')) {
-                        botMessage.textContent = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning.';
-                    } else if (message.toLowerCase().includes('download')) {
-                        botMessage.textContent = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw.';
-                    } else {
-                        botMessage.textContent = 'Ik begrijp je vraag. Laat me je doorverwijzen naar de juiste informatie.';
-                    }
-                    
-                    chatbotBody.appendChild(botMessage);
-                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
-                }, 1000);
-                
-                // Reset invoerveld
-                chatbotInput.value = '';
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
-            }
+        // Als er buiten de chatbot of toggle wordt geklikt, sluit de chatbot
+        if (!isChatbot && !isToggle) {
+            chatbot.style.display = 'none';
         }
+    }
+});
+
+// Voorkom dat clicks binnen de chatbot de buitenste click triggeren
+chatbot.addEventListener('click', function(event) {
+    event.stopPropagation();
+});
     </script>
 </body>
 </html>
+
 
 
 
