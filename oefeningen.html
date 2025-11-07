@@ -11,6 +11,8 @@
             --autism-purple: #7209B7;
             --autism-pink: #F72585;
             --autism-yellow: #FFD166;
+            --autism-green: #06D6A0;
+            --autism-orange: #FF9E00;
             --light: #f0f9ff;
             --dark: #023047;
         }
@@ -134,6 +136,26 @@
             border-top: 5px solid var(--autism-yellow);
         }
 
+        .language-card {
+            border-top: 5px solid var(--autism-green);
+        }
+
+        .creative-card {
+            border-top: 5px solid var(--autism-orange);
+        }
+
+        .puzzle-card {
+            border-top: 5px solid var(--autism-purple);
+        }
+
+        .world-card {
+            border-top: 5px solid var(--autism-pink);
+        }
+
+        .science-card {
+            border-top: 5px solid var(--autism-light-blue);
+        }
+
         .exercise-icon {
             font-size: 4rem;
             margin-bottom: 15px;
@@ -148,6 +170,27 @@
         .exercise-card p {
             margin-bottom: 20px;
             color: var(--dark);
+        }
+
+        .progress {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            height: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: var(--autism-green);
+            width: 0%;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
         }
 
         .exercise-btn {
@@ -185,22 +228,77 @@
             margin-bottom: 1rem;
         }
 
-        .exercise-list {
+        .recommended-section {
+            margin-top: 4rem;
+        }
+
+        .recommended-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        .exercise-item {
+        .recommended-card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
         }
 
-        .exercise-item h4 {
+        .recommended-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recommended-image {
+            height: 180px;
+            background-color: var(--autism-light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .recommended-content {
+            padding: 20px;
+        }
+
+        .recommended-content h3 {
             color: var(--autism-blue);
             margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .recommended-content p {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .recommended-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--autism-yellow);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background: var(--autism-orange);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -283,7 +381,7 @@
                 font-size: 2rem;
             }
             
-            .exercises-grid {
+            .exercises-grid, .recommended-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -300,8 +398,6 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="spraakproblemen.html">Spraakproblemen</a></li>
-                        <li><a href="leesproblemen.html">Leesproblemen</a></li>
                         <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="oefeningen.html">Oefeningen</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -342,70 +438,132 @@
                     <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
                     <button class="exercise-btn">Bekijk oefeningen</button>
                 </div>
+
+                <div class="exercise-card language-card">
+                    <div class="exercise-icon">🔤</div>
+                    <h3>Taal</h3>
+                    <p>Oefeningen voor taalbegrip, woordenschat en grammatica.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+
+                <div class="exercise-card creative-card">
+                    <div class="exercise-icon">🎨</div>
+                    <h3>Creatief</h3>
+                    <p>Expressieve oefeningen om creativiteit en verbeelding te stimuleren.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+
+                <div class="exercise-card puzzle-card">
+                    <div class="exercise-icon">🧩</div>
+                    <h3>Puzzels</h3>
+                    <p>Logische en visuele puzzels om probleemoplossend denken te ontwikkelen.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+
+                <div class="exercise-card world-card">
+                    <div class="exercise-icon">🌍</div>
+                    <h3>Wereld</h3>
+                    <p>Oefeningen over geografie, culturen en de wereld om ons heen.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+
+                <div class="exercise-card science-card">
+                    <div class="exercise-icon">🔬</div>
+                    <h3>Wetenschap</h3>
+                    <p>Experimenten en ontdekkingen over de natuur en wetenschap.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
             </div>
 
-            <!-- Spraakproblemen Oefeningen -->
-            <div class="category-section">
+            <!-- Aanbevolen Oefeningen -->
+            <div class="recommended-section">
                 <div class="category-header">
-                    <h2>Spraakproblemen Oefeningen</h2>
-                    <p>Oefeningen om communicatie en uitspraak te verbeteren</p>
+                    <h2>Aanbevolen Oefeningen</h2>
+                    <p>Populaire en effectieve oefeningen speciaal geselecteerd voor kinderen met autisme</p>
                 </div>
-                <div class="exercise-list">
-                    <div class="exercise-item">
-                        <h4>Klankherkenning</h4>
-                        <p>Leer verschillende klanken herkennen en onderscheiden.</p>
+                <div class="recommended-grid">
+                    <div class="recommended-card">
+                        <div class="recommended-image">😊</div>
+                        <div class="recommended-content">
+                            <h3>Emotie Herkennen</h3>
+                            <p>Leer gezichtsuitdrukkingen en emoties herkennen met duidelijke visuele voorbeelden.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0% voltooid</div>
+                            <div class="recommended-footer">
+                                <button class="exercise-btn">Bekijk</button>
+                                <button class="download-btn">Download</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="exercise-item">
-                        <h4>Woordenschat Uitbreiding</h4>
-                        <p>Oefen met nieuwe woorden en hun betekenis.</p>
-                    </div>
-                    <div class="exercise-item">
-                        <h4>Zinsbouw</h4>
-                        <p>Leer complete zinnen vormen met de juiste grammatica.</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Leesproblemen Oefeningen -->
-            <div class="category-section">
-                <div class="category-header">
-                    <h2>Leesproblemen Oefeningen</h2>
-                    <p>Oefeningen om leesvaardigheid te ontwikkelen</p>
-                </div>
-                <div class="exercise-list">
-                    <div class="exercise-item">
-                        <h4>Letterherkenning</h4>
-                        <p>Leer letters herkennen en onderscheiden.</p>
+                    <div class="recommended-card">
+                        <div class="recommended-image">📅</div>
+                        <div class="recommended-content">
+                            <h3>Dagelijkse Routines</h3>
+                            <p>Visuele ondersteuning voor dagelijkse routines en overgangen.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0% voltooid</div>
+                            <div class="recommended-footer">
+                                <button class="exercise-btn">Bekijk</button>
+                                <button class="download-btn">Download</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="exercise-item">
-                        <h4>Eenvoudige Woorden</h4>
-                        <p>Oefen met korte, eenvoudige woorden lezen.</p>
-                    </div>
-                    <div class="exercise-item">
-                        <h4>Korte Zinnen</h4>
-                        <p>Lees korte zinnen met visuele ondersteuning.</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Rekenproblemen Oefeningen -->
-            <div class="category-section">
-                <div class="category-header">
-                    <h2>Rekenproblemen Oefeningen</h2>
-                    <p>Oefeningen om rekenvaardigheid te verbeteren</p>
-                </div>
-                <div class="exercise-list">
-                    <div class="exercise-item">
-                        <h4>Getallen Herkennen</h4>
-                        <p>Leer getallen herkennen en benoemen.</p>
+                    <div class="recommended-card">
+                        <div class="recommended-image">👁️</div>
+                        <div class="recommended-content">
+                            <h3>Zintuiglijk Spel</h3>
+                            <p>Oefeningen voor sensorische verwerking en zintuiglijke ervaringen.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0% voltooid</div>
+                            <div class="recommended-footer">
+                                <button class="exercise-btn">Bekijk</button>
+                                <button class="download-btn">Download</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="exercise-item">
-                        <h4>Eenvoudig Optellen</h4>
-                        <p>Oefen met eenvoudige optelsommen.</p>
-                    </div>
-                    <div class="exercise-item">
-                        <h4>Eenvoudig Aftrekken</h4>
-                        <p>Oefen met eenvoudige aftreksommen.</p>
+
+                    <div class="recommended-card">
+                        <div class="recommended-image">👥</div>
+                        <div class="recommended-content">
+                            <h3>Sociale Vaardigheden</h3>
+                            <p>Oefeningen voor het herkennen van sociale situaties en gepaste reacties.</p>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0% voltooid</div>
+                            <div class="recommended-footer">
+                                <button class="exercise-btn">Bekijk</button>
+                                <button class="download-btn">Download</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -423,10 +581,9 @@
                     <h3>Snelle Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="spraakproblemen.html">Spraakproblemen</a></li>
-                        <li><a href="leesproblemen.html">Leesproblemen</a></li>
                         <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -447,9 +604,18 @@
         // Simpele interactie voor de oefeningen knoppen
         document.querySelectorAll('.exercise-btn').forEach(button => {
             button.addEventListener('click', function() {
-                const card = this.closest('.exercise-card');
+                const card = this.closest('.exercise-card') || this.closest('.recommended-card');
                 const title = card.querySelector('h3').textContent;
                 alert(`Je hebt gekozen voor: ${title}\n\nDeze oefeningen worden binnenkort toegevoegd!`);
+            });
+        });
+
+        // Simpele interactie voor de download knoppen
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.recommended-card');
+                const title = card.querySelector('h3').textContent;
+                alert(`Je downloadt nu: ${title}\n\nDe download wordt voorbereid...`);
             });
         });
     </script>
