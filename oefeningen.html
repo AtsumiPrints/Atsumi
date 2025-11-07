@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefeningen - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercises-section {
+            padding: 3rem 1rem;
+        }
+
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .exercise-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .speech-card {
+            border-top: 5px solid var(--autism-pink);
+        }
+
+        .reading-card {
+            border-top: 5px solid var(--autism-blue);
+        }
+
+        .math-card {
+            border-top: 5px solid var(--autism-yellow);
+        }
+
+        .exercise-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .exercise-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .exercise-card p {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .exercise-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--autism-light-blue);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .exercise-btn:hover {
+            background: var(--autism-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .category-section {
+            margin-top: 4rem;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-header h2 {
+            color: var(--autism-purple);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .exercise-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .exercise-item h4 {
+            color: var(--autism-blue);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .exercises-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="spraakproblemen.html">Spraakproblemen</a></li>
+                        <li><a href="leesproblemen.html">Leesproblemen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">💪</div>
+            <h1>Oefeningen</h1>
+            <p>Interactieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen</p>
+        </div>
+    </section>
+
+    <section class="exercises-section">
+        <div class="container">
+            <div class="exercises-grid">
+                <div class="exercise-card speech-card">
+                    <div class="exercise-icon">🗣️</div>
+                    <h3>Spraakproblemen</h3>
+                    <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+
+                <div class="exercise-card reading-card">
+                    <div class="exercise-icon">📖</div>
+                    <h3>Leesproblemen</h3>
+                    <p>Stapsgewijze leesoefeningen met visuele ondersteuning en herhaling.</p>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+
+                <div class="exercise-card math-card">
+                    <div class="exercise-icon">🔢</div>
+                    <h3>Rekenproblemen</h3>
+                    <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
+                    <button class="exercise-btn">Bekijk oefeningen</button>
+                </div>
+            </div>
+
+            <!-- Spraakproblemen Oefeningen -->
+            <div class="category-section">
+                <div class="category-header">
+                    <h2>Spraakproblemen Oefeningen</h2>
+                    <p>Oefeningen om communicatie en uitspraak te verbeteren</p>
+                </div>
+                <div class="exercise-list">
+                    <div class="exercise-item">
+                        <h4>Klankherkenning</h4>
+                        <p>Leer verschillende klanken herkennen en onderscheiden.</p>
+                    </div>
+                    <div class="exercise-item">
+                        <h4>Woordenschat Uitbreiding</h4>
+                        <p>Oefen met nieuwe woorden en hun betekenis.</p>
+                    </div>
+                    <div class="exercise-item">
+                        <h4>Zinsbouw</h4>
+                        <p>Leer complete zinnen vormen met de juiste grammatica.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leesproblemen Oefeningen -->
+            <div class="category-section">
+                <div class="category-header">
+                    <h2>Leesproblemen Oefeningen</h2>
+                    <p>Oefeningen om leesvaardigheid te ontwikkelen</p>
+                </div>
+                <div class="exercise-list">
+                    <div class="exercise-item">
+                        <h4>Letterherkenning</h4>
+                        <p>Leer letters herkennen en onderscheiden.</p>
+                    </div>
+                    <div class="exercise-item">
+                        <h4>Eenvoudige Woorden</h4>
+                        <p>Oefen met korte, eenvoudige woorden lezen.</p>
+                    </div>
+                    <div class="exercise-item">
+                        <h4>Korte Zinnen</h4>
+                        <p>Lees korte zinnen met visuele ondersteuning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rekenproblemen Oefeningen -->
+            <div class="category-section">
+                <div class="category-header">
+                    <h2>Rekenproblemen Oefeningen</h2>
+                    <p>Oefeningen om rekenvaardigheid te verbeteren</p>
+                </div>
+                <div class="exercise-list">
+                    <div class="exercise-item">
+                        <h4>Getallen Herkennen</h4>
+                        <p>Leer getallen herkennen en benoemen.</p>
+                    </div>
+                    <div class="exercise-item">
+                        <h4>Eenvoudig Optellen</h4>
+                        <p>Oefen met eenvoudige optelsommen.</p>
+                    </div>
+                    <div class="exercise-item">
+                        <h4>Eenvoudig Aftrekken</h4>
+                        <p>Oefen met eenvoudige aftreksommen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="spraakproblemen.html">Spraakproblemen</a></li>
+                        <li><a href="leesproblemen.html">Leesproblemen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simpele interactie voor de oefeningen knoppen
+        document.querySelectorAll('.exercise-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.exercise-card');
+                const title = card.querySelector('h3').textContent;
+                alert(`Je hebt gekozen voor: ${title}\n\nDeze oefeningen worden binnenkort toegevoegd!`);
+            });
+        });
+    </script>
+</body>
+</html>
