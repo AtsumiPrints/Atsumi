@@ -212,91 +212,6 @@
             color: var(--autism-blue);
         }
         
-        .worksheets {
-            padding: 3rem 1rem;
-            background: white;
-        }
-        
-        .worksheet-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .worksheet-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            border: 2px solid var(--autism-light-blue);
-        }
-        
-        .worksheet-card:hover {
-            transform: scale(1.03);
-        }
-        
-        .worksheet-image {
-            height: 180px;
-            background: var(--autism-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        .worksheet-info {
-            padding: 15px;
-        }
-        
-        .worksheet-info h3 {
-            margin-bottom: 10px;
-            color: var(--autism-blue);
-        }
-        
-        .worksheet-info p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .progress-bar {
-            height: 10px;
-            background-color: var(--autism-very-light-blue);
-            border-radius: 5px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background-color: var(--autism-purple);
-            border-radius: 5px;
-            transition: width 0.5s ease-in-out;
-        }
-        
-        .progress-text {
-            font-size: 0.8rem;
-            color: var(--autism-dark-blue);
-            text-align: right;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: var(--autism-yellow);
-            color: var(--dark);
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        .download-btn:hover {
-            background: #ffc043;
-        }
-        
         .games-section {
             padding: 3rem 1rem;
             background: white;
@@ -455,6 +370,30 @@
         
         .forum-link:hover {
             background: var(--autism-dark-blue);
+        }
+        
+        /* Social Media Links Styles */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: var(--autism-very-light-blue);
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: background 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--autism-light-blue);
         }
         
         /* Verbeterde Chatbot Styles */
@@ -707,6 +646,11 @@
                 right: 5%;
                 height: 70%;
             }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -723,6 +667,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="oefeningen.html">Oefeningen</a></li>
                         <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
@@ -749,22 +694,24 @@
             
             <div class="autism-grid">
                 <div class="autism-card">
-                    <div class="autism-icon">🗣️</div>
-                    <h3>Spraakproblemen</h3>
-                    <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
-                    <a href="#" class="download-btn">Bekijk oefeningen</a>
+                    <a href="spraakprobleem.html" style="text-decoration: none; color: inherit;">
+                        <div class="autism-icon">🗣️</div>
+                        <h3>Spraakproblemen</h3>
+                        <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
+                        <div class="download-btn">Bekijk oefeningen</div>
+                    </a>
                 </div>
                 <div class="autism-card">
                     <div class="autism-icon">📖</div>
                     <h3>Leesproblemen</h3>
                     <p>Stapsgewijze leesoefeningen met visuele ondersteuning en herhaling.</p>
-                    <a href="#" class="download-btn">Bekijk oefeningen</a>
+                    <div class="download-btn">Bekijk oefeningen</div>
                 </div>
                 <div class="autism-card">
                     <div class="autism-icon">🔢</div>
                     <h3>Rekenproblemen</h3>
                     <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
-                    <a href="#" class="download-btn">Bekijk oefeningen</a>
+                    <div class="download-btn">Bekijk oefeningen</div>
                 </div>
             </div>
         </div>
@@ -784,22 +731,6 @@
         <div class="container">
             <h2 class="section-title">Oefeningen per Categorie</h2>
             <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-icon">🔢</div>
-                    <h3>Rekenen</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🔤</div>
-                    <h3>Taal</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
-                </div>
                 <div class="category-card">
                     <div class="category-icon">🎨</div>
                     <h3>Creatief</h3>
@@ -825,68 +756,14 @@
                     <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
-                    <div class="category-icon">🔬</div>
-                    <h3>Wetenschap</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="worksheets">
-        <div class="container">
-            <h2 class="section-title">Aanbevolen Oefeningen</h2>
-            <div class="worksheet-grid">
-                <div class="worksheet-card">
-                    <div class="worksheet-image">Emotie Herkennen</div>
-                    <div class="worksheet-info">
-                        <h3>Emotie Herkennen</h3>
-                        <p>Leer gezichtsuitdrukkingen en emoties herkennen met duidelijke visuele voorbeelden.</p>
+                    <a href="weetjes.html" style="text-decoration: none; color: inherit;">
+                        <div class="category-icon">🔬</div>
+                        <h3>Wetenschap</h3>
                         <div class="progress-bar">
                             <div class="progress" style="width: 0%"></div>
                         </div>
                         <div class="progress-text">0% voltooid</div>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
-                </div>
-                <div class="worksheet-card">
-                    <div class="worksheet-image">Dagelijkse Routines</div>
-                    <div class="worksheet-info">
-                        <h3>Dagelijkse Routines</h3>
-                        <p>Visuele ondersteuning voor dagelijkse routines en overgangen.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 0%"></div>
-                        </div>
-                        <div class="progress-text">0% voltooid</div>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
-                </div>
-                <div class="worksheet-card">
-                    <div class="worksheet-image">Zintuiglijk Spel</div>
-                    <div class="worksheet-info">
-                        <h3>Zintuiglijk Spel</h3>
-                        <p>Oefeningen voor sensorische verwerking en zintuiglijke ervaringen.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 0%"></div>
-                        </div>
-                        <div class="progress-text">0% voltooid</div>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
-                </div>
-                <div class="worksheet-card">
-                    <div class="worksheet-image">Sociale Vaardigheden</div>
-                    <div class="worksheet-info">
-                        <h3>Sociale Vaardigheden</h3>
-                        <p>Oefeningen voor het herkennen van sociale situaties en gepaste reacties.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 0%"></div>
-                        </div>
-                        <div class="progress-text">0% voltooid</div>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -897,26 +774,18 @@
             <h2 class="section-title">Interactieve Spelletjes</h2>
             <div class="games-grid">
                 <div class="game-card">
-                    <div class="game-image">😊😢😠</div>
-                    <div class="game-info">
-                        <h3>Emotie Herkenning Spel</h3>
-                        <p>Leer emoties herkennen met onze vriendelijke pinguïn.</p>
-                        <a href="#" class="play-btn">Spelen</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <div class="game-image">🧮</div>
-                    <div class="game-info">
-                        <h3>Reken Puzzel</h3>
-                        <p>Match getallen met hoeveelheden in deze leuke puzzel.</p>
-                        <a href="#" class="play-btn">Spelen</a>
-                    </div>
-                </div>
-                <div class="game-card">
                     <div class="game-image">📅</div>
                     <div class="game-info">
                         <h3>Dagelijkse Routine Planner</h3>
                         <p>Plan je dag met deze visuele planning game.</p>
+                        <a href="#" class="play-btn">Spelen</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">😊😢😠</div>
+                    <div class="game-info">
+                        <h3>Emotie Herkenning Spel</h3>
+                        <p>Leer emoties herkennen met onze vriendelijke pinguïn.</p>
                         <a href="#" class="play-btn">Spelen</a>
                     </div>
                 </div>
@@ -926,6 +795,14 @@
                         <h3>Zintuiglijk Memory</h3>
                         <p>Match geluiden en textures in dit sensorische spel.</p>
                         <a href="#" class="play-btn">Spelen</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">🎨</div>
+                    <div class="game-info">
+                        <h3>Kleurplaten</h3>
+                        <p>Kleur en ontspan met onze speciale kleurplaten.</p>
+                        <a href="#" class="play-btn">Kleuren</a>
                     </div>
                 </div>
             </div>
@@ -1008,11 +885,18 @@
                     </div>
                 </div>
                 <div class="social-card">
-                    <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+                    <div class="social-icon">🌐</div>
                     <div class="social-info">
-                        <h3>TikTok Account</h3>
-                        <p>Korte demonstraties, tips en leuke leermomenten.</p>
-                        <a href="#" class="social-btn">Volg Ons</a>
+                        <h3>Social Media</h3>
+                        <p>Volg ons op sociale media</p>
+                        <div class="social-links">
+                            <a href="https://facebook.com" class="social-link" target="_blank">
+                                <span>📘</span> Facebook
+                            </a>
+                            <a href="https://instagram.com" class="social-link" target="_blank">
+                                <span>📷</span> Instagram
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="social-card">
@@ -1037,11 +921,11 @@
                 <div class="footer-section">
                     <h3>Snelle Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Oefeningen</a></li>
-                        <li><a href="#">Autisme</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="forum.html">Forum</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
