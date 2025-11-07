@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -33,6 +33,9 @@
             color: white;
             padding: 1rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .container {
@@ -84,8 +87,9 @@
         .page-header {
             text-align: center;
             padding: 3rem 1rem;
-            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230077B6"/><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="white" stroke-width="2"/><circle cx="50" cy="50" r="30" fill="none" stroke="white" stroke-width="2"/></svg>');
             color: white;
+            background-size: cover;
         }
 
         .page-header h1 {
@@ -125,6 +129,12 @@
             padding: 25px;
             border-radius: 10px;
             border-left: 5px solid var(--autism-purple);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .info-card h3 {
@@ -195,6 +205,11 @@
             border-radius: 10px;
             text-align: center;
             border: 2px solid var(--autism-light-blue);
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: scale(1.05);
         }
 
         .contact-card h4 {
@@ -334,6 +349,115 @@
             margin: 20px 0;
         }
 
+        .video-section {
+            background: linear-gradient(135deg, var(--autism-purple), var(--autism-pink));
+            padding: 3rem 1rem;
+            color: white;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .video-description {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .video-container:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .video-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .video-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
         @media (max-width: 768px) {
             .header-top {
                 flex-direction: column;
@@ -348,6 +472,21 @@
             .page-header h1 {
                 font-size: 2rem;
             }
+
+            .video-placeholder {
+                height: 300px;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-icon {
+                border-left: 15px solid white;
+                border-top: 9px solid transparent;
+                border-bottom: 9px solid transparent;
+            }
         }
     </style>
 </head>
@@ -356,7 +495,7 @@
         <div class="container">
             <div class="header-top">
                 <div class="logo">
-                    <div class="logo-icon">🐧</div>
+                    <div class="logo-icon">🧩</div>
                     <h1>Atsumi</h1>
                 </div>
                 <nav>
@@ -377,6 +516,32 @@
             <div class="header-icon">🧩</div>
             <h1>Autisme - Alles wat je moet weten</h1>
             <p>Complete gids voor ouders in België - Herkenning, begeleiding en ondersteuning</p>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">Uitleg over Autisme</h2>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-title">Autisme uitgelegd voor ouders en leerkrachten</div>
+                    <p>Een informatieve video over wat autisme is en hoe je ermee om kunt gaan</p>
+                    
+                    <div class="video-overlay">
+                        <div class="video-title">Autisme uitgelegd voor ouders en leerkrachten</div>
+                        <div class="video-controls">
+                            <button class="video-btn">Bekijk later</button>
+                            <button class="video-btn">Deel video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-description">
+                <p>Deze video biedt een duidelijke uitleg over autisme, speciaal gemaakt voor ouders, leerkrachten en iedereen die meer wil begrijpen over het autismespectrum. Je leert over de kenmerken, sterke kanten en praktische tips voor ondersteuning.</p>
+            </div>
         </div>
     </section>
 
@@ -412,13 +577,11 @@
                         <h3><span class="info-icon">💬</span> Aanhoudende tekorten in sociale communicatie en sociale interactie</h3>
                         <p>Sociale communicatie verloopt op een heel complexe manier, waarbij vooral niet-verbale elementen zoals intonatie- of volumeverandering in de stem, gelaatsuitdrukkingen, lichaamstaal en gebaren belangrijk zijn. Autistische mensen vinden het net heel moeilijk om deze non-verbale communicatie van anderen op te merken, te begrijpen en zelf te gebruiken. Hierdoor kan verwarring en miscommunicatie ontstaan.</p>
                         <p>Ze houden van ondubbelzinnig taalgebruik. Bovendien nemen mensen met autisme communicatie en taal vaak letterlijk, bijvoorbeeld gezegden en beeldspraak. Sommige autistische mensen kunnen over bepaalde onderwerpen heel uitvoerig praten zonder dat er sprake is van een echt heen-en-weer gesprek.</p>
-                        <p>Het is voor mensen met autisme niet vanzelfsprekend om zich in te leven in de gedachten, gevoelswereld, bedoelingen en wensen van anderen. Hierdoor kan contact leggen en/of onderhouden moeilijk zijn en lijkt het alsof ze zich niet kunnen inleven in anderen. De andere ervaart in de relatie soms een gebrek aan sociaal-emotionele wederkerigheid. Ze beschikken echter wel degelijk over alle menselijke emoties, maar krijgen moeilijk hoogte van de sociale jungle die de mensenwereld voor hen is. Mensen met autisme begrijpen de sociale regels niet altijd uit zichzelf. Ze kunnen deze leren, maar dit vraagt extra energie.</p>
                     </div>
                     <div class="criterion">
                         <h3><span class="info-icon">🔄</span> Beperkte, repetitieve gedragingen, interesses of activiteiten</h3>
                         <p>Autistische mensen uiten zich soms in rigide gedrag of houden vast aan regels en rituelen. Dit geeft hen een gevoel van houvast, veiligheid en structuur in een chaotische wereld. Ze houden van regelmaat en voorspelbaarheid. Een verandering in hun routine of een nieuwe situatie kan verwarring veroorzaken en leiden tot paniek.</p>
                         <p>Ze putten rust uit het soms uren bezig zijn met hun specifieke interesse en genieten vaak van herhaling. Mensen met autisme hebben vaak sterke fascinaties, die voor buitenstaanders als bijzonder worden ervaren.</p>
-                        <p>Mensen met autisme kunnen hyper- of hyporeactief zijn voor bepaalde zintuiglijke prikkels. Dit kan zich uiten in een overgevoeligheid voor bijvoorbeeld licht, geluid, geur, textuur of aanraking. Als ze ondergevoelig zijn voor bepaalde prikkels kan het zijn dat ze bijvoorbeeld gefascineerd zijn door licht of bewegingen of dat ze bijvoorbeeld pijn, temperatuur op een andere manier ervaren.</p>
                     </div>
                 </div>
             </div>
@@ -443,7 +606,6 @@
                 </div>
             </div>
             <p style="margin-top: 2rem;">Dit alles zorgt er voor dat ze in bepaalde domeinen echt uitblinken. De uitdaging ligt dus in onze samenleving om niet te kijken naar de moeilijkheden, maar naar de capaciteiten en talenten van mensen met autisme en rekening te houden met hun noden.</p>
-            <p>Mensen met autisme zijn voor sommige jobs meer geschikt dan mensen zonder autisme. Vaak zijn ze erg goed in wetenschappen, techniek of informatica. Maar de talenten van mensen met autisme kunnen heel divers worden ingezet. Er zijn ook beeldende kunstenaars met autisme. Juist doordat ze de wereld anders waarnemen, maken ze vaak verbluffende kunstwerken. Ook onder de woordkunstenaars kan je ze vinden. Ze zien immers vanzelf de dubbele bodems die onder woorden kunnen zitten.</p>
         </div>
     </section>
 
@@ -452,16 +614,7 @@
             <h2 class="section-title">Neurodiversiteit en Autisme</h2>
             <p>Neurodiversiteit betekent dat het brein van mensen verschillend kan zijn en dat er dus verschillende manieren zijn van denken, leren, waarnemen en interpreteren. Neurodivergent is een vrij breed begrip en is geen synoniem voor autisme. Er zijn immers talloze manieren om neurodivergent te zijn. Autisme is er slechts een voorbeeld van zoals ADHD, dyslexie, dyscalculie, obsessief compulsieve stoornis, epilepsie of het syndroom van Down.</p>
             <p>Neurotypisch is het tegenovergestelde van neurodivergent. Neurotypisch wordt vaak gebruikt om aan te geven dat iemand niet autistisch is, hoewel het op zich geen synoniem is voor niet-autistisch. Neurotypische mensen denken of gedragen zich op een manier die door de samenleving als 'normaal' beschouwd wordt.</p>
-            <p>De term neurodiversiteit wordt de laatste jaren meer en meer gebruikt door mensen met autisme. Aanhangers van het neurodiversiteitsmodel zien autisme als een andere manier om informatie te verwerken. Anders, maar dan niet minderwaardig of gestoord. Ze zetten zich af tegen het medisch model dat kenmerken van autisme wil corrigeren en gedrag aanpassen zodat mensen met autisme beter inpassen in de samenleving. De neurodiversiteitsbeweging streeft naar respect, acceptatie en maatschappelijke inclusie voor wie neurodivergent is. Het sociale model impliceert dat de omgeving of context waarin een autistisch persoon functioneert een rol speelt in het ontwikkelen en inzetten van talenten.</p>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Terminologie: Autist, Autistisch of Persoon met Autisme?</h2>
-            <div class="terminology-section">
-                <p>Er is de laatste jaren een evolutie merkbaar in de terminologie rond autisme. De meningen rond het gebruik van de termen autist/autistisch en persoon met autisme lopen uiteen. Bij VVA wisselen we de termen "met autisme" en "autistisch" af in onze communicatie. We merken in de ervaringsverhalen die we delen of tijdens de getuigenissen van onze ervaringsdeskundigen dat het gebruik van de term erg persoonsafhankelijk is. Sommigen spreken over zichzelf als autist, anderen hebben de voorkeur voor persoon met autisme. Je kan betrokkenen best vragen met welke term ze zichzelf identificeren.</p>
-            </div>
+            <p>De term neurodiversiteit wordt de laatste jaren meer en meer gebruikt door mensen met autisme. Aanhangers van het neurodiversiteitsmodel zien autisme als een andere manier om informatie te verwerken. Anders, maar dan niet minderwaardig of gestoord.</p>
         </div>
     </section>
 
@@ -488,21 +641,8 @@
             </div>
             <div style="margin-top: 2rem;">
                 <p>Voor het hele spectrum komen de meeste studies uit op een voorkomen van ongeveer 1%. Voor België betekend dit dat er ongeveer 117.000 mensen met een autismespectrumstoornis zijn en dat er elk jaar ongeveer bijna 1200 bijkomen.</p>
-                <p>De ASS-diagnose wordt vaker gesteld bij mannen dan bij vrouwen. De verhouding jongens/meisjes is altijd relatief ongewijzigd gebleven: 3 à 4 jongens tegen één meisje. Sommige onderzoekers vermoeden wel dat het bij meisjes minder gerapporteerd wordt. Meisjes zouden makkelijker in staat zijn hun autisme te camoufleren. Door de toegenomen bewustwording de laatste jaren is er wel een verhoogde herkenning van autisme bij meisjes en vrouwen.</p>
-                <p>Lange tijd werd aangenomen dat 70 tot 80% van de personen met autisme ook verstandelijk beperkt was. Recente studies laten zien dat het aandeel personen met een verstandelijke beperking kleiner dan de helft is. Heel wat studies schatten het aandeel van mensen met een verstandelijke beperking zelfs maar op een derde.</p>
+                <p>De ASS-diagnose wordt vaker gesteld bij mannen dan bij vrouwen. De verhouding jongens/meisjes is altijd relatief ongewijzigd gebleven: 3 à 4 jongens tegen één meisje. Sommige onderzoekers vermoeden wel dat het bij meisjes minder gerapporteerd wordt. Meisjes zouden makkelijker in staat zijn hun autisme te camoufleren.</p>
             </div>
-            
-            <h3 style="margin-top: 2rem; color: var(--autism-blue);">Komt autisme vaker voor dan vroeger?</h3>
-            <p>Misschien wordt autisme vandaag meer vastgesteld omdat de denkstijl in onze huidige wereld lastiger is. Er komt veel meer informatie op ons af dan enkele decennia geleden. Je kan en moet meer keuzes maken. Rolpatronen van man en vrouw, werkgever en werknemer zijn voortdurend aan verandering onderhevig. Vroeger was de wereld veel statischer.</p>
-            <p>Er is echter weinig bewijs dat op dit moment autisme vaker voorkomt dan vroeger. De stijging in de prevalentiecijfers (het cijfer dat uitdrukt hoe vaak een stoornis voorkomt) kan toegeschreven worden aan aanpassingen in de diagnostische criteria, aan een betere opsporing en een meer nauwkeurige en snellere diagnosestelling. Vooral bij personen met een normale begaafdheid, die camouflerende en compenserende strategieën ontwikkelen, wordt autisme nu beter onderkend.</p>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Late diagnose</h2>
-            <p>Veel volwassenen melden zich aan om zich te laten onderzoeken. Vaak gebeurt dat nadat hun kind de diagnose gekregen heeft en ze zichzelf erin herkennen of doordat ze via secundaire problematieken zoals depressie, angst op het spoor van autisme komen.</p>
-            <p>Is een late diagnose zinvol? Het is belangrijk dat je zelf weet dat je er een andere denkstijl op nahoudt. Dat kan moeilijkheden in het eigen leven verklaren en misverstanden met anderen ophelderen.</p>
         </div>
     </section>
 
@@ -618,26 +758,6 @@
         </div>
     </section>
 
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Belangrijke Belgische organisaties</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><span class="info-icon">🌐</span> Autisme Centraal</h3>
-                    <p>Expertisecentrum met vormingen, publicaties en informatie over autisme in België.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="info-icon">👨‍👩‍👧‍👦</span> Personen met een Handicap</h3>
-                    <p>Vlaamse overheidsdienst voor ondersteuning en tegemoetkomingen.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="info-icon">🏛️</span> Phare</h3>
-                    <p>Franstalige dienst voor personen met een handicap in Wallonië en Brussel.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <div class="warning-box container">
         <h3>⚠️ Belangrijk om te weten</h3>
         <p>Deze informatie is bedoeld als richtlijn. Raadpleeg altijd gespecialiseerde professionals voor een officiële diagnose en persoonlijk advies. Elke situatie is uniek.</p>
@@ -672,5 +792,22 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Simpele interactie voor de video placeholder
+        document.querySelector('.play-button').addEventListener('click', function() {
+            alert('Video zou nu afspelen. In een echte implementatie zou hier een echte video player worden geladen.');
+        });
+        
+        // Smooth scrolling voor anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
