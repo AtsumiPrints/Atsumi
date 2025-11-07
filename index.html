@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atsumi - Educatieve Oefeningen voor Alle Kinderen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --autism-blue: #0077B6;
-            --autism-light-blue: #90E0EF;
+            --autism-dark-blue: #3B5998;
+            --autism-light-blue: #8B9DC3;
+            --autism-very-light-blue: #DFE3EE;
             --autism-purple: #7209B7;
-            --autism-pink: #F72585;
             --autism-yellow: #FFD166;
             --light: #f0f9ff;
             --dark: #023047;
@@ -19,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -259,6 +261,27 @@
             margin-bottom: 15px;
         }
         
+        .progress-bar {
+            height: 10px;
+            background-color: var(--autism-very-light-blue);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--autism-purple);
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--autism-dark-blue);
+            text-align: right;
+        }
+        
         .download-btn {
             display: inline-block;
             background: var(--autism-yellow);
@@ -274,31 +297,231 @@
             background: #ffc043;
         }
         
-        .age-groups {
+        .games-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .game-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid var(--autism-purple);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .game-image {
+            height: 180px;
+            background: var(--autism-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .game-info {
+            padding: 15px;
+        }
+        
+        .game-info h3 {
+            margin-bottom: 10px;
+            color: var(--autism-purple);
+        }
+        
+        .game-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .play-btn {
+            display: inline-block;
+            background: var(--autism-blue);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .play-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        
+        .chatbot-header {
+            background: var(--autism-blue);
+            color: white;
+            padding: 10px 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chatbot-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .chatbot-footer {
+            padding: 10px;
+            border-top: 1px solid #eee;
+            display: flex;
+        }
+        
+        .chatbot-footer input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .chatbot-footer button {
+            background: var(--autism-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--autism-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .bot-message {
+            background: var(--autism-very-light-blue);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: var(--autism-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .social-section {
             padding: 3rem 1rem;
             background: var(--light);
         }
         
-        .age-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
         
-        .age-tab {
-            padding: 10px 20px;
+        .social-card {
             background: white;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid var(--autism-light-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
         
-        .age-tab.active {
+        .social-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            text-align: center;
+            padding: 20px;
+            color: var(--autism-blue);
+        }
+        
+        .social-info {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .social-btn {
+            display: inline-block;
             background: var(--autism-blue);
             color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .social-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .learning-rhythm {
+            padding: 3rem 1rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .rhythm-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .rhythm-content p {
+            margin-bottom: 1.5rem;
         }
         
         footer {
@@ -367,6 +590,12 @@
             .hero h2 {
                 font-size: 2rem;
             }
+            
+            .chatbot {
+                width: 90%;
+                right: 5%;
+                height: 70%;
+            }
         }
     </style>
 </head>
@@ -379,17 +608,14 @@
                     <h1>Atsumi</h1>
                 </div>
                 <nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="spraakproblemen.html">Spraakproblemen</a></li>
-<li><a href="leesproblemen.html">Leesproblemen</a></li>
-<li><a href="rekenproblemen.html">Rekenproblemen</a></li>
-<li><a href="autisme.html">Autisme</a></li>
-        <li><a href="over-ons.html">Over Ons</a></li>
-        <li><a href="doneren.html">Steun Ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Oefeningen</a></li>
+                        <li><a href="#">Autisme</a></li>
+                        <li><a href="#">Spelletjes</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
@@ -412,33 +638,35 @@
             <p>Onze oefeningen zijn zorgvuldig ontwikkeld met aandacht voor structuur, voorspelbaarheid en visuele ondersteuning.</p>
             
             <div class="autism-grid">
-    <!-- Spraakproblemen kaart -->
-    <a href="spraakproblemen.html" style="text-decoration: none; color: inherit; display: block;">
-        <div class="autism-card">
-            <div class="autism-icon">🗣️</div>
-            <h3>Spraakproblemen</h3>
-            <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
+                <div class="autism-card">
+                    <div class="autism-icon">🗣️</div>
+                    <h3>Spraakproblemen</h3>
+                    <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
+                    <a href="#" class="download-btn">Bekijk oefeningen</a>
+                </div>
+                <div class="autism-card">
+                    <div class="autism-icon">📖</div>
+                    <h3>Leesproblemen</h3>
+                    <p>Stapsgewijze leesoefeningen met visuele ondersteuning en herhaling.</p>
+                    <a href="#" class="download-btn">Bekijk oefeningen</a>
+                </div>
+                <div class="autism-card">
+                    <div class="autism-icon">🔢</div>
+                    <h3>Rekenproblemen</h3>
+                    <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
+                    <a href="#" class="download-btn">Bekijk oefeningen</a>
+                </div>
+            </div>
         </div>
-    </a>
-
-    <!-- Leesproblemen kaart -->
-    <a href="leesproblemen.html" style="text-decoration: none; color: inherit; display: block;">
-        <div class="autism-card">
-            <div class="autism-icon">📖</div>
-            <h3>Leesproblemen</h3>
-            <p>Stapsgewijze leesoefeningen met visuele ondersteuning en herhaling.</p>
-        </div>
-    </a>
-
-    <!-- Rekenproblemen kaart -->
-    <a href="rekenproblemen.html" style="text-decoration: none; color: inherit; display: block;">
-    <div class="autism-card">
-        <div class="autism-icon">🔢</div>
-        <h3>Rekenproblemen</h3>
-        <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
-    </div>
-</a>
-</div>
+    </section>
+    
+    <section class="learning-rhythm">
+        <div class="container">
+            <h2 class="section-title">Ieder Kind Leert op Zijn Eigen Tempo</h2>
+            <div class="rhythm-content">
+                <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
+                <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
+            </div>
         </div>
     </section>
     
@@ -449,26 +677,50 @@
                 <div class="category-card">
                     <div class="category-icon">🔢</div>
                     <h3>Rekenen</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">🔤</div>
                     <h3>Taal</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">🎨</div>
                     <h3>Creatief</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">🧩</div>
                     <h3>Puzzels</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">🌍</div>
                     <h3>Wereld</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">🔬</div>
                     <h3>Wetenschap</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% voltooid</div>
                 </div>
             </div>
         </div>
@@ -483,6 +735,10 @@
                     <div class="worksheet-info">
                         <h3>Emotie Herkennen</h3>
                         <p>Leer gezichtsuitdrukkingen en emoties herkennen met duidelijke visuele voorbeelden.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">0% voltooid</div>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                 </div>
@@ -491,6 +747,10 @@
                     <div class="worksheet-info">
                         <h3>Dagelijkse Routines</h3>
                         <p>Visuele ondersteuning voor dagelijkse routines en overgangen.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">0% voltooid</div>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                 </div>
@@ -499,6 +759,10 @@
                     <div class="worksheet-info">
                         <h3>Zintuiglijk Spel</h3>
                         <p>Oefeningen voor sensorische verwerking en zintuiglijke ervaringen.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">0% voltooid</div>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                 </div>
@@ -507,6 +771,10 @@
                     <div class="worksheet-info">
                         <h3>Sociale Vaardigheden</h3>
                         <p>Oefeningen voor het herkennen van sociale situaties en gepaste reacties.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">0% voltooid</div>
                         <a href="#" class="download-btn">Download</a>
                     </div>
                 </div>
@@ -514,30 +782,72 @@
         </div>
     </section>
     
-    <section class="age-groups">
+    <section class="games-section">
         <div class="container">
-            <h2 class="section-title">Oefeningen per Leeftijd</h2>
-            <div class="age-tabs">
-                <div class="age-tab active">2-4 jaar</div>
-                <div class="age-tab">4-6 jaar</div>
-                <div class="age-tab">6-8 jaar</div>
-                <div class="age-tab">8-10 jaar</div>
-            </div>
-            <div class="worksheet-grid">
-                <div class="worksheet-card">
-                    <div class="worksheet-image">Eenvoudige Vormen</div>
-                    <div class="worksheet-info">
-                        <h3>Eenvoudige Vormen</h3>
-                        <p>Basisvormen herkennen en matchen. Voor peuters en jonge kleuters.</p>
-                        <a href="#" class="download-btn">Download</a>
+            <h2 class="section-title">Interactieve Spelletjes</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">😊😢😠</div>
+                    <div class="game-info">
+                        <h3>Emotie Herkenning Spel</h3>
+                        <p>Leer emoties herkennen met onze vriendelijke pinguïn.</p>
+                        <a href="#" class="play-btn">Spelen</a>
                     </div>
                 </div>
-                <div class="worksheet-card">
-                    <div class="worksheet-image">Kleuren Leren</div>
-                    <div class="worksheet-info">
-                        <h3>Kleuren Leren</h3>
-                        <p>Leer de basiskleuren herkennen en benoemen met visuele ondersteuning.</p>
-                        <a href="#" class="download-btn">Download</a>
+                <div class="game-card">
+                    <div class="game-image">🧮</div>
+                    <div class="game-info">
+                        <h3>Reken Puzzel</h3>
+                        <p>Match getallen met hoeveelheden in deze leuke puzzel.</p>
+                        <a href="#" class="play-btn">Spelen</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">📅</div>
+                    <div class="game-info">
+                        <h3>Dagelijkse Routine Planner</h3>
+                        <p>Plan je dag met deze visuele planning game.</p>
+                        <a href="#" class="play-btn">Spelen</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">👂👀</div>
+                    <div class="game-info">
+                        <h3>Zintuiglijk Memory</h3>
+                        <p>Match geluiden en textures in dit sensorische spel.</p>
+                        <a href="#" class="play-btn">Spelen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">Volg Ons op Sociale Media</h2>
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    <div class="social-info">
+                        <h3>YouTube Kanaal</h3>
+                        <p>Bekijk onze instructievideo's, tutorials en succesverhalen.</p>
+                        <a href="#" class="social-btn">Abonneer</a>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+                    <div class="social-info">
+                        <h3>TikTok Account</h3>
+                        <p>Korte demonstraties, tips en leuke leermomenten.</p>
+                        <a href="#" class="social-btn">Volg Ons</a>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="social-info">
+                        <h3>Ondersteun Ons</h3>
+                        <p>Help ons om gratis educatieve content te blijven maken.</p>
+                        <a href="#" class="social-btn">Doneer</a>
                     </div>
                 </div>
             </div>
@@ -557,7 +867,8 @@
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Oefeningen</a></li>
                         <li><a href="#">Autisme</a></li>
-                        <li><a href="#">Leeftijden</a></li>
+                        <li><a href="#">Spelletjes</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -574,21 +885,36 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Chatbot -->
+    <div class="chatbot-toggle">
+        <i class="fas fa-comments"></i>
+    </div>
+    
+    <div class="chatbot">
+        <div class="chatbot-header">
+            <div class="logo-icon">🐧</div>
+            <h3>Atsumi Assistant</h3>
+        </div>
+        <div class="chatbot-body">
+            <div class="message bot-message">
+                Hallo! Ik ben Atsumi, je assistant. Hoe kan ik je helpen?
+            </div>
+            <div class="message bot-message">
+                Ik kan je helpen met:
+                <br>• Geschikte oefeningen vinden
+                <br>• Uitleg over autismevriendelijk leren
+                <br>• Technische ondersteuning
+                <br>• Downloadproblemen oplossen
+            </div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" placeholder="Stel je vraag...">
+            <button>Verstuur</button>
+        </div>
+    </div>
 
     <script>
-        // Simpele interactiviteit voor de leeftijd tabs
-        document.querySelectorAll('.age-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Verwijder actieve klasse van alle tabs
-                document.querySelectorAll('.age-tab').forEach(t => {
-                    t.classList.remove('active');
-                });
-                
-                // Voeg actieve klasse toe aan geklikte tab
-                this.classList.add('active');
-            });
-        });
-        
         // Simpele zoekfunctie (placeholder)
         document.querySelector('.search-box button').addEventListener('click', function() {
             const searchTerm = document.querySelector('.search-box input').value;
@@ -603,9 +929,67 @@
                 document.querySelector('.search-box button').click();
             }
         });
+        
+        // Chatbot functionaliteit
+        const chatbotToggle = document.querySelector('.chatbot-toggle');
+        const chatbot = document.querySelector('.chatbot');
+        const chatbotInput = document.querySelector('.chatbot-footer input');
+        const chatbotSend = document.querySelector('.chatbot-footer button');
+        const chatbotBody = document.querySelector('.chatbot-body');
+        
+        chatbotToggle.addEventListener('click', function() {
+            if (chatbot.style.display === 'flex') {
+                chatbot.style.display = 'none';
+            } else {
+                chatbot.style.display = 'flex';
+            }
+        });
+        
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message !== '') {
+                // Voeg gebruikersbericht toe
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user-message');
+                userMessage.textContent = message;
+                chatbotBody.appendChild(userMessage);
+                
+                // Simuleer antwoord van de bot
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('message', 'bot-message');
+                    
+                    // Eenvoudige antwoorden op basis van trefwoorden
+                    if (message.toLowerCase().includes('oefening')) {
+                        botMessage.textContent = 'Ik kan je helpen bij het vinden van geschikte oefeningen. Welk onderwerp zoek je?';
+                    } else if (message.toLowerCase().includes('autisme')) {
+                        botMessage.textContent = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning.';
+                    } else if (message.toLowerCase().includes('download')) {
+                        botMessage.textContent = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw.';
+                    } else {
+                        botMessage.textContent = 'Ik begrijp je vraag. Laat me je doorverwijzen naar de juiste informatie.';
+                    }
+                    
+                    chatbotBody.appendChild(botMessage);
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                }, 1000);
+                
+                // Reset invoerveld
+                chatbotInput.value = '';
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            }
+        }
     </script>
 </body>
 </html>
+
 
 
 
