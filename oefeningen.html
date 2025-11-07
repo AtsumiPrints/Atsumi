@@ -601,23 +601,22 @@
     </footer>
 
     <script>
-        // Simpele interactie voor de oefeningen knoppen
-        document.querySelectorAll('.exercise-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const card = this.closest('.exercise-card') || this.closest('.recommended-card');
-                const title = card.querySelector('h3').textContent;
-                alert(`Je hebt gekozen voor: ${title}\n\nDeze oefeningen worden binnenkort toegevoegd!`);
-            });
+    // Simpele interactie voor de oefeningen knoppen
+    document.querySelectorAll('.exercise-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Als de knop een link is (a-tag) en al een href heeft, dan niet de alert tonen
+            if (this.tagName === 'A' && this.getAttribute('href')) {
+                // Laat de link gewoon werken
+                return;
+            }
+            
+            // Alleen voor knoppen zonder link tonen we de alert
+            e.preventDefault();
+            const card = this.closest('.exercise-card');
+            const title = card.querySelector('h3').textContent;
+            alert(`Je hebt gekozen voor: ${title}\n\nDeze oefeningen worden binnenkort toegevoegd!`);
         });
-
-        // Simpele interactie voor de download knoppen
-        document.querySelectorAll('.download-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const card = this.closest('.recommended-card');
-                const title = card.querySelector('h3').textContent;
-                alert(`Je downloadt nu: ${title}\n\nDe download wordt voorbereid...`);
-            });
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
