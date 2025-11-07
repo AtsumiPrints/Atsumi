@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMOG - Spreken Met Ondersteuning van Gebaren | Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230077B6" opacity="0.1"/><path d="M10,10 L90,90 M90,10 L10,90" stroke="%237209B7" stroke-width="2" opacity="0.1"/></svg>');
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--autism-blue);
+            font-size: 2rem;
+        }
+        
+        .smog-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .smog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .smog-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--autism-blue);
+        }
+        
+        .smog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .smog-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--autism-purple);
+        }
+        
+        .smog-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+        }
+        
+        .smog-video {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            background: var(--autism-light-blue);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+        
+        .benefits {
+            padding: 3rem 1rem;
+            background: var(--light);
+        }
+        
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: var(--autism-purple);
+        }
+        
+        .resources {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid var(--autism-light-blue);
+        }
+        
+        .resource-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .resource-image {
+            height: 150px;
+            background: var(--autism-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .resource-info {
+            padding: 15px;
+        }
+        
+        .resource-info h3 {
+            margin-bottom: 10px;
+            color: var(--autism-blue);
+        }
+        
+        .resource-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--autism-yellow);
+            color: var(--dark);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #ffc043;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .benefit-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
+                        <li><a href="index.html#autisme">Autisme</a></li>
+                        <li><a href="smog.html">SMOG</a></li>
+                        <li><a href="index.html#leeftijden">Leeftijden</a></li>
+                        <li><a href="index.html#over-ons">Over ons</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>SMOG - Spreken Met Ondersteuning van Gebaren</h2>
+            <p>Een communicatiemethode die spraak ondersteunt met gebaren, speciaal ontwikkeld voor kinderen met communicatie-uitdagingen.</p>
+        </div>
+    </section>
+    
+    <section class="smog-section">
+        <div class="container">
+            <h2 class="section-title">Wat is SMOG?</h2>
+            <p>SMOG (Spreken Met Ondersteuning van Gebaren) is een communicatiemethode waarbij gesproken taal wordt ondersteund met gebaren. Deze methode is vooral nuttig voor kinderen met communicatieproblemen, zoals kinderen met autisme, taalontwikkelingsstoornissen of verstandelijke beperkingen.</p>
+            
+            <div class="smog-grid">
+                <div class="smog-card">
+                    <div class="smog-icon">👐</div>
+                    <h3>Gebaren als Ondersteuning</h3>
+                    <p>Bij SMOG worden gebaren gebruikt als visuele ondersteuning bij het spreken. Dit helpt kinderen om taal beter te begrijpen en te gebruiken.</p>
+                </div>
+                <div class="smog-card">
+                    <div class="smog-icon">🗣️</div>
+                    <h3>Spraak blijft Centraal</h3>
+                    <p>De gebaren ondersteunen de gesproken taal, maar vervangen deze niet. Spraak blijft het belangrijkste communicatiemiddel.</p>
+                </div>
+                <div class="smog-card">
+                    <div class="smog-icon">🧠</div>
+                    <h3>Bevordert Taalontwikkeling</h3>
+                    <p>SMOG stimuleert de taalontwikkeling door woorden en concepten visueel te maken, wat het begrip en onthouden vergemakkelijkt.</p>
+                </div>
+            </div>
+            
+            <div class="smog-video">
+                <h2 class="section-title">Hoe werkt SMOG?</h2>
+                <div class="video-placeholder">
+                    [Hier zou een instructievideo over SMOG komen]
+                </div>
+                <p style="margin-top: 15px; font-style: italic;">Bekijk hoe SMOG in de praktijk wordt toegepast</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Voordelen van SMOG</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">💬</div>
+                    <div>
+                        <h3>Verbeterde Communicatie</h3>
+                        <p>SMOG helpt kinderen om zich beter uit te drukken en anderen beter te begrijpen, wat frustratie vermindert.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <div>
+                        <h3>Stimuleert Taalontwikkeling</h3>
+                        <p>Door woorden visueel te maken, helpt SMOG bij het uitbreiden van de woordenschat en het begrip van taalstructuren.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">😊</div>
+                    <div>
+                        <h3>Vermindert Frustratie</h3>
+                        <p>Kinderen die moeite hebben met communiceren, ervaren minder frustratie wanneer ze zich beter kunnen uiten.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                    <div>
+                        <h3>Versterkt Relaties</h3>
+                        <p>Betere communicatie leidt tot sterkere banden tussen kinderen, ouders, leerkrachten en leeftijdsgenoten.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="resources">
+        <div class="container">
+            <h2 class="section-title">SMOG Materialen en Oefeningen</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-image">Basis Gebaren</div>
+                    <div class="resource-info">
+                        <h3>Basis Gebaren Leren</h3>
+                        <p>Leer de belangrijkste SMOG-gebaren voor dagelijkse communicatie.</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-image">Pictogrammen</div>
+                    <div class="resource-info">
+                        <h3>Pictogrammen Set</h3>
+                        <p>Visuele ondersteuning met pictogrammen voor SMOG-gebaren.</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-image">Spelletjes</div>
+                    <div class="resource-info">
+                        <h3>SMOG Spelletjes</h3>
+                        <p>Leuke spelletjes om SMOG-gebaren te oefenen en te herhalen.</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-image">Liedjes</div>
+                    <div class="resource-info">
+                        <h3>Liedjes met Gebaren</h3>
+                        <p>Bekende kinderliedjes met SMOG-gebaren voor muzikale ondersteuning.</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="smog-section">
+        <div class="container">
+            <h2 class="section-title">SMOG in de Praktijk</h2>
+            <p>SMOG kan op verschillende manieren worden toegepast, afhankelijk van de behoeften van het kind:</p>
+            
+            <div class="smog-grid">
+                <div class="smog-card">
+                    <div class="smog-icon">🏠</div>
+                    <h3>Thuis</h3>
+                    <p>Ouders kunnen SMOG gebruiken tijdens dagelijkse routines zoals eten, aankleden en spelen.</p>
+                </div>
+                <div class="smog-card">
+                    <div class="smog-icon">🏫</div>
+                    <h3>Op School</h3>
+                    <p>Leerkrachten kunnen SMOG integreren in lessen en klasactiviteiten.</p>
+                </div>
+                <div class="smog-card">
+                    <div class="smog-icon">👥</div>
+                    <h3>In Groepen</h3>
+                    <p>SMOG kan worden gebruikt in therapiegroepen of speelgroepen voor sociale interactie.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3>Meer informatie over SMOG</h3>
+                <p>Bezoek de officiële SMOG-website voor uitgebreide informatie en trainingen:</p>
+                <a href="https://smog.vlaanderen" target="_blank" style="display: inline-block; margin-top: 15px; background: var(--autism-blue); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Bezoek SMOG.vlaanderen</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
+                        <li><a href="index.html#autisme">Autisme</a></li>
+                        <li><a href="smog.html">SMOG</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Email: info@atsumi.nl</li>
+                        <li>Telefoon: 012-3456789</li>
+                        <li>Volg ons op sociale media</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
