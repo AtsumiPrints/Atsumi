@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Beroemde Autistische Mensen - Atsumi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-dark-blue: #3B5998;
+            --autism-light-blue: #8B9DC3;
+            --autism-very-light-blue: #DFE3EE;
+            --autism-purple: #7209B7;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230077B6" opacity="0.1"/><path d="M10,10 L90,90 M90,10 L10,90" stroke="%237209B7" stroke-width="2" opacity="0.1"/></svg>');
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--autism-blue);
+            font-size: 2rem;
+        }
+        
+        .puzzle-piece {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .introduction {
+            padding: 3rem 1rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .introduction-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .introduction-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .famous-people {
+            padding: 3rem 1rem;
+            background: var(--light);
+        }
+        
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .person-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--autism-purple);
+        }
+        
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .person-image {
+            height: 250px;
+            background-color: var(--autism-light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .person-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .person-card:hover .person-image img {
+            transform: scale(1.05);
+        }
+        
+        .person-info {
+            padding: 20px;
+        }
+        
+        .person-info h3 {
+            margin-bottom: 10px;
+            color: var(--autism-purple);
+            font-size: 1.4rem;
+        }
+        
+        .person-info .person-dates {
+            color: var(--autism-blue);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .person-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .person-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+        
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: var(--autism-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .people-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
+                        <li><a href="index.html#autisme">Autisme</a></li>
+                        <li><a href="index.html#spelletjes">Spelletjes</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>10 Beroemde Autistische Mensen in de Geschiedenis</h2>
+            <p>Ontdek de bijzondere prestaties van deze invloedrijke personen</p>
+        </div>
+    </section>
+    
+    <section class="introduction">
+        <div class="container">
+            <span class="puzzle-piece">🧩</span>
+            <h2 class="section-title">Autisme in de Geschiedenis</h2>
+            <div class="introduction-content">
+                <p>De rave over autisme deze dagen heeft een aantal vragen opgeroepen. Verscheen autisme net in onze wereld als gevolg van veranderingen in het milieu? Bestaat het al lang, maar is het pas recent bestudeerd, gedefinieerd en gediagnosticeerd? Volgens sommige historici en psychologen bestaat autisme al lang. Ze toonden aan dat er veel beroemde autistische mensen in de geschiedenis zijn.</p>
+                <p>Bestudeer zorgvuldig de manieren waarop sommige beroemde mensen in de geschiedenis zich gedroegen en schreven, er werd ontdekt dat ze de ene of de andere vorm van autisme hadden. Sommigen hadden het Asperger-syndroom (een ontwikkelingsstoornis die sociale interactie en verbale communicatie schaadt), terwijl anderen een hoogfunctionerend autisme hadden (hoger dan normaal IQ). Hoewel ze dezelfde aandoening zijn, verschillen ze op sommige manieren.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="famous-people">
+        <div class="container">
+            <h2 class="section-title">10 Beroemde Autistische Mensen</h2>
+            <div class="people-grid">
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/800px-Albert_Einstein_Head.jpg" alt="Albert Einstein">
+                        <div class="person-icon">🔬</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Albert Einstein</h3>
+                        <div class="person-dates">1879 - 1955</div>
+                        <p>Duitse theoretisch fysicus die de relativiteitstheorie ontwikkelde en de Nobelprijs voor de Natuurkunde won in 1921. Onderzoekers van Cambridge en Oxford universiteiten vermoeden dat Einstein het Asperger-syndroom had, een vorm van autisme.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Portrait_of_Sir_Isaac_Newton%2C_1689.jpg/800px-Portrait_of_Sir_Isaac_Newton%2C_1689.jpg" alt="Isaac Newton">
+                        <div class="person-icon">🍎</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Isaac Newton</h3>
+                        <div class="person-dates">1643 - 1726</div>
+                        <p>Engelse wetenschapper, filosoof, natuurkundige en wiskundige die moderne wetten van zwaartekracht, mechanica en beweging ontwikkelde. Professor Simon Baron-Cohen van het Autisme Onderzoekscentrum aan de universiteit van Cambridge onderzocht Newton's gedrag en vermoedt dat hij het Asperger-syndroom had.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/LewisCarrollSelfPhoto.jpg/800px-LewisCarrollSelfPhoto.jpg" alt="Lewis Carroll">
+                        <div class="person-icon">📚</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Lewis Carroll</h3>
+                        <div class="person-dates">1832 - 1898</div>
+                        <p>Beroemde Engelse schrijver bekend om "Alice's Avonturen in Wonderland". Professor Michael Fitzgerald denkt dat Carroll autisme heeft gehad. Hij was extreem verlegen en had problemen met sociale conventies.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Tesla_circa_1890.jpeg/800px-Tesla_circa_1890.jpeg" alt="Nikola Tesla">
+                        <div class="person-icon">⚡</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Nikola Tesla</h3>
+                        <div class="person-dates">1856 - 1943</div>
+                        <p>Servisch-Amerikaanse uitvinder bekend om zijn bijdragen aan de ontwikkeling van AC-elektriciteitsvoorziening. Hij had een zorgvuldig gereglementeerde dagelijkse routine en vertoonde gedrag dat geassocieerd wordt met hoogfunctionerend autisme.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/800px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg" alt="Thomas Jefferson">
+                        <div class="person-icon">🇺🇸</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Thomas Jefferson</h3>
+                        <div class="person-dates">1743 - 1826</div>
+                        <p>De derde president van de Verenigde Staten. Auteur Norm Ledgin betoogde in zijn boek "Jefferson Diagnosticeren" dat Jefferson zonder twijfel het Asperger-syndroom had. Hij had problemen met mensen en sprak niet comfortabel in het openbaar.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Charles_Darwin_seated_crop.jpg/800px-Charles_Darwin_seated_crop.jpg" alt="Charles Darwin">
+                        <div class="person-icon">🌿</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Charles Darwin</h3>
+                        <div class="person-dates">1809 - 1882</div>
+                        <p>Engelse bioloog, geoloog en naturalist, beroemd om zijn evolutietheorie. Volgens professor Michael Fitzgerald had Darwin het Asperger-syndroom. Hij had geen sociaal leven en zou lange tijd dezelfde route lopen.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Andy_Warhol_by_Jack_Mitchell.jpg/800px-Andy_Warhol_by_Jack_Mitchell.jpg" alt="Andy Warhol">
+                        <div class="person-icon">🎨</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Andy Warhol</h3>
+                        <div class="person-dates">1928 - 1987</div>
+                        <p>Amerikaanse kunstenaar die instrumenteel was in baanbrekende pop-art. Hij bleek repetitief te zijn in zijn kunstwerken. Volgens Judith Gould, directeur van het Britse topcentrum voor autisme, was dit een symptoom van autisme.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/800px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg" alt="Michelangelo">
+                        <div class="person-icon">🎭</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Michelangelo</h3>
+                        <div class="person-dates">1475 - 1564</div>
+                        <p>Italiaanse architect, beeldhouwer, schilder en High Renaissance-dichter. Dr. Muhammad Arshad gelooft dat Michelangelo het Asperger-syndroom had. Hij was in alle opzichten vreemd en geïsoleerd en vond het moeilijk om emoties te tonen.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wolfgang-amadeus-mozart_1.jpg/800px-Wolfgang-amadeus-mozart_1.jpg" alt="Wolfgang Amadeus Mozart">
+                        <div class="person-icon">🎵</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>Wolfgang Amadeus Mozart</h3>
+                        <div class="person-dates">1756 - 1791</div>
+                        <p>Zeer invloedrijke klassieke muziekcomponist. Mozart maakte herhaaldelijk gezichtsuitdrukkingen, bewoog zijn handen en voeten en had gekke stemmingswisselingen. Deze symptomen komen overeen met die van een autistische persoon.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/William_Butler_Yeats_by_George_Charles_Beresford.jpg/800px-William_Butler_Yeats_by_George_Charles_Beresford.jpg" alt="William Butler Yeats">
+                        <div class="person-icon">✍️</div>
+                    </div>
+                    <div class="person-info">
+                        <h3>William Butler Yeats</h3>
+                        <div class="person-dates">1865 - 1939</div>
+                        <p>Ierse dichter en opmerkelijke persoonlijkheid in de literatuur in de 20e eeuw. Een groot deel van Williams leven was hij sociaal verbroken. Professor Michael Fitzgerald bevestigde dat hij moeite had met lezen en schrijven, wat bijdroeg tot zijn slechte prestaties op school.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">Terug naar Homepage</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
+                        <li><a href="index.html#autisme">Autisme</a></li>
+                        <li><a href="index.html#spelletjes">Spelletjes</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                        <div><strong>Volg ons op sociale media</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
