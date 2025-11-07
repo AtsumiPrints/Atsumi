@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steun Atsumi - Doneer Nu</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .donation-section {
+            padding: 3rem 1rem;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--autism-blue);
+            margin-bottom: 10px;
+        }
+
+        .sponsor-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .sponsor-banner {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .sponsor-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .sponsor-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 5px solid var(--autism-yellow);
+        }
+
+        .sponsor-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+        }
+
+        .sponsor-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .sponsor-features li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .sponsor-features li:before {
+            content: "✓";
+            color: var(--autism-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .donation-btn {
+            display: inline-block;
+            background: var(--autism-yellow);
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .donation-btn:hover {
+            background: #ffc043;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="spelletjes.html">Spelletjes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">❤️</div>
+            <h1>Steun Onze Missie</h1>
+            <p>Samen maken we onderwijs toegankelijk voor elk kind</p>
+        </div>
+    </section>
+
+    <section class="donation-section">
+        <div class="container">
+            <div class="sponsor-banner">
+                <h2>🎯 Waarom Steunen?</h2>
+                <p style="font-size: 1.2rem; margin-top: 1rem;">
+                    "Elke euro die je doneert, gaat direct naar het ontwikkelen van educatieve materialen 
+                    voor kinderen met autisme en leeruitdagingen. Jouw steun betekent dat een kind vandaag 
+                    nog kan beginnen met leren op een manier die WEL voor hem of haar werkt."
+                </p>
+            </div>
+
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div>Kinderen geholpen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12.000+</div>
+                    <div>Oefeningen gedownload</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <div>Ouders ziet vooruitgang</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div>Gratis toegankelijk</div>
+                </div>
+            </div>
+
+            <div class="sponsor-section">
+                <h2 style="text-align: center; color: var(--autism-blue); margin-bottom: 2rem;">💼 Zakelijke Sponsoring</h2>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                    "Als bedrijf kunt u een cruciale rol spelen in het toegankelijk maken van onderwijs. 
+                    Word zichtbare partner in onze missie en toon maatschappelijke betrokkenheid."
+                </p>
+
+                <div class="sponsor-levels">
+                    <div class="sponsor-card">
+                        <h3>🥉 Bronze Partner</h3>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--autism-purple); margin: 15px 0;">€250/jaar</div>
+                        <p><strong>Met €250 kunnen we:</strong></p>
+                        <ul class="sponsor-features">
+                            <li>50 kinderen voorzien van leerpakketten</li>
+                            <li>100 extra oefeningen ontwikkelen</li>
+                            <li>Een maand lang toegang bieden aan 25 gezinnen</li>
+                            <li>Speciaal lesmateriaal creëren</li>
+                        </ul>
+                        <button class="donation-btn" onclick="sponsor('bronze')">Word Partner</button>
+                    </div>
+
+                    <div class="sponsor-card">
+                        <h3>🥈 Silver Partner</h3>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--autism-purple); margin: 15px 0;">€500/jaar</div>
+                        <p><strong>Met €500 kunnen we:</strong></p>
+                        <ul class="sponsor-features">
+                            <li>100 kinderen een heel jaar begeleiden</li>
+                            <li>Nieuwe educatieve spelletjes ontwikkelen</li>
+                            <li>Oudertrainingen organiseren</li>
+                            <li>Digitale leerplatform verbeteren</li>
+                            <li>Speciale workshops mogelijk maken</li>
+                        </ul>
+                        <button class="donation-btn" onclick="sponsor('silver')">Word Partner</button>
+                    </div>
+
+                    <div class="sponsor-card">
+                        <h3>🥇 Gold Partner</h3>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--autism-purple); margin: 15px 0;">€1.000/jaar</div>
+                        <p><strong>Met €1000 kunnen we:</strong></p>
+                        <ul class="sponsor-features">
+                            <li>Een heel project ondersteunen</li>
+                            <li>Volledig leerprogramma financieren</li>
+                            <li>200+ kinderen bereiken</li>
+                            <li>Onderzoek doen naar nieuwe methodes</li>
+                            <li>De vzw structureel ondersteunen</li>
+                            <li>Langdurige impact garanderen</li>
+                        </ul>
+                        <button class="donation-btn" onclick="sponsor('gold')">Word Partner</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 style="color: var(--autism-blue); margin-bottom: 1rem;">💝 Ander Bedrag</h3>
+                <p>Elke bijdrage, groot of klein, maakt verschil. Samen maken we onderwijs toegankelijk voor elk kind!</p>
+                <button class="donation-btn" onclick="customDonate()" style="max-width: 300px; margin-top: 1rem;">
+                    Kies Eigen Bedrag
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="spelletjes.html">Spelletjes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function sponsor(level) {
+            const levels = {
+                'bronze': 'Bronze Partner (€250/jaar)',
+                'silver': 'Silver Partner (€500/jaar)', 
+                'gold': 'Gold Partner (€1.000/jaar)'
+            };
+            alert(`Fantastisch! U wilt ${levels[level]} worden!\n\nNeem contact met ons op via AtsumiPrints@hotmail.com om de samenwerking te bespreken.`);
+        }
+
+        function customDonate() {
+            const amount = prompt('Voer uw gewenste donatiebedrag in (€):');
+            if (amount && !isNaN(amount)) {
+                alert(`Bedankt voor uw interesse om €${amount} te doneren!\n\nNeem contact met ons op via AtsumiPrints@hotmail.com voor de betaalinstructies.`);
+            }
+        }
+    </script>
+</body>
+</html>
