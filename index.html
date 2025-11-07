@@ -375,16 +375,16 @@
         /* Social Media Links Styles */
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         .social-link {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
+            gap: 10px;
+            padding: 10px 15px;
             background: var(--autism-very-light-blue);
             border-radius: 5px;
             text-decoration: none;
@@ -394,6 +394,10 @@
         
         .social-link:hover {
             background: var(--autism-light-blue);
+        }
+        
+        .social-link-icon {
+            font-size: 1.2rem;
         }
         
         /* Verbeterde Chatbot Styles */
@@ -646,11 +650,6 @@
                 right: 5%;
                 height: 70%;
             }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
         }
     </style>
 </head>
@@ -694,24 +693,24 @@
             
             <div class="autism-grid">
                 <div class="autism-card">
-                    <a href="spraakprobleem.html" style="text-decoration: none; color: inherit;">
+                    <a href="spraakproblemen.html" style="text-decoration: none; color: inherit;">
                         <div class="autism-icon">🗣️</div>
                         <h3>Spraakproblemen</h3>
                         <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
-                        <div class="download-btn">Bekijk oefeningen</div>
+                        <div class="social-btn">Bekijk oefeningen</div>
                     </a>
                 </div>
                 <div class="autism-card">
                     <div class="autism-icon">📖</div>
                     <h3>Leesproblemen</h3>
                     <p>Stapsgewijze leesoefeningen met visuele ondersteuning en herhaling.</p>
-                    <div class="download-btn">Bekijk oefeningen</div>
+                    <div class="social-btn">Bekijk oefeningen</div>
                 </div>
                 <div class="autism-card">
                     <div class="autism-icon">🔢</div>
                     <h3>Rekenproblemen</h3>
                     <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
-                    <div class="download-btn">Bekijk oefeningen</div>
+                    <div class="social-btn">Bekijk oefeningen</div>
                 </div>
             </div>
         </div>
@@ -891,10 +890,12 @@
                         <p>Volg ons op sociale media</p>
                         <div class="social-links">
                             <a href="https://facebook.com" class="social-link" target="_blank">
-                                <span>📘</span> Facebook
+                                <span class="social-link-icon">📘</span>
+                                <span>Facebook</span>
                             </a>
                             <a href="https://instagram.com" class="social-link" target="_blank">
-                                <span>📷</span> Instagram
+                                <span class="social-link-icon">📷</span>
+                                <span>Instagram</span>
                             </a>
                         </div>
                     </div>
@@ -1105,6 +1106,7 @@
     </script>
 </body>
 </html>
+
 
 
 
