@@ -362,6 +362,102 @@
             background: var(--autism-dark-blue);
         }
         
+        /* Forum Section Styles */
+        .forum-section {
+            padding: 3rem 1rem;
+            background: var(--light);
+        }
+        
+        .forum-preview {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .forum-header {
+            background: var(--autism-blue);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .forum-posts {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .forum-post {
+            border-bottom: 1px solid var(--autism-very-light-blue);
+            padding: 15px 0;
+        }
+        
+        .forum-post:last-child {
+            border-bottom: none;
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .post-author {
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .post-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .post-content {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .reply-btn, .like-btn {
+            background: none;
+            border: none;
+            color: var(--autism-blue);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .forum-cta {
+            text-align: center;
+            padding: 20px;
+            background: var(--autism-very-light-blue);
+        }
+        
+        .forum-link {
+            display: inline-block;
+            background: var(--autism-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .forum-link:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        /* Verbeterde Chatbot Styles */
         .chatbot {
             position: fixed;
             bottom: 20px;
@@ -377,45 +473,30 @@
         }
         
         .chatbot-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--autism-blue);
-    color: white;
-    padding: 10px 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.chatbot-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.minimize-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background 0.3s;
-}
-
-.minimize-btn:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-.penguin-icon {
-    font-size: 1.5rem;
-}
+            background: var(--autism-blue);
+            color: white;
+            padding: 10px 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .minimize-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: auto;
+        }
         
         .chatbot-body {
             flex: 1;
@@ -463,7 +544,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 999;
+            z-index: 10000;
         }
         
         .message {
@@ -639,11 +720,11 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="oefeningen.html">Oefeningen</a></li>
-                        <li><a href="autisme.html">Autisme</a></li>
-                        <li><a href="spelletjes.html">Spelletjes</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Oefeningen</a></li>
+                        <li><a href="#">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -672,7 +753,7 @@
                     <div class="autism-icon">🗣️</div>
                     <h3>Spraakproblemen</h3>
                     <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling.</p>
-                    <a href="spraakproblemen.html" class="download-btn">Bekijk oefeningen</a>
+                    <a href="#" class="download-btn">Bekijk oefeningen</a>
                 </div>
                 <div class="autism-card">
                     <div class="autism-icon">📖</div>
@@ -694,7 +775,7 @@
         <div class="container">
             <h2 class="section-title">Ieder Kind Leert op Zijn Eigen Tempo</h2>
             <div class="rhythm-content">
-                <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
+                <p>Bij Atsumi geloven we dat elk child uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
                 <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
             </div>
         </div>
@@ -745,7 +826,6 @@
                     <div class="progress-text">0% voltooid</div>
                 </div>
                 <div class="category-card">
-                    <a href="weetjes.html" style="text-decoration: none; color: inherit; display: block;">
                     <div class="category-icon">🔬</div>
                     <h3>Wetenschap</h3>
                     <div class="progress-bar">
@@ -853,6 +933,69 @@
         </div>
     </section>
     
+    <!-- NIEUWE FORUM SECTIE -->
+    <section class="forum-section">
+        <div class="container">
+            <h2 class="section-title">Community Forum</h2>
+            <div class="forum-preview">
+                <div class="forum-header">
+                    <h3>Recente Discussies</h3>
+                    <span>Laatste activiteit</span>
+                </div>
+                <div class="forum-posts">
+                    <div class="forum-post">
+                        <div class="post-header">
+                            <div class="post-author">Sanne</div>
+                            <div class="post-date">15 okt 2023</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Tips voor sensorische verwerking</h4>
+                            <p>Heeft iemand tips voor kinderen die moeite hebben met sensorische verwerking? Mijn zoontje heeft vooral problemen met harde geluiden.</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="like-btn"><i class="far fa-thumbs-up"></i> 3</button>
+                            <button class="reply-btn"><i class="far fa-comment"></i> 1 antwoord</button>
+                        </div>
+                    </div>
+                    
+                    <div class="forum-post">
+                        <div class="post-header">
+                            <div class="post-author">Lars</div>
+                            <div class="post-date">12 okt 2023</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Structuur in de ochtend</h4>
+                            <p>Hoe creëren jullie structuur in de ochtend? Onze dochter heeft moeite met overgangen en de ochtend is altijd een strijd.</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="like-btn"><i class="far fa-thumbs-up"></i> 5</button>
+                            <button class="reply-btn"><i class="far fa-comment"></i> 2 antwoorden</button>
+                        </div>
+                    </div>
+                    
+                    <div class="forum-post">
+                        <div class="post-header">
+                            <div class="post-author">Eva</div>
+                            <div class="post-date">10 okt 2023</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Effectieve communicatiemiddelen</h4>
+                            <p>Welke communicatiemiddelen gebruiken jullie voor niet-verbale kinderen? We zijn op zoek naar nieuwe ideeën.</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="like-btn"><i class="far fa-thumbs-up"></i> 2</button>
+                            <button class="reply-btn"><i class="far fa-comment"></i> 0 antwoorden</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="forum-cta">
+                    <p>Doe mee met de discussie en deel je ervaringen!</p>
+                    <a href="forum.html" class="forum-link">Naar het Forum</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="social-section">
         <div class="container">
             <h2 class="section-title">Volg Ons op Sociale Media</h2>
@@ -878,7 +1021,7 @@
                     <div class="social-info">
                         <h3>Ondersteun Ons</h3>
                         <p>Help ons om gratis educatieve content te blijven maken.</p>
-                        <a href="doneer.html" class="social-btn">Doneer</a>
+                        <a href="#" class="social-btn">Doneer</a>
                     </div>
                 </div>
             </div>
@@ -898,7 +1041,7 @@
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Oefeningen</a></li>
                         <li><a href="#">Autisme</a></li>
-                        <li><a href="#">Spelletjes</a></li>
+                        <li><a href="forum.html">Forum</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
@@ -918,35 +1061,37 @@
     </footer>
     
     <!-- Chatbot -->
-<div class="chatbot-toggle">
-    <div class="penguin-icon">🐧</div>
-</div>
-
-<div class="chatbot">
-    <div class="chatbot-header">
-        <div class="chatbot-title">
-            <div class="penguin-icon">🐧</div>
-            <h3>Minho</h3>
-        </div>
-        <button class="minimize-btn">−</button>
+    <div class="chatbot-toggle">
+        <i class="fas fa-comments"></i>
     </div>
-    <div class="chatbot-body">
-        <div class="message bot-message">
-            Hallo! Ik ben Minho, je pinguïn maatje. Hoe kan ik je helpen?
+    
+    <div class="chatbot">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <div class="logo-icon">🐧</div>
+                <h3>Minho de Pinguïn</h3>
+            </div>
+            <button class="minimize-btn">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <div class="message bot-message">
-            Ik kan je helpen met:
-            <br>• Geschikte oefeningen vinden
-            <br>• Uitleg over autismevriendelijk leren
-            <br>• Technische ondersteuning
-            <br>• Downloadproblemen oplossen
+        <div class="chatbot-body">
+            <div class="message bot-message">
+                Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?
+            </div>
+            <div class="message bot-message">
+                Ik kan je helpen met:
+                <br>• Geschikte oefeningen vinden
+                <br>• Uitleg over autismevriendelijk leren
+                <br>• Technische ondersteuning
+                <br>• Downloadproblemen oplossen
+            </div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" placeholder="Stel je vraag...">
+            <button>Verstuur</button>
         </div>
     </div>
-    <div class="chatbot-footer">
-        <input type="text" placeholder="Stel je vraag aan Minho...">
-        <button>Verstuur</button>
-    </div>
-</div>
 
     <script>
         // Simpele zoekfunctie (placeholder)
@@ -964,108 +1109,116 @@
             }
         });
         
+        // Forum preview interactie
+        document.querySelectorAll('.like-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentLikes = parseInt(this.textContent.match(/\d+/)[0]);
+                this.innerHTML = `<i class="far fa-thumbs-up"></i> ${currentLikes + 1}`;
+            });
+        });
+        
         // Chatbot functionaliteit - Minho de Pinguïn
-const chatbotToggle = document.querySelector('.chatbot-toggle');
-const chatbot = document.querySelector('.chatbot');
-const chatbotInput = document.querySelector('.chatbot-footer input');
-const chatbotSend = document.querySelector('.chatbot-footer button');
-const chatbotBody = document.querySelector('.chatbot-body');
-const minimizeBtn = document.querySelector('.minimize-btn');
+        const chatbotToggle = document.querySelector('.chatbot-toggle');
+        const chatbot = document.querySelector('.chatbot');
+        const chatbotInput = document.querySelector('.chatbot-footer input');
+        const chatbotSend = document.querySelector('.chatbot-footer button');
+        const chatbotBody = document.querySelector('.chatbot-body');
+        const minimizeBtn = document.querySelector('.minimize-btn');
 
-// Zorg dat de toggle knop altijd zichtbaar is
-if (chatbotToggle) {
-    chatbotToggle.style.display = 'flex';
-    chatbotToggle.style.zIndex = '10000';
-}
-
-// Toggle chatbot open/dicht
-chatbotToggle.addEventListener('click', function(e) {
-    e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
-    if (chatbot.style.display === 'flex') {
-        chatbot.style.display = 'none';
-    } else {
-        chatbot.style.display = 'flex';
-        if (chatbotInput) chatbotInput.focus();
-    }
-});
-
-// Minimaliseer knop
-if (minimizeBtn) {
-    minimizeBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
-        chatbot.style.display = 'none';
-    });
-}
-
-// Verstuur bericht
-chatbotSend.addEventListener('click', sendMessage);
-chatbotInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-});
-
-function sendMessage() {
-    const message = chatbotInput.value.trim();
-    if (message !== '') {
-        // Voeg gebruikersbericht toe
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('message', 'user-message');
-        userMessage.textContent = message;
-        chatbotBody.appendChild(userMessage);
-        
-        // Reset invoerveld
-        chatbotInput.value = '';
-        chatbotBody.scrollTop = chatbotBody.scrollHeight;
-        
-        // Minho antwoordt
-        setTimeout(() => {
-            const botMessage = document.createElement('div');
-            botMessage.classList.add('message', 'bot-message');
-            
-            // Minho's antwoorden
-            if (message.toLowerCase().includes('hallo') || message.toLowerCase().includes('hoi') || message.toLowerCase().includes('hey')) {
-                botMessage.textContent = 'Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?';
-            } else if (message.toLowerCase().includes('oefening') || message.toLowerCase().includes('spraak')) {
-                botMessage.textContent = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
-            } else if (message.toLowerCase().includes('alfabet')) {
-                botMessage.textContent = 'Het alfabet vind je bij Spraakproblemen oefeningen! Klik op de letters om ze te horen. 🔤';
-            } else if (message.toLowerCase().includes('autisme')) {
-                botMessage.textContent = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
-            } else if (message.toLowerCase().includes('download')) {
-                botMessage.textContent = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw. 📥';
-            } else if (message.toLowerCase().includes('dank') || message.toLowerCase().includes('bedankt')) {
-                botMessage.textContent = 'Graag gedaan! Blijf oefenen, je doet het geweldig! 🌟';
-            } else if (message.toLowerCase().includes('pinguïn') || message.toLowerCase().includes('minho')) {
-                botMessage.textContent = 'Ja, ik ben Minho de pinguïn! 🐧 Ik help kinderen met leren. Pinguïns zijn heel sociaal, net als wij!';
-            } else {
-                botMessage.textContent = 'Leuke vraag! Voor oefeningen kun je naar "Spraakproblemen" gaan om letters te oefenen. 🐧';
-            }
-            
-            chatbotBody.appendChild(botMessage);
-            chatbotBody.scrollTop = chatbotBody.scrollHeight;
-        }, 1000);
-    }
-}
-
-// Verbeterde click outside functionaliteit
-document.addEventListener('click', function(event) {
-    // Controleer of de chatbot open is
-    if (chatbot.style.display === 'flex') {
-        const isChatbot = event.target.closest('.chatbot');
-        const isToggle = event.target.closest('.chatbot-toggle');
-
-        // Als er buiten de chatbot of toggle wordt geklikt, sluit de chatbot
-        if (!isChatbot && !isToggle) {
-            chatbot.style.display = 'none';
+        // Zorg dat de toggle knop altijd zichtbaar is
+        if (chatbotToggle) {
+            chatbotToggle.style.display = 'flex';
+            chatbotToggle.style.zIndex = '10000';
         }
-    }
-});
 
-// Voorkom dat clicks binnen de chatbot de buitenste click triggeren
-chatbot.addEventListener('click', function(event) {
-    event.stopPropagation();
-});
+        // Toggle chatbot open/dicht
+        chatbotToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
+            if (chatbot.style.display === 'flex') {
+                chatbot.style.display = 'none';
+            } else {
+                chatbot.style.display = 'flex';
+                if (chatbotInput) chatbotInput.focus();
+            }
+        });
+
+        // Minimaliseer knop
+        if (minimizeBtn) {
+            minimizeBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
+                chatbot.style.display = 'none';
+            });
+        }
+
+        // Verstuur bericht
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message !== '') {
+                // Voeg gebruikersbericht toe
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user-message');
+                userMessage.textContent = message;
+                chatbotBody.appendChild(userMessage);
+                
+                // Reset invoerveld
+                chatbotInput.value = '';
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                
+                // Minho antwoordt
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('message', 'bot-message');
+                    
+                    // Minho's antwoorden
+                    if (message.toLowerCase().includes('hallo') || message.toLowerCase().includes('hoi') || message.toLowerCase().includes('hey')) {
+                        botMessage.textContent = 'Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?';
+                    } else if (message.toLowerCase().includes('oefening') || message.toLowerCase().includes('spraak')) {
+                        botMessage.textContent = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
+                    } else if (message.toLowerCase().includes('alfabet')) {
+                        botMessage.textContent = 'Het alfabet vind je bij Spraakproblemen oefeningen! Klik op de letters om ze te horen. 🔤';
+                    } else if (message.toLowerCase().includes('autisme')) {
+                        botMessage.textContent = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
+                    } else if (message.toLowerCase().includes('download')) {
+                        botMessage.textContent = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw. 📥';
+                    } else if (message.toLowerCase().includes('dank') || message.toLowerCase().includes('bedankt')) {
+                        botMessage.textContent = 'Graag gedaan! Blijf oefenen, je doet het geweldig! 🌟';
+                    } else if (message.toLowerCase().includes('pinguïn') || message.toLowerCase().includes('minho')) {
+                        botMessage.textContent = 'Ja, ik ben Minho de pinguïn! 🐧 Ik help kinderen met leren. Pinguïns zijn heel sociaal, net als wij!';
+                    } else {
+                        botMessage.textContent = 'Leuke vraag! Voor oefeningen kun je naar "Spraakproblemen" gaan om letters te oefenen. 🐧';
+                    }
+                    
+                    chatbotBody.appendChild(botMessage);
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Verbeterde click outside functionaliteit
+        document.addEventListener('click', function(event) {
+            // Controleer of de chatbot open is
+            if (chatbot.style.display === 'flex') {
+                const isChatbot = event.target.closest('.chatbot');
+                const isToggle = event.target.closest('.chatbot-toggle');
+                
+                // Als er buiten de chatbot of toggle wordt geklikt, sluit de chatbot
+                if (!isChatbot && !isToggle) {
+                    chatbot.style.display = 'none';
+                }
+            }
+        });
+
+        // Voorkom dat clicks binnen de chatbot de buitenste click triggeren
+        chatbot.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
     </script>
 </body>
 </html>
