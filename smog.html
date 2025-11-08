@@ -190,6 +190,7 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: bold;
         }
         
         .filter-btn.active, .filter-btn:hover {
@@ -212,17 +213,23 @@
             transition: all 0.3s;
             border: 2px solid var(--autism-light-blue);
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
         }
         
         .gebaren-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            border-color: var(--autism-blue);
         }
         
         .gebaren-icon {
             font-size: 2rem;
             margin-bottom: 10px;
-            height: 60px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -231,6 +238,7 @@
         .gebaren-card p {
             font-weight: bold;
             color: var(--autism-blue);
+            margin: 0;
         }
         
         .resources {
@@ -369,6 +377,15 @@
             .gebaren-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
+            
+            .filter-buttons {
+                gap: 5px;
+            }
+            
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -383,8 +400,8 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
-                        <li><a href="index.html#autisme">Autisme</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -478,6 +495,8 @@
                 <button class="filter-btn" data-filter="tijd">Tijd</button>
                 <button class="filter-btn" data-filter="werkwoorden">Werkwoorden</button>
                 <button class="filter-btn" data-filter="groeten">Groeten en wensen</button>
+                <button class="filter-btn" data-filter="cijfers">Cijfers</button>
+                <button class="filter-btn" data-filter="alfabet">Alfabet</button>
             </div>
             
             <div class="gebaren-grid">
@@ -748,8 +767,8 @@
                     <h3>Snelle Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
-                        <li><a href="index.html#autisme">Autisme</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -770,35 +789,39 @@
     </footer>
 
     <script>
-        // Filter functionaliteit voor gebaren
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Verwijder actieve klasse van alle knoppen
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                // Voeg actieve klasse toe aan geklikte knop
-                this.classList.add('active');
-                
-                const filter = this.getAttribute('data-filter');
-                const gebarenCards = document.querySelectorAll('.gebaren-card');
-                
-                gebarenCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+        // Verbeterde filter functionaliteit voor gebaren
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const gebarenCards = document.querySelectorAll('.gebaren-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Verwijder actieve klasse van alle knoppen
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Voeg actieve klasse toe aan geklikte knop
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    gebarenCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
                 });
             });
-        });
-        
-        // Klik op gebaren kaartjes (placeholder functionaliteit)
-        document.querySelectorAll('.gebaren-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const woord = this.querySelector('p').textContent;
-                alert(`Je hebt geklikt op het gebaar: ${woord}\n\nDeze functionaliteit zou normaal een afbeelding of video van het gebaar tonen.`);
+            
+            // Klik op gebaren kaartjes (placeholder functionaliteit)
+            gebarenCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const woord = this.querySelector('p').textContent;
+                    alert(`Je hebt geklikt op het gebaar: ${woord}\n\nDeze functionaliteit zou normaal een afbeelding of video van het gebaar tonen.`);
+                });
             });
         });
     </script>
