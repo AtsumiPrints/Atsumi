@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Tekenen - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --autism-green: #06D6A0;
+            --autism-orange: #FF9E00;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .drawing-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+
+        .drawing-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .progress-container {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--autism-green);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            justify-content: center;
+        }
+
+        .tool-btn {
+            padding: 10px 15px;
+            background: white;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .tool-btn:hover {
+            background: var(--autism-light-blue);
+        }
+
+        .tool-btn.active {
+            background: var(--autism-blue);
+            color: white;
+            border-color: var(--autism-blue);
+        }
+
+        .color-picker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.2);
+        }
+
+        .color-option.active {
+            border-color: var(--dark);
+            transform: scale(1.2);
+        }
+
+        .drawing-area {
+            background: white;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 500px;
+            position: relative;
+        }
+
+        #drawing-canvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            background: white;
+        }
+
+        .drawing-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .save-btn {
+            background: var(--autism-green);
+            color: white;
+        }
+
+        .clear-btn {
+            background: var(--autism-pink);
+            color: white;
+        }
+
+        .back-btn {
+            background: var(--autism-light-blue);
+            color: var(--dark);
+        }
+
+        .undo-btn {
+            background: var(--autism-orange);
+            color: white;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .tool-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .shape-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .drawing-area {
+                height: 400px;
+            }
+            
+            .tools-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .drawing-controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🎨</div>
+            <h1>Online Tekenen en Schilderen</h1>
+            <p>Laat je creativiteit de vrije loop op elk apparaat - computer, laptop, tablet of telefoon!</p>
+        </div>
+    </section>
+
+    <section class="drawing-section">
+        <div class="container">
+            <a href="oefeningen.html" class="control-btn back-btn">← Terug naar alle oefeningen</a>
+
+            <div class="drawing-container">
+                <div class="progress-container">
+                    <h3>Jouw voortgang: <span id="progress-text">0%</span> voltooid</h3>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                </div>
+
+                <div class="tools-container">
+                    <div class="tool-options">
+                        <button class="tool-btn active" id="pencil-tool">
+                            <span>✏️</span> Potlood
+                        </button>
+                        <button class="tool-btn" id="brush-tool">
+                            <span>🖌️</span> Kwast
+                        </button>
+                        <button class="tool-btn" id="eraser-tool">
+                            <span>🧽</span> Gum
+                        </button>
+                        <button class="tool-btn" id="line-tool">
+                            <span>📏</span> Lijn
+                        </button>
+                        <button class="tool-btn" id="rectangle-tool">
+                            <span>⬜</span> Rechthoek
+                        </button>
+                        <button class="tool-btn" id="circle-tool">
+                            <span>⭕</span> Cirkel
+                        </button>
+                        <button class="tool-btn" id="fill-tool">
+                            <span>🎨</span> Vul
+                        </button>
+                    </div>
+                    
+                    <div class="color-picker">
+                        <div class="color-option active" style="background-color: #000000;" data-color="#000000"></div>
+                        <div class="color-option" style="background-color: #FF0000;" data-color="#FF0000"></div>
+                        <div class="color-option" style="background-color: #0000FF;" data-color="#0000FF"></div>
+                        <div class="color-option" style="background-color: #008000;" data-color="#008000"></div>
+                        <div class="color-option" style="background-color: #FFFF00;" data-color="#FFFF00"></div>
+                        <div class="color-option" style="background-color: #FFA500;" data-color="#FFA500"></div>
+                        <div class="color-option" style="background-color: #800080;" data-color="#800080"></div>
+                        <div class="color-option" style="background-color: #FFC0CB;" data-color="#FFC0CB"></div>
+                        <div class="color-option" style="background-color: #A52A2A;" data-color="#A52A2A"></div>
+                        <div class="color-option" style="background-color: #00FFFF;" data-color="#00FFFF"></div>
+                        <div class="color-option" style="background-color: #FF00FF;" data-color="#FF00FF"></div>
+                        <div class="color-option" style="background-color: #FFFFFF; border: 1px solid #ccc;" data-color="#FFFFFF"></div>
+                    </div>
+                    
+                    <div class="brush-size">
+                        <label for="brush-size">Grootte:</label>
+                        <input type="range" id="brush-size" min="1" max="30" value="5">
+                    </div>
+                </div>
+
+                <div class="drawing-area">
+                    <canvas id="drawing-canvas"></canvas>
+                </div>
+
+                <div class="drawing-controls">
+                    <button class="control-btn undo-btn" id="undo-btn">↶ Ongedaan</button>
+                    <button class="control-btn save-btn" id="save-btn">Opslaan</button>
+                    <button class="control-btn clear-btn" id="clear-btn">Wis Alles</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('drawing-canvas');
+            const ctx = canvas.getContext('2d');
+            const progressElement = document.getElementById('progress');
+            const progressText = document.getElementById('progress-text');
+            
+            // Stel canvas grootte in
+            function resizeCanvas() {
+                const container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                
+                // Teken een witte achtergrond
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Tekenvariabelen
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            let currentTool = 'pencil';
+            let currentColor = '#000000';
+            let brushSize = 5;
+            let drawingHistory = [];
+            let drawingSteps = 0;
+            const maxSteps = 100;
+            
+            // Voor vormtools
+            let startX = 0;
+            let startY = 0;
+            let isDrawingShape = false;
+            let tempCanvas = document.createElement('canvas');
+            let tempCtx = tempCanvas.getContext('2d');
+            
+            // Tool knoppen
+            const pencilTool = document.getElementById('pencil-tool');
+            const brushTool = document.getElementById('brush-tool');
+            const eraserTool = document.getElementById('eraser-tool');
+            const lineTool = document.getElementById('line-tool');
+            const rectangleTool = document.getElementById('rectangle-tool');
+            const circleTool = document.getElementById('circle-tool');
+            const fillTool = document.getElementById('fill-tool');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const brushSizeInput = document.getElementById('brush-size');
+            const clearBtn = document.getElementById('clear-btn');
+            const saveBtn = document.getElementById('save-btn');
+            const undoBtn = document.getElementById('undo-btn');
+            
+            // Tool selectie
+            pencilTool.addEventListener('click', () => setActiveTool('pencil'));
+            brushTool.addEventListener('click', () => setActiveTool('brush'));
+            eraserTool.addEventListener('click', () => setActiveTool('eraser'));
+            lineTool.addEventListener('click', () => setActiveTool('line'));
+            rectangleTool.addEventListener('click', () => setActiveTool('rectangle'));
+            circleTool.addEventListener('click', () => setActiveTool('circle'));
+            fillTool.addEventListener('click', () => setActiveTool('fill'));
+            
+            // Kleur selectie
+            colorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    currentColor = option.getAttribute('data-color');
+                });
+            });
+            
+            // Borstelgrootte
+            brushSizeInput.addEventListener('input', () => {
+                brushSize = brushSizeInput.value;
+            });
+            
+            // Wis canvas
+            clearBtn.addEventListener('click', () => {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                drawingSteps = 0;
+                updateProgress();
+                saveState();
+            });
+            
+            // Opslaan tekening
+            saveBtn.addEventListener('click', () => {
+                const dataURL = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'atsumi-tekening.png';
+                link.href = dataURL;
+                link.click();
+            });
+            
+            // Ongedaan maken
+            undoBtn.addEventListener('click', () => {
+                if (drawingHistory.length > 0) {
+                    const previousState = drawingHistory.pop();
+                    ctx.putImageData(previousState, 0, 0);
+                    drawingSteps = Math.max(0, drawingSteps - 10);
+                    updateProgress();
+                }
+            });
+            
+            // Sla huidige staat op
+            function saveState() {
+                drawingHistory.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+                if (drawingHistory.length > 20) {
+                    drawingHistory.shift();
+                }
+            }
+            
+            // Tekenfuncties
+            function startDrawing(e) {
+                isDrawing = true;
+                [lastX, lastY] = getMousePos(canvas, e);
+                [startX, startY] = [lastX, lastY];
+                
+                if (['line', 'rectangle', 'circle'].includes(currentTool)) {
+                    isDrawingShape = true;
+                    tempCanvas.width = canvas.width;
+                    tempCanvas.height = canvas.height;
+                } else {
+                    saveState();
+                }
+            }
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                
+                e.preventDefault();
+                
+                const [x, y] = getMousePos(canvas, e);
+                
+                if (['line', 'rectangle', 'circle'].includes(currentTool) && isDrawingShape) {
+                    // Teken tijdelijke vorm
+                    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+                    tempCtx.drawImage(canvas, 0, 0);
+                    
+                    tempCtx.beginPath();
+                    tempCtx.strokeStyle = currentColor;
+                    tempCtx.lineWidth = brushSize;
+                    
+                    if (currentTool === 'line') {
+                        tempCtx.moveTo(startX, startY);
+                        tempCtx.lineTo(x, y);
+                    } else if (currentTool === 'rectangle') {
+                        tempCtx.rect(startX, startY, x - startX, y - startY);
+                    } else if (currentTool === 'circle') {
+                        const radius = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
+                        tempCtx.arc(startX, startY, radius, 0, Math.PI * 2);
+                    }
+                    
+                    tempCtx.stroke();
+                    
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(tempCanvas, 0, 0);
+                } else {
+                    // Normaal tekenen
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, y);
+                    
+                    if (currentTool === 'eraser') {
+                        ctx.strokeStyle = 'white';
+                        ctx.lineWidth = brushSize * 2;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                    } else if (currentTool === 'fill') {
+                        // Vul functionaliteit (eenvoudige versie)
+                        ctx.fillStyle = currentColor;
+                        ctx.fillRect(lastX, lastY, brushSize, brushSize);
+                    } else {
+                        ctx.strokeStyle = currentColor;
+                        ctx.lineWidth = brushSize;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        
+                        if (currentTool === 'brush') {
+                            ctx.globalAlpha = 0.7;
+                        } else {
+                            ctx.globalAlpha = 1.0;
+                        }
+                    }
+                    
+                    ctx.stroke();
+                    
+                    [lastX, lastY] = [x, y];
+                    
+                    // Update voortgang
+                    drawingSteps = Math.min(drawingSteps + 0.1, maxSteps);
+                    updateProgress();
+                }
+            }
+            
+            function stopDrawing() {
+                if (isDrawingShape) {
+                    isDrawingShape = false;
+                    saveState();
+                }
+                
+                isDrawing = false;
+                ctx.beginPath();
+            }
+            
+            // Hulp functie voor muispositie
+            function getMousePos(canvas, evt) {
+                const rect = canvas.getBoundingClientRect();
+                let clientX, clientY;
+                
+                if (evt.type.includes('touch')) {
+                    clientX = evt.touches[0].clientX;
+                    clientY = evt.touches[0].clientY;
+                } else {
+                    clientX = evt.clientX;
+                    clientY = evt.clientY;
+                }
+                
+                return [
+                    clientX - rect.left,
+                    clientY - rect.top
+                ];
+            }
+            
+            // Update voortgang
+            function updateProgress() {
+                const progressPercent = (drawingSteps / maxSteps) * 100;
+                progressElement.style.width = `${progressPercent}%`;
+                progressText.textContent = `${Math.round(progressPercent)}% voltooid`;
+            }
+            
+            // Stel actieve tool in
+            function setActiveTool(tool) {
+                pencilTool.classList.remove('active');
+                brushTool.classList.remove('active');
+                eraserTool.classList.remove('active');
+                lineTool.classList.remove('active');
+                rectangleTool.classList.remove('active');
+                circleTool.classList.remove('active');
+                fillTool.classList.remove('active');
+                
+                currentTool = tool;
+                
+                if (tool === 'pencil') {
+                    pencilTool.classList.add('active');
+                } else if (tool === 'brush') {
+                    brushTool.classList.add('active');
+                } else if (tool === 'eraser') {
+                    eraserTool.classList.add('active');
+                } else if (tool === 'line') {
+                    lineTool.classList.add('active');
+                } else if (tool === 'rectangle') {
+                    rectangleTool.classList.add('active');
+                } else if (tool === 'circle') {
+                    circleTool.classList.add('active');
+                } else if (tool === 'fill') {
+                    fillTool.classList.add('active');
+                }
+            }
+            
+            // Event listeners voor tekenen
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            // Touch events voor tablets en telefoons
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                startDrawing(e);
+            });
+            
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                draw(e);
+            });
+            
+            canvas.addEventListener('touchend', stopDrawing);
+        });
+    </script>
+</body>
+</html>
