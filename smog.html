@@ -789,60 +789,48 @@
     </footer>
 
     <script>
-        // Verbeterde filter functionaliteit voor gebaren
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM geladen, initialiseer filters...');
-            
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const gebarenCards = document.querySelectorAll('.gebaren-card');
-            
-            console.log('Aantal filterknoppen:', filterButtons.length);
-            console.log('Aantal gebarenkaartjes:', gebarenCards.length);
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    console.log('Filter geklikt:', this.getAttribute('data-filter'));
-                    
-                    // Verwijder actieve klasse van alle knoppen
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Voeg actieve klasse toe aan geklikte knop
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    console.log('Actief filter:', filter);
-                    
-                    let visibleCount = 0;
-                    
-                    gebarenCards.forEach(card => {
-                        const category = card.getAttribute('data-category');
-                        console.log('Kaartje:', card.querySelector('p').textContent, 'Categorie:', category);
-                        
-                        if (filter === 'all' || category === filter) {
-                            card.style.display = 'flex';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                    
-                    console.log('Zichtbare kaartjes:', visibleCount);
-                });
-            });
-            
-            // Klik op gebaren kaartjes (placeholder functionaliteit)
+    // Werkende filter functionaliteit voor gebaren
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const gebarenCards = document.querySelectorAll('.gebaren-card');
+        
+        // Filter functie
+        function filterGebaren(category) {
             gebarenCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const woord = this.querySelector('p').textContent;
-                    alert(`Je hebt geklikt op het gebaar: ${woord}\n\nDeze functionaliteit zou normaal een afbeelding of video van het gebaar tonen.`);
-                });
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
             });
-            
-            // Initialiseer met "Alles" filter actief
-            document.querySelector('.filter-btn[data-filter="all"]').click();
+        }
+        
+        // Event listeners voor filter knoppen
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Verwijder actieve klasse van alle knoppen
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Voeg actieve klasse toe aan geklikte knop
+                this.classList.add('active');
+                
+                // Filter de gebaren
+                const filter = this.getAttribute('data-filter');
+                filterGebaren(filter);
+            });
         });
-    </script>
+        
+        // Klik op gebaren kaartjes - TOONT ALLEEN EEN ALERT
+        gebarenCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const woord = this.querySelector('p').textContent;
+                alert(`Je hebt geklikt op: ${woord}\n\nDeze functionaliteit zou een video van het gebaar moeten tonen.`);
+            });
+        });
+        
+        // Start met alle gebaren zichtbaar
+        filterGebaren('all');
+    });
+</script>
 </body>
 </html>
