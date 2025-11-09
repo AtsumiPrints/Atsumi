@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleurplaten - Twinkel Paws x Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --autism-green: #06D6A0;
+            --autism-orange: #FF9E00;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .coloring-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+
+        .back-btn-container {
+            margin-bottom: 1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            background: var(--autism-light-blue);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--autism-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .intro-section {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .intro-section h2 {
+            color: var(--autism-purple);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .intro-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .cover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cover-image {
+            max-width: 100%;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cover-info {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .cover-info h2 {
+            color: var(--autism-purple);
+            margin-bottom: 1rem;
+        }
+
+        .cover-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: var(--autism-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .download-btn:hover {
+            background: var(--autism-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .info-section {
+            background: var(--light);
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            border-radius: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-card h3 {
+            color: var(--autism-purple);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card-icon {
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🖍️</div>
+            <h1>Twinkel Paws Kleurplaten</h1>
+            <p>Download en print onze leuke kleurplaten om thuis in te kleuren!</p>
+        </div>
+    </section>
+
+    <section class="coloring-section">
+        <div class="container">
+            <div class="back-btn-container">
+                <a href="oefeningen.html" class="back-btn">← Terug naar alle oefeningen</a>
+            </div>
+
+            <div class="intro-section">
+                <h2>Hallo alle ouders, verzorgers en kinderhelden! 👨‍👩‍👧‍👦✨</h2>
+                <p>Mag ik jullie even voorstellen aan Twinkel Paws? 🐾💖 Wij zijn een organisatie met één groot, fantastisch doel: de wereld van kinderen nóg magischer maken! 🌈 Wij ontwerpen en maken speelgoed en allerlei leuke dingen die de verbeelding prikkelen en urenlang speelplezier garanderen. 🧸🎨</p>
+                
+                <p>Onze passie voor creativiteit en kinderplek heeft ons naar een heel speciaal project geleid...</p>
+                
+                <h3>Een Prachtige Samenwerking: Twinkel Paws x Atsumi! 🤝🎉</h3>
+                <p>We zijn ontzettend trots om onze samenwerking met Atsumi aan te kondigen! Samen zijn we een avontuur aangegaan om de allermooiste kleurplaten te ontwerpen en maken. En het allerbeste nieuws? 🗞️ Deze kleurboeken zijn volledig gratis voor alle kinderen! 🆓🧒 Wij geloven dat creativiteit en kunst voor iedereen toegankelijk moeten zijn, zonder drempels. 💝</p>
+                
+                <h3>Ons Eerste Magische Boek is Hier! 📚✨</h3>
+                <p>We vieren het begin van dit avontuur met de lancering van ons allereerste kleurboek! Het staat vol met betoverende illustraties, vrolijke figuren en natuurlijk onze eigen Twinkel Paws-vriendjes. 🐻‍❄️🦄 Het is de perfecte manier voor je kind om even helemaal tot rust te komen en zijn of haar kunstenaarstalent te ontdekken. ✏️🧠</p>
+                
+                <p>En dit is nog maar het begin...! 🚀 Dit eerste boek is het startschot van een hele reeks. Er gaan nog veel meer kleurboeken komen! 📚📚📚 We hebben zoveel ideeën en kunnen niet wachten om jullie mee te nemen op een kleurrijk avontuur vol nieuwe thema's en verrassingen. 🗺️🌠</p>
+                
+                <h3>Waarom Twinkel Paws? Omdat wij geloven in de kracht van spel. 💪</h3>
+                <p>Twinkel Paws staat voor kwaliteit, fantasie en een vleugje magie. ✨ Of het nu gaat om speelgoed om mee te bouwen, knuffels om mee te knuffelen, of kleurplaten om in te duiken – alles wat we maken, doen we met heel ons hart, met de glimlach van een kind in ons achterhoofd. 😊❤️</p>
+                
+                <h3>Samengevat: 📝</h3>
+                <ul>
+                    <li><strong>Wie zijn we?</strong> Twinkel Paws: een organisatie die speelgoed en producten voor kinderen maakt. 🐾</li>
+                    <li><strong>Wat is er nieuw?</strong> Een gratis samenwerking met Atsumi voor kleurplaten. 🆓🤝</li>
+                    <li><strong>Hoeveel kost het?</strong> Helemaal niets! Het is volledig gratis. 💰❌</li>
+                    <li><strong>Hoeveel boeken zijn er?</strong> Momenteel hebben we 1 boek gelanceerd, maar er volgen er snel meer! 📚➡️📚📚</li>
+                </ul>
+                
+                <p><strong>Blijf op de hoogte! 👀</strong><br>
+                Volg ons avontuur om als eerste onze nieuwe, gratis kleurboeken te ontvangen en op de hoogte te blijven van alle magie die Twinkel Paws creëert.</p>
+                
+                <p><strong>Samen kleuren we de wereld vrolijk! 🌍🎨</strong></p>
+                
+                <p>Met een knipoog en een twinkel, 😉💫<br>
+                Het team van Twinkel Paws</p>
+            </div>
+
+            <div class="cover-container">
+                <img src="twinkel paws kleurboek.jpg" alt="Twinkel Paws Kleurboek Cover" class="cover-image">
+                <div class="cover-info">
+                    <h2>Twinkel Paws Kleurboek</h2>
+                    <p>Ontdek de magische wereld van Twinkel Paws met dit prachtige kleurboek! Vol met schattige dieren, magische wezens en leuke patronen om in te kleuren. Perfect voor kinderen en volwassenen die van dieren houden en graag creatief bezig zijn.</p>
+                    <a href="twinkel-paws-kleurboek.pdf" class="download-btn" download>
+                        <span>📥</span> Download Volledig Kleurboek (PDF)
+                    </a>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--autism-purple);">Tips voor Kleuren</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🎨</span> Kleurtechnieken</h3>
+                        <p>Experimenteer met verschillende kleurtechnieken zoals arcering, kleurovergangen en kleurmengingen om je kunstwerk meer diepte te geven.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">✏️</span> Materialen</h3>
+                        <p>Probeer verschillende materialen uit: potloden, stiften, wasco of aquarel. Elk materiaal geeft een ander effect aan je kleurplaat.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><span class="info-card-icon">🌟</span> Creativiteit</h3>
+                        <p>Wees niet bang om buiten de lijntjes te kleuren of je eigen kleuren te gebruiken. Laat je fantasie de vrije loop!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
