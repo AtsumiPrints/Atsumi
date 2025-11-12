@@ -190,7 +190,6 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: bold;
         }
         
         .filter-btn.active, .filter-btn:hover {
@@ -213,23 +212,17 @@
             transition: all 0.3s;
             border: 2px solid var(--autism-light-blue);
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
         }
         
         .gebaren-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-            border-color: var(--autism-blue);
         }
         
         .gebaren-icon {
             font-size: 2rem;
             margin-bottom: 10px;
-            height: 40px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -238,71 +231,95 @@
         .gebaren-card p {
             font-weight: bold;
             color: var(--autism-blue);
-            margin: 0;
         }
         
-        .resources {
-            padding: 3rem 1rem;
-            background: var(--light);
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
         }
         
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .resource-card {
+        .modal-content {
             background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .close-btn:hover {
+            color: var(--autism-pink);
+        }
+        
+        .animation-container {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background: var(--light);
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            border: 2px solid var(--autism-light-blue);
-        }
-        
-        .resource-card:hover {
-            transform: scale(1.03);
-        }
-        
-        .resource-image {
-            height: 150px;
-            background: var(--autism-blue);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hand-animation {
+            font-size: 4rem;
+            animation: wave 2s infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(-10deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        @keyframes tap {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes point {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        
+        @keyframes openClose {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(0.8); }
+        }
+        
+        .modal-title {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
             font-size: 1.5rem;
         }
         
-        .resource-info {
-            padding: 15px;
-        }
-        
-        .resource-info h3 {
-            margin-bottom: 10px;
-            color: var(--autism-blue);
-        }
-        
-        .resource-info p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: var(--autism-yellow);
+        .modal-description {
             color: var(--dark);
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        .download-btn:hover {
-            background: #ffc043;
+            margin-bottom: 20px;
         }
         
         footer {
@@ -377,15 +394,6 @@
             .gebaren-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
-            
-            .filter-buttons {
-                gap: 5px;
-            }
-            
-            .filter-btn {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -400,8 +408,8 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="oefeningen.html">Oefeningen</a></li>
-                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
+                        <li><a href="index.html#autisme">Autisme</a></li>
                         <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -495,231 +503,189 @@
                 <button class="filter-btn" data-filter="tijd">Tijd</button>
                 <button class="filter-btn" data-filter="werkwoorden">Werkwoorden</button>
                 <button class="filter-btn" data-filter="groeten">Groeten en wensen</button>
-                <button class="filter-btn" data-filter="cijfers">Cijfers</button>
-                <button class="filter-btn" data-filter="alfabet">Alfabet</button>
             </div>
             
             <div class="gebaren-grid">
                 <!-- Transport -->
-                <div class="gebaren-card" data-category="transport">
+                <div class="gebaren-card" data-category="transport" data-animation="wave">
                     <div class="gebaren-icon">🚗</div>
                     <p>auto</p>
                 </div>
-                <div class="gebaren-card" data-category="transport">
+                <div class="gebaren-card" data-category="transport" data-animation="tap">
                     <div class="gebaren-icon">🚲</div>
                     <p>fiets</p>
                 </div>
                 
                 <!-- Kledij -->
-                <div class="gebaren-card" data-category="kledij">
+                <div class="gebaren-card" data-category="kledij" data-animation="point">
                     <div class="gebaren-icon">🧥</div>
                     <p>jas</p>
                 </div>
-                <div class="gebaren-card" data-category="kledij">
+                <div class="gebaren-card" data-category="kledij" data-animation="openClose">
                     <div class="gebaren-icon">👖</div>
                     <p>aandoen</p>
                 </div>
                 
                 <!-- Eigenschappen -->
-                <div class="gebaren-card" data-category="eigenschappen">
+                <div class="gebaren-card" data-category="eigenschappen" data-animation="wave">
                     <div class="gebaren-icon">👍</div>
                     <p>braaf</p>
                 </div>
-                <div class="gebaren-card" data-category="eigenschappen">
+                <div class="gebaren-card" data-category="eigenschappen" data-animation="tap">
                     <div class="gebaren-icon">✅</div>
                     <p>goed</p>
                 </div>
-                <div class="gebaren-card" data-category="eigenschappen">
+                <div class="gebaren-card" data-category="eigenschappen" data-animation="point">
                     <div class="gebaren-icon">⚠️</div>
                     <p>gevaarlijk</p>
                 </div>
                 
                 <!-- Personen -->
-                <div class="gebaren-card" data-category="personen">
+                <div class="gebaren-card" data-category="personen" data-animation="wave">
                     <div class="gebaren-icon">👨</div>
                     <p>papa</p>
                 </div>
-                <div class="gebaren-card" data-category="personen">
+                <div class="gebaren-card" data-category="personen" data-animation="wave">
                     <div class="gebaren-icon">👩</div>
                     <p>mama</p>
                 </div>
-                <div class="gebaren-card" data-category="personen">
+                <div class="gebaren-card" data-category="personen" data-animation="tap">
                     <div class="gebaren-icon">👦</div>
                     <p>broer</p>
                 </div>
-                <div class="gebaren-card" data-category="personen">
+                <div class="gebaren-card" data-category="personen" data-animation="tap">
                     <div class="gebaren-icon">👧</div>
                     <p>zus</p>
                 </div>
                 
                 <!-- Eten en drinken -->
-                <div class="gebaren-card" data-category="eten">
+                <div class="gebaren-card" data-category="eten" data-animation="openClose">
                     <div class="gebaren-icon">🍎</div>
                     <p>fruit</p>
                 </div>
-                <div class="gebaren-card" data-category="eten">
+                <div class="gebaren-card" data-category="eten" data-animation="tap">
                     <div class="gebaren-icon">🍪</div>
                     <p>koek</p>
                 </div>
-                <div class="gebaren-card" data-category="eten">
+                <div class="gebaren-card" data-category="eten" data-animation="point">
                     <div class="gebaren-icon">🍽️</div>
                     <p>eten</p>
                 </div>
-                <div class="gebaren-card" data-category="eten">
+                <div class="gebaren-card" data-category="eten" data-animation="wave">
                     <div class="gebaren-icon">🥤</div>
                     <p>drinken</p>
                 </div>
-                <div class="gebaren-card" data-category="eten">
+                <div class="gebaren-card" data-category="eten" data-animation="tap">
                     <div class="gebaren-icon">😋</div>
                     <p>graag</p>
                 </div>
-                <div class="gebaren-card" data-category="eten">
+                <div class="gebaren-card" data-category="eten" data-animation="point">
                     <div class="gebaren-icon">🍽️</div>
                     <p>honger</p>
                 </div>
                 
                 <!-- Huis en hygiëne -->
-                <div class="gebaren-card" data-category="huis">
+                <div class="gebaren-card" data-category="huis" data-animation="wave">
                     <div class="gebaren-icon">🏠</div>
                     <p>huis</p>
                 </div>
-                <div class="gebaren-card" data-category="huis">
+                <div class="gebaren-card" data-category="huis" data-animation="point">
                     <div class="gebaren-icon">🚽</div>
                     <p>kaka</p>
                 </div>
                 
                 <!-- Spelen en speelgoed -->
-                <div class="gebaren-card" data-category="spelen">
+                <div class="gebaren-card" data-category="spelen" data-animation="tap">
                     <div class="gebaren-icon">⚽</div>
                     <p>bal</p>
                 </div>
-                <div class="gebaren-card" data-category="spelen">
+                <div class="gebaren-card" data-category="spelen" data-animation="openClose">
                     <div class="gebaren-icon">🧩</div>
                     <p>blokken</p>
                 </div>
-                <div class="gebaren-card" data-category="spelen">
+                <div class="gebaren-card" data-category="spelen" data-animation="wave">
                     <div class="gebaren-icon">📚</div>
                     <p>boek</p>
                 </div>
-                <div class="gebaren-card" data-category="spelen">
+                <div class="gebaren-card" data-category="spelen" data-animation="point">
                     <div class="gebaren-icon">🍼</div>
                     <p>fopspeen</p>
                 </div>
                 
                 <!-- Gevoelens -->
-                <div class="gebaren-card" data-category="gevoelens">
+                <div class="gebaren-card" data-category="gevoelens" data-animation="wave">
                     <div class="gebaren-icon">😨</div>
                     <p>bang</p>
                 </div>
-                <div class="gebaren-card" data-category="gevoelens">
+                <div class="gebaren-card" data-category="gevoelens" data-animation="tap">
                     <div class="gebaren-icon">😄</div>
                     <p>blij</p>
                 </div>
-                <div class="gebaren-card" data-category="gevoelens">
+                <div class="gebaren-card" data-category="gevoelens" data-animation="point">
                     <div class="gebaren-icon">😠</div>
                     <p>boos</p>
                 </div>
                 
                 <!-- Tijd -->
-                <div class="gebaren-card" data-category="tijd">
+                <div class="gebaren-card" data-category="tijd" data-animation="point">
                     <div class="gebaren-icon">⏰</div>
                     <p>eerst</p>
                 </div>
                 
                 <!-- Werkwoorden -->
-                <div class="gebaren-card" data-category="werkwoorden">
+                <div class="gebaren-card" data-category="werkwoorden" data-animation="wave">
                     <div class="gebaren-icon">🚶</div>
                     <p>gaan</p>
                 </div>
-                <div class="gebaren-card" data-category="werkwoorden">
+                <div class="gebaren-card" data-category="werkwoorden" data-animation="tap">
                     <div class="gebaren-icon">✅</div>
                     <p>gedaan</p>
                 </div>
-                <div class="gebaren-card" data-category="werkwoorden">
+                <div class="gebaren-card" data-category="werkwoorden" data-animation="point">
                     <div class="gebaren-icon">🔨</div>
                     <p>breken</p>
                 </div>
-                <div class="gebaren-card" data-category="werkwoorden">
+                <div class="gebaren-card" data-category="werkwoorden" data-animation="openClose">
                     <div class="gebaren-icon">🔄</div>
                     <p>geven en krijgen</p>
                 </div>
-                <div class="gebaren-card" data-category="werkwoorden">
+                <div class="gebaren-card" data-category="werkwoorden" data-animation="wave">
                     <div class="gebaren-icon">🤝</div>
                     <p>helpen</p>
                 </div>
                 
                 <!-- Groeten en wensen -->
-                <div class="gebaren-card" data-category="groeten">
+                <div class="gebaren-card" data-category="groeten" data-animation="wave">
                     <div class="gebaren-icon">🙏</div>
                     <p>danku</p>
                 </div>
                 
                 <!-- Cijfers -->
-                <div class="gebaren-card" data-category="cijfers">
+                <div class="gebaren-card" data-category="cijfers" data-animation="tap">
                     <div class="gebaren-icon">1️⃣</div>
                     <p>1</p>
                 </div>
-                <div class="gebaren-card" data-category="cijfers">
+                <div class="gebaren-card" data-category="cijfers" data-animation="tap">
                     <div class="gebaren-icon">2️⃣</div>
                     <p>2</p>
                 </div>
-                <div class="gebaren-card" data-category="cijfers">
+                <div class="gebaren-card" data-category="cijfers" data-animation="tap">
                     <div class="gebaren-icon">3️⃣</div>
                     <p>3</p>
                 </div>
                 
                 <!-- Alfabet -->
-                <div class="gebaren-card" data-category="alfabet">
+                <div class="gebaren-card" data-category="alfabet" data-animation="wave">
                     <div class="gebaren-icon">A</div>
                     <p>A</p>
                 </div>
-                <div class="gebaren-card" data-category="alfabet">
+                <div class="gebaren-card" data-category="alfabet" data-animation="wave">
                     <div class="gebaren-icon">B</div>
                     <p>B</p>
                 </div>
-                <div class="gebaren-card" data-category="alfabet">
+                <div class="gebaren-card" data-category="alfabet" data-animation="wave">
                     <div class="gebaren-icon">C</div>
                     <p>C</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="resources">
-        <div class="container">
-            <h2 class="section-title">SMOG Materialen</h2>
-            <div class="resource-grid">
-                <div class="resource-card">
-                    <div class="resource-image">Basis Gebaren</div>
-                    <div class="resource-info">
-                        <h3>Basis Gebaren Leren</h3>
-                        <p>Leer de belangrijkste SMOG-gebaren voor dagelijkse communicatie.</p>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
-                </div>
-                <div class="resource-card">
-                    <div class="resource-image">Pictogrammen</div>
-                    <div class="resource-info">
-                        <h3>Pictogrammen Set</h3>
-                        <p>Visuele ondersteuning met pictogrammen voor SMOG-gebaren.</p>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
-                </div>
-                <div class="resource-card">
-                    <div class="resource-image">Spelletjes</div>
-                    <div class="resource-info">
-                        <h3>SMOG Spelletjes</h3>
-                        <p>Leuke spelletjes om SMOG-gebaren te oefenen en te herhalen.</p>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
-                </div>
-                <div class="resource-card">
-                    <div class="resource-image">Liedjes</div>
-                    <div class="resource-info">
-                        <h3>Liedjes met Gebaren</h3>
-                        <p>Bekende kinderliedjes met SMOG-gebaren voor muzikale ondersteuning.</p>
-                        <a href="#" class="download-btn">Download</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -756,6 +722,18 @@
         </div>
     </section>
     
+    <!-- Modal voor gebaren animaties -->
+    <div id="gebaren-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 class="modal-title" id="modal-title">Gebaar Titel</h2>
+            <div class="animation-container">
+                <div class="hand-animation" id="hand-animation">👐</div>
+            </div>
+            <p class="modal-description" id="modal-description">Beschrijving van het gebaar komt hier.</p>
+        </div>
+    </div>
+    
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -767,8 +745,8 @@
                     <h3>Snelle Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="oefeningen.html">Oefeningen</a></li>
-                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="index.html#oefeningen">Oefeningen</a></li>
+                        <li><a href="index.html#autisme">Autisme</a></li>
                         <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -776,8 +754,8 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li>Email: atsumiprints@hotmail.com</li>
-                        <li>Telefoon: +32 451 08 38 17</li>
+                        <li>Email: info@atsumi.nl</li>
+                        <li>Telefoon: 012-3456789</li>
                         <li>Volg ons op sociale media</li>
                     </ul>
                 </div>
@@ -789,48 +767,111 @@
     </footer>
 
     <script>
-    // Werkende filter functionaliteit voor gebaren
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const gebarenCards = document.querySelectorAll('.gebaren-card');
-        
-        // Filter functie
-        function filterGebaren(category) {
-            gebarenCards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        // Event listeners voor filter knoppen
-        filterButtons.forEach(button => {
+        // Filter functionaliteit voor gebaren
+        document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', function() {
                 // Verwijder actieve klasse van alle knoppen
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
                 
                 // Voeg actieve klasse toe aan geklikte knop
                 this.classList.add('active');
                 
-                // Filter de gebaren
                 const filter = this.getAttribute('data-filter');
-                filterGebaren(filter);
+                const gebarenCards = document.querySelectorAll('.gebaren-card');
+                
+                gebarenCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
         
-        // Klik op gebaren kaartjes - TOONT ALLEEN EEN ALERT
-        gebarenCards.forEach(card => {
+        // Modal functionaliteit voor gebaren
+        const modal = document.getElementById('gebaren-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const handAnimation = document.getElementById('hand-animation');
+        const closeBtn = document.querySelector('.close-btn');
+        
+        // Gebaren beschrijvingen
+        const gebarenDescriptions = {
+            'auto': 'Maak een stuurbeweging met je handen alsof je aan het rijden bent.',
+            'fiets': 'Maak trappende bewegingen met je voeten en houd je handen alsof je een stuur vasthoudt.',
+            'jas': 'Doe alsof je een jas aantrekt over je schouders.',
+            'aandoen': 'Maak een beweging alsof je kleding aantrekt.',
+            'braaf': 'Leg je hand plat op je borst en glimlach.',
+            'goed': 'Steek je duim omhoog.',
+            'gevaarlijk': 'Zwaai met je hand alsof je waarschuwt.',
+            'papa': 'Tik met je vinger op je voorhoofd.',
+            'mama': 'Tik met je vinger op je kin.',
+            'broer': 'Wijs naar een denkbeeldige persoon naast je.',
+            'zus': 'Wijs naar een denkbeeldige persoon naast je.',
+            'fruit': 'Doe alsof je een appel opeet.',
+            'koek': 'Doe alsof je een koekje in je mond stopt.',
+            'eten': 'Breng je vingers naar je mond alsof je eet.',
+            'drinken': 'Doe alsof je uit een glas drinkt.',
+            'graag': 'Leg je hand op je borst en knik.',
+            'honger': 'Wrijf over je buik.',
+            'huis': 'Maak een dakvorm met je handen boven je hoofd.',
+            'kaka': 'Knijp je neus dicht en maak een vies gezicht.',
+            'bal': 'Maak een ronde beweging met je handen.',
+            'blokken': 'Doe alsof je blokken op elkaar stapelt.',
+            'boek': 'Houd je handen open alsof je een boek leest.',
+            'fopspeen': 'Doe alsof je een speen in je mond doet.',
+            'bang': 'Sla je armen om jezelf heen en kijk bezorgd.',
+            'blij': 'Lach breed en spreid je armen.',
+            'boos': 'Vouw je armen en frons.',
+            'eerst': 'Steek je wijsvinger omhoog.',
+            'gaan': 'Wijs in de richting waar je naartoe wilt.',
+            'gedaan': 'Wrijf je handen tegen elkaar alsof je stof verwijdert.',
+            'breken': 'Maak een brekende beweging met je handen.',
+            'geven en krijgen': 'Houd je hand open en maak een ontvangende beweging.',
+            'helpen': 'Houd je handen open alsof je hulp aanbiedt.',
+            'danku': 'Breng je vingertoppen naar je kin en beweeg je hand naar voren.',
+            '1': 'Steek één vinger op.',
+            '2': 'Steek twee vingers op.',
+            '3': 'Steek drie vingers op.',
+            'A': 'Maak de letter A met je vingers in gebarentaal.',
+            'B': 'Maak de letter B met je vingers in gebarentaal.',
+            'C': 'Maak de letter C met je vingers in gebarentaal.'
+        };
+        
+        // Klik op gebaren kaartjes om modal te openen
+        document.querySelectorAll('.gebaren-card').forEach(card => {
             card.addEventListener('click', function() {
                 const woord = this.querySelector('p').textContent;
-                alert(`Je hebt geklikt op: ${woord}\n\nDeze functionaliteit zou een video van het gebaar moeten tonen.`);
+                const animationType = this.getAttribute('data-animation');
+                const icon = this.querySelector('.gebaren-icon').textContent;
+                
+                // Stel modal inhoud in
+                modalTitle.textContent = woord;
+                modalDescription.textContent = gebarenDescriptions[woord] || 'Leer dit gebaar door de beweging na te doen.';
+                handAnimation.textContent = icon;
+                
+                // Stel animatie in
+                handAnimation.style.animation = `${animationType} 2s infinite`;
+                
+                // Toon modal
+                modal.style.display = 'flex';
             });
         });
         
-        // Start met alle gebaren zichtbaar
-        filterGebaren('all');
-    });
-</script>
+        // Sluit modal
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Sluit modal als er buiten geklikt wordt
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
