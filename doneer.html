@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steun Atsumi - Doneer Nu</title>
+    <title>Doneren met QR-code - Atsumi</title>
     <style>
         :root {
             --autism-blue: #0077B6;
@@ -124,6 +124,60 @@
             margin-bottom: 10px;
         }
 
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 3rem 0;
+        }
+
+        .donation-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 3px solid var(--autism-light-blue);
+            transition: transform 0.3s;
+        }
+
+        .donation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .donation-card.featured {
+            border-color: var(--autism-yellow);
+            background: linear-gradient(135deg, #fff, #fff9e6);
+        }
+
+        .donation-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--autism-purple);
+            margin: 15px 0;
+        }
+
+        .donation-btn {
+            display: inline-block;
+            background: var(--autism-yellow);
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .donation-btn:hover {
+            background: #ffc043;
+            transform: scale(1.05);
+        }
+
         .sponsor-section {
             background: white;
             padding: 3rem 2rem;
@@ -181,25 +235,108 @@
             left: 0;
         }
 
-        .donation-btn {
-            display: inline-block;
-            background: var(--autism-yellow);
-            color: var(--dark);
-            padding: 15px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            margin-top: 15px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
+        /* QR Code Section Styles */
+        .qr-donation-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .donation-btn:hover {
-            background: #ffc043;
-            transform: scale(1.05);
+        .qr-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .qr-code-display {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border: 2px solid var(--autism-light-blue);
+        }
+
+        #qrCode {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .bank-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .info-card {
+            background-color: #f0f7ff;
+            border-left: 4px solid var(--autism-blue);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .bank-details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .bank-row {
+            display: flex;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .bank-label {
+            font-weight: bold;
+            min-width: 120px;
+            color: #555;
+        }
+
+        .instructions {
+            margin-top: 30px;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--autism-blue);
+            color: white;
+            border-radius: 50%;
+            line-height: 30px;
+            margin-bottom: 10px;
         }
 
         footer {
@@ -269,6 +406,10 @@
             .page-header h1 {
                 font-size: 2rem;
             }
+            
+            .qr-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -331,6 +472,87 @@
                 </div>
             </div>
 
+            <h2 style="text-align: center; color: var(--autism-blue); margin: 3rem 0 2rem 0;">Direct Impact Maken</h2>
+            <div class="donation-options">
+                <div class="donation-card">
+                    <h3>🌱 Basis Steun</h3>
+                    <div class="donation-amount">€15</div>
+                    <p>Biedt 1 kind toegang tot alle oefeningen voor 1 maand</p>
+                    <button class="donation-btn" onclick="donate(15)">Steun Nu</button>
+                </div>
+
+                <div class="donation-card featured">
+                    <h3>🌟 Maandelijkse Held</h3>
+                    <div class="donation-amount">€25/maand</div>
+                    <p>Ondersteunt 2 kinderen continu + nieuwe oefeningen ontwikkeling</p>
+                    <button class="donation-btn" onclick="donate(25)">Word Held</button>
+                </div>
+
+                <div class="donation-card">
+                    <h3>🚀 Grote Impact</h3>
+                    <div class="donation-amount">€50</div>
+                    <p>Financiert ontwikkeling van 5 nieuwe oefeningenpakketten</p>
+                    <button class="donation-btn" onclick="donate(50)">Maak Impact</button>
+                </div>
+            </div>
+
+            <!-- QR Code Donation Section -->
+            <div class="qr-donation-section">
+                <h2 style="text-align: center; color: var(--autism-blue); margin-bottom: 1rem;">📱 Doneren met QR-code</h2>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                    "Scan de QR-code met je bankapp voor een snelle en eenvoudige donatie. 
+                    Geen gedoe met het handmatig invoeren van gegevens!"
+                </p>
+
+                <div class="qr-container">
+                    <div class="qr-code-display">
+                        <h3>Scan om te doneren</h3>
+                        <div id="qrCode"></div>
+                        <p>Scan deze QR-code met je bankapp</p>
+                    </div>
+                    
+                    <div class="bank-info">
+                        <div class="info-card">
+                            <h3>Bankgegevens</h3>
+                            <p>U kunt ook rechtstreeks overmaken naar onze bankrekening:</p>
+                            
+                            <div class="bank-details">
+                                <div class="bank-row">
+                                    <span class="bank-label">Rekeninghouder:</span>
+                                    <span id="accountHolder">Atsumi</span>
+                                </div>
+                                <div class="bank-row">
+                                    <span class="bank-label">IBAN:</span>
+                                    <span id="ibanNumber">BE12 3456 7890 1234</span>
+                                </div>
+                                <div class="bank-row">
+                                    <span class="bank-label">BIC:</span>
+                                    <span id="bicCode">ABCDBEBB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3 style="text-align: center; color: var(--autism-blue); margin-bottom: 1rem;">Hoe werkt het?</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Open je bankapp</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Scan de QR-code</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Bevestig de betaling</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="sponsor-section">
                 <h2 style="text-align: center; color: var(--autism-blue); margin-bottom: 2rem;">💼 Zakelijke Sponsoring</h2>
                 <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
@@ -342,12 +564,10 @@
                     <div class="sponsor-card">
                         <h3>🥉 Bronze Partner</h3>
                         <div style="font-size: 1.5rem; font-weight: bold; color: var(--autism-purple); margin: 15px 0;">€250/jaar</div>
-                        <p><strong>Met €250 kunnen we:</strong></p>
                         <ul class="sponsor-features">
-                            <li>50 kinderen voorzien van leerpakketten</li>
-                            <li>100 extra oefeningen ontwikkelen</li>
-                            <li>Een maand lang toegang bieden aan 25 gezinnen</li>
-                            <li>Speciaal lesmateriaal creëren</li>
+                            <li>Vermelding op website</li>
+                            <li>Social media shout-out</li>
+                            <li>Partner badge</li>
                         </ul>
                         <button class="donation-btn" onclick="sponsor('bronze')">Word Partner</button>
                     </div>
@@ -355,13 +575,11 @@
                     <div class="sponsor-card">
                         <h3>🥈 Silver Partner</h3>
                         <div style="font-size: 1.5rem; font-weight: bold; color: var(--autism-purple); margin: 15px 0;">€500/jaar</div>
-                        <p><strong>Met €500 kunnen we:</strong></p>
                         <ul class="sponsor-features">
-                            <li>100 kinderen een heel jaar begeleiden</li>
-                            <li>Nieuwe educatieve spelletjes ontwikkelen</li>
-                            <li>Oudertrainingen organiseren</li>
-                            <li>Digitale leerplatform verbeteren</li>
-                            <li>Speciale workshops mogelijk maken</li>
+                            <li>Alles van Bronze +</li>
+                            <li>Featured op homepage</li>
+                            <li>Maandelijkse updates</li>
+                            <li>Exclusieve content</li>
                         </ul>
                         <button class="donation-btn" onclick="sponsor('silver')">Word Partner</button>
                     </div>
@@ -369,14 +587,12 @@
                     <div class="sponsor-card">
                         <h3>🥇 Gold Partner</h3>
                         <div style="font-size: 1.5rem; font-weight: bold; color: var(--autism-purple); margin: 15px 0;">€1.000/jaar</div>
-                        <p><strong>Met €1000 kunnen we:</strong></p>
                         <ul class="sponsor-features">
-                            <li>Een heel project ondersteunen</li>
-                            <li>Volledig leerprogramma financieren</li>
-                            <li>200+ kinderen bereiken</li>
-                            <li>Onderzoek doen naar nieuwe methodes</li>
-                            <li>De vzw structureel ondersteunen</li>
-                            <li>Langdurige impact garanderen</li>
+                            <li>Alles van Silver +</li>
+                            <li>Premium homepage placement</li>
+                            <li>Persbericht samenwerking</li>
+                            <li>Naam in oefeningen</li>
+                            <li>Kwartaal meetings</li>
                         </ul>
                         <button class="donation-btn" onclick="sponsor('gold')">Word Partner</button>
                     </div>
@@ -385,7 +601,7 @@
 
             <div style="text-align: center; margin-top: 3rem;">
                 <h3 style="color: var(--autism-blue); margin-bottom: 1rem;">💝 Ander Bedrag</h3>
-                <p>Elke bijdrage, groot of klein, maakt verschil. Samen maken we onderwijs toegankelijk voor elk kind!</p>
+                <p>Elke bijdrage, groot of klein, maakt verschil</p>
                 <button class="donation-btn" onclick="customDonate()" style="max-width: 300px; margin-top: 1rem;">
                     Kies Eigen Bedrag
                 </button>
@@ -424,7 +640,62 @@
         </div>
     </footer>
 
+    <!-- QR-code bibliotheek -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
     <script>
+        // Vervang deze gegevens door jouw eigen bankgegevens
+        const bankDetails = {
+            name: "Atsumi",
+            iban: "BE12345678901234", // Vervang met je echte IBAN
+            bic: "ABCDBEBB", // Vervang met je echte BIC
+            amount: "", // Laat leeg voor een vrij bedrag
+            purpose: "Donatie Atsumi"
+        };
+        
+        // Maak de betalingsstring voor de QR-code
+        const paymentData = `BCD
+001
+1
+SCT
+${bankDetails.bic}
+${bankDetails.name}
+${bankDetails.iban}
+EUR${bankDetails.amount}
+${bankDetails.purpose}
+
+`;
+        
+        // Genereer de QR-code
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrElement = document.getElementById('qrCode');
+            
+            QRCode.toCanvas(qrElement, paymentData, {
+                width: 250,
+                margin: 1,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+            
+            // Vul de bankgegevens in
+            document.getElementById('accountHolder').textContent = bankDetails.name;
+            document.getElementById('ibanNumber').textContent = formatIBAN(bankDetails.iban);
+            document.getElementById('bicCode').textContent = bankDetails.bic;
+        });
+        
+        // Formatteer IBAN voor betere leesbaarheid
+        function formatIBAN(iban) {
+            return iban.replace(/(.{4})/g, '$1 ').trim();
+        }
+        
+        function donate(amount) {
+            alert(`Bedankt voor uw interesse om €${amount} te doneren!\n\nU kunt dit bedrag overmaken via de QR-code of rechtstreeks naar onze bankrekening.`);
+        }
+
         function sponsor(level) {
             const levels = {
                 'bronze': 'Bronze Partner (€250/jaar)',
@@ -437,7 +708,7 @@
         function customDonate() {
             const amount = prompt('Voer uw gewenste donatiebedrag in (€):');
             if (amount && !isNaN(amount)) {
-                alert(`Bedankt voor uw interesse om €${amount} te doneren!\n\nNeem contact met ons op via AtsumiPrints@hotmail.com voor de betaalinstructies.`);
+                alert(`Bedankt voor uw interesse om €${amount} te doneren!\n\nU kunt dit bedrag overmaken via de QR-code of rechtstreeks naar onze bankrekening.`);
             }
         }
     </script>
