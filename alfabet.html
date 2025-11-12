@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alfabet Oefening - Atsumi</title>
+    <title>Spraakoefeningen - Atsumi</title>
     <style>
         :root {
             --autism-blue: #0077B6;
@@ -100,98 +100,48 @@
             margin-bottom: 1rem;
         }
 
-        .exercise-section {
+        .exercises-section {
             padding: 3rem 1rem;
         }
 
-        .exercise-info {
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .exercise-card {
             background: white;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
             text-align: center;
+            transition: transform 0.3s;
             border-top: 5px solid var(--autism-pink);
         }
 
-        .exercise-info h2 {
-            color: var(--autism-blue);
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        .exercise-info p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .exercise-description {
-            background: var(--autism-light-blue);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .exercise-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        .alphabet-container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .alphabet-container h3 {
-            color: var(--autism-purple);
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-        }
-
-        .alphabet-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .letter-card {
-            background: var(--autism-light-blue);
-            padding: 20px 10px;
-            border-radius: 10px;
-            font-size: 2.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100px;
-        }
-
-        .letter-card:hover {
+        .exercise-card:hover {
             transform: translateY(-5px);
-            background: var(--autism-blue);
-            color: white;
         }
 
-        .letter-card.playing {
-            background: var(--autism-yellow);
-            transform: scale(1.05);
+        .exercise-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
         }
 
-        .navigation-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 3rem;
+        .exercise-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .nav-btn {
+        .exercise-card p {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .exercise-btn {
             display: inline-block;
             padding: 12px 25px;
             background: var(--autism-light-blue);
@@ -205,19 +155,256 @@
             font-size: 1rem;
         }
 
-        .nav-btn:hover {
+        .exercise-btn:hover {
             background: var(--autism-blue);
             color: white;
             transform: translateY(-2px);
         }
 
-        .nav-btn.next {
-            background: var(--autism-green);
-            color: white;
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 10px 20px;
+            background: var(--autism-light-blue);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: bold;
         }
 
-        .nav-btn.next:hover {
+        .back-btn:hover {
             background: var(--autism-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Oefeningen Styling */
+        .oefeningen-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        
+        .intro {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .intro h2 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+        }
+        
+        .oefening {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+        }
+        
+        .oefening h1 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .oefening h2 {
+            color: var(--autism-green);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .oefening p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .letter, .cijfer, .kleur, .dier, .fruit {
+            background: linear-gradient(to bottom, var(--autism-blue), var(--autism-purple));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 65px;
+            height: 65px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .letter:hover, .cijfer:hover, .kleur:hover, .dier:hover, .fruit:hover {
+            background: linear-gradient(to bottom, var(--autism-purple), var(--autism-pink));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+        
+        .letter:active, .cijfer:active, .kleur:active, .dier:active, .fruit:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+        }
+        
+        .kleur {
+            width: 130px;
+        }
+        
+        .dier, .fruit {
+            width: 150px;
+            font-size: 18px;
+        }
+        
+        .navigatie {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .navigatie a {
+            background: linear-gradient(to bottom, var(--autism-green), var(--autism-blue));
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .navigatie a:hover {
+            background: linear-gradient(to bottom, var(--autism-blue), var(--autism-purple));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+        
+        .uitleg {
+            background-color: #e8f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--autism-green);
+        }
+        
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            gap: 10px;
+        }
+        
+        .audio-controls button {
+            background: linear-gradient(to bottom, var(--autism-green), var(--autism-blue));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .audio-controls button:hover {
+            background: linear-gradient(to bottom, var(--autism-blue), var(--autism-purple));
+            transform: scale(1.05);
+        }
+        
+        .audio-controls span {
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .geluidsinfo {
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .tips {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        
+        .tips h2 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .tips ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .tips li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .tips li:before {
+            content: "✓";
+            color: var(--autism-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .snelmenu {
+            background-color: var(--autism-green);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snelmenu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .snelmenu li {
+            margin: 5px 15px;
+        }
+        
+        .snelmenu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .snelmenu a:hover {
+            background-color: rgba(255,255,255,0.2);
         }
 
         footer {
@@ -274,14 +461,14 @@
         }
 
         .email-link {
-            color: var(--autism-blue);
+            color: var(--autism-light-blue);
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
         }
 
         .email-link:hover {
-            color: var(--autism-purple);
+            color: var(--autism-yellow);
             text-decoration: underline;
         }
 
@@ -300,18 +487,36 @@
                 font-size: 2rem;
             }
             
-            .alphabet-grid {
-                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            .exercises-grid {
+                grid-template-columns: 1fr;
             }
             
-            .letter-card {
-                min-height: 80px;
-                font-size: 2rem;
+            .buttons {
+                gap: 8px;
             }
             
-            .navigation-buttons {
+            .letter, .cijfer {
+                width: 55px;
+                height: 55px;
+                font-size: 18px;
+            }
+            
+            .kleur {
+                width: 110px;
+            }
+            
+            .dier, .fruit {
+                width: 130px;
+                font-size: 16px;
+            }
+            
+            .navigatie {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .navigatie a {
+                text-align: center;
             }
         }
     </style>
@@ -327,8 +532,9 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
@@ -338,39 +544,280 @@
 
     <section class="page-header">
         <div class="container">
-            <div class="header-icon">🔤</div>
-            <h1>Alfabet Oefening</h1>
-            <p>Leer de letters van het alfabet herkennen en uitspreken</p>
+            <div class="header-icon">🗣️</div>
+            <h1>Spraakoefeningen</h1>
+            <p>Oefeningen voor verbetering van communicatie, uitspraak en taalontwikkeling</p>
         </div>
     </section>
 
-    <section class="exercise-section">
-        <div class="container">
-            <div class="exercise-info">
-                <h2>Alfabet</h2>
-                <p>Klik op de letters van het alfabet en beluister ze. Deze oefening helpt bij het leren herkennen en uitspreken van letters.</p>
-                
-                <div class="exercise-description">
-                    <p><strong>Hoe werkt het?</strong> Klik op een letter om de uitspraak te horen. Oefen elke dag een paar minuten om de letters beter te leren herkennen en uitspreken.</p>
-                </div>
-            </div>
+    <div class="snelmenu">
+        <ul>
+            <li><a href="#intro">Introductie</a></li>
+            <li><a href="#alfabet">Alfabet</a></li>
+            <li><a href="#cijfers">Cijfers</a></li>
+            <li><a href="#kleuren">Kleuren</a></li>
+            <li><a href="#dieren">Dieren</a></li>
+            <li><a href="#fruit">Fruit</a></li>
+            <li><a href="#tips">Tips</a></li>
+        </ul>
+    </div>
 
-            <div class="exercise-content">
-                <div class="alphabet-container">
-                    <h3>Klik op een letter</h3>
-                    <div class="alphabet-grid" id="alphabetGrid">
-                        <!-- Letters will be added by JavaScript -->
-                    </div>
-                    <p>Klik op een letter om te horen hoe deze wordt uitgesproken</p>
-                </div>
+    <div class="oefeningen-container">
+        <!-- Introductie -->
+        <div class="intro" id="intro">
+            <h2>Welkom bij de Spraakoefeningen</h2>
+            <p>Deze website helpt bij het oefenen met uitspraak en spraakherkenning. Kies een oefening uit het menu en klik op de knoppen om te horen hoe woorden en letters worden uitgesproken.</p>
+            <p>Oefen regelmatig voor de beste resultaten!</p>
+        </div>
+        
+        <!-- Alfabet Oefening -->
+        <div class="oefening" id="alfabet">
+            <h1>Alfabet</h1>
+            <p>Klik op de letters van het alfabet en beluister ze. Deze oefening helpt bij het leren herkennen en uitspreken van letters.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een letter om de uitspraak te horen. Oefen elke dag een paar minuten om de letters beter te leren herkennen en uitspreken.</p>
             </div>
-
-            <div class="navigation-buttons">
-                <a href="oefeningen.html" class="nav-btn">← Terug naar alle oefeningen</a>
-                <a href="#" class="nav-btn next">Volgende oefening →</a>
+            
+            <div class="audio-controls">
+                <button id="playAllAlfabet">▶</button>
+                <span>Alle letters afspelen</span>
+            </div>
+            
+            <div class="buttons">
+                <button class="letter">A</button>
+                <button class="letter">B</button>
+                <button class="letter">C</button>
+                <button class="letter">D</button>
+                <button class="letter">E</button>
+                <button class="letter">F</button>
+                <button class="letter">G</button>
+                <button class="letter">H</button>
+                <button class="letter">I</button>
+                <button class="letter">J</button>
+                <button class="letter">K</button>
+                <button class="letter">L</button>
+                <button class="letter">M</button>
+                <button class="letter">N</button>
+                <button class="letter">O</button>
+                <button class="letter">P</button>
+                <button class="letter">Q</button>
+                <button class="letter">R</button>
+                <button class="letter">S</button>
+                <button class="letter">T</button>
+                <button class="letter">U</button>
+                <button class="letter">V</button>
+                <button class="letter">W</button>
+                <button class="letter">X</button>
+                <button class="letter">Y</button>
+                <button class="letter">Z</button>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een letter om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#tips" class="vorige">← Terug naar tips</a>
+                <a href="#cijfers" class="volgende">Volgende oefening →</a>
             </div>
         </div>
-    </section>
+        
+        <!-- Cijfers Oefening -->
+        <div class="oefening" id="cijfers">
+            <h1>Cijfers</h1>
+            <p>Klik op de cijfers en beluister ze. Deze oefening helpt bij het leren herkennen en uitspreken van cijfers.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een cijfer om de uitspraak te horen. Oefen elke dag een paar minuten om de cijfers beter te leren herkennen en uitspreken.</p>
+            </div>
+            
+            <div class="audio-controls">
+                <button id="playAllCijfers">▶</button>
+                <span>Alle cijfers afspelen</span>
+            </div>
+            
+            <div class="buttons">
+                <button class="cijfer">0</button>
+                <button class="cijfer">1</button>
+                <button class="cijfer">2</button>
+                <button class="cijfer">3</button>
+                <button class="cijfer">4</button>
+                <button class="cijfer">5</button>
+                <button class="cijfer">6</button>
+                <button class="cijfer">7</button>
+                <button class="cijfer">8</button>
+                <button class="cijfer">9</button>
+                <button class="cijfer">10</button>
+                <button class="cijfer">11</button>
+                <button class="cijfer">12</button>
+                <button class="cijfer">13</button>
+                <button class="cijfer">14</button>
+                <button class="cijfer">15</button>
+                <button class="cijfer">16</button>
+                <button class="cijfer">17</button>
+                <button class="cijfer">18</button>
+                <button class="cijfer">19</button>
+                <button class="cijfer">20</button>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een cijfer om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#alfabet" class="vorige">← Vorige oefening</a>
+                <a href="#kleuren" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Kleuren Oefening -->
+        <div class="oefening" id="kleuren">
+            <h1>Kleuren</h1>
+            <p>Klik op de kleuren en beluister hun namen. Deze oefening helpt bij het leren herkennen en uitspreken van kleuren.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een kleur om de uitspraak te horen. Oefen elke dag een paar minuten om de kleurnamen beter te leren herkennen en uitspreken.</p>
+            </div>
+            
+            <div class="audio-controls">
+                <button id="playAllKleuren">▶</button>
+                <span>Alle kleuren afspelen</span>
+            </div>
+            
+            <div class="buttons">
+                <button class="kleur">Rood</button>
+                <button class="kleur">Blauw</button>
+                <button class="kleur">Groen</button>
+                <button class="kleur">Geel</button>
+                <button class="kleur">Oranje</button>
+                <button class="kleur">Paars</button>
+                <button class="kleur">Roze</button>
+                <button class="kleur">Bruin</button>
+                <button class="kleur">Zwart</button>
+                <button class="kleur">Wit</button>
+                <button class="kleur">Grijs</button>
+                <button class="kleur">Cyaan</button>
+                <button class="kleur">Magenta</button>
+                <button class="kleur">Lichtblauw</button>
+                <button class="kleur">Donkergroen</button>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een kleur om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#cijfers" class="vorige">← Vorige oefening</a>
+                <a href="#dieren" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Dieren Oefening -->
+        <div class="oefening" id="dieren">
+            <h1>Dieren</h1>
+            <p>Klik op de dieren en beluister hun namen. Deze oefening helpt bij het leren herkennen en uitspreken van dierennamen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een dier om de uitspraak te horen. Oefen elke dag een paar minuten om de dierennamen beter te leren herkennen en uitspreken.</p>
+            </div>
+            
+            <div class="audio-controls">
+                <button id="playAllDieren">▶</button>
+                <span>Alle dieren afspelen</span>
+            </div>
+            
+            <div class="buttons">
+                <button class="dier">Hond</button>
+                <button class="dier">Kat</button>
+                <button class="dier">Paard</button>
+                <button class="dier">Koe</button>
+                <button class="dier">Varken</button>
+                <button class="dier">Kip</button>
+                <button class="dier">Eend</button>
+                <button class="dier">Konijn</button>
+                <button class="dier">Schildpad</button>
+                <button class="dier">Leeuw</button>
+                <button class="dier">Tijger</button>
+                <button class="dier">Olifant</button>
+                <button class="dier">Giraffe</button>
+                <button class="dier">Aap</button>
+                <button class="dier">Vis</button>
+                <button class="dier">Vogel</button>
+                <button class="dier">Slang</button>
+                <button class="dier">Kikker</button>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een dier om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#kleuren" class="vorige">← Vorige oefening</a>
+                <a href="#fruit" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Fruit Oefening -->
+        <div class="oefening" id="fruit">
+            <h1>Fruit</h1>
+            <p>Klik op de fruitsoorten en beluister hun namen. Deze oefening helpt bij het leren herkennen en uitspreken van fruitnamen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een fruitsoort om de uitspraak te horen. Oefen elke dag een paar minuten om de fruitnamen beter te leren herkennen en uitspreken.</p>
+            </div>
+            
+            <div class="audio-controls">
+                <button id="playAllFruit">▶</button>
+                <span>Alle fruitsoorten afspelen</span>
+            </div>
+            
+            <div class="buttons">
+                <button class="fruit">Appel</button>
+                <button class="fruit">Banaan</button>
+                <button class="fruit">Sinaasappel</button>
+                <button class="fruit">Peer</button>
+                <button class="fruit">Druif</button>
+                <button class="fruit">Aardbei</button>
+                <button class="fruit">Framboos</button>
+                <button class="fruit">Bosbes</button>
+                <button class="fruit">Citroen</button>
+                <button class="fruit">Limoen</button>
+                <button class="fruit">Kiwi</button>
+                <button class="fruit">Ananas</button>
+                <button class="fruit">Mango</button>
+                <button class="fruit">Watermeloen</button>
+                <button class="fruit">Meloen</button>
+                <button class="fruit">Kers</button>
+                <button class="fruit">Perzik</button>
+                <button class="fruit">Pruim</button>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een fruitsoort om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#dieren" class="vorige">← Vorige oefening</a>
+                <a href="#tips" class="volgende">Tips voor oefenen →</a>
+            </div>
+        </div>
+        
+        <!-- Tips Sectie -->
+        <div class="tips" id="tips">
+            <h2>Tips voor effectief oefenen</h2>
+            <ul>
+                <li>Oefen elke dag minstens 10-15 minuten</li>
+                <li>Begin met makkelijke woorden en ga daarna naar moeilijkere</li>
+                <li>Spreek de woorden hardop na om je uitspraak te oefenen</li>
+                <li>Neem jezelf op en vergelijk met de voorbeelden</li>
+                <li>Wees geduldig - spraakverbetering kost tijd</li>
+                <li>Oefen in een rustige omgeving zonder afleiding</li>
+                <li>Varieer tussen verschillende soorten oefeningen</li>
+                <li>Beloon jezelf voor vooruitgang</li>
+            </ul>
+            
+            <div class="navigatie" style="margin-top: 25px;">
+                <a href="#fruit" class="vorige">← Vorige oefening</a>
+                <a href="#intro" class="volgende">Terug naar boven →</a>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -383,15 +830,16 @@
                     <h3>Snelle Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <div class="contact-info">
-                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link">AtsumiPrints@hotmail.com</a></div>
                         <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
                     </div>
                 </div>
@@ -403,94 +851,94 @@
     </footer>
 
     <script>
-        // Create alphabet letters
-        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        const alphabetGrid = document.getElementById('alphabetGrid');
+        // Web Speech API voor het uitspreken van tekst
+        const synth = window.speechSynthesis;
         
-        // Add letters to the grid
-        alphabet.forEach(letter => {
-            const letterCard = document.createElement('div');
-            letterCard.className = 'letter-card';
-            letterCard.textContent = letter;
-            letterCard.setAttribute('data-letter', letter);
+        // Functie om tekst uit te spreken
+        function speakText(text) {
+            if (synth.speaking) {
+                synth.cancel();
+            }
             
-            // Add click event to play sound
-            letterCard.addEventListener('click', function() {
-                const currentLetter = this.getAttribute('data-letter');
-                speakLetter(currentLetter);
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'nl-NL';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            synth.speak(utterance);
+        }
+        
+        // Event listeners voor alle knoppen
+        document.querySelectorAll('.letter, .cijfer, .kleur, .dier, .fruit').forEach(button => {
+            button.addEventListener('click', function() {
+                speakText(this.textContent);
                 
-                // Add visual feedback
-                this.classList.add('playing');
+                // Visuele feedback
+                this.style.background = 'linear-gradient(to bottom, var(--autism-orange), var(--autism-pink))';
                 setTimeout(() => {
-                    this.classList.remove('playing');
-                }, 500);
+                    this.style.background = 'linear-gradient(to bottom, var(--autism-blue), var(--autism-purple))';
+                }, 300);
             });
-            
-            alphabetGrid.appendChild(letterCard);
         });
         
-        // Function to speak the letter
-        function speakLetter(letter) {
-            // Using Web Speech API
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(letter);
-                utterance.lang = 'nl-NL'; // Dutch language
-                utterance.rate = 0.8; // Slightly slower for clarity
-                
-                // Try to find a Dutch voice
-                const voices = speechSynthesis.getVoices();
-                const dutchVoice = voices.find(voice => voice.lang === 'nl-NL');
-                if (dutchVoice) {
-                    utterance.voice = dutchVoice;
-                }
-                
-                speechSynthesis.speak(utterance);
-            } else {
-                // Fallback alert if speech synthesis is not supported
-                alert(`De letter ${letter} wordt uitgesproken als: ${getLetterPronunciation(letter)}`);
-            }
-        }
-        
-        // Helper function for letter pronunciation (fallback)
-        function getLetterPronunciation(letter) {
-            const pronunciations = {
-                'A': 'aa',
-                'B': 'bee',
-                'C': 'see',
-                'D': 'dee',
-                'E': 'ee',
-                'F': 'ef',
-                'G': 'gee',
-                'H': 'haa',
-                'I': 'ie',
-                'J': 'jee',
-                'K': 'kaa',
-                'L': 'el',
-                'M': 'em',
-                'N': 'en',
-                'O': 'oo',
-                'P': 'pee',
-                'Q': 'kuu',
-                'R': 'er',
-                'S': 'es',
-                'T': 'tee',
-                'U': 'uu',
-                'V': 'vee',
-                'W': 'wee',
-                'X': 'iks',
-                'Y': 'ypsilon',
-                'Z': 'zet'
-            };
+        // Functie om alle items in een sectie af te spelen
+        function playAllItems(selector, delay = 800) {
+            const items = document.querySelectorAll(selector);
+            let index = 0;
             
-            return pronunciations[letter] || letter;
+            function playNext() {
+                if (index < items.length) {
+                    speakText(items[index].textContent);
+                    // Visuele feedback
+                    items[index].style.background = 'linear-gradient(to bottom, var(--autism-orange), var(--autism-pink))';
+                    setTimeout(() => {
+                        items[index].style.background = 'linear-gradient(to bottom, var(--autism-blue), var(--autism-purple))';
+                        index++;
+                        setTimeout(playNext, delay);
+                    }, delay - 200);
+                }
+            }
+            
+            playNext();
         }
         
-        // Initialize voices when they become available
-        if ('speechSynthesis' in window) {
-            speechSynthesis.onvoiceschanged = function() {
-                // Voices are now available
-            };
-        }
+        // Event listeners voor "Alle afspelen" knoppen
+        document.getElementById('playAllAlfabet').addEventListener('click', () => {
+            playAllItems('#alfabet .letter');
+        });
+        
+        document.getElementById('playAllCijfers').addEventListener('click', () => {
+            playAllItems('#cijfers .cijfer');
+        });
+        
+        document.getElementById('playAllKleuren').addEventListener('click', () => {
+            playAllItems('#kleuren .kleur');
+        });
+        
+        document.getElementById('playAllDieren').addEventListener('click', () => {
+            playAllItems('#dieren .dier');
+        });
+        
+        document.getElementById('playAllFruit').addEventListener('click', () => {
+            playAllItems('#fruit .fruit');
+        });
+        
+        // Smooth scroll voor anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Controleer of Web Speech API wordt ondersteund
+        window.addEventListener('load', () => {
+            if (!('speechSynthesis' in window)) {
+                alert('Uw browser ondersteunt de spraakfunctie niet volledig. Probeer Chrome, Edge of Safari voor de beste ervaring.');
+            }
+        });
     </script>
 </body>
 </html>
