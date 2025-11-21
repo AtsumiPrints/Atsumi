@@ -179,6 +179,209 @@
             transform: translateY(-2px);
         }
 
+        /* AI Generator Styles */
+        .ai-generator-section {
+            background: linear-gradient(135deg, var(--autism-green), var(--autism-blue));
+            padding: 3rem 1rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .ai-generator-card {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            color: var(--dark);
+        }
+
+        .ai-generator-card h2 {
+            color: var(--autism-purple);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .ai-generator-card p {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .generator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+
+        .form-group select, .form-group input {
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .generate-btn {
+            grid-column: 1 / -1;
+            padding: 15px;
+            background: var(--autism-pink);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .generate-btn:hover {
+            background: var(--autism-purple);
+            transform: translateY(-3px);
+        }
+
+        .ai-result {
+            margin-top: 2rem;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 5px solid var(--autism-green);
+            display: none;
+        }
+
+        .ai-result h3 {
+            color: var(--autism-green);
+            margin-bottom: 1rem;
+        }
+
+        .ai-result-content {
+            line-height: 1.8;
+        }
+
+        .result-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .save-btn, .edit-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .save-btn {
+            background: var(--autism-green);
+            color: white;
+        }
+
+        .edit-btn {
+            background: var(--autism-yellow);
+            color: var(--dark);
+        }
+
+        .save-btn:hover, .edit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .loading-spinner {
+            border: 4px solid var(--autism-light-blue);
+            border-top: 4px solid var(--autism-blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* API Settings */
+        .api-settings {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid var(--autism-light-blue);
+        }
+
+        .api-settings h4 {
+            color: var(--autism-blue);
+            margin-bottom: 10px;
+        }
+
+        .api-key-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .api-key-input input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .save-api-btn {
+            padding: 10px 20px;
+            background: var(--autism-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-api-btn:hover {
+            background: var(--autism-purple);
+        }
+
+        .api-status {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .api-status.valid {
+            background: var(--autism-green);
+            color: white;
+        }
+
+        .api-status.invalid {
+            background: var(--autism-pink);
+            color: white;
+        }
+
         footer {
             background: var(--dark);
             color: white;
@@ -262,6 +465,14 @@
             .exercises-grid {
                 grid-template-columns: 1fr;
             }
+
+            .generator-form {
+                grid-template-columns: 1fr;
+            }
+
+            .api-key-input {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -298,6 +509,88 @@
         <div class="container">
             <a href="oefeningen.html" class="back-btn">← Terug naar alle oefeningen</a>
 
+            <!-- AI Oefening Generator -->
+            <section class="ai-generator-section">
+                <div class="ai-generator-card">
+                    <h2>🎯 AI Oefening Generator</h2>
+                    <p>Laat onze AI gepersonaliseerde oefeningen maken op basis van leerdoelen en interesses!</p>
+                    
+                    <!-- API Settings -->
+                    <div class="api-settings">
+                        <h4>🔑 OpenAI API Instellingen</h4>
+                        <div class="api-key-input">
+                            <input type="password" id="apiKeyInput" placeholder="Voer je OpenAI API key in">
+                            <button class="save-api-btn" onclick="saveApiKey()">Opslaan</button>
+                        </div>
+                        <div id="apiStatus" class="api-status"></div>
+                        <p style="font-size: 0.8rem; margin-top: 5px; color: #666;">
+                            Je API key wordt lokaal opgeslagen en nooit naar onze servers gestuurd.
+                            <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--autism-blue);">Haal je API key hier op</a>
+                        </p>
+                    </div>
+                    
+                    <form class="generator-form" id="aiGeneratorForm">
+                        <div class="form-group">
+                            <label for="leerdoel">Leerdoel:</label>
+                            <select id="leerdoel" required>
+                                <option value="">Kies een leerdoel</option>
+                                <option value="spraak">Spraakontwikkeling</option>
+                                <option value="emoties">Emotieherkenning</option>
+                                <option value="sociale_vaardigheden">Sociale Vaardigheden</option>
+                                <option value="concentratie">Concentratie</option>
+                                <option value="taal">Taalbegrip</option>
+                                <option value="zelfredzaamheid">Zelfredzaamheid</option>
+                                <option value="sensoriek">Sensorieke Integratie</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="leeftijd">Leeftijd:</label>
+                            <select id="leeftijd" required>
+                                <option value="">Kies leeftijd</option>
+                                <option value="3-5">3-5 jaar</option>
+                                <option value="6-8">6-8 jaar</option>
+                                <option value="9-12">9-12 jaar</option>
+                                <option value="13-16">13-16 jaar</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interesses">Interesses (optioneel):</label>
+                            <input type="text" id="interesses" placeholder="bv. dieren, auto's, ruimte, treinen...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="moeilijkheidsgraad">Moeilijkheidsgraad:</label>
+                            <select id="moeilijkheidsgraad" required>
+                                <option value="eenvoudig">Eenvoudig</option>
+                                <option value="gemiddeld">Gemiddeld</option>
+                                <option value="uitdagend">Uitdagend</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="generate-btn" id="generateBtn">🎲 Genereer Oefening</button>
+                    </form>
+
+                    <div class="loading" id="loadingIndicator">
+                        <div class="loading-spinner"></div>
+                        <p>AI is een oefening aan het maken...</p>
+                    </div>
+
+                    <div class="ai-result" id="aiResult">
+                        <h3>🎉 Jouw Gepersonaliseerde Oefening</h3>
+                        <div class="ai-result-content" id="aiResultContent">
+                            <!-- Hier komt de gegenereerde oefening -->
+                        </div>
+                        <div class="result-actions">
+                            <button class="save-btn" onclick="saveExercise()">💾 Opslaan</button>
+                            <button class="edit-btn" onclick="editExercise()">✏️ Aanpassen</button>
+                            <button class="generate-btn" onclick="generateNew()">🔄 Nieuwe Oefening</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <div class="exercises-grid">
                 <div class="exercise-card">
                     <div class="exercise-icon">🔤</div>
@@ -312,16 +605,6 @@
                     <p>Leer communiceren met ondersteuning van gebaren.</p>
                     <a href="smog.html" class="exercise-btn">Start oefening</a>
                 </div>
-
-                <!-- Hier kun je later meer spraakoefeningen toevoegen -->
-                <!--
-                <div class="exercise-card">
-                    <div class="exercise-icon">🎵</div>
-                    <h3>Klankherkenning</h4>
-                    <p>Leer verschillende klanken herkennen en onderscheiden.</p>
-                    <a href="klankherkenning.html" class="exercise-btn">Start oefening</a>
-                </div>
-                -->
             </div>
         </div>
     </section>
@@ -356,5 +639,237 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // API Key Management
+        function saveApiKey() {
+            const apiKey = document.getElementById('apiKeyInput').value;
+            if (apiKey && apiKey.startsWith('sk-')) {
+                localStorage.setItem('openai_api_key', apiKey);
+                document.getElementById('apiStatus').textContent = '✅ API key opgeslagen!';
+                document.getElementById('apiStatus').className = 'api-status valid';
+                document.getElementById('apiStatus').style.display = 'block';
+                
+                // Verberg de API key voor veiligheid
+                document.getElementById('apiKeyInput').type = 'password';
+                document.getElementById('apiKeyInput').value = '••••••••••••••••••••';
+            } else {
+                document.getElementById('apiStatus').textContent = '❌ Ongeldige API key. Moet beginnen met "sk-"';
+                document.getElementById('apiStatus').className = 'api-status invalid';
+                document.getElementById('apiStatus').style.display = 'block';
+            }
+        }
+
+        // Laad opgeslagen API key bij het laden van de pagina
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedApiKey = localStorage.getItem('openai_api_key');
+            if (savedApiKey) {
+                document.getElementById('apiKeyInput').value = '••••••••••••••••••••';
+                document.getElementById('apiStatus').textContent = '✅ API key geladen';
+                document.getElementById('apiStatus').className = 'api-status valid';
+                document.getElementById('apiStatus').style.display = 'block';
+            }
+        });
+
+        // AI Oefening Generator Functionaliteit
+        document.getElementById('aiGeneratorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateExercise();
+        });
+
+        async function generateExercise() {
+            const leerdoel = document.getElementById('leerdoel').value;
+            const leeftijd = document.getElementById('leeftijd').value;
+            const interesses = document.getElementById('interesses').value;
+            const moeilijkheidsgraad = document.getElementById('moeilijkheidsgraad').value;
+            const apiKey = localStorage.getItem('openai_api_key');
+
+            // Controleer of API key aanwezig is
+            if (!apiKey) {
+                alert('⚠️ Voeg eerst je OpenAI API key toe in de instellingen bovenaan.');
+                return;
+            }
+
+            // Toon loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('aiResult').style.display = 'none';
+            document.getElementById('generateBtn').disabled = true;
+
+            try {
+                const exercise = await createAIOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad, apiKey);
+                
+                document.getElementById('loadingIndicator').style.display = 'none';
+                document.getElementById('aiResultContent').innerHTML = exercise;
+                document.getElementById('aiResult').style.display = 'block';
+            } catch (error) {
+                console.error('Error generating exercise:', error);
+                document.getElementById('loadingIndicator').style.display = 'none';
+                
+                // Fallback naar lokale oefening bij fout
+                const fallbackExercise = createFallbackOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad);
+                document.getElementById('aiResultContent').innerHTML = `
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <strong>⚠️ AI kon niet bereikt worden. Hier is een voorbeeld oefening:</strong>
+                        <p style="margin-top: 5px; font-size: 0.9rem;">Fout: ${error.message}</p>
+                    </div>
+                    ${fallbackExercise}
+                `;
+                document.getElementById('aiResult').style.display = 'block';
+            } finally {
+                document.getElementById('generateBtn').disabled = false;
+            }
+        }
+
+        async function createAIOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad, apiKey) {
+            // Vertaal de parameters naar Nederlands voor de prompt
+            const leerdoelNl = {
+                'spraak': 'spraakontwikkeling en uitspraak',
+                'emoties': 'emotieherkenning en -expressie',
+                'sociale_vaardigheden': 'sociale vaardigheden',
+                'concentratie': 'concentratie en focus',
+                'taal': 'taalbegrip en woordenschat',
+                'zelfredzaamheid': 'zelfredzaamheid en dagelijkse vaardigheden',
+                'sensoriek': 'sensorieke integratie'
+            }[leerdoel] || leerdoel;
+
+            const prompt = `
+Je bent een expert in het ontwikkelen van educatieve oefeningen voor kinderen met autisme.
+Maak een gepersonaliseerde oefening met deze parameters:
+
+- Leerdoel: ${leerdoelNl}
+- Leeftijdsgroep: ${leeftijd} jaar
+- Moeilijkheidsgraad: ${moeilijkheidsgraad}
+- Interesses: ${interesses || 'algemene interesses voor kinderen'}
+
+SPECIFIEKE RICHTLIJNEN PER LEEFTIJDSCATEGORIE:
+- 3-5 jaar: heel concreet, korte aandachtsspanne, veel visuele ondersteuning, focus op basisvaardigheden
+- 6-8 jaar: eenvoudige regels, korte spelletjes, directe beloning, beginnende sociale interactie
+- 9-12 jaar: meer complexiteit, uitleg waarom, sociale situaties, abstracter denken
+- 13-16 jaar: abstracter, zelfstandigheid, levensechte scenario's, zelfreflectie, planning
+
+ALGEMENE AUTISMEVRINDELLIJKE RICHTLIJNEN:
+1. Voorspelbare structuur en duidelijke verwachtingen
+2. Prikkelarme instructies en omgeving
+3. Visuele ondersteuning waar mogelijk
+4. Korte, concrete instructies
+5. Positieve bekrachtiging
+6. Keuzemogelijkheden binnen duidelijke kaders
+7. Sensorische gevoeligheden meenemen
+
+FORMAT:
+- Geef de oefening een creatieve, aansprekende titel
+- Beschrijf het doel in 1-2 zinnen
+- Geef stap-voor-stap instructies (maximaal 5 stappen)
+- Vermeld benodigde materialen
+- Geef tips voor begeleiders/ouders
+- Suggesties voor aanpassingen (makkelijk/moeilijker)
+
+Antwoord in het Nederlands met HTML-opmaak voor directe weergave op een website.
+Gebruik kopjes, lijstjes en duidelijke opmaak.
+            `;
+
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'Je bent een ervaren pedagoog gespecialiseerd in autisme en ontwikkelingsstoornissen. Je creëert praktische, kindvriendelijke oefeningen die aansluiten bij de specifieke behoeften van kinderen met autisme.'
+                        },
+                        {
+                            role: 'user',
+                            content: prompt
+                        }
+                    ],
+                    max_tokens: 1500,
+                    temperature: 0.7
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || 'API request failed');
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+
+        function createFallbackOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad) {
+            const interessesTekst = interesses ? ` met interesse in ${interesses}` : '';
+            
+            return `
+                <h4>🎯 ${leerdoel.replace('_', ' ').toUpperCase()} Oefening voor ${leeftijd} jaar</h4>
+                <p><strong>Doel:</strong> Ontwikkelen van ${leerdoel.replace('_', ' ')} vaardigheden${interessesTekst}</p>
+                <p><strong>Moeilijkheidsgraad:</strong> ${moeilijkheidsgraad}</p>
+                
+                <h5>📋 Instructies:</h5>
+                <ol>
+                    <li>Creëer een rustige, prikkelarme omgeving</li>
+                    <li>Bereid alle materialen van tevoren voor</li>
+                    <li>Geef duidelijke, korte instructies</li>
+                    <li>Bied visuele ondersteuning waar mogelijk</li>
+                    <li>Geef directe positieve feedback</li>
+                    <li>Houd sessies kort (5-15 minuten)</li>
+                </ol>
+                
+                <h5>💡 Voorbeeld Activiteit:</h5>
+                <p>Afhankelijk van het leerdoel, kunt u werken aan:</p>
+                <ul>
+                    <li>Praten over dagelijkse routines</li>
+                    <li>Emoties herkennen in plaatjes</li>
+                    <li>Eenvoudige sociale scenario's oefenen</li>
+                    <li>Concentratiespelletjes doen</li>
+                </ul>
+                
+                <div style="background: #e7f5ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <strong>✨ Tip:</strong> Pas de oefening aan op basis van de reacties en interesses van het kind. 
+                    Herhaal succesvolle activiteiten om zelfvertrouwen op te bouwen.
+                </div>
+            `;
+        }
+
+        function saveExercise() {
+            const exerciseContent = document.getElementById('aiResultContent').innerHTML;
+            // In een echte implementatie zou je dit naar een database sturen
+            localStorage.setItem('last_generated_exercise', exerciseContent);
+            alert('✅ Oefening opgeslagen! Je kunt deze later terugvinden in "Mijn Oefeningen".');
+        }
+
+        function editExercise() {
+            const exerciseContent = document.getElementById('aiResultContent');
+            const currentContent = exerciseContent.innerHTML;
+            
+            // Maak een textarea voor bewerken
+            exerciseContent.innerHTML = `
+                <textarea id="editExerciseArea" style="width: 100%; height: 300px; padding: 15px; border: 2px solid var(--autism-light-blue); border-radius: 8px; font-family: inherit;">${currentContent.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '')}</textarea>
+                <div style="margin-top: 15px;">
+                    <button class="save-btn" onclick="saveEditedExercise()">💾 Opslaan</button>
+                    <button class="edit-btn" onclick="cancelEdit()">❌ Annuleren</button>
+                </div>
+            `;
+        }
+
+        function saveEditedExercise() {
+            const editedContent = document.getElementById('editExerciseArea').value;
+            document.getElementById('aiResultContent').innerHTML = editedContent.replace(/\n/g, '<br>');
+            alert('✅ Aanpassingen opgeslagen!');
+        }
+
+        function cancelEdit() {
+            // Herlaad de oorspronkelijke oefening
+            generateNew();
+        }
+
+        function generateNew() {
+            document.getElementById('aiGeneratorForm').reset();
+            document.getElementById('aiResult').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
