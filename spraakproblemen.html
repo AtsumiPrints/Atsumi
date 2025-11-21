@@ -323,65 +323,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* API Settings */
-        .api-settings {
-            background: var(--light);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid var(--autism-light-blue);
-        }
-
-        .api-settings h4 {
-            color: var(--autism-blue);
-            margin-bottom: 10px;
-        }
-
-        .api-key-input {
-            display: flex;
-            gap: 10px;
-        }
-
-        .api-key-input input {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid var(--autism-light-blue);
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .save-api-btn {
-            padding: 10px 20px;
-            background: var(--autism-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .save-api-btn:hover {
-            background: var(--autism-purple);
-        }
-
-        .api-status {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: none;
-        }
-
-        .api-status.valid {
-            background: var(--autism-green);
-            color: white;
-        }
-
-        .api-status.invalid {
-            background: var(--autism-pink);
-            color: white;
-        }
-
         footer {
             background: var(--dark);
             color: white;
@@ -469,10 +410,6 @@
             .generator-form {
                 grid-template-columns: 1fr;
             }
-
-            .api-key-input {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -512,22 +449,8 @@
             <!-- AI Oefening Generator -->
             <section class="ai-generator-section">
                 <div class="ai-generator-card">
-                    <h2>🎯 AI Oefening Generator</h2>
-                    <p>Laat onze AI gepersonaliseerde oefeningen maken op basis van leerdoelen en interesses!</p>
-                    
-                    <!-- API Settings -->
-                    <div class="api-settings">
-                        <h4>🔑 OpenAI API Instellingen</h4>
-                        <div class="api-key-input">
-                            <input type="password" id="apiKeyInput" placeholder="Voer je OpenAI API key in">
-                            <button class="save-api-btn" onclick="saveApiKey()">Opslaan</button>
-                        </div>
-                        <div id="apiStatus" class="api-status"></div>
-                        <p style="font-size: 0.8rem; margin-top: 5px; color: #666;">
-                            Je API key wordt lokaal opgeslagen en nooit naar onze servers gestuurd.
-                            <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--autism-blue);">Haal je API key hier op</a>
-                        </p>
-                    </div>
+                    <h2>🎯 Slimme Oefening Generator</h2>
+                    <p>Onze intelligente generator maakt direct gepersonaliseerde oefeningen - geen account nodig!</p>
                     
                     <form class="generator-form" id="aiGeneratorForm">
                         <div class="form-group">
@@ -574,7 +497,7 @@
 
                     <div class="loading" id="loadingIndicator">
                         <div class="loading-spinner"></div>
-                        <p>AI is een oefening aan het maken...</p>
+                        <p>Bezig met maken van oefening...</p>
                     </div>
 
                     <div class="ai-result" id="aiResult">
@@ -605,6 +528,16 @@
                     <p>Leer communiceren met ondersteuning van gebaren.</p>
                     <a href="smog.html" class="exercise-btn">Start oefening</a>
                 </div>
+
+                <!-- Hier kun je later meer spraakoefeningen toevoegen -->
+                <!--
+                <div class="exercise-card">
+                    <div class="exercise-icon">🎵</div>
+                    <h3>Klankherkenning</h4>
+                    <p>Leer verschillende klanken herkennen en onderscheiden.</p>
+                    <a href="klankherkenning.html" class="exercise-btn">Start oefening</a>
+                </div>
+                -->
             </div>
         </div>
     </section>
@@ -641,203 +574,314 @@
     </footer>
 
     <script>
-        // API Key Management
-        function saveApiKey() {
-            const apiKey = document.getElementById('apiKeyInput').value;
-            if (apiKey && apiKey.startsWith('sk-')) {
-                localStorage.setItem('openai_api_key', apiKey);
-                document.getElementById('apiStatus').textContent = '✅ API key opgeslagen!';
-                document.getElementById('apiStatus').className = 'api-status valid';
-                document.getElementById('apiStatus').style.display = 'block';
-                
-                // Verberg de API key voor veiligheid
-                document.getElementById('apiKeyInput').type = 'password';
-                document.getElementById('apiKeyInput').value = '••••••••••••••••••••';
-            } else {
-                document.getElementById('apiStatus').textContent = '❌ Ongeldige API key. Moet beginnen met "sk-"';
-                document.getElementById('apiStatus').className = 'api-status invalid';
-                document.getElementById('apiStatus').style.display = 'block';
+        // Uitgebreide database met oefeningen
+        const oefeningenDatabase = {
+            spraak: {
+                "3-5": {
+                    eenvoudig: [
+                        {
+                            titel: "Dierengeluiden Spel",
+                            doel: "Basis klankherkenning en uitspraak",
+                            instructies: [
+                                "Toon plaatjes van verschillende dieren",
+                                "Vraag: 'Welk geluid maakt dit dier?'",
+                                "Doe het geluid voor en laat het kind nadoen",
+                                "Begin met makkelijke geluiden: woef, miauw, boe"
+                            ],
+                            materialen: "Dierenplaatjes, speelgoeddieren",
+                            tips: "Geef direct positieve feedback. Herhaal succesvolle geluiden.",
+                            variaties: "Voeg bewegingen toe bij de geluiden"
+                        },
+                        {
+                            titel: "Eerste Woordjes",
+                            doel: "Enkelvoudige woorden uitspreken",
+                            instructies: [
+                                "Kies alledaagse voorwerpen: bal, pop, auto",
+                                "Zeg het woord duidelijk voor",
+                                "Moedig aan om na te zeggen",
+                                "Gebruik gebaren ter ondersteuning"
+                            ],
+                            materialen: "Concrete voorwerpen of plaatjes",
+                            tips: "Houd sessies kort (3-5 minuten). Vier elke poging.",
+                            variaties: "Combineer met favoriete speelgoed"
+                        }
+                    ],
+                    gemiddeld: [
+                        {
+                            titel: "Korte Zinnetjes",
+                            doel: "Eenvoudige zinsopbouw oefenen",
+                            instructies: [
+                                "Begin met 2-woord zinnen: 'Mama komt', 'Bal rollen'",
+                                "Bouw langzaam uit naar 3 woorden",
+                                "Gebruik visuele ondersteuning (plaatjes)",
+                                "Oefen dagelijkse routines"
+                            ],
+                            materialen: "Actieplaatjes, dagritmekaarten",
+                            tips: "Wees geduldig en herhaal vaak. Gebruik eigen naam van het kind.",
+                            variaties: "Maak een verhaaltje met favoriete personages"
+                        }
+                    ]
+                },
+                "6-8": {
+                    eenvoudig: [
+                        {
+                            titel: "Klank Herkenningsspel",
+                            doel: "Specifieke klanken identificeren",
+                            instructies: [
+                                "Kies een doelklank (bijvoorbeeld 's' of 'm')",
+                                "Verzamel voorwerpen die met die klank beginnen",
+                                "Laat het kind de klank herkennen in verschillende woorden",
+                                "Speel 'ik hoor, ik hoor wat jij niet hoort'"
+                            ],
+                            materialen: "Voorwerpen of plaatjes met verschillende beginletters",
+                            tips: "Maak het visueel en concreet. Gebruik eigen voorwerpen van het kind.",
+                            variaties: "Focus op klanken die het kind moeilijk vindt"
+                        }
+                    ],
+                    gemiddeld: [
+                        {
+                            titel: "Zinnen Nabouwen",
+                            doel: "Zinsstructuur en grammatica oefenen",
+                            instructies: [
+                                "Geef een eenvoudige zin: 'De kat drinkt melk'",
+                                "Laat het kind de zin nazeggen",
+                                "Varieer met onderwerp, werkwoord, voorwerp",
+                                "Gebruik plaatjes als geheugensteun"
+                            ],
+                            materialen: "Zin kaarten, plaatjes",
+                            tips: "Breek complexe zinnen op in delen. Oefen veel herhaling.",
+                            variaties: "Laat het kind eigen zinnen bedenken"
+                        }
+                    ],
+                    uitdagend: [
+                        {
+                            titel: "Mini Verhaaltjes",
+                            doel: "Aaneenschakeling van zinnen oefenen",
+                            instructies: [
+                                "Begin een kort verhaaltje (2-3 zinnen)",
+                                "Laat het kind het verhaaltje nazeggen",
+                                "Bouw langzaam uit naar langere verhalen",
+                                "Gebruik visuele sequentiekaarten"
+                            ],
+                            materialen: "Verhaal sequentiekaarten, vertelstenen",
+                            tips: "Houd het relevant en persoonlijk. Gebruik ervaringen van het kind.",
+                            variaties: "Laat het kind het verhaal afmaken"
+                        }
+                    ]
+                }
+            },
+            emoties: {
+                "3-5": {
+                    eenvoudig: [
+                        {
+                            titel: "Gezichtsuitdrukkingen Spel",
+                            doel: "Basis emoties herkennen",
+                            instructies: [
+                                "Toon plaatjes van blije, verdrietige en boze gezichten",
+                                "Vraag: 'Hoe voelt dit kindje?'",
+                                "Doe de gezichtsuitdrukkingen voor in een spiegel",
+                                "Koppel emoties aan eenvoudige situaties"
+                            ],
+                            materialen: "Emotiekaarten, spiegel",
+                            tips: "Gebruik overdreven gezichtsuitdrukkingen. Benoem eigen emoties.",
+                            variaties: "Maak emotie-memory of domino"
+                        }
+                    ]
+                },
+                "6-8": {
+                    gemiddeld: [
+                        {
+                            titel: "Emotie Herkenningsspel",
+                            doel: "Emoties koppelen aan situaties",
+                            instructies: [
+                                "Beschrijf eenvoudige situaties",
+                                "Vraag welke emotie daarbij past",
+                                "Bespoor waarom iemand zich zo voelt",
+                                "Oefen gepaste reacties"
+                            ],
+                            materialen: "Situatie kaarten, emotie thermometer",
+                            tips: "Gebruik concrete voorbeelden uit het leven van het kind.",
+                            variaties: "Speel emotie-charades"
+                        }
+                    ]
+                }
+            },
+            sociale_vaardigheden: {
+                "6-8": {
+                    eenvoudig: [
+                        {
+                            titel: "Dag Groeten Oefening",
+                            doel: "Basale sociale interacties oefenen",
+                            instructies: [
+                                "Oefen eenvoudige groeten: 'Hallo', 'Dag', 'Tot ziens'",
+                                "Speel rollenspel met knuffels",
+                                "Oefen oogcontact (kort en niet dwingend)",
+                                "Leer 'alsjeblieft' en 'dankjewel' in context"
+                            ],
+                            materialen: "Knuffels, poppen, sociale verhalen",
+                            tips: "Maak het voorspelbaar. Gebruik vaste routines en scripts.",
+                            variaties: "Maak een 'groeten' bingospel"
+                        }
+                    ]
+                }
             }
-        }
+        };
 
-        // Laad opgeslagen API key bij het laden van de pagina
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedApiKey = localStorage.getItem('openai_api_key');
-            if (savedApiKey) {
-                document.getElementById('apiKeyInput').value = '••••••••••••••••••••';
-                document.getElementById('apiStatus').textContent = '✅ API key geladen';
-                document.getElementById('apiStatus').className = 'api-status valid';
-                document.getElementById('apiStatus').style.display = 'block';
-            }
-        });
-
-        // AI Oefening Generator Functionaliteit
+        // Intelligente oefening generator
         document.getElementById('aiGeneratorForm').addEventListener('submit', function(e) {
             e.preventDefault();
             generateExercise();
         });
 
-        async function generateExercise() {
+        function generateExercise() {
             const leerdoel = document.getElementById('leerdoel').value;
             const leeftijd = document.getElementById('leeftijd').value;
             const interesses = document.getElementById('interesses').value;
             const moeilijkheidsgraad = document.getElementById('moeilijkheidsgraad').value;
-            const apiKey = localStorage.getItem('openai_api_key');
-
-            // Controleer of API key aanwezig is
-            if (!apiKey) {
-                alert('⚠️ Voeg eerst je OpenAI API key toe in de instellingen bovenaan.');
-                return;
-            }
 
             // Toon loading indicator
             document.getElementById('loadingIndicator').style.display = 'block';
             document.getElementById('aiResult').style.display = 'none';
             document.getElementById('generateBtn').disabled = true;
 
-            try {
-                const exercise = await createAIOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad, apiKey);
+            // Simuleer verwerkingstijd voor betere UX
+            setTimeout(() => {
+                const exercise = createIntelligenteOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad);
                 
                 document.getElementById('loadingIndicator').style.display = 'none';
                 document.getElementById('aiResultContent').innerHTML = exercise;
                 document.getElementById('aiResult').style.display = 'block';
-            } catch (error) {
-                console.error('Error generating exercise:', error);
-                document.getElementById('loadingIndicator').style.display = 'none';
-                
-                // Fallback naar lokale oefening bij fout
-                const fallbackExercise = createFallbackOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad);
-                document.getElementById('aiResultContent').innerHTML = `
-                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                        <strong>⚠️ AI kon niet bereikt worden. Hier is een voorbeeld oefening:</strong>
-                        <p style="margin-top: 5px; font-size: 0.9rem;">Fout: ${error.message}</p>
-                    </div>
-                    ${fallbackExercise}
-                `;
-                document.getElementById('aiResult').style.display = 'block';
-            } finally {
                 document.getElementById('generateBtn').disabled = false;
-            }
+            }, 1500);
         }
 
-        async function createAIOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad, apiKey) {
-            // Vertaal de parameters naar Nederlands voor de prompt
-            const leerdoelNl = {
-                'spraak': 'spraakontwikkeling en uitspraak',
-                'emoties': 'emotieherkenning en -expressie',
-                'sociale_vaardigheden': 'sociale vaardigheden',
-                'concentratie': 'concentratie en focus',
-                'taal': 'taalbegrip en woordenschat',
-                'zelfredzaamheid': 'zelfredzaamheid en dagelijkse vaardigheden',
-                'sensoriek': 'sensorieke integratie'
-            }[leerdoel] || leerdoel;
-
-            const prompt = `
-Je bent een expert in het ontwikkelen van educatieve oefeningen voor kinderen met autisme.
-Maak een gepersonaliseerde oefening met deze parameters:
-
-- Leerdoel: ${leerdoelNl}
-- Leeftijdsgroep: ${leeftijd} jaar
-- Moeilijkheidsgraad: ${moeilijkheidsgraad}
-- Interesses: ${interesses || 'algemene interesses voor kinderen'}
-
-SPECIFIEKE RICHTLIJNEN PER LEEFTIJDSCATEGORIE:
-- 3-5 jaar: heel concreet, korte aandachtsspanne, veel visuele ondersteuning, focus op basisvaardigheden
-- 6-8 jaar: eenvoudige regels, korte spelletjes, directe beloning, beginnende sociale interactie
-- 9-12 jaar: meer complexiteit, uitleg waarom, sociale situaties, abstracter denken
-- 13-16 jaar: abstracter, zelfstandigheid, levensechte scenario's, zelfreflectie, planning
-
-ALGEMENE AUTISMEVRINDELLIJKE RICHTLIJNEN:
-1. Voorspelbare structuur en duidelijke verwachtingen
-2. Prikkelarme instructies en omgeving
-3. Visuele ondersteuning waar mogelijk
-4. Korte, concrete instructies
-5. Positieve bekrachtiging
-6. Keuzemogelijkheden binnen duidelijke kaders
-7. Sensorische gevoeligheden meenemen
-
-FORMAT:
-- Geef de oefening een creatieve, aansprekende titel
-- Beschrijf het doel in 1-2 zinnen
-- Geef stap-voor-stap instructies (maximaal 5 stappen)
-- Vermeld benodigde materialen
-- Geef tips voor begeleiders/ouders
-- Suggesties voor aanpassingen (makkelijk/moeilijker)
-
-Antwoord in het Nederlands met HTML-opmaak voor directe weergave op een website.
-Gebruik kopjes, lijstjes en duidelijke opmaak.
-            `;
-
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [
-                        {
-                            role: 'system',
-                            content: 'Je bent een ervaren pedagoog gespecialiseerd in autisme en ontwikkelingsstoornissen. Je creëert praktische, kindvriendelijke oefeningen die aansluiten bij de specifieke behoeften van kinderen met autisme.'
-                        },
-                        {
-                            role: 'user',
-                            content: prompt
-                        }
-                    ],
-                    max_tokens: 1500,
-                    temperature: 0.7
-                })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error?.message || 'API request failed');
+        function createIntelligenteOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad) {
+            // Probeer exacte match eerst
+            let oefening = findExactMatch(leerdoel, leeftijd, moeilijkheidsgraad);
+            
+            // Als geen exacte match, vind dichtstbijzijnde
+            if (!oefening) {
+                oefening = findClosestMatch(leerdoel, leeftijd, moeilijkheidsgraad);
             }
-
-            const data = await response.json();
-            return data.choices[0].message.content;
+            
+            // Personaliseer met interesses
+            return personalizeExercise(oefening, interesses, leerdoel, leeftijd);
         }
 
-        function createFallbackOefening(leerdoel, leeftijd, interesses, moeilijkheidsgraad) {
-            const interessesTekst = interesses ? ` met interesse in ${interesses}` : '';
+        function findExactMatch(leerdoel, leeftijd, moeilijkheidsgraad) {
+            if (oefeningenDatabase[leerdoel] && 
+                oefeningenDatabase[leerdoel][leeftijd] && 
+                oefeningenDatabase[leerdoel][leeftijd][moeilijkheidsgraad]) {
+                
+                const oefeningen = oefeningenDatabase[leerdoel][leeftijd][moeilijkheidsgraad];
+                return oefeningen[Math.floor(Math.random() * oefeningen.length)];
+            }
+            return null;
+        }
+
+        function findClosestMatch(leerdoel, leeftijd, moeilijkheidsgraad) {
+            // Fallback logica voor wanneer geen exacte match gevonden wordt
+            const leeftijdRanges = ["3-5", "6-8", "9-12", "13-16"];
+            const moeilijkheidsgraden = ["eenvoudig", "gemiddeld", "uitdagend"];
+            
+            let currentLeeftijdIndex = leeftijdRanges.indexOf(leeftijd);
+            let currentMoeilijkheidIndex = moeilijkheidsgraden.indexOf(moeilijkheidsgraad);
+            
+            // Probeer verschillende combinaties
+            for (let leeftijdOffset = 0; leeftijdOffset < leeftijdRanges.length; leeftijdOffset++) {
+                for (let moeilijkheidOffset = 0; moeilijkheidOffset < moeilijkheidsgraden.length; moeilijkheidOffset++) {
+                    const testLeeftijd = leeftijdRanges[
+                        Math.min(leeftijdRanges.length - 1, Math.max(0, currentLeeftijdIndex + leeftijdOffset))
+                    ];
+                    const testMoeilijkheid = moeilijkheidsgraden[
+                        Math.min(moeilijkheidsgraden.length - 1, Math.max(0, currentMoeilijkheidIndex + moeilijkheidOffset))
+                    ];
+                    
+                    const oefening = findExactMatch(leerdoel, testLeeftijd, testMoeilijkheid);
+                    if (oefening) return oefening;
+                }
+            }
+            
+            // Ultimate fallback
+            return {
+                titel: "Gepersonaliseerde Activiteit",
+                doel: `Ontwikkelen van ${leerdoel} vaardigheden`,
+                instructies: [
+                    "Creëer een rustige, voorspelbare omgeving",
+                    "Bereid materialen van tevoren voor",
+                    "Geef korte, duidelijke instructies",
+                    "Bied visuele ondersteuning",
+                    "Geef directe positieve feedback",
+                    "Houd sessies kort en succesvol"
+                ],
+                materialen: "Passend bij leerdoel en interesses van het kind",
+                tips: "Sluit aan bij de interesses van het kind. Wees geduldig en vier kleine successen.",
+                variaties: "Pas aan op basis van reacties en voortgang"
+            };
+        }
+
+        function personalizeExercise(oefening, interesses, leerdoel, leeftijd) {
+            let gepersonaliseerdeInstructies = [...oefening.instructies];
+            let gepersonaliseerdeMaterialen = oefening.materialen;
+            let gepersonaliseerdeTips = oefening.tips;
+            
+            if (interesses) {
+                // Voeg interesses toe aan de oefening
+                gepersonaliseerdeInstructies.unshift(`Sluit aan bij de interesse in: ${interesses}`);
+                gepersonaliseerdeMaterialen += `, materiaal rond ${interesses}`;
+                gepersonaliseerdeTips += ` Gebruik ${interesses} om motivatie te vergroten.`;
+            }
             
             return `
-                <h4>🎯 ${leerdoel.replace('_', ' ').toUpperCase()} Oefening voor ${leeftijd} jaar</h4>
-                <p><strong>Doel:</strong> Ontwikkelen van ${leerdoel.replace('_', ' ')} vaardigheden${interessesTekst}</p>
-                <p><strong>Moeilijkheidsgraad:</strong> ${moeilijkheidsgraad}</p>
-                
-                <h5>📋 Instructies:</h5>
-                <ol>
-                    <li>Creëer een rustige, prikkelarme omgeving</li>
-                    <li>Bereid alle materialen van tevoren voor</li>
-                    <li>Geef duidelijke, korte instructies</li>
-                    <li>Bied visuele ondersteuning waar mogelijk</li>
-                    <li>Geef directe positieve feedback</li>
-                    <li>Houd sessies kort (5-15 minuten)</li>
-                </ol>
-                
-                <h5>💡 Voorbeeld Activiteit:</h5>
-                <p>Afhankelijk van het leerdoel, kunt u werken aan:</p>
-                <ul>
-                    <li>Praten over dagelijkse routines</li>
-                    <li>Emoties herkennen in plaatjes</li>
-                    <li>Eenvoudige sociale scenario's oefenen</li>
-                    <li>Concentratiespelletjes doen</li>
-                </ul>
-                
-                <div style="background: #e7f5ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                    <strong>✨ Tip:</strong> Pas de oefening aan op basis van de reacties en interesses van het kind. 
-                    Herhaal succesvolle activiteiten om zelfvertrouwen op te bouwen.
+                <div class="oefening-detail">
+                    <h4>${oefening.titel}</h4>
+                    <div class="oefening-meta">
+                        <p><strong>Leeftijd:</strong> ${leeftijd} jaar | <strong>Moeilijkheid:</strong> ${document.getElementById('moeilijkheidsgraad').value}</p>
+                    </div>
+                    
+                    <div class="oefening-doel">
+                        <h5>🎯 Doel:</h5>
+                        <p>${oefening.doel}</p>
+                    </div>
+                    
+                    <div class="oefening-instructies">
+                        <h5>📋 Stap voor stap:</h5>
+                        <ol>
+                            ${gepersonaliseerdeInstructies.map(instruction => `<li>${instruction}</li>`).join('')}
+                        </ol>
+                    </div>
+                    
+                    <div class="oefening-materialen">
+                        <h5>📦 Benodigdheden:</h5>
+                        <p>${gepersonaliseerdeMaterialen}</p>
+                    </div>
+                    
+                    <div class="oefening-tips">
+                        <h5>💡 Tips voor begeleiders:</h5>
+                        <p>${gepersonaliseerdeTips}</p>
+                    </div>
+                    
+                    ${oefening.variaties ? `
+                    <div class="oefening-variaties">
+                        <h5>🔄 Variaties:</h5>
+                        <p>${oefening.variaties}</p>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="oefening-timing">
+                        <h5>⏱️ Timing:</h5>
+                        <p>Start met korte sessies van 5-10 minuten. Bouw langzaam op naar maximaal 15-20 minuten.</p>
+                    </div>
                 </div>
             `;
         }
 
         function saveExercise() {
             const exerciseContent = document.getElementById('aiResultContent').innerHTML;
-            // In een echte implementatie zou je dit naar een database sturen
+            // Simuleer opslaan - in een echte app zou dit naar een database gaan
             localStorage.setItem('last_generated_exercise', exerciseContent);
+            
+            // Toon bevestiging
             alert('✅ Oefening opgeslagen! Je kunt deze later terugvinden in "Mijn Oefeningen".');
         }
 
@@ -847,8 +891,11 @@ Gebruik kopjes, lijstjes en duidelijke opmaak.
             
             // Maak een textarea voor bewerken
             exerciseContent.innerHTML = `
-                <textarea id="editExerciseArea" style="width: 100%; height: 300px; padding: 15px; border: 2px solid var(--autism-light-blue); border-radius: 8px; font-family: inherit;">${currentContent.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '')}</textarea>
-                <div style="margin-top: 15px;">
+                <div style="margin-bottom: 15px;">
+                    <p><strong>Pas de oefening aan naar wens:</strong></p>
+                    <textarea id="editExerciseArea" style="width: 100%; height: 300px; padding: 15px; border: 2px solid var(--autism-light-blue); border-radius: 8px; font-family: inherit; font-size: 1rem;">${currentContent.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ')}</textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
                     <button class="save-btn" onclick="saveEditedExercise()">💾 Opslaan</button>
                     <button class="edit-btn" onclick="cancelEdit()">❌ Annuleren</button>
                 </div>
@@ -863,7 +910,7 @@ Gebruik kopjes, lijstjes en duidelijke opmaak.
 
         function cancelEdit() {
             // Herlaad de oorspronkelijke oefening
-            generateNew();
+            generateExercise();
         }
 
         function generateNew() {
@@ -871,5 +918,7 @@ Gebruik kopjes, lijstjes en duidelijke opmaak.
             document.getElementById('aiResult').style.display = 'none';
         }
     </script>
+</body>
+</html>
 </body>
 </html>
