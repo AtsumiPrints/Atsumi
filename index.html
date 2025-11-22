@@ -505,6 +505,7 @@
             background: white;
             display: flex;
             gap: 10px;
+            align-items: center;
         }
         
         .api-key-input {
@@ -513,25 +514,28 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 0.9rem;
+            display: none; /* STANDAARD VERBORGEN */
         }
         
         .minho-input {
-            flex: 2;
-            padding: 10px;
+            flex: 1;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 25px;
             font-size: 0.9rem;
+            margin: 0 5px;
         }
         
         .minho-send {
             background: var(--autism-blue);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s;
+            white-space: nowrap;
         }
         
         .minho-send:hover {
@@ -781,6 +785,20 @@
                 height: 60px;
                 font-size: 1.5rem;
             }
+            
+            .minho-footer {
+                padding: 10px;
+            }
+            
+            .minho-input {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .minho-send {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -855,7 +873,7 @@
         <div class="container">
             <h2 class="section-title">Ieder Kind Leert op Zijn Eigen Tempo</h2>
             <div class="rhythm-content">
-                <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
+                <p>Bij Atsumi geloven we dat elk child uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
                 <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
             </div>
         </div>
@@ -1109,7 +1127,7 @@
                 Hallo! Ik ben Minho de pinguïn! 🐧 Waggell! Ik ben hier om je te helpen met leren en oefenen.
             </div>
             <div class="minho-message minho-bot-message">
-                Voer eerst je OpenAI API key in om met me te kunnen chatten! Dan help ik je graag verder.
+                Stel me gerust een vraag over oefeningen, autisme tips of gewoon voor een gezellig gesprek!
                 <div class="minho-quick-actions">
                     <button class="minho-quick-action" data-action="oefeningen">Oefeningen</button>
                     <button class="minho-quick-action" data-action="autisme">Autisme tips</button>
@@ -1192,6 +1210,43 @@
             minhoChatbot.style.display = 'none';
         });
 
+        // API key automatisch invullen en verbergen
+        window.addEventListener('load', function() {
+            const savedKey = localStorage.getItem('minhoApiKey');
+            if (savedKey) {
+                minhoApiKey.value = savedKey;
+                // API key veld verbergen
+                minhoApiKey.style.display = 'none';
+            } else {
+                // Toon API key veld als er geen key is
+                minhoApiKey.style.display = 'block';
+                minhoInput.style.display = 'none';
+                minhoSend.style.display = 'none';
+            }
+        });
+
+        // API key opslaan en interface aanpassen
+        minhoApiKey.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                saveApiKey();
+            }
+        });
+
+        minhoApiKey.addEventListener('change', saveApiKey);
+
+        function saveApiKey() {
+            if (minhoApiKey.value.trim()) {
+                localStorage.setItem('minhoApiKey', minhoApiKey.value.trim());
+                minhoApiKey.style.display = 'none';
+                minhoInput.style.display = 'block';
+                minhoSend.style.display = 'block';
+                minhoInput.focus();
+                
+                // Welkomstbericht toevoegen
+                addMinhoMessage('API key opgeslagen! Je kunt nu met Minho praten! 🐧', 'bot');
+            }
+        }
+
         // Verstuur bericht naar Minho AI
         minhoSend.addEventListener('click', sendToMinhoAI);
         minhoInput.addEventListener('keypress', function(e) {
@@ -1210,10 +1265,13 @@
 
         async function sendToMinhoAI() {
             const message = minhoInput.value.trim();
-            const apiKey = minhoApiKey.value.trim();
+            const apiKey = localStorage.getItem('minhoApiKey');
             
             if (!apiKey) {
                 addMinhoMessage('Voer eerst je OpenAI API key in om met Minho te kunnen praten!', 'bot');
+                minhoApiKey.style.display = 'block';
+                minhoInput.style.display = 'none';
+                minhoSend.style.display = 'none';
                 return;
             }
             
@@ -1343,23 +1401,15 @@ ALGEMENE REGELS:
             event.stopPropagation();
         });
 
-        // API key opslaan in localStorage voor gemak
-        minhoApiKey.addEventListener('change', function() {
-            if (this.value) {
-                localStorage.setItem('minhoApiKey', this.value);
-            }
-        });
-
-        // API key laden bij pagina load
-        window.addEventListener('load', function() {
-            const savedKey = localStorage.getItem('minhoApiKey');
-            if (savedKey) {
-                minhoApiKey.value = savedKey;
-            }
-        });
+        // API key reset functie (voor ontwikkelaars)
+        function resetMinhoApiKey() {
+            localStorage.removeItem('minhoApiKey');
+            location.reload();
+        }
     </script>
 </body>
 </html>
+
 
 
 
