@@ -429,157 +429,210 @@
             color: white;
         }
         
-        /* Verbeterde Chatbot Styles - GEWIJZIGD */
-        .chatbot {
+        /* MINHO AI CHATBOT STYLES - COMPLEET GEWIJZIGD */
+        .minho-chatbot {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 350px;
-            height: 450px;
+            width: 380px;
+            height: 500px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             display: none;
             flex-direction: column;
             z-index: 1000;
             overflow: hidden;
+            border: 3px solid var(--autism-blue);
         }
         
-        .chatbot-header {
-            background: var(--autism-blue);
+        .minho-header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
-            padding: 10px 15px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            padding: 15px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 2px solid var(--autism-yellow);
         }
         
-        .chatbot-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .chatbot-avatar {
-            width: 40px;
-            height: 40px;
+        .minho-avatar {
+            width: 50px;
+            height: 50px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            border: 2px solid var(--autism-yellow);
         }
         
-        .minimize-btn {
+        .minho-title h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .minho-title p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .minho-close {
             background: none;
             border: none;
             color: white;
+            font-size: 1.3rem;
             cursor: pointer;
-            font-size: 1.2rem;
             margin-left: auto;
+            padding: 5px;
         }
         
-        .chatbot-body {
+        .minho-body {
             flex: 1;
             padding: 15px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            background-color: var(--light);
+            gap: 12px;
+            background: linear-gradient(135deg, #f8fdff, #e3f2fd);
         }
         
-        .chatbot-footer {
-            padding: 10px;
-            border-top: 1px solid #eee;
-            display: flex;
+        .minho-footer {
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
             background: white;
+            display: flex;
+            gap: 10px;
         }
         
-        .chatbot-footer input {
+        .api-key-input {
             flex: 1;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 0.9rem;
         }
         
-        .chatbot-footer button {
+        .minho-input {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .minho-send {
             background: var(--autism-blue);
             color: white;
             border: none;
-            padding: 8px 15px;
-            margin-left: 5px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
         }
         
-        .chatbot-toggle {
+        .minho-send:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .minho-toggle {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;
-            height: 60px;
-            background: var(--autism-blue);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             z-index: 10000;
             transition: transform 0.3s;
+            border: 3px solid white;
+            font-size: 1.8rem;
         }
         
-        .chatbot-toggle:hover {
+        .minho-toggle:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         
-        .message {
-            max-width: 80%;
-            padding: 8px 12px;
-            border-radius: 15px;
-            margin-bottom: 10px;
+        .minho-message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 8px;
             line-height: 1.4;
+            position: relative;
         }
         
-        .bot-message {
-            background: var(--autism-very-light-blue);
+        .minho-bot-message {
+            background: white;
+            border: 2px solid var(--autism-light-blue);
             align-self: flex-start;
             border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .user-message {
-            background: var(--autism-blue);
+        .minho-user-message {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
             align-self: flex-end;
             border-bottom-right-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
-        .quick-actions {
+        .minho-quick-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 10px;
         }
         
-        .quick-action {
-            background: var(--autism-light-blue);
+        .minho-quick-action {
+            background: var(--autism-yellow);
             color: var(--dark);
             border: none;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 15px;
             font-size: 0.8rem;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-weight: bold;
         }
         
-        .quick-action:hover {
+        .minho-quick-action:hover {
             background: var(--autism-blue);
             color: white;
+            transform: translateY(-2px);
+        }
+        
+        .minho-typing {
+            display: inline-block;
+            background: white;
+            border: 2px solid var(--autism-light-blue);
+            padding: 12px 16px;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-dots {
+            display: inline-block;
+            animation: typing 1.5s infinite;
+        }
+        
+        @keyframes typing {
+            0%, 60% { opacity: 1; }
+            30% { opacity: 0.5; }
         }
         
         .social-section {
@@ -717,10 +770,16 @@
                 font-size: 2rem;
             }
             
-            .chatbot {
-                width: 90%;
-                right: 5%;
+            .minho-chatbot {
+                width: 95%;
+                right: 2.5%;
                 height: 70%;
+            }
+            
+            .minho-toggle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -946,7 +1005,7 @@
         </div>
     </section>
     
-        <section class="social-section">
+    <section class="social-section">
         <div class="container">
             <h2 class="section-title">Volg Ons op Sociale Media</h2>
             <div class="social-grid">
@@ -1029,42 +1088,39 @@
         </div>
     </footer>
     
-    <!-- Verbeterde Chatbot met pinguïn icoon -->
-    <div class="chatbot-toggle">
-        <i class="fas fa-comments"></i>
+    <!-- MINHO AI CHATBOT - COMPLEET VERVANGEN -->
+    <div class="minho-toggle">
+        🐧
     </div>
     
-    <div class="chatbot">
-        <div class="chatbot-header">
-            <div class="chatbot-title">
-                <div class="chatbot-avatar">🐧</div>
-                <h3>Minho</h3>
+    <div class="minho-chatbot">
+        <div class="minho-header">
+            <div class="minho-avatar">🐧</div>
+            <div class="minho-title">
+                <h3>Minho AI</h3>
+                <p>Jouw pinguïn assistent</p>
             </div>
-            <button class="minimize-btn">
+            <button class="minho-close">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="chatbot-body" id="chatbotBody">
-            <div class="message bot-message">
-                Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?
+        <div class="minho-body" id="minhoBody">
+            <div class="minho-message minho-bot-message">
+                Hallo! Ik ben Minho de pinguïn! 🐧 Waggell! Ik ben hier om je te helpen met leren en oefenen.
             </div>
-            <div class="message bot-message">
-                Ik kan je helpen met:
-                <br>• Geschikte oefeningen vinden
-                <br>• Uitleg over autismevriendelijk leren
-                <br>• Technische ondersteuning
-                <br>• Downloadproblemen oplossen
-                <div class="quick-actions">
-                    <button class="quick-action" data-action="oefeningen">Oefeningen</button>
-                    <button class="quick-action" data-action="spraak">Spraakproblemen</button>
-                    <button class="quick-action" data-action="rekenen">Rekenproblemen</button>
-                    <button class="quick-action" data-action="autisme">Autisme</button>
+            <div class="minho-message minho-bot-message">
+                Voer eerst je OpenAI API key in om met me te kunnen chatten! Dan help ik je graag verder.
+                <div class="minho-quick-actions">
+                    <button class="minho-quick-action" data-action="oefeningen">Oefeningen</button>
+                    <button class="minho-quick-action" data-action="autisme">Autisme tips</button>
+                    <button class="minho-quick-action" data-action="spelletjes">Spelletjes</button>
                 </div>
             </div>
         </div>
-        <div class="chatbot-footer">
-            <input type="text" placeholder="Stel je vraag..." id="chatbotInput">
-            <button id="chatbotSend">Verstuur</button>
+        <div class="minho-footer">
+            <input type="password" class="api-key-input" placeholder="OpenAI API key" id="minhoApiKey">
+            <input type="text" class="minho-input" placeholder="Stel je vraag aan Minho..." id="minhoInput">
+            <button class="minho-send" id="minhoSend">Verstuur</button>
         </div>
     </div>
 
@@ -1080,7 +1136,6 @@
         function performSearch() {
             const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
             if (searchTerm !== '') {
-                // Navigeer naar de juiste pagina op basis van zoekterm
                 if (searchTerm.includes('reken') || searchTerm.includes('cijfer') || searchTerm.includes('getal')) {
                     window.location.href = 'rekenproblemen.html';
                 } else if (searchTerm.includes('spraak') || searchTerm.includes('taal') || searchTerm.includes('praten')) {
@@ -1098,7 +1153,6 @@
                 } else if (searchTerm.includes('wereld') || searchTerm.includes('land') || searchTerm.includes('aardrijkskunde')) {
                     window.location.href = 'wereld.html';
                 } else {
-                    // Als geen specifieke pagina gevonden, ga naar de algemene oefeningen pagina
                     window.location.href = 'oefeningen.html';
                 }
             }
@@ -1112,217 +1166,201 @@
             });
         });
         
-        // Verbeterde Chatbot functionaliteit - Minho de Pinguïn
-        const chatbotToggle = document.querySelector('.chatbot-toggle');
-        const chatbot = document.querySelector('.chatbot');
-        const chatbotInput = document.getElementById('chatbotInput');
-        const chatbotSend = document.getElementById('chatbotSend');
-        const chatbotBody = document.getElementById('chatbotBody');
-        const minimizeBtn = document.querySelector('.minimize-btn');
-
-        // Zorg dat de toggle knop altijd zichtbaar is
-        if (chatbotToggle) {
-            chatbotToggle.style.display = 'flex';
-            chatbotToggle.style.zIndex = '10000';
-        }
+        // MINHO AI CHATBOT - COMPLEET VERVANGEN
+        const minhoToggle = document.querySelector('.minho-toggle');
+        const minhoChatbot = document.querySelector('.minho-chatbot');
+        const minhoInput = document.getElementById('minhoInput');
+        const minhoSend = document.getElementById('minhoSend');
+        const minhoBody = document.getElementById('minhoBody');
+        const minhoClose = document.querySelector('.minho-close');
+        const minhoApiKey = document.getElementById('minhoApiKey');
 
         // Toggle chatbot open/dicht
-        chatbotToggle.addEventListener('click', function(e) {
-            e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
-            if (chatbot.style.display === 'flex') {
-                chatbot.style.display = 'none';
+        minhoToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (minhoChatbot.style.display === 'flex') {
+                minhoChatbot.style.display = 'none';
             } else {
-                chatbot.style.display = 'flex';
-                if (chatbotInput) chatbotInput.focus();
+                minhoChatbot.style.display = 'flex';
+                if (minhoInput) minhoInput.focus();
             }
         });
 
-        // Minimaliseer knop
-        if (minimizeBtn) {
-            minimizeBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Voorkom dat de click doorstroomt naar document
-                chatbot.style.display = 'none';
-            });
-        }
+        // Sluit knop
+        minhoClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            minhoChatbot.style.display = 'none';
+        });
 
-        // Verstuur bericht
-        chatbotSend.addEventListener('click', sendMessage);
-        chatbotInput.addEventListener('keypress', function(e) {
+        // Verstuur bericht naar Minho AI
+        minhoSend.addEventListener('click', sendToMinhoAI);
+        minhoInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                sendMessage();
+                sendToMinhoAI();
             }
         });
 
-        // Quick actions in de chatbot
-        document.querySelectorAll('.quick-action').forEach(button => {
+        // Quick actions
+        document.querySelectorAll('.minho-quick-action').forEach(button => {
             button.addEventListener('click', function() {
                 const action = this.getAttribute('data-action');
-                handleQuickAction(action);
+                handleMinhoQuickAction(action);
             });
         });
 
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message !== '') {
-                // Voeg gebruikersbericht toe
-                addMessage(message, 'user');
+        async function sendToMinhoAI() {
+            const message = minhoInput.value.trim();
+            const apiKey = minhoApiKey.value.trim();
+            
+            if (!apiKey) {
+                addMinhoMessage('Voer eerst je OpenAI API key in om met Minho te kunnen praten!', 'bot');
+                return;
+            }
+            
+            if (!message) return;
+            
+            // Voeg gebruikersbericht toe
+            addMinhoMessage(message, 'user');
+            minhoInput.value = '';
+            
+            // Toon "typing" indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('minho-typing');
+            typingIndicator.innerHTML = 'Minho denkt na<span class="typing-dots">...</span>';
+            minhoBody.appendChild(typingIndicator);
+            minhoBody.scrollTop = minhoBody.scrollHeight;
+            
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: `Jij bent Minho de Pinguïn 🐧! 
+                                
+PERSOONLIJKHEID:
+- Vrolijke, speelse pinguïn mascotte
+- Beetje ondeugend maar charmant  
+- Houdt van ijs, sneeuw en avontuur
+- Altijd enthousiast en aanmoedigend
+- Gebruikt 🐧 emojis en grappige pinguïn-geluiden zoals "Waggell!"
+
+SPREEK STIJL:
+- Korte, levendige zinnen
+- Noemt zichzelf "Minho" of "ik"
+- Gebruikt "Waggell!" als begroeting
+- Familie-vriendelijk en positief
+- Speelse grapjes en woordspelingen
+
+SPECIALE KENNIS:
+- Je bent de mascotte van Atsumi educatieve website
+- Je helpt kinderen met autisme en leeruitdagingen
+- Je kent alle oefeningen: spraak, lezen, rekenen, puzzels
+- Je begrijpt de behoeften van kinderen met autisme
+- Je bent geduldig en begripvol
+
+ALGEMENE REGELS:
+- Houd antwoorden kort en vriendelijk (max 2-3 zinnen)
+- Gebruik emojis waar passend 🐧🧩🌟
+- Wees altijd positief en aanmoedigend
+- Help kinderen zich comfortabel te voelen`
+                            },
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ],
+                        temperature: 0.8,
+                        max_tokens: 150
+                    })
+                });
                 
-                // Reset invoerveld
-                chatbotInput.value = '';
+                const data = await response.json();
                 
-                // Minho antwoordt
-                setTimeout(() => {
-                    generateBotResponse(message);
-                }, 500);
+                // Verwijder typing indicator
+                typingIndicator.remove();
+                
+                if (data.choices && data.choices[0]) {
+                    const antwoord = data.choices[0].message.content;
+                    addMinhoMessage(antwoord, 'bot');
+                } else {
+                    addMinhoMessage('Oeps! Minho is even verdwaald in de sneeuwstorm... Probeer het opnieuw! ❄️', 'bot');
+                }
+            } catch (error) {
+                // Verwijder typing indicator
+                typingIndicator.remove();
+                addMinhoMessage('Waggell! Er ging iets mis. Controleer je API key en internetverbinding! 📡', 'bot');
             }
         }
 
-        function addMessage(text, sender) {
+        function addMinhoMessage(text, sender) {
             const message = document.createElement('div');
-            message.classList.add('message');
-            message.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            message.classList.add('minho-message');
+            message.classList.add(sender === 'user' ? 'minho-user-message' : 'minho-bot-message');
             message.textContent = text;
-            chatbotBody.appendChild(message);
-            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            minhoBody.appendChild(message);
+            minhoBody.scrollTop = minhoBody.scrollHeight;
         }
 
-        function handleQuickAction(action) {
+        function handleMinhoQuickAction(action) {
             let response = '';
-            let quickActions = '';
             
             switch(action) {
                 case 'oefeningen':
-                    response = 'We hebben oefeningen voor spraak, lezen en rekenen! Welke wil je bekijken?';
-                    quickActions = `
-                        <button class="quick-action" data-action="spraak">Spraak</button>
-                        <button class="quick-action" data-action="lezen">Lezen</button>
-                        <button class="quick-action" data-action="rekenen">Rekenen</button>
-                    `;
-                    break;
-                case 'spraak':
-                    response = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
-                    break;
-                case 'lezen':
-                    response = 'Leesoefeningen vind je bij "Leesproblemen". We hebben oefeningen voor letters, woorden en zinnen! 📖';
-                    break;
-                case 'rekenen':
-                    response = 'Rekenoefeningen staan bij "Rekenproblemen". We beginnen met tellen en eenvoudige sommen! 🔢';
+                    response = 'Waggell! We hebben superleuke oefeningen! Voor spraak 🗣️, lezen 📖 en rekenen 🔢. Welke wil je proberen?';
                     break;
                 case 'autisme':
-                    response = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
+                    response = 'Onze oefeningen hebben duidelijke structuur en visuele hulp. Perfect voor kinderen met autisme! 🧩 Elke stap is voorspelbaar.';
+                    break;
+                case 'spelletjes':
+                    response = 'Yay! Spelletjes tijd! 🎮 We hebben memory, emotie-spel en dagelijkse routine planner. Welk spel spelen we?';
                     break;
             }
             
-            addMessage(response, 'bot');
-            
-            if (quickActions) {
-                setTimeout(() => {
-                    const quickActionsDiv = document.createElement('div');
-                    quickActionsDiv.classList.add('quick-actions');
-                    quickActionsDiv.innerHTML = quickActions;
-                    
-                    const lastMessage = chatbotBody.lastElementChild;
-                    lastMessage.appendChild(quickActionsDiv);
-                    
-                    // Voeg event listeners toe aan de nieuwe quick actions
-                    quickActionsDiv.querySelectorAll('.quick-action').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const action = this.getAttribute('data-action');
-                            handleQuickAction(action);
-                        });
-                    });
-                    
-                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
-                }, 100);
-            }
+            addMinhoMessage(response, 'bot');
         }
 
-        function generateBotResponse(message) {
-            let response = '';
-            let quickActions = '';
-            
-            const lowerMessage = message.toLowerCase();
-            
-            if (lowerMessage.includes('hallo') || lowerMessage.includes('hoi') || lowerMessage.includes('hey') || lowerMessage.includes('dag')) {
-                response = 'Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?';
-                quickActions = `
-                    <button class="quick-action" data-action="oefeningen">Oefeningen</button>
-                    <button class="quick-action" data-action="autisme">Autisme</button>
-                `;
-            } else if (lowerMessage.includes('oefening') || lowerMessage.includes('spel') || lowerMessage.includes('game')) {
-                response = 'We hebben veel verschillende oefeningen! Voor spraak, lezen, rekenen en meer. Waar ben je naar op zoek?';
-                quickActions = `
-                    <button class="quick-action" data-action="spraak">Spraak</button>
-                    <button class="quick-action" data-action="lezen">Lezen</button>
-                    <button class="quick-action" data-action="rekenen">Rekenen</button>
-                `;
-            } else if (lowerMessage.includes('spraak') || lowerMessage.includes('praten') || lowerMessage.includes('alfabet') || lowerMessage.includes('letter')) {
-                response = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
-            } else if (lowerMessage.includes('lees') || lowerMessage.includes('woord') || lowerMessage.includes('zin') || lowerMessage.includes('boek')) {
-                response = 'Leesoefeningen vind je bij "Leesproblemen". We hebben oefeningen voor letters, woorden en zinnen! 📖';
-            } else if (lowerMessage.includes('reken') || lowerMessage.includes('cijfer') || lowerMessage.includes('getal') || lowerMessage.includes('tellen') || lowerMessage.includes('som')) {
-                response = 'Rekenoefeningen staan bij "Rekenproblemen". We beginnen met tellen en eenvoudige sommen! 🔢';
-            } else if (lowerMessage.includes('autisme') || lowerMessage.includes('spectrum') || lowerMessage.includes('ass')) {
-                response = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
-            } else if (lowerMessage.includes('download') || lowerMessage.includes('probleem') || lowerMessage.includes('werkt niet')) {
-                response = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw. 📥';
-            } else if (lowerMessage.includes('dank') || lowerMessage.includes('bedankt')) {
-                response = 'Graag gedaan! Blijf oefenen, je doet het geweldig! 🌟';
-            } else if (lowerMessage.includes('pinguïn') || lowerMessage.includes('minho') || lowerMessage.includes('dier')) {
-                response = 'Ja, ik ben Minho de pinguïn! 🐧 Ik help kinderen met leren. Pinguïns zijn heel sociaal, net als wij!';
-            } else {
-                response = 'Leuke vraag! Ik kan je helpen met oefeningen voor spraak, lezen en rekenen. Waar wil je meer over weten?';
-                quickActions = `
-                    <button class="quick-action" data-action="oefeningen">Oefeningen</button>
-                    <button class="quick-action" data-action="autisme">Autisme</button>
-                `;
-            }
-            
-            addMessage(response, 'bot');
-            
-            if (quickActions) {
-                setTimeout(() => {
-                    const quickActionsDiv = document.createElement('div');
-                    quickActionsDiv.classList.add('quick-actions');
-                    quickActionsDiv.innerHTML = quickActions;
-                    
-                    const lastMessage = chatbotBody.lastElementChild;
-                    lastMessage.appendChild(quickActionsDiv);
-                    
-                    // Voeg event listeners toe aan de nieuwe quick actions
-                    quickActionsDiv.querySelectorAll('.quick-action').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const action = this.getAttribute('data-action');
-                            handleQuickAction(action);
-                        });
-                    });
-                    
-                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
-                }, 100);
-            }
-        }
-
-        // Verbeterde click outside functionaliteit
+        // Click outside om chatbot te sluiten
         document.addEventListener('click', function(event) {
-            // Controleer of de chatbot open is
-            if (chatbot.style.display === 'flex') {
-                const isChatbot = event.target.closest('.chatbot');
-                const isToggle = event.target.closest('.chatbot-toggle');
+            if (minhoChatbot.style.display === 'flex') {
+                const isMinhoChatbot = event.target.closest('.minho-chatbot');
+                const isMinhoToggle = event.target.closest('.minho-toggle');
                 
-                // Als er buiten de chatbot of toggle wordt geklikt, sluit de chatbot
-                if (!isChatbot && !isToggle) {
-                    chatbot.style.display = 'none';
+                if (!isMinhoChatbot && !isMinhoToggle) {
+                    minhoChatbot.style.display = 'none';
                 }
             }
         });
 
         // Voorkom dat clicks binnen de chatbot de buitenste click triggeren
-        chatbot.addEventListener('click', function(event) {
+        minhoChatbot.addEventListener('click', function(event) {
             event.stopPropagation();
+        });
+
+        // API key opslaan in localStorage voor gemak
+        minhoApiKey.addEventListener('change', function() {
+            if (this.value) {
+                localStorage.setItem('minhoApiKey', this.value);
+            }
+        });
+
+        // API key laden bij pagina load
+        window.addEventListener('load', function() {
+            const savedKey = localStorage.getItem('minhoApiKey');
+            if (savedKey) {
+                minhoApiKey.value = savedKey;
+            }
         });
     </script>
 </body>
 </html>
+
 
 
 
