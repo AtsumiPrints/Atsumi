@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leesproblemen - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Snelmenu */
+        .snelmenu {
+            background-color: var(--autism-purple);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snelmenu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .snelmenu li {
+            margin: 5px 15px;
+        }
+        
+        .snelmenu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .snelmenu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Oefeningen Stijl */
+        .oefening {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+        }
+        
+        .oefening h1 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .oefening h2 {
+            color: var(--autism-purple);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .oefening p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .uitleg {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--autism-purple);
+        }
+        
+        .navigatie {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .navigatie a {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .navigatie a:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+        
+        /* Woordherkenning Stijl */
+        .woord-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .woord-kaart {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+            border-radius: 8px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .woord-kaart:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+        }
+        
+        .woord-kaart img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
+        .woord-kaart span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Woordgroepen Stijl */
+        .woordgroep-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .woordgroep {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .woordgroep h3 {
+            color: var(--autism-blue);
+            margin-bottom: 10px;
+        }
+        
+        .woordgroep-woorden {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .woordgroep-woord {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .woordgroep-woord:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: scale(1.05);
+        }
+        
+        /* Zinnen Stijl */
+        .zin-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .zin-kaart {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .zin-afbeelding {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: white;
+            padding: 10px;
+            border: 2px solid var(--autism-light-blue);
+        }
+        
+        .zin-tekst {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .zin-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .zin-optie {
+            background-color: #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 140px;
+        }
+        
+        .zin-optie:hover {
+            background-color: #d0d0d0;
+            transform: translateY(-3px);
+        }
+        
+        .zin-optie img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 8px;
+        }
+        
+        /* Lettergrepen Stijl */
+        .lettergreep-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .lettergreep-woord {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .lettergreep-tekst {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+        }
+        
+        .lettergreep-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .lettergreep-optie {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .lettergreep-optie:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: scale(1.05);
+        }
+        
+        /* Verhaaltjes Stijl */
+        .verhaal-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .verhaal-kaart {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .verhaal-tekst {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .verhaal-vraag {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--autism-blue);
+        }
+        
+        .verhaal-antwoorden {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .verhaal-antwoord {
+            background-color: #e0e0e0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .verhaal-antwoord:hover {
+            background-color: #d0d0d0;
+        }
+        
+        /* Audio Controls */
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            gap: 10px;
+        }
+        
+        .audio-controls button {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .audio-controls button:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: scale(1.05);
+        }
+        
+        .audio-controls span {
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .geluidsinfo {
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        /* Feedback */
+        .feedback {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .feedback.goed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .feedback.fout {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* AI Generator Sectie */
+        .ai-generator {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-pink);
+        }
+        
+        .ai-generator h2 {
+            color: var(--autism-pink);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .generator-form {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: translateY(-2px);
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--autism-light-blue);
+            border-top: 5px solid var(--autism-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .generated-exercises {
+            margin-top: 30px;
+        }
+        
+        .exercise-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--autism-yellow);
+        }
+        
+        .exercise-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .exercise-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-content {
+            margin-top: 15px;
+        }
+        
+        .exercise-edit {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .exercise-edit textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .exercise-edit-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .saved-exercises {
+            margin-top: 30px;
+        }
+        
+        .saved-exercises h3 {
+            color: var(--autism-purple);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--autism-light-blue);
+            padding-bottom: 8px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .woord-kaart {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .woord-kaart img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .navigatie {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navigatie a {
+                text-align: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .exercise-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">📖</div>
+            <h1>Leesproblemen</h1>
+            <p>Stapsgewijze leesoefeningen met visuele ondersteuning en herhaling</p>
+        </div>
+    </section>
+    
+    <div class="snelmenu">
+        <ul>
+            <li><a href="#woordherkenning">Woordherkenning</a></li>
+            <li><a href="#woordgroepen">Woordgroepen</a></li>
+            <li><a href="#zinnen">Zinnen</a></li>
+            <li><a href="#lettergrepen">Lettergrepen</a></li>
+            <li><a href="#verhaaltjes">Verhaaltjes</a></li>
+            <li><a href="#ai-generator">AI Generator</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- Woordherkenning Oefening -->
+        <div class="oefening" id="woordherkenning">
+            <h1>Woordherkenning</h1>
+            <p>Klik op de woorden en beluister ze. Deze oefening helpt bij het leren herkennen en lezen van eenvoudige woorden.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een woord om het te horen en te zien. Probeer daarna zelf het woord hardop te lezen. Oefen elke dag een paar minuten om de woorden beter te leren herkennen en lezen.</p>
+            </div>
+            
+            <div class="audio-controls">
+                <button id="playAllWoorden">▶</button>
+                <span>Alle woorden afspelen</span>
+            </div>
+            
+            <div class="woord-container">
+                <div class="woord-kaart" data-woord="huis">
+                    <span>huis</span>
+                </div>
+                <div class="woord-kaart" data-woord="boom">
+                    <span>boom</span>
+                </div>
+                <div class="woord-kaart" data-woord="boek">
+                    <span>boek</span>
+                </div>
+                <div class="woord-kaart" data-woord="stoel">
+                    <span>stoel</span>
+                </div>
+                <div class="woord-kaart" data-woord="tafel">
+                    <span>tafel</span>
+                </div>
+                <div class="woord-kaart" data-woord="deur">
+                    <span>deur</span>
+                </div>
+                <div class="woord-kaart" data-woord="raam">
+                    <span>raam</span>
+                </div>
+                <div class="woord-kaart" data-woord="vogel">
+                    <span>vogel</span>
+                </div>
+                <div class="woord-kaart" data-woord="hond">
+                    <span>hond</span>
+                </div>
+                <div class="woord-kaart" data-woord="kat">
+                    <span>kat</span>
+                </div>
+                <div class="woord-kaart" data-woord="fiets">
+                    <span>fiets</span>
+                </div>
+                <div class="woord-kaart" data-woord="auto">
+                    <span>auto</span>
+                </div>
+                <div class="woord-kaart" data-woord="school">
+                    <span>school</span>
+                </div>
+                <div class="woord-kaart" data-woord="juf">
+                    <span>juf</span>
+                </div>
+                <div class="woord-kaart" data-woord="meester">
+                    <span>meester</span>
+                </div>
+                <div class="woord-kaart" data-woord="kind">
+                    <span>kind</span>
+                </div>
+                <div class="woord-kaart" data-woord="moeder">
+                    <span>moeder</span>
+                </div>
+                <div class="woord-kaart" data-woord="vader">
+                    <span>vader</span>
+                </div>
+                <div class="woord-kaart" data-woord="broer">
+                    <span>broer</span>
+                </div>
+                <div class="woord-kaart" data-woord="zus">
+                    <span>zus</span>
+                </div>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een woord om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#ai-generator" class="vorige">← Terug naar alle oefeningen</a>
+                <a href="#woordgroepen" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Woordgroepen Oefening -->
+        <div class="oefening" id="woordgroepen">
+            <h1>Woordgroepen</h1>
+            <p>Oefen met het lezen van woorden die bij elkaar horen. Deze oefening helpt bij het herkennen van woordfamilies.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Lees de woorden in elke groep hardop. Klik op een woord om het te horen. Probeer te ontdekken wat de woorden in elke groep met elkaar gemeen hebben.</p>
+            </div>
+            
+            <div class="woordgroep-container">
+                <div class="woordgroep">
+                    <h3>Woorden die beginnen met 'b'</h3>
+                    <div class="woordgroep-woorden">
+                        <div class="woordgroep-woord" data-woord="bal">bal</div>
+                        <div class="woordgroep-woord" data-woord="boek">boek</div>
+                        <div class="woordgroep-woord" data-woord="boom">boom</div>
+                        <div class="woordgroep-woord" data-woord="bus">bus</div>
+                        <div class="woordgroep-woord" data-woord="bed">bed</div>
+                        <div class="woordgroep-woord" data-woord="bij">bij</div>
+                        <div class="woordgroep-woord" data-woord="beer">beer</div>
+                    </div>
+                </div>
+                
+                <div class="woordgroep">
+                    <h3>Woorden die eindigen op 'en'</h3>
+                    <div class="woordgroep-woorden">
+                        <div class="woordgroep-woord" data-woord="lopen">lopen</div>
+                        <div class="woordgroep-woord" data-woord="lezen">lezen</div>
+                        <div class="woordgroep-woord" data-woord="spelen">spelen</div>
+                        <div class="woordgroep-woord" data-woord="eten">eten</div>
+                        <div class="woordgroep-woord" data-woord="drinken">drinken</div>
+                        <div class="woordgroep-woord" data-woord="rennen">rennen</div>
+                        <div class="woordgroep-woord" data-woord="zwemmen">zwemmen</div>
+                    </div>
+                </div>
+                
+                <div class="woordgroep">
+                    <h3>Woorden met 'oo'</h3>
+                    <div class="woordgroep-woorden">
+                        <div class="woordgroep-woord" data-woord="boom">boom</div>
+                        <div class="woordgroep-woord" data-woord="boos">boos</div>
+                        <div class="woordgroep-woord" data-woord="boot">boot</div>
+                        <div class="woordgroep-woord" data-woord="rood">rood</div>
+                        <div class="woordgroep-woord" data-woord="groen">groen</div>
+                        <div class="woordgroep-woord" data-woord="stoel">stoel</div>
+                        <div class="woordgroep-woord" data-woord="school">school</div>
+                    </div>
+                </div>
+                
+                <div class="woordgroep">
+                    <h3>Woorden met 'ij'</h3>
+                    <div class="woordgroep-woorden">
+                        <div class="woordgroep-woord" data-woord="bij">bij</div>
+                        <div class="woordgroep-woord" data-woord="tijd">tijd</div>
+                        <div class="woordgroep-woord" data-woord="wijn">wijn</div>
+                        <div class="woordgroep-woord" data-woord="lijk">lijk</div>
+                        <div class="woordgroep-woord" data-woord="pijn">pijn</div>
+                        <div class="woordgroep-woord" data-woord="mijn">mijn</div>
+                        <div class="woordgroep-woord" data-woord="zij">zij</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="geluidsinfo">Klik op een woord om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#woordherkenning" class="vorige">← Vorige oefening</a>
+                <a href="#zinnen" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Zinnen Oefening -->
+        <div class="oefening" id="zinnen">
+            <h1>Zinnen lezen</h1>
+            <p>Lees eenvoudige zinnen en kies de juiste afbeelding. Deze oefening helpt bij het begrijpen van zinnen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Lees de zin hardop en kies de juiste afbeelding die bij de zin past. Klik op de zin om hem te horen als je hulp nodig hebt.</p>
+            </div>
+            
+            <div class="zin-container">
+                <div class="zin-kaart">
+                    <div class="zin-tekst" data-zin="De kat zit op de stoel.">De kat zit op de stoel.</div>
+                    <div class="zin-opties">
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/FF9999/white?text=Hond+in+tuin" alt="Hond in de tuin">
+                            <span>Hond in tuin</span>
+                        </div>
+                        <div class="zin-optie" data-correct="true">
+                            <img src="https://placehold.co/100x100/99FF99/white?text=Kat+op+stoel" alt="Kat op stoel">
+                            <span>Kat op stoel</span>
+                        </div>
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/9999FF/white?text=Kind+leest" alt="Kind leest boek">
+                            <span>Kind leest</span>
+                        </div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="zin-kaart">
+                    <div class="zin-tekst" data-zin="De hond rent in de tuin.">De hond rent in de tuin.</div>
+                    <div class="zin-opties">
+                        <div class="zin-optie" data-correct="true">
+                            <img src="https://placehold.co/100x100/99FF99/white?text=Hond+rent" alt="Hond rent in tuin">
+                            <span>Hond rent</span>
+                        </div>
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/FF9999/white?text=Kat+slaapt" alt="Kat slaapt">
+                            <span>Kat slaapt</span>
+                        </div>
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/9999FF/white?text=Vogel+vliegt" alt="Vogel vliegt">
+                            <span>Vogel vliegt</span>
+                        </div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="zin-kaart">
+                    <div class="zin-tekst" data-zin="Het kind leest een boek.">Het kind leest een boek.</div>
+                    <div class="zin-opties">
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/FF9999/white?text=Kind+slaapt" alt="Kind slaapt">
+                            <span>Kind slaapt</span>
+                        </div>
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/9999FF/white?text=Kind+eet" alt="Kind eet">
+                            <span>Kind eet</span>
+                        </div>
+                        <div class="zin-optie" data-correct="true">
+                            <img src="https://placehold.co/100x100/99FF99/white?text=Kind+leest" alt="Kind leest boek">
+                            <span>Kind leest</span>
+                        </div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="zin-kaart">
+                    <div class="zin-tekst" data-zin="De auto staat op straat.">De auto staat op straat.</div>
+                    <div class="zin-opties">
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/FF9999/white?text=Auto+rijdt" alt="Auto rijdt">
+                            <span>Auto rijdt</span>
+                        </div>
+                        <div class="zin-optie" data-correct="true">
+                            <img src="https://placehold.co/100x100/99FF99/white?text=Auto+staat" alt="Auto staat">
+                            <span>Auto staat</span>
+                        </div>
+                        <div class="zin-optie" data-correct="false">
+                            <img src="https://placehold.co/100x100/9999FF/white?text=Fiets+staat" alt="Fiets staat">
+                            <span>Fiets staat</span>
+                        </div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <p class="geluidsinfo">Klik op de zin om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#woordgroepen" class="vorige">← Vorige oefening</a>
+                <a href="#lettergrepen" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Lettergrepen Oefening -->
+        <div class="oefening" id="lettergrepen">
+            <h1>Lettergrepen</h1>
+            <p>Oefen met het herkennen en lezen van lettergrepen. Deze oefening helpt bij het lezen van langere woorden.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Lees het woord hardop en kies de juiste verdeling in lettergrepen. Klik op het woord om het te horen als je hulp nodig hebt.</p>
+            </div>
+            
+            <div class="lettergreep-container">
+                <div class="lettergreep-woord">
+                    <div class="lettergreep-tekst" data-woord="tafel">tafel</div>
+                    <div class="lettergreep-opties">
+                        <div class="lettergreep-optie" data-correct="true">ta - fel</div>
+                        <div class="lettergreep-optie" data-correct="false">taf - el</div>
+                        <div class="lettergreep-optie" data-correct="false">t - afel</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="lettergreep-woord">
+                    <div class="lettergreep-tekst" data-woord="computer">computer</div>
+                    <div class="lettergreep-opties">
+                        <div class="lettergreep-optie" data-correct="false">com - puter</div>
+                        <div class="lettergreep-optie" data-correct="true">com - pu - ter</div>
+                        <div class="lettergreep-optie" data-correct="false">compu - ter</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="lettergreep-woord">
+                    <div class="lettergreep-tekst" data-woord="school">school</div>
+                    <div class="lettergreep-opties">
+                        <div class="lettergreep-optie" data-correct="false">sch - ool</div>
+                        <div class="lettergreep-optie" data-correct="true">school</div>
+                        <div class="lettergreep-optie" data-correct="false">scho - ol</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="lettergreep-woord">
+                    <div class="lettergreep-tekst" data-woord="appel">appel</div>
+                    <div class="lettergreep-opties">
+                        <div class="lettergreep-optie" data-correct="false">ap - pel</div>
+                        <div class="lettergreep-optie" data-correct="true">ap - pel</div>
+                        <div class="lettergreep-optie" data-correct="false">app - el</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="lettergreep-woord">
+                    <div class="lettergreep-tekst" data-woord="telefoon">telefoon</div>
+                    <div class="lettergreep-opties">
+                        <div class="lettergreep-optie" data-correct="true">te - le - foon</div>
+                        <div class="lettergreep-optie" data-correct="false">tel - e - foon</div>
+                        <div class="lettergreep-optie" data-correct="false">tele - foon</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="lettergreep-woord">
+                    <div class="lettergreep-tekst" data-woord="konijn">konijn</div>
+                    <div class="lettergreep-opties">
+                        <div class="lettergreep-optie" data-correct="false">ko - nijn</div>
+                        <div class="lettergreep-optie" data-correct="true">ko - nijn</div>
+                        <div class="lettergreep-optie" data-correct="false">kon - ijn</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <p class="geluidsinfo">Klik op het woord om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#zinnen" class="vorige">← Vorige oefening</a>
+                <a href="#verhaaltjes" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Verhaaltjes Oefening -->
+        <div class="oefening" id="verhaaltjes">
+            <h1>Verhaaltjes</h1>
+            <p>Lees korte verhaaltjes en beantwoord vragen. Deze oefening helpt bij het begrijpend lezen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Lees het verhaaltje hardop en beantwoord daarna de vraag. Klik op het verhaaltje om het te horen als je hulp nodig hebt.</p>
+            </div>
+            
+            <div class="verhaal-container">
+                <div class="verhaal-kaart">
+                    <div class="verhaal-tekst" data-verhaal="Tim heeft een hond. De hond heet Max. Max is bruin en wit. Tim speelt elke dag met Max in de tuin.">
+                        Tim heeft een hond. De hond heet Max. Max is bruin en wit. Tim speelt elke dag met Max in de tuin.
+                    </div>
+                    <div class="verhaal-vraag">Wat is de naam van de hond van Tim?</div>
+                    <div class="verhaal-antwoorden">
+                        <div class="verhaal-antwoord" data-correct="false">Tom</div>
+                        <div class="verhaal-antwoord" data-correct="true">Max</div>
+                        <div class="verhaal-antwoord" data-correct="false">Sam</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="verhaal-kaart">
+                    <div class="verhaal-tekst" data-verhaal="Anna gaat naar school. Ze heeft een rode rugzak. In de rugzak zit een boek en een pen. Anna leest graag boeken.">
+                        Anna gaat naar school. Ze heeft een rode rugzak. In de rugzak zit een boek en een pen. Anna leest graag boeken.
+                    </div>
+                    <div class="verhaal-vraag">Welke kleur heeft de rugzak van Anna?</div>
+                    <div class="verhaal-antwoorden">
+                        <div class="verhaal-antwoord" data-correct="false">Blauw</div>
+                        <div class="verhaal-antwoord" data-correct="false">Groen</div>
+                        <div class="verhaal-antwoord" data-correct="true">Rood</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="verhaal-kaart">
+                    <div class="verhaal-tekst" data-verhaal="De zon schijnt. Sem gaat naar het park. Hij ziet veel kinderen. Er is een grote glijbaan. Sem glijdt van de glijbaan.">
+                        De zon schijnt. Sem gaat naar het park. Hij ziet veel kinderen. Er is een grote glijbaan. Sem glijdt van de glijbaan.
+                    </div>
+                    <div class="verhaal-vraag">Waar gaat Sem naartoe?</div>
+                    <div class="verhaal-antwoorden">
+                        <div class="verhaal-antwoord" data-correct="false">Naar school</div>
+                        <div class="verhaal-antwoord" data-correct="true">Naar het park</div>
+                        <div class="verhaal-antwoord" data-correct="false">Naar huis</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="verhaal-kaart">
+                    <div class="verhaal-tekst" data-verhaal="Lotte heeft een kat. De kat heet Minoes. Minoes is zwart en wit. Lotte geeft Minoes elke dag eten.">
+                        Lotte heeft een kat. De kat heet Minoes. Minoes is zwart en wit. Lotte geeft Minoes elke dag eten.
+                    </div>
+                    <div class="verhaal-vraag">Wat voor kleur heeft de kat van Lotte?</div>
+                    <div class="verhaal-antwoorden">
+                        <div class="verhaal-antwoord" data-correct="false">Bruin</div>
+                        <div class="verhaal-antwoord" data-correct="true">Zwart en wit</div>
+                        <div class="verhaal-antwoord" data-correct="false">Grijs</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="verhaal-kaart">
+                    <div class="verhaal-tekst" data-verhaal="Het regent buiten. Omar blijft binnen. Hij pakt een puzzel. De puzzel heeft 100 stukjes. Omar maakt de puzzel.">
+                        Het regent buiten. Omar blijft binnen. Hij pakt een puzzel. De puzzel heeft 100 stukjes. Omar maakt de puzzel.
+                    </div>
+                    <div class="verhaal-vraag">Wat doet Omar als het regent?</div>
+                    <div class="verhaal-antwoorden">
+                        <div class="verhaal-antwoord" data-correct="false">Hij gaat naar buiten</div>
+                        <div class="verhaal-antwoord" data-correct="true">Hij maakt een puzzel</div>
+                        <div class="verhaal-antwoord" data-correct="false">Hij kijkt televisie</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <p class="geluidsinfo">Klik op het verhaaltje om te horen hoe deze wordt uitgesproken</p>
+            
+            <div class="navigatie">
+                <a href="#lettergrepen" class="vorige">← Vorige oefening</a>
+                <a href="#ai-generator" class="volgende">AI Generator →</a>
+            </div>
+        </div>
+        
+        <!-- AI Generator Sectie -->
+        <div class="ai-generator" id="ai-generator">
+            <h2>🤖 AI Oefening Generator</h2>
+            <p>Genereer gepersonaliseerde leesoefeningen op basis van leerdoelen, leeftijd en interesses.</p>
+            
+            <div class="generator-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leerdoel">Leerdoel</label>
+                        <select id="leerdoel">
+                            <option value="woordherkenning">Woordherkenning</option>
+                            <option value="woordgroepen">Woordgroepen</option>
+                            <option value="zinnen">Zinnen lezen</option>
+                            <option value="lettergrepen">Lettergrepen</option>
+                            <option value="verhaaltjes">Verhaaltjes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leeftijd">Leeftijd</label>
+                        <select id="leeftijd">
+                            <option value="4-6">4-6 jaar</option>
+                            <option value="6-8">6-8 jaar</option>
+                            <option value="8-10">8-10 jaar</option>
+                            <option value="10-12">10-12 jaar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="moeilijkheid">Moeilijkheidsgraad</label>
+                        <select id="moeilijkheid">
+                            <option value="makkelijk">Makkelijk</option>
+                            <option value="normaal">Normaal</option>
+                            <option value="uitdagend">Uitdagend</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="thema">Thema / Interesses</label>
+                        <select id="thema">
+                            <option value="dieren">Dieren</option>
+                            <option value="voertuigen">Voertuigen</option>
+                            <option value="school">School</option>
+                            <option value="familie">Familie</option>
+                            <option value="natuur">Natuur</option>
+                            <option value="sport">Sport</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aantal">Aantal oefeningen</label>
+                        <select id="aantal">
+                            <option value="5">5 oefeningen</option>
+                            <option value="10">10 oefeningen</option>
+                            <option value="15">15 oefeningen</option>
+                            <option value="20">20 oefeningen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specifieke_wensen">Specifieke wensen (optioneel)</label>
+                        <textarea id="specifieke_wensen" placeholder="Bijv. focus op bepaalde klanken, specifieke woordenschat..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="generateBtn">Oefeningen Genereren</button>
+                    <button class="btn btn-secondary" id="resetBtn">Formulier Resetten</button>
+                </div>
+            </div>
+            
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>AI genereert gepersonaliseerde oefeningen...</p>
+            </div>
+            
+            <div class="generated-exercises" id="generatedExercises">
+                <!-- Hier komen de gegenereerde oefeningen -->
+            </div>
+            
+            <div class="saved-exercises" id="savedExercises">
+                <h3>Opgeslagen Oefeningen</h3>
+                <div id="savedExercisesList">
+                    <!-- Hier komen de opgeslagen oefeningen -->
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#verhaaltjes" class="vorige">← Vorige oefening</a>
+                <a href="#woordherkenning" class="volgende">Terug naar alle oefeningen →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-integratie</h3>
+                    <ul>
+                        <li>Automatische oefeningengenerator</li>
+                        <li>Nieuws- en update-monitor</li>
+                        <li>Adaptief leerpad</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Web Speech API voor het uitspreken van tekst
+        const synth = window.speechSynthesis;
+        
+        // Functie om tekst uit te spreken
+        function speakText(text) {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'nl-NL';
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            
+            synth.speak(utterance);
+        }
+        
+        // Event listeners voor alle woorden
+        document.querySelectorAll('.woord-kaart, .woordgroep-woord, .zin-tekst, .lettergreep-tekst, .verhaal-tekst').forEach(element => {
+            element.addEventListener('click', function() {
+                const text = this.getAttribute('data-woord') || 
+                            this.getAttribute('data-zin') || 
+                            this.getAttribute('data-verhaal') || 
+                            this.textContent;
+                speakText(text);
+            });
+        });
+        
+        // Event listeners voor antwoordopties
+        document.querySelectorAll('.zin-optie, .lettergreep-optie, .verhaal-antwoord').forEach(optie => {
+            optie.addEventListener('click', function() {
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const feedback = this.closest('.zin-kaart, .lettergreep-woord, .verhaal-kaart').querySelector('.feedback');
+                
+                if (isCorrect) {
+                    feedback.textContent = 'Goed gedaan!';
+                    feedback.className = 'feedback goed';
+                    feedback.style.display = 'block';
+                    speakText("Goed gedaan!");
+                } else {
+                    feedback.textContent = 'Probeer het nog eens.';
+                    feedback.className = 'feedback fout';
+                    feedback.style.display = 'block';
+                    speakText("Probeer het nog eens.");
+                }
+                
+                // Verberg feedback na 3 seconden
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 3000);
+            });
+        });
+        
+        // Functie om alle woorden in een sectie af te spelen
+        function playAllItems(selector, delay = 1000) {
+            const items = document.querySelectorAll(selector);
+            let index = 0;
+            
+            function playNext() {
+                if (index < items.length) {
+                    const text = items[index].getAttribute('data-woord') || 
+                                items[index].getAttribute('data-zin') || 
+                                items[index].getAttribute('data-verhaal') || 
+                                items[index].textContent;
+                    speakText(text);
+                    
+                    // Visuele feedback
+                    items[index].style.background = 'linear-gradient(to bottom, var(--autism-yellow), #e6b800)';
+                    setTimeout(() => {
+                        items[index].style.background = 'linear-gradient(to bottom, var(--autism-blue), #0066a3)';
+                        index++;
+                        setTimeout(playNext, delay);
+                    }, delay - 200);
+                }
+            }
+            
+            playNext();
+        }
+        
+        // Event listeners voor "Alle afspelen" knoppen
+        document.getElementById('playAllWoorden').addEventListener('click', () => {
+            playAllItems('#woordherkenning .woord-kaart');
+        });
+        
+        // Smooth scroll voor anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // AI Generator Functionaliteit
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const leerdoel = document.getElementById('leerdoel').value;
+            const leeftijd = document.getElementById('leeftijd').value;
+            const moeilijkheid = document.getElementById('moeilijkheid').value;
+            const thema = document.getElementById('thema').value;
+            const aantal = document.getElementById('aantal').value;
+            const specifieke_wensen = document.getElementById('specifieke_wensen').value;
+            
+            // Toon loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('generatedExercises').innerHTML = '';
+            
+            // Simuleer AI verwerking (in een echte implementatie zou dit een API call zijn)
+            setTimeout(() => {
+                document.getElementById('loadingIndicator').style.display = 'none';
+                generateExercises(leerdoel, leeftijd, moeilijkheid, thema, aantal, specifieke_wensen);
+            }, 2000);
+        });
+        
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('leerdoel').value = 'woordherkenning';
+            document.getElementById('leeftijd').value = '4-6';
+            document.getElementById('moeilijkheid').value = 'makkelijk';
+            document.getElementById('thema').value = 'dieren';
+            document.getElementById('aantal').value = '5';
+            document.getElementById('specifieke_wensen').value = '';
+        });
+        
+        // Functie om oefeningen te genereren
+        function generateExercises(leerdoel, leeftijd, moeilijkheid, thema, aantal, specifieke_wensen) {
+            const generatedExercises = document.getElementById('generatedExercises');
+            generatedExercises.innerHTML = '';
+            
+            // Voorbeeld oefeningen op basis van parameters
+            const exercises = getExampleExercises(leerdoel, thema, aantal);
+            
+            exercises.forEach((exercise, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = 'exercise-card';
+                exerciseCard.innerHTML = `
+                    <h3>
+                        Oefening ${index + 1}
+                        <div class="exercise-actions">
+                            <button class="btn-save" onclick="saveExercise(${index})">Opslaan</button>
+                            <button class="btn-edit" onclick="toggleEdit(${index})">Bewerken</button>
+                        </div>
+                    </h3>
+                    <div class="exercise-content" id="exercise-content-${index}">
+                        ${exercise.content}
+                    </div>
+                    <div class="exercise-edit" id="exercise-edit-${index}">
+                        <textarea>${exercise.editContent || exercise.content}</textarea>
+                        <div class="exercise-edit-actions">
+                            <button class="btn-save" onclick="saveEdit(${index})">Opslaan</button>
+                            <button class="btn-cancel" onclick="toggleEdit(${index})">Annuleren</button>
+                        </div>
+                    </div>
+                `;
+                generatedExercises.appendChild(exerciseCard);
+                
+                // Sla de oefening op in een globale array voor bewerking
+                if (!window.generatedExercisesList) {
+                    window.generatedExercisesList = [];
+                }
+                window.generatedExercisesList[index] = exercise;
+            });
+        }
+        
+        // Voorbeeld oefeningen
+        function getExampleExercises(leerdoel, thema, aantal) {
+            const exercises = [];
+            const count = parseInt(aantal);
+            
+            for (let i = 0; i < count; i++) {
+                let exercise;
+                
+                if (leerdoel === 'woordherkenning') {
+                    exercise = {
+                        content: `<p><strong>Woord: </strong>${getRandomWord(thema)}</p>`,
+                        editContent: `<p><strong>Woord: </strong>${getRandomWord(thema)}</p>`
+                    };
+                } else if (leerdoel === 'woordgroepen') {
+                    exercise = {
+                        content: `<p><strong>Woordgroep: </strong>${getRandomWordGroup(thema)}</p>`,
+                        editContent: `<p><strong>Woordgroep: </strong>${getRandomWordGroup(thema)}</p>`
+                    };
+                } else if (leerdoel === 'zinnen') {
+                    exercise = {
+                        content: `<p><strong>Zin: </strong>${getRandomSentence(thema)}</p>`,
+                        editContent: `<p><strong>Zin: </strong>${getRandomSentence(thema)}</p>`
+                    };
+                } else if (leerdoel === 'lettergrepen') {
+                    exercise = {
+                        content: `<p><strong>Woord: </strong>${getRandomWordForSyllables()}</p><p><strong>Kies de juiste lettergreepverdeling:</strong></p>`,
+                        editContent: `<p><strong>Woord: </strong>${getRandomWordForSyllables()}</p><p><strong>Kies de juiste lettergreepverdeling:</strong></p>`
+                    };
+                } else if (leerdoel === 'verhaaltjes') {
+                    exercise = {
+                        content: `<p><strong>Verhaaltje: </strong>${getRandomStory(thema)}</p><p><strong>Vraag: </strong>${getRandomQuestion()}</p>`,
+                        editContent: `<p><strong>Verhaaltje: </strong>${getRandomStory(thema)}</p><p><strong>Vraag: </strong>${getRandomQuestion()}</p>`
+                    };
+                }
+                
+                exercises.push(exercise);
+            }
+            
+            return exercises;
+        }
+        
+        // Hulpfuncties voor het genereren van voorbeeldinhoud
+        function getRandomWord(thema) {
+            const wordLists = {
+                dieren: ['hond', 'kat', 'vis', 'vogel', 'konijn', 'paard', 'koe', 'kip', 'eend', 'schaap'],
+                voertuigen: ['auto', 'fiets', 'bus', 'trein', 'vliegtuig', 'boot', 'scooter', 'step', 'helikopter', 'brandweerwagen'],
+                school: ['juf', 'meester', 'klas', 'school', 'boek', 'pen', 'potlood', 'gum', 'lineaal', 'bureau'],
+                familie: ['moeder', 'vader', 'broer', 'zus', 'oma', 'opa', 'tante', 'oom', 'neef', 'nicht'],
+                natuur: ['boom', 'bloem', 'gras', 'zon', 'maan', 'ster', 'wolk', 'regen', 'sneeuw', 'ijs'],
+                sport: ['bal', 'goal', 'voetbal', 'hockey', 'tennis', 'zwemmen', 'rennen', 'springen', 'fietsen', 'skaten']
+            };
+            
+            const words = wordLists[thema] || wordLists.dieren;
+            return words[Math.floor(Math.random() * words.length)];
+        }
+        
+        function getRandomWordGroup(thema) {
+            const groups = {
+                dieren: 'hond, kat, konijn, paard, koe',
+                voertuigen: 'auto, bus, trein, vliegtuig, boot',
+                school: 'boek, pen, potlood, gum, lineaal',
+                familie: 'moeder, vader, broer, zus, oma',
+                natuur: 'boom, bloem, gras, zon, maan',
+                sport: 'bal, goal, voetbal, hockey, tennis'
+            };
+            
+            return groups[thema] || groups.dieren;
+        }
+        
+        function getRandomSentence(thema) {
+            const sentences = {
+                dieren: 'De hond rent in de tuin.',
+                voertuigen: 'De auto staat op de parkeerplaats.',
+                school: 'De juf leest een boek voor.',
+                familie: 'Mijn moeder bakt een taart.',
+                natuur: 'De zon schijnt vandaag.',
+                sport: 'De kinderen spelen met een bal.'
+            };
+            
+            return sentences[thema] || sentences.dieren;
+        }
+        
+        function getRandomWordForSyllables() {
+            const words = ['tafel', 'computer', 'school', 'appel', 'telefoon', 'konijn', 'auto', 'fiets', 'vader', 'moeder'];
+            return words[Math.floor(Math.random() * words.length)];
+        }
+        
+        function getRandomStory(thema) {
+            const stories = {
+                dieren: 'Tim heeft een hond. De hond heet Max. Max is bruin en wit. Tim speelt elke dag met Max in de tuin.',
+                voertuigen: 'Sanne heeft een nieuwe fiets. De fiets is rood. Sanne fietst elke dag naar school.',
+                school: 'Kees gaat naar school. Hij heeft een blauwe rugzak. In de rugzak zit een boek en een pen.',
+                familie: 'Lotte heeft een kleine broer. De broer heet Sem. Sem is twee jaar oud. Lotte speelt graag met Sem.',
+                natuur: 'Het is lente. De bomen krijgen nieuwe blaadjes. De bloemen bloeien in de tuin. De vogels fluiten.',
+                sport: 'David speelt voetbal. Hij heeft een rode bal. David schopt de bal in het doel. Hij scoort een punt.'
+            };
+            
+            return stories[thema] || stories.dieren;
+        }
+        
+        function getRandomQuestion() {
+            const questions = [
+                'Wat is de naam van de hond?',
+                'Welke kleur heeft de fiets?',
+                'Wat zit er in de rugzak?',
+                'Hoe heet de kleine broer?',
+                'Welk seizoen is het?',
+                'Welke sport speelt David?'
+            ];
+            
+            return questions[Math.floor(Math.random() * questions.length)];
+        }
+        
+        // Bewerkingsfuncties
+        function toggleEdit(index) {
+            const content = document.getElementById(`exercise-content-${index}`);
+            const edit = document.getElementById(`exercise-edit-${index}`);
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                edit.style.display = 'none';
+            } else {
+                content.style.display = 'none';
+                edit.style.display = 'block';
+            }
+        }
+        
+        function saveEdit(index) {
+            const editTextarea = document.querySelector(`#exercise-edit-${index} textarea`);
+            const content = document.getElementById(`exercise-content-${index}`);
+            
+            content.innerHTML = editTextarea.value;
+            toggleEdit(index);
+            
+            // Update de oefening in de globale lijst
+            if (window.generatedExercisesList && window.generatedExercisesList[index]) {
+                window.generatedExercisesList[index].content = editTextarea.value;
+            }
+        }
+        
+        function saveExercise(index) {
+            if (!window.generatedExercisesList || !window.generatedExercisesList[index]) {
+                alert('Oefening niet gevonden!');
+                return;
+            }
+            
+            // Haal opgeslagen oefeningen op uit localStorage
+            let savedExercises = JSON.parse(localStorage.getItem('savedExercises')) || [];
+            
+            // Voeg de nieuwe oefening toe
+            savedExercises.push({
+                id: Date.now(),
+                content: window.generatedExercisesList[index].content,
+                timestamp: new Date().toLocaleString()
+            });
+            
+            // Sla op in localStorage
+            localStorage.setItem('savedExercises', JSON.stringify(savedExercises));
+            
+            // Update de weergave
+            displaySavedExercises();
+            
+            alert('Oefening opgeslagen!');
+        }
+        
+        function displaySavedExercises() {
+            const savedExercisesList = document.getElementById('savedExercisesList');
+            const savedExercises = JSON.parse(localStorage.getItem('savedExercises')) || [];
+            
+            if (savedExercises.length === 0) {
+                savedExercisesList.innerHTML = '<div class="empty-state">Nog geen opgeslagen oefeningen</div>';
+                return;
+            }
+            
+            savedExercisesList.innerHTML = '';
+            
+            savedExercises.forEach((exercise, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = 'exercise-card';
+                exerciseCard.innerHTML = `
+                    <h3>
+                        Opgeslagen Oefening ${index + 1}
+                        <div class="exercise-actions">
+                            <button class="btn-delete" onclick="deleteSavedExercise(${exercise.id})">Verwijderen</button>
+                        </div>
+                    </h3>
+                    <div class="exercise-content">
+                        ${exercise.content}
+                    </div>
+                    <p><small>Opgeslagen op: ${exercise.timestamp}</small></p>
+                `;
+                savedExercisesList.appendChild(exerciseCard);
+            });
+        }
+        
+        function deleteSavedExercise(id) {
+            let savedExercises = JSON.parse(localStorage.getItem('savedExercises')) || [];
+            savedExercises = savedExercises.filter(exercise => exercise.id !== id);
+            localStorage.setItem('savedExercises', JSON.stringify(savedExercises));
+            displaySavedExercises();
+        }
+        
+        // Laad opgeslagen oefeningen bij het laden van de pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            displaySavedExercises();
+        });
+    </script>
+</body>
+</html>
