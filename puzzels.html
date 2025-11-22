@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzels - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Snelmenu */
+        .snelmenu {
+            background-color: var(--autism-purple);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snelmenu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .snelmenu li {
+            margin: 5px 15px;
+        }
+        
+        .snelmenu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .snelmenu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Leeftijdsgroepen */
+        .leeftijdsgroepen {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .leeftijdsgroep {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+            transition: transform 0.3s;
+        }
+        
+        .leeftijdsgroep:hover {
+            transform: translateY(-5px);
+        }
+        
+        .leeftijdsgroep h2 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.5rem;
+        }
+        
+        .leeftijdsgroep p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .puzzel-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--autism-purple);
+        }
+        
+        .start-puzzel {
+            display: block;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+        
+        .start-puzzel:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+
+        /* Puzzel Spel */
+        .puzzel-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+            display: none;
+        }
+        
+        .puzzel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .puzzel-title {
+            color: var(--autism-blue);
+            font-size: 1.8rem;
+        }
+        
+        .puzzel-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .puzzel-controls button {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .puzzel-controls button:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+        }
+        
+        .puzzel-voorbeeld {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .puzzel-voorbeeld img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .puzzel-spelgebied {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .puzzel-bord {
+            flex: 1;
+            min-width: 300px;
+            min-height: 400px;
+            border: 2px dashed var(--autism-light-blue);
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            padding: 10px;
+        }
+        
+        .puzzel-stukjes {
+            flex: 1;
+            min-width: 200px;
+            min-height: 400px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 5px;
+            padding: 10px;
+        }
+        
+        .puzzel-stukje {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            cursor: move;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .puzzel-stukje:hover {
+            transform: scale(1.05);
+        }
+        
+        .puzzel-stukje.correct {
+            border: 2px solid #4CAF50;
+        }
+        
+        .puzzel-feedback {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .puzzel-feedback.goed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .puzzel-feedback.fout {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* AI Generator Sectie */
+        .ai-generator {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-pink);
+        }
+        
+        .ai-generator h2 {
+            color: var(--autism-pink);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .generator-form {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: translateY(-2px);
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--autism-light-blue);
+            border-top: 5px solid var(--autism-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .generated-exercises {
+            margin-top: 30px;
+        }
+        
+        .exercise-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--autism-yellow);
+        }
+        
+        .exercise-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .exercise-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-content {
+            margin-top: 15px;
+        }
+        
+        .exercise-edit {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .exercise-edit textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .exercise-edit-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .saved-exercises {
+            margin-top: 30px;
+        }
+        
+        .saved-exercises h3 {
+            color: var(--autism-purple);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--autism-light-blue);
+            padding-bottom: 8px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .puzzel-spelgebied {
+                flex-direction: column;
+            }
+            
+            .puzzel-bord, .puzzel-stukjes {
+                min-height: 300px;
+            }
+            
+            .puzzel-stukje {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .exercise-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="puzzels.html">Puzzels</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🧩</div>
+            <h1>Puzzels voor Kinderen</h1>
+            <p>Leuke en educatieve puzzels voor kinderen van 4 tot 16 jaar</p>
+        </div>
+    </section>
+    
+    <div class="snelmenu">
+        <ul>
+            <li><a href="#leeftijd4-6">4-6 jaar</a></li>
+            <li><a href="#leeftijd6-8">6-8 jaar</a></li>
+            <li><a href="#leeftijd8-10">8-10 jaar</a></li>
+            <li><a href="#leeftijd10-12">10-12 jaar</a></li>
+            <li><a href="#leeftijd12-14">12-14 jaar</a></li>
+            <li><a href="#leeftijd14-16">14-16 jaar</a></li>
+            <li><a href="#ai-generator">AI Generator</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- Leeftijdsgroepen Overzicht -->
+        <div class="leeftijdsgroepen">
+            <div class="leeftijdsgroep" id="leeftijd4-6">
+                <h2>4-6 jaar</h2>
+                <p>Eenvoudige puzzels met grote stukjes en herkenbare afbeeldingen. Perfect voor de allerkleinsten!</p>
+                <div class="puzzel-info">
+                    <span>Aantal stukjes: 6-10</span>
+                    <span>Moeilijkheid: ★☆☆☆☆</span>
+                </div>
+                <a href="#" class="start-puzzel" data-leeftijd="4-6">Puzzel Spelen</a>
+            </div>
+            
+            <div class="leeftijdsgroep" id="leeftijd6-8">
+                <h2>6-8 jaar</h2>
+                <p>Iets uitdagendere puzzels met meer stukjes en gedetailleerdere afbeeldingen.</p>
+                <div class="puzzel-info">
+                    <span>Aantal stukjes: 12-20</span>
+                    <span>Moeilijkheid: ★★☆☆☆</span>
+                </div>
+                <a href="#" class="start-puzzel" data-leeftijd="6-8">Puzzel Spelen</a>
+            </div>
+            
+            <div class="leeftijdsgroep" id="leeftijd8-10">
+                <h2>8-10 jaar</h2>
+                <p>Uitdagende puzzels met meer complexe vormen en thema's die aansluiten bij de interesses.</p>
+                <div class="puzzel-info">
+                    <span>Aantal stukjes: 24-36</span>
+                    <span>Moeilijkheid: ★★★☆☆</span>
+                </div>
+                <a href="#" class="start-puzzel" data-leeftijd="8-10">Puzzel Spelen</a>
+            </div>
+            
+            <div class="leeftijdsgroep" id="leeftijd10-12">
+                <h2>10-12 jaar</h2>
+                <p>Complexe puzzels met veel stukjes en gedetailleerde afbeeldingen. Ideaal voor doorzetters!</p>
+                <div class="puzzel-info">
+                    <span>Aantal stukjes: 40-60</span>
+                    <span>Moeilijkheid: ★★★★☆</span>
+                </div>
+                <a href="#" class="start-puzzel" data-leeftijd="10-12">Puzzel Spelen</a>
+            </div>
+            
+            <div class="leeftijdsgroep" id="leeftijd12-14">
+                <h2>12-14 jaar</h2>
+                <p>Zeer uitdagende puzzels met complexe patronen en thema's die aansluiten bij tieners.</p>
+                <div class="puzzel-info">
+                    <span>Aantal stukjes: 80-100</span>
+                    <span>Moeilijkheid: ★★★★★</span>
+                </div>
+                <a href="#" class="start-puzzel" data-leeftijd="12-14">Puzzel Spelen</a>
+            </div>
+            
+            <div class="leeftijdsgroep" id="leeftijd14-16">
+                <h2>14-16 jaar</h2>
+                <p>Expert-level puzzels met zeer veel stukjes en complexe afbeeldingen. Een echte uitdaging!</p>
+                <div class="puzzel-info">
+                    <span>Aantal stukjes: 120-150</span>
+                    <span>Moeilijkheid: ★★★★★★</span>
+                </div>
+                <a href="#" class="start-puzzel" data-leeftijd="14-16">Puzzel Spelen</a>
+            </div>
+        </div>
+        
+        <!-- Puzzel Spel Container -->
+        <div class="puzzel-container" id="puzzel-spel">
+            <div class="puzzel-header">
+                <h2 class="puzzel-title">Puzzel: <span id="puzzel-naam">Dieren in het Bos</span></h2>
+                <div class="puzzel-controls">
+                    <button id="reset-puzzel">Opnieuw</button>
+                    <button id="hulp-puzzel">Hulp</button>
+                    <button id="terug-overzicht">Terug naar overzicht</button>
+                </div>
+            </div>
+            
+            <div class="puzzel-voorbeeld">
+                <img id="puzzel-voorbeeld-img" src="" alt="Puzzel voorbeeld">
+            </div>
+            
+            <div class="puzzel-spelgebied">
+                <div class="puzzel-bord" id="puzzel-bord">
+                    <!-- Hier komen de geplaatste puzzelstukjes -->
+                </div>
+                
+                <div class="puzzel-stukjes" id="puzzel-stukjes">
+                    <!-- Hier komen de losse puzzelstukjes -->
+                </div>
+            </div>
+            
+            <div class="puzzel-feedback" id="puzzel-feedback"></div>
+        </div>
+        
+        <!-- AI Generator Sectie -->
+        <div class="ai-generator" id="ai-generator">
+            <h2>🤖 AI Puzzel Generator</h2>
+            <p>Genereer gepersonaliseerde puzzels op basis van leeftijd, thema en moeilijkheidsgraad.</p>
+            
+            <div class="generator-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leeftijd">Leeftijd</label>
+                        <select id="leeftijd">
+                            <option value="4-6">4-6 jaar</option>
+                            <option value="6-8">6-8 jaar</option>
+                            <option value="8-10">8-10 jaar</option>
+                            <option value="10-12">10-12 jaar</option>
+                            <option value="12-14">12-14 jaar</option>
+                            <option value="14-16">14-16 jaar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="moeilijkheid">Moeilijkheidsgraad</label>
+                        <select id="moeilijkheid">
+                            <option value="makkelijk">Makkelijk</option>
+                            <option value="normaal">Normaal</option>
+                            <option value="uitdagend">Uitdagend</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="thema">Thema</label>
+                        <select id="thema">
+                            <option value="dieren">Dieren</option>
+                            <option value="natuur">Natuur</option>
+                            <option value="voertuigen">Voertuigen</option>
+                            <option value="fantasie">Fantasie</option>
+                            <option value="ruimte">Ruimte</option>
+                            <option value="sport">Sport</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="aantal">Aantal stukjes</label>
+                        <select id="aantal">
+                            <option value="6">6 stukjes</option>
+                            <option value="12">12 stukjes</option>
+                            <option value="24">24 stukjes</option>
+                            <option value="36">36 stukjes</option>
+                            <option value="48">48 stukjes</option>
+                            <option value="60">60 stukjes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specifieke_wensen">Specifieke wensen (optioneel)</label>
+                        <textarea id="specifieke_wensen" placeholder="Bijv. specifieke kleuren, personages, etc..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="generateBtn">Puzzel Genereren</button>
+                    <button class="btn btn-secondary" id="resetBtn">Formulier Resetten</button>
+                </div>
+            </div>
+            
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>AI genereert een gepersonaliseerde puzzel...</p>
+            </div>
+            
+            <div class="generated-exercises" id="generatedExercises">
+                <!-- Hier komen de gegenereerde puzzels -->
+            </div>
+            
+            <div class="saved-exercises" id="savedExercises">
+                <h3>Opgeslagen Puzzels</h3>
+                <div id="savedExercisesList">
+                    <!-- Hier komen de opgeslagen puzzels -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve puzzels en oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="puzzels.html">Puzzels</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-integratie</h3>
+                    <ul>
+                        <li>Automatische puzzelgenerator</li>
+                        <li>Adaptieve moeilijkheidsgraad</li>
+                        <li>Persoonlijke leerpaden</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // AI-gegenereerde afbeeldingen voor elke leeftijdsgroep
+        const aiAfbeeldingen = {
+            "4-6": [
+                "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=600&h=400&fit=crop", // Schattige dieren
+                "https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=600&h=400&fit=crop", // Kleurrijke speelgoed
+                "https://images.unsplash.com/photo-1516627145497-ae69578cfc06?w=600&h=400&fit=crop", // Vrolijke ballonnen
+                "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&h=400&fit=crop"  // Pretpark attracties
+            ],
+            "6-8": [
+                "https://images.unsplash.com/photo-1541417904950-b855846fe074?w=600&h=400&fit=crop", // Dieren in het bos
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop", // Berglandschap
+                "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=400&fit=crop", // Zonsondergang
+                "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop"  // Ruimtevaart
+            ],
+            "8-10": [
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop", // Berglandschap
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop", // Oude stad
+                "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop", // Magisch bos
+                "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"  // Natuurlandschap
+            ],
+            "10-12": [
+                "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&h=400&fit=crop", // Bos met mist
+                "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop", // Bergmeer
+                "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=400&fit=crop", // Herfstbos
+                "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&h=400&fit=crop"  // Bloemenveld
+            ],
+            "12-14": [
+                "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600&h=400&fit=crop", // Waterval
+                "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=600&h=400&fit=crop", // Strand met golven
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop", // Bergpanorama
+                "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"  // Zonsondergang op zee
+            ],
+            "14-16": [
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop", // Abstract kunst
+                "https://images.unsplash.com/photo-1579546929662-711aa81148cf?w=600&h=400&fit=crop", // Kleurverloop
+                "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=400&fit=crop", // Geometrische patronen
+                "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=600&h=400&fit=crop"  // Architectuur details
+            ]
+        };
+
+        // Puzzel data voor elke leeftijdsgroep
+        const puzzelData = {
+            "4-6": {
+                naam: "Kleurrijke Dieren",
+                stukjes: 10,
+                afbeelding: aiAfbeeldingen["4-6"][0],
+                stukjesData: []
+            },
+            "6-8": {
+                naam: "Dieren in het Bos",
+                stukjes: 20,
+                afbeelding: aiAfbeeldingen["6-8"][0],
+                stukjesData: []
+            },
+            "8-10": {
+                naam: "Berglandschap",
+                stukjes: 36,
+                afbeelding: aiAfbeeldingen["8-10"][0],
+                stukjesData: []
+            },
+            "10-12": {
+                naam: "Magisch Bos",
+                stukjes: 60,
+                afbeelding: aiAfbeeldingen["10-12"][0],
+                stukjesData: []
+            },
+            "12-14": {
+                naam: "Waterval in de Natuur",
+                stukjes: 100,
+                afbeelding: aiAfbeeldingen["12-14"][0],
+                stukjesData: []
+            },
+            "14-16": {
+                naam: "Abstract Kunstwerk",
+                stukjes: 150,
+                afbeelding: aiAfbeeldingen["14-16"][0],
+                stukjesData: []
+            }
+        };
+
+        // Huidige puzzel status
+        let huidigePuzzel = null;
+        let geplaatsteStukjes = 0;
+
+        // Functie om een puzzel te starten
+        function startPuzzel(leeftijdsgroep) {
+            // Verberg leeftijdsgroepen en toon puzzelcontainer
+            document.querySelector('.leeftijdsgroepen').style.display = 'none';
+            document.getElementById('puzzel-spel').style.display = 'block';
+            
+            // Kies een willekeurige AI-gegenereerde afbeelding voor deze leeftijdsgroep
+            const afbeeldingen = aiAfbeeldingen[leeftijdsgroep];
+            const willekeurigeAfbeelding = afbeeldingen[Math.floor(Math.random() * afbeeldingen.length)];
+            
+            // Stel de puzzel in
+            huidigePuzzel = {
+                ...puzzelData[leeftijdsgroep],
+                afbeelding: willekeurigeAfbeelding
+            };
+            
+            document.getElementById('puzzel-naam').textContent = huidigePuzzel.naam;
+            document.getElementById('puzzel-voorbeeld-img').src = huidigePuzzel.afbeelding;
+            
+            // Reset de puzzel
+            resetPuzzel();
+            
+            // Genereer de puzzelstukjes
+            genereerPuzzelStukjes(leeftijdsgroep);
+        }
+
+        // Functie om puzzelstukjes te genereren
+        function genereerPuzzelStukjes(leeftijdsgroep) {
+            const stukjesContainer = document.getElementById('puzzel-stukjes');
+            const bordContainer = document.getElementById('puzzel-bord');
+            
+            // Maak het aantal stukjes leeg
+            stukjesContainer.innerHTML = '';
+            bordContainer.innerHTML = '';
+            
+            // Genereer de stukjes
+            const aantalStukjes = huidigePuzzel.stukjes;
+            const stukjesGrootte = berekenStukjesGrootte(leeftijdsgroep);
+            
+            for (let i = 0; i < aantalStukjes; i++) {
+                const stukje = document.createElement('div');
+                stukje.className = 'puzzel-stukje';
+                stukje.id = `stukje-${i}`;
+                stukje.draggable = true;
+                stukje.style.backgroundImage = `url(${huidigePuzzel.afbeelding})`;
+                stukje.style.backgroundPosition = berekenBackgroundPosition(i, leeftijdsgroep);
+                stukje.style.backgroundSize = berekenBackgroundSize(leeftijdsgroep);
+                
+                // Voeg drag events toe
+                stukje.addEventListener('dragstart', dragStart);
+                stukje.addEventListener('dragend', dragEnd);
+                
+                stukjesContainer.appendChild(stukje);
+                
+                // Sla stukjes data op voor validatie
+                puzzelData[leeftijdsgroep].stukjesData.push({
+                    id: `stukje-${i}`,
+                    correctePositie: i,
+                    isGeplaatst: false
+                });
+            }
+            
+            // Maak drop zones in het bord
+            for (let i = 0; i < aantalStukjes; i++) {
+                const dropZone = document.createElement('div');
+                dropZone.className = 'puzzel-stukje drop-zone';
+                dropZone.id = `drop-${i}`;
+                dropZone.dataset.stukjeId = i;
+                
+                // Voeg drop events toe
+                dropZone.addEventListener('dragover', dragOver);
+                dropZone.addEventListener('drop', drop);
+                
+                bordContainer.appendChild(dropZone);
+            }
+        }
+
+        // Bereken de grootte van puzzelstukjes op basis van leeftijd
+        function berekenStukjesGrootte(leeftijdsgroep) {
+            switch(leeftijdsgroep) {
+                case '4-6': return '100px';
+                case '6-8': return '80px';
+                case '8-10': return '70px';
+                case '10-12': return '60px';
+                case '12-14': return '50px';
+                case '14-16': return '40px';
+                default: return '80px';
+            }
+        }
+
+        // Bereken de background position voor elk puzzelstukje
+        function berekenBackgroundPosition(stukjeIndex, leeftijdsgroep) {
+            const kolommen = berekenKolommen(leeftijdsgroep);
+            const rij = Math.floor(stukjeIndex / kolommen);
+            const kolom = stukjeIndex % kolommen;
+            
+            const stukjeGrootte = berekenStukjesGrootte(leeftijdsgroep);
+            const grootteNummer = parseInt(stukjeGrootte);
+            
+            const xPos = -kolom * grootteNummer + 'px';
+            const yPos = -rij * grootteNummer + 'px';
+            
+            return `${xPos} ${yPos}`;
+        }
+
+        // Bereken de background size voor de puzzelstukjes
+        function berekenBackgroundSize(leeftijdsgroep) {
+            const kolommen = berekenKolommen(leeftijdsgroep);
+            const stukjeGrootte = berekenStukjesGrootte(leeftijdsgroep);
+            const grootteNummer = parseInt(stukjeGrootte);
+            
+            return `${kolommen * grootteNummer}px auto`;
+        }
+
+        // Bereken het aantal kolommen op basis van leeftijdsgroep
+        function berekenKolommen(leeftijdsgroep) {
+            const stukjes = huidigePuzzel.stukjes;
+            
+            // Voor eenvoudige puzzels, gebruik minder kolommen
+            if (leeftijdsgroep === '4-6') return 5;
+            if (leeftijdsgroep === '6-8') return 5;
+            
+            // Voor complexere puzzels, bereken een redelijk aantal kolommen
+            return Math.ceil(Math.sqrt(stukjes));
+        }
+
+        // Drag and Drop functionaliteit
+        let draggedStukje = null;
+
+        function dragStart(e) {
+            draggedStukje = this;
+            e.dataTransfer.setData('text/plain', this.id);
+            setTimeout(() => this.style.visibility = 'hidden', 0);
+        }
+
+        function dragEnd(e) {
+            this.style.visibility = 'visible';
+            draggedStukje = null;
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            const stukjeId = e.dataTransfer.getData('text/plain');
+            const stukje = document.getElementById(stukjeId);
+            
+            // Alleen toestaan als de drop zone leeg is
+            if (this.children.length === 0) {
+                this.appendChild(stukje);
+                
+                // Controleer of het stukje correct is geplaatst
+                const dropZoneIndex = parseInt(this.id.replace('drop-', ''));
+                const stukjeIndex = parseInt(stukjeId.replace('stukje-', ''));
+                
+                if (dropZoneIndex === stukjeIndex) {
+                    stukje.classList.add('correct');
+                    geplaatsteStukjes++;
+                    
+                    // Toon positieve feedback
+                    toonFeedback('Goed gedaan! Dit stukje past perfect.', 'goed');
+                    
+                    // Controleer of de puzzel compleet is
+                    if (geplaatsteStukjes === huidigePuzzel.stukjes) {
+                        toonFeedback('Gefeliciteerd! Je hebt de puzzel voltooid!', 'goed');
+                    }
+                } else {
+                    toonFeedback('Dit stukje past hier niet. Probeer een andere plek.', 'fout');
+                }
+            }
+        }
+
+        // Toon feedback
+        function toonFeedback(bericht, type) {
+            const feedback = document.getElementById('puzzel-feedback');
+            feedback.textContent = bericht;
+            feedback.className = `puzzel-feedback ${type}`;
+            feedback.style.display = 'block';
+            
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 3000);
+        }
+
+        // Reset de puzzel
+        function resetPuzzel() {
+            const stukjesContainer = document.getElementById('puzzel-stukjes');
+            const bordContainer = document.getElementById('puzzel-bord');
+            
+            // Verplaats alle stukjes terug naar de stukjes container
+            const alleStukjes = document.querySelectorAll('.puzzel-stukje:not(.drop-zone)');
+            alleStukjes.forEach(stukje => {
+                stukje.classList.remove('correct');
+                stukjesContainer.appendChild(stukje);
+            });
+            
+            // Reset teller
+            geplaatsteStukjes = 0;
+            
+            // Verberg feedback
+            document.getElementById('puzzel-feedback').style.display = 'none';
+        }
+
+        // Terug naar overzicht
+        function gaTerugNaarOverzicht() {
+            document.querySelector('.leeftijdsgroepen').style.display = 'grid';
+            document.getElementById('puzzel-spel').style.display = 'none';
+        }
+
+        // Event listeners voor start-puzzel knoppen
+        document.querySelectorAll('.start-puzzel').forEach(knop => {
+            knop.addEventListener('click', function(e) {
+                e.preventDefault();
+                const leeftijdsgroep = this.getAttribute('data-leeftijd');
+                startPuzzel(leeftijdsgroep);
+            });
+        });
+
+        // Event listeners voor puzzel controls
+        document.getElementById('reset-puzzel').addEventListener('click', resetPuzzel);
+        document.getElementById('terug-overzicht').addEventListener('click', gaTerugNaarOverzicht);
+
+        // Hulp functie (toont de volledige afbeelding tijdelijk)
+        document.getElementById('hulp-puzzel').addEventListener('click', function() {
+            const voorbeeld = document.getElementById('puzzel-voorbeeld-img');
+            const origineleSrc = voorbeeld.src;
+            
+            // Maak de afbeelding tijdelijk volledig zichtbaar
+            voorbeeld.style.opacity = '1';
+            voorbeeld.style.transition = 'opacity 0.5s';
+            
+            setTimeout(() => {
+                voorbeeld.style.opacity = '0.7';
+            }, 2000);
+        });
+
+        // Smooth scroll voor anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // AI Generator Functionaliteit
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const leeftijd = document.getElementById('leeftijd').value;
+            const moeilijkheid = document.getElementById('moeilijkheid').value;
+            const thema = document.getElementById('thema').value;
+            const aantal = document.getElementById('aantal').value;
+            const specifieke_wensen = document.getElementById('specifieke_wensen').value;
+            
+            // Toon loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('generatedExercises').innerHTML = '';
+            
+            // Simuleer AI verwerking (in een echte implementatie zou dit een API call zijn)
+            setTimeout(() => {
+                document.getElementById('loadingIndicator').style.display = 'none';
+                generatePuzzel(leeftijd, moeilijkheid, thema, aantal, specifieke_wensen);
+            }, 2000);
+        });
+        
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('leeftijd').value = '4-6';
+            document.getElementById('moeilijkheid').value = 'makkelijk';
+            document.getElementById('thema').value = 'dieren';
+            document.getElementById('aantal').value = '6';
+            document.getElementById('specifieke_wensen').value = '';
+        });
+        
+        // Functie om puzzel te genereren
+        function generatePuzzel(leeftijd, moeilijkheid, thema, aantal, specifieke_wensen) {
+            const generatedExercises = document.getElementById('generatedExercises');
+            generatedExercises.innerHTML = '';
+            
+            // Kies een willekeurige AI-gegenereerde afbeelding voor dit thema en leeftijd
+            const afbeeldingen = aiAfbeeldingen[leeftijd];
+            const willekeurigeAfbeelding = afbeeldingen[Math.floor(Math.random() * afbeeldingen.length)];
+            
+            // Genereer een unieke ID voor deze puzzel
+            const puzzelId = Date.now();
+            
+            // Maak een nieuwe puzzel aan
+            const nieuwePuzzel = {
+                id: puzzelId,
+                naam: `${thema.charAt(0).toUpperCase() + thema.slice(1)} Avontuur`,
+                stukjes: parseInt(aantal),
+                afbeelding: willekeurigeAfbeelding,
+                leeftijd: leeftijd,
+                moeilijkheid: moeilijkheid,
+                thema: thema,
+                specifieke_wensen: specifieke_wensen
+            };
+            
+            const exerciseCard = document.createElement('div');
+            exerciseCard.className = 'exercise-card';
+            exerciseCard.innerHTML = `
+                <h3>
+                    ${nieuwePuzzel.naam}
+                    <div class="exercise-actions">
+                        <button class="btn-save" onclick="savePuzzel(${puzzelId})">Opslaan</button>
+                        <button class="btn-play" onclick="playGeneratedPuzzel(${puzzelId})">Spelen</button>
+                    </div>
+                </h3>
+                <div class="exercise-content">
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <img src="${nieuwePuzzel.afbeelding}" alt="${nieuwePuzzel.naam}" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+                    </div>
+                    <p><strong>Leeftijd:</strong> ${nieuwePuzzel.leeftijd} jaar</p>
+                    <p><strong>Moeilijkheid:</strong> ${nieuwePuzzel.moeilijkheid}</p>
+                    <p><strong>Thema:</strong> ${nieuwePuzzel.thema}</p>
+                    <p><strong>Aantal stukjes:</strong> ${nieuwePuzzel.stukjes}</p>
+                    ${specifieke_wensen ? `<p><strong>Speciale wensen:</strong> ${specifieke_wensen}</p>` : ''}
+                </div>
+            `;
+            generatedExercises.appendChild(exerciseCard);
+            
+            // Sla de puzzel op in een globale array
+            if (!window.generatedPuzzles) {
+                window.generatedPuzzles = {};
+            }
+            window.generatedPuzzles[puzzelId] = nieuwePuzzel;
+        }
+        
+        // Functie om gegenereerde puzzel te spelen
+        function playGeneratedPuzzel(puzzelId) {
+            if (!window.generatedPuzzles || !window.generatedPuzzles[puzzelId]) {
+                alert('Puzzel niet gevonden!');
+                return;
+            }
+            
+            const puzzel = window.generatedPuzzles[puzzelId];
+            
+            // Verberg leeftijdsgroepen en toon puzzelcontainer
+            document.querySelector('.leeftijdsgroepen').style.display = 'none';
+            document.getElementById('puzzel-spel').style.display = 'block';
+            
+            // Stel de puzzel in
+            huidigePuzzel = {
+                naam: puzzel.naam,
+                stukjes: puzzel.stukjes,
+                afbeelding: puzzel.afbeelding,
+                stukjesData: []
+            };
+            
+            document.getElementById('puzzel-naam').textContent = puzzel.naam;
+            document.getElementById('puzzel-voorbeeld-img').src = puzzel.afbeelding;
+            
+            // Reset de puzzel
+            resetPuzzel();
+            
+            // Genereer de puzzelstukjes
+            genereerPuzzelStukjes(puzzel.leeftijd);
+        }
+        
+        // Functie om puzzel op te slaan
+        function savePuzzel(puzzelId) {
+            if (!window.generatedPuzzles || !window.generatedPuzzles[puzzelId]) {
+                alert('Puzzel niet gevonden!');
+                return;
+            }
+            
+            // Haal opgeslagen puzzels op uit localStorage
+            let savedPuzzles = JSON.parse(localStorage.getItem('savedPuzzles')) || [];
+            
+            // Voeg de nieuwe puzzel toe
+            savedPuzzles.push({
+                id: puzzelId,
+                ...window.generatedPuzzles[puzzelId],
+                timestamp: new Date().toLocaleString()
+            });
+            
+            // Sla op in localStorage
+            localStorage.setItem('savedPuzzles', JSON.stringify(savedPuzzles));
+            
+            // Update de weergave
+            displaySavedPuzzles();
+            
+            alert('Puzzel opgeslagen!');
+        }
+        
+        // Functie om opgeslagen puzzels weer te geven
+        function displaySavedPuzzles() {
+            const savedExercisesList = document.getElementById('savedExercisesList');
+            const savedPuzzles = JSON.parse(localStorage.getItem('savedPuzzles')) || [];
+            
+            if (savedPuzzles.length === 0) {
+                savedExercisesList.innerHTML = '<div class="empty-state">Nog geen opgeslagen puzzels</div>';
+                return;
+            }
+            
+            savedExercisesList.innerHTML = '';
+            
+            savedPuzzles.forEach((puzzle, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = 'exercise-card';
+                exerciseCard.innerHTML = `
+                    <h3>
+                        ${puzzle.naam}
+                        <div class="exercise-actions">
+                            <button class="btn-play" onclick="playSavedPuzzle(${puzzle.id})">Spelen</button>
+                            <button class="btn-delete" onclick="deleteSavedPuzzle(${puzzle.id})">Verwijderen</button>
+                        </div>
+                    </h3>
+                    <div class="exercise-content">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <img src="${puzzle.afbeelding}" alt="${puzzle.naam}" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+                        </div>
+                        <p><strong>Leeftijd:</strong> ${puzzle.leeftijd} jaar</p>
+                        <p><strong>Moeilijkheid:</strong> ${puzzle.moeilijkheid}</p>
+                        <p><strong>Thema:</strong> ${puzzle.thema}</p>
+                        <p><strong>Aantal stukjes:</strong> ${puzzle.stukjes}</p>
+                        ${puzzle.specifieke_wensen ? `<p><strong>Speciale wensen:</strong> ${puzzle.specifieke_wensen}</p>` : ''}
+                        <p><small>Opgeslagen op: ${puzzle.timestamp}</small></p>
+                    </div>
+                `;
+                savedExercisesList.appendChild(exerciseCard);
+            });
+        }
+        
+        // Functie om opgeslagen puzzel te spelen
+        function playSavedPuzzle(puzzelId) {
+            const savedPuzzles = JSON.parse(localStorage.getItem('savedPuzzles')) || [];
+            const puzzle = savedPuzzles.find(p => p.id === puzzelId);
+            
+            if (!puzzle) {
+                alert('Puzzel niet gevonden!');
+                return;
+            }
+            
+            // Verberg leeftijdsgroepen en toon puzzelcontainer
+            document.querySelector('.leeftijdsgroepen').style.display = 'none';
+            document.getElementById('puzzel-spel').style.display = 'block';
+            
+            // Stel de puzzel in
+            huidigePuzzel = {
+                naam: puzzle.naam,
+                stukjes: puzzle.stukjes,
+                afbeelding: puzzle.afbeelding,
+                stukjesData: []
+            };
+            
+            document.getElementById('puzzel-naam').textContent = puzzle.naam;
+            document.getElementById('puzzel-voorbeeld-img').src = puzzle.afbeelding;
+            
+            // Reset de puzzel
+            resetPuzzel();
+            
+            // Genereer de puzzelstukjes
+            genereerPuzzelStukjes(puzzle.leeftijd);
+        }
+        
+        // Functie om opgeslagen puzzel te verwijderen
+        function deleteSavedPuzzle(puzzelId) {
+            let savedPuzzles = JSON.parse(localStorage.getItem('savedPuzzles')) || [];
+            savedPuzzles = savedPuzzles.filter(puzzle => puzzle.id !== puzzelId);
+            localStorage.setItem('savedPuzzles', JSON.stringify(savedPuzzles));
+            displaySavedPuzzles();
+        }
+        
+        // Laad opgeslagen puzzels bij het laden van de pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            displaySavedPuzzles();
+        });
+    </script>
+</body>
+</html>
