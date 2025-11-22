@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagelijkse Routine Planner - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        .atsumi-header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        .header-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        .header-nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Page Header Styles */
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* AI Section Styles */
+        .ai-section {
+            padding: 2rem 0;
+            background-color: white;
+        }
+        
+        .ai-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .ai-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--autism-blue);
+        }
+        
+        .ai-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ai-card p {
+            margin-bottom: 1rem;
+        }
+        
+        .ai-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        
+        .ai-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 6px;
+        }
+        
+        .ai-button {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ai-button:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        /* Planner Styles */
+        .planner-section {
+            padding: 2rem 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .name-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .name-section label {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .name-section input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+        
+        .behavior-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .behavior-section button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .save-btn {
+            background-color: var(--autism-blue);
+            color: white;
+        }
+        
+        .print-btn {
+            background-color: var(--autism-purple);
+            color: white;
+        }
+        
+        .good-behavior {
+            background-color: var(--autism-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .bad-behavior {
+            background-color: var(--autism-pink);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .behavior-counter {
+            margin-left: 10px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        
+        .week-counter {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .days-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .day-item {
+            padding: 10px 15px;
+            background-color: var(--autism-light-blue);
+            border: 2px solid var(--autism-blue);
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-weight: bold;
+            flex: 1;
+            margin: 0 5px;
+        }
+        
+        .day-item:hover {
+            background-color: #7fd1f0;
+        }
+        
+        .day-item.selected {
+            background-color: var(--autism-purple);
+            color: white;
+            border-color: #5a07a0;
+        }
+        
+        .planner-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .activities-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .activities-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 18px;
+            color: var(--autism-blue);
+        }
+        
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .activities-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .activities-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .activities-grid::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        .activity-item {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            min-height: 80px;
+            justify-content: center;
+        }
+        
+        .activity-item:hover {
+            background-color: var(--autism-light-blue);
+            transform: translateY(-2px);
+        }
+        
+        .activity-item.selected {
+            background-color: var(--autism-light-blue);
+            border-color: var(--autism-blue);
+        }
+        
+        .activity-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .schedule-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 18px;
+            color: var(--autism-blue);
+        }
+        
+        .schedule-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .schedule-header {
+            font-weight: bold;
+            padding: 10px;
+            background-color: var(--autism-light-blue);
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .time-slot {
+            font-weight: bold;
+            padding: 10px;
+            background-color: var(--autism-light-blue);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-slot {
+            min-height: 50px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .activity-slot.highlight {
+            background-color: var(--autism-light-blue);
+            border-color: var(--autism-blue);
+        }
+        
+        .activity-slot.active {
+            background-color: #e1f5fe;
+            border-color: var(--autism-blue);
+        }
+        
+        .dropped-activity {
+            padding: 5px 8px;
+            background-color: var(--autism-light-blue);
+            border: 1px solid var(--autism-blue);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        
+        .dropped-activity .activity-icon {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        
+        .current-day {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--autism-purple);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .explanation {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--autism-blue);
+        }
+        
+        .explanation h3 {
+            color: var(--autism-blue);
+            margin-top: 0;
+        }
+        
+        .explanation ul {
+            padding-left: 20px;
+        }
+        
+        .explanation li {
+            margin-bottom: 10px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: var(--autism-blue);
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            font-size: 18px;
+        }
+        
+        /* Footer Styles */
+        .atsumi-footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 900px) {
+            .planner-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .activities-section {
+                order: 2;
+            }
+            
+            .schedule-section {
+                order: 1;
+            }
+            
+            .header-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .days-section {
+                flex-wrap: wrap;
+            }
+            
+            .day-item {
+                flex: 1 0 45%;
+                margin-bottom: 10px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .ai-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Atsumi Header -->
+    <header class="atsumi-header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">🐧</div>
+                <h1>Atsumi</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Oefeningen</a></li>
+                    <li><a href="#">Autisme</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="header-icon">📅</div>
+        <h1>Dagelijkse Routine Planner</h1>
+        <p>Plan je dag met deze visuele planning game.</p>
+    </section>
+
+    <!-- AI Section -->
+    <section class="ai-section">
+        <div class="ai-container">
+            <div class="ai-card">
+                <h3>🤖 AI Planning Assistent</h3>
+                <p>Laat onze AI een gepersonaliseerde dagplanning voorstellen op basis van leeftijd, interesses en behoeften.</p>
+                <div class="ai-features">
+                    <div class="ai-feature">
+                        <span>✅</span>
+                        <span>Automatische activiteitensuggesties</span>
+                    </div>
+                    <div class="ai-feature">
+                        <span>✅</span>
+                        <span>Gebalanceerde dagindeling</span>
+                    </div>
+                    <div class="ai-feature">
+                        <span>✅</span>
+                        <span>Persoonlijke aanbevelingen</span>
+                    </div>
+                </div>
+                <button class="ai-button" id="ai-suggest-btn">
+                    <span>🤖</span>
+                    <span>AI Planning Genereren</span>
+                </button>
+            </div>
+            
+            <div class="ai-card">
+                <h3>🧠 Slimme Functies</h3>
+                <p>Onze planner leert van je voorkeuren en past suggesties automatisch aan.</p>
+                <div class="ai-features">
+                    <div class="ai-feature">
+                        <span>🔍</span>
+                        <span>Leert van eerdere planningen</span>
+                    </div>
+                    <div class="ai-feature">
+                        <span>⚡</span>
+                        <span>Suggereert alternatieve activiteiten</span>
+                    </div>
+                    <div class="ai-feature">
+                        <span>🎯</span>
+                        <span>Houdt rekening met speciale behoeften</span>
+                    </div>
+                </div>
+                <button class="ai-button" id="smart-features-btn">
+                    <span>🔧</span>
+                    <span>Instellingen Aanpassen</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planner Section -->
+    <section class="planner-section">
+        <div class="container">
+            <div class="header-section">
+                <div class="name-section">
+                    <label for="child-name">Naam:</label>
+                    <input type="text" id="child-name" placeholder="Vul naam in">
+                </div>
+                <div class="behavior-section">
+                    <button class="save-btn">Opslaan</button>
+                    <button class="print-btn">Uitprinten</button>
+                    <button class="good-behavior">
+                        <span>Goed gedrag</span>
+                        <span class="behavior-counter" id="good-counter">0</span>
+                    </button>
+                    <button class="bad-behavior">
+                        <span>Slecht gedrag</span>
+                        <span class="behavior-counter" id="bad-counter">0</span>
+                    </button>
+                    <div class="week-counter">/7 voor deze week</div>
+                </div>
+            </div>
+            
+            <div class="days-section">
+                <div class="day-item selected" data-day="maandag">Maandag</div>
+                <div class="day-item" data-day="dinsdag">Dinsdag</div>
+                <div class="day-item" data-day="woensdag">Woensdag</div>
+                <div class="day-item" data-day="donderdag">Donderdag</div>
+                <div class="day-item" data-day="vrijdag">Vrijdag</div>
+                <div class="day-item" data-day="zaterdag">Zaterdag</div>
+                <div class="day-item" data-day="zondag">Zondag</div>
+            </div>
+            
+            <div class="planner-content">
+                <div class="activities-section">
+                    <div class="activities-title">Activiteiten</div>
+                    <div class="activities-grid">
+                        <div class="activity-item" data-activity="opstaan">
+                            <div class="activity-icon">🛏️</div>
+                            <div>Opstaan</div>
+                        </div>
+                        <div class="activity-item" data-activity="aankleden">
+                            <div class="activity-icon">👕</div>
+                            <div>Aankleden</div>
+                        </div>
+                        <div class="activity-item" data-activity="tandenpoetsen">
+                            <div class="activity-icon">🦷</div>
+                            <div>Tanden poetsen</div>
+                        </div>
+                        <div class="activity-item" data-activity="ontbijten">
+                            <div class="activity-icon">🍽️</div>
+                            <div>Ontbijten</div>
+                        </div>
+                        <div class="activity-item" data-activity="opruimen">
+                            <div class="activity-icon">🧹</div>
+                            <div>Opruimen</div>
+                        </div>
+                        <div class="activity-item" data-activity="werken">
+                            <div class="activity-icon">📚</div>
+                            <div>Aan het werk</div>
+                        </div>
+                        <div class="activity-item" data-activity="fruit">
+                            <div class="activity-icon">🍎</div>
+                            <div>Fruit eten</div>
+                        </div>
+                        <div class="activity-item" data-activity="voorlezen">
+                            <div class="activity-icon">📖</div>
+                            <div>Voorlezen</div>
+                        </div>
+                        <div class="activity-item" data-activity="buitenspelen">
+                            <div class="activity-icon">🌳</div>
+                            <div>Buitenspelen</div>
+                        </div>
+                        <div class="activity-item" data-activity="zelfspelen">
+                            <div class="activity-icon">🧩</div>
+                            <div>Zelf spelen</div>
+                        </div>
+                        <div class="activity-item" data-activity="lunch">
+                            <div class="activity-icon">🥪</div>
+                            <div>Lunch</div>
+                        </div>
+                        <div class="activity-item" data-activity="rusten">
+                            <div class="activity-icon">😴</div>
+                            <div>Rusten</div>
+                        </div>
+                        <div class="activity-item" data-activity="ipad">
+                            <div class="activity-icon">📱</div>
+                            <div>iPad educatief</div>
+                        </div>
+                        <div class="activity-item" data-activity="tv">
+                            <div class="activity-icon">📺</div>
+                            <div>TV kijken</div>
+                        </div>
+                        <div class="activity-item" data-activity="eten">
+                            <div class="activity-icon">🍲</div>
+                            <div>Eten</div>
+                        </div>
+                        <div class="activity-item" data-activity="naarbed">
+                            <div class="activity-icon">🌙</div>
+                            <div>Naar bed</div>
+                        </div>
+                        <div class="activity-item" data-activity="sporten">
+                            <div class="activity-icon">🤸</div>
+                            <div>Sporten</div>
+                        </div>
+                        <div class="activity-item" data-activity="klusjes">
+                            <div class="activity-icon">🧽</div>
+                            <div>Klusjes</div>
+                        </div>
+                        <div class="activity-item" data-activity="douchen">
+                            <div class="activity-icon">🚿</div>
+                            <div>Douchen</div>
+                        </div>
+                        <div class="activity-item" data-activity="handenwassen">
+                            <div class="activity-icon">🧼</div>
+                            <div>Handen wassen</div>
+                        </div>
+                        <div class="activity-item" data-activity="haarkammen">
+                            <div class="activity-icon">💇</div>
+                            <div>Haar kammen</div>
+                        </div>
+                        <div class="activity-item" data-activity="school">
+                            <div class="activity-icon">🎒</div>
+                            <div>Naar school</div>
+                        </div>
+                        <div class="activity-item" data-activity="huiswerk">
+                            <div class="activity-icon">✏️</div>
+                            <div>Huiswerk</div>
+                        </div>
+                        <div class="activity-item" data-activity="knutselen">
+                            <div class="activity-icon">🎨</div>
+                            <div>Knutselen</div>
+                        </div>
+                        <div class="activity-item" data-activity="muziek">
+                            <div class="activity-icon">🎵</div>
+                            <div>Muziek</div>
+                        </div>
+                        <div class="activity-item" data-activity="spelletjes">
+                            <div class="activity-icon">🎲</div>
+                            <div>Spelletjes</div>
+                        </div>
+                        <div class="activity-item" data-activity="boodschappen">
+                            <div class="activity-icon">🛒</div>
+                            <div>Boodschappen</div>
+                        </div>
+                        <div class="activity-item" data-activity="wandelen">
+                            <div class="activity-icon">🚶</div>
+                            <div>Wandelen</div>
+                        </div>
+                        <div class="activity-item" data-activity="logeren">
+                            <div class="activity-icon">🏠</div>
+                            <div>Logeren</div>
+                        </div>
+                        <div class="activity-item" data-activity="bezoek">
+                            <div class="activity-icon">👨‍👩‍👧‍👦</div>
+                            <div>Bezoek</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="schedule-section">
+                    <div class="current-day" id="current-day">Maandag</div>
+                    <div class="schedule-title">Dagplanning</div>
+                    <div class="schedule-container">
+                        <div class="schedule-header">Tijd</div>
+                        <div class="schedule-header">Wat</div>
+                    </div>
+                    
+                    <div id="time-slots-container">
+                        <!-- Time slots will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <h3>Hoe werkt deze planner?</h3>
+                <ul>
+                    <li><strong>Stap 1:</strong> Vul de naam van je kind in bovenaan de pagina.</li>
+                    <li><strong>Stap 2:</strong> Kies de dag waarop je de planning wilt maken door erop te klikken.</li>
+                    <li><strong>Stap 3:</strong> Klik op een activiteit in de linkerkolom om deze te selecteren.</li>
+                    <li><strong>Stap 4:</strong> Klik op een tijdvak in de "Wat" kolom om de geselecteerde activiteit toe te voegen.</li>
+                    <li><strong>Stap 5:</strong> Je kunt meerdere activiteiten toevoegen aan een tijdvak door ze opnieuw te selecteren en toe te voegen.</li>
+                    <li><strong>Stap 6:</strong> Aan het einde van de dag kun je het gedrag van je kind beoordelen met "Goed gedrag" of "Slecht gedrag".</li>
+                    <li><strong>Stap 7:</strong> Gebruik de "Opslaan" knop om de planning te bewaren en "Uitprinten" om een afdruk te maken.</li>
+                    <li><strong>Stap 8:</strong> Gebruik de AI-functie om automatisch een gebalanceerde dagplanning te genereren.</li>
+                </ul>
+                <p>De planner houdt bij hoeveel dagen in de week je kind goed of slecht gedrag heeft getoond. Het totaal is altijd 7 dagen in een week. Probeer aan het einde van de week zoveel mogelijk goede dagen te hebben!</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Atsumi Footer -->
+    <footer class="atsumi-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Oefeningen</a></li>
+                        <li><a href="#">Autisme</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Email: AtsumiPrints@hotmail.com</li>
+                        <li>Telefoon: +32 451 08 38 17</li>
+                        <li>Volg ons op sociale media</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Time slots for the schedule (6:00 to 20:00)
+            const timeSlots = [
+                "6.00 – 7.00",
+                "7.00 – 8.00",
+                "8.00 – 9.00", 
+                "9.00 – 10.00",
+                "10.00 – 11.00",
+                "11.00 – 12.00",
+                "12.00 – 13.00",
+                "13.00 – 14.00",
+                "14.00 – 15.00",
+                "15.00 – 16.00",
+                "16.00 – 17.00",
+                "17.00 – 18.00",
+                "18.00 – 19.00",
+                "19.00 – 20.00"
+            ];
+            
+            // Create time slots in the schedule
+            const timeSlotsContainer = document.getElementById('time-slots-container');
+            
+            timeSlots.forEach(timeSlot => {
+                const timeSlotElement = document.createElement('div');
+                timeSlotElement.className = 'schedule-container';
+                
+                const timeElement = document.createElement('div');
+                timeElement.className = 'time-slot';
+                timeElement.textContent = timeSlot;
+                
+                const activitySlot = document.createElement('div');
+                activitySlot.className = 'activity-slot';
+                activitySlot.setAttribute('data-time', timeSlot);
+                
+                timeSlotElement.appendChild(timeElement);
+                timeSlotElement.appendChild(activitySlot);
+                
+                timeSlotsContainer.appendChild(timeSlotElement);
+            });
+            
+            // Day selection functionality
+            const dayItems = document.querySelectorAll('.day-item');
+            const currentDayElement = document.getElementById('current-day');
+            
+            dayItems.forEach(dayItem => {
+                dayItem.addEventListener('click', function() {
+                    // Remove selected class from all days
+                    dayItems.forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked day
+                    this.classList.add('selected');
+                    
+                    // Update current day display
+                    currentDayElement.textContent = this.textContent;
+                    
+                    // Clear any selected activity
+                    clearSelectedActivity();
+                });
+            });
+            
+            // Activity selection functionality
+            let selectedActivity = null;
+            const activityItems = document.querySelectorAll('.activity-item');
+            const activitySlots = document.querySelectorAll('.activity-slot');
+            
+            activityItems.forEach(activityItem => {
+                activityItem.addEventListener('click', function() {
+                    // Remove selected class from all activities
+                    activityItems.forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked activity
+                    this.classList.add('selected');
+                    
+                    // Store selected activity
+                    selectedActivity = this.cloneNode(true);
+                    selectedActivity.classList.remove('selected');
+                    selectedActivity.classList.add('dropped-activity');
+                    
+                    // Highlight activity slots to show where we can add the activity
+                    activitySlots.forEach(slot => {
+                        slot.classList.add('highlight');
+                    });
+                });
+            });
+            
+            // Activity slot click functionality
+            activitySlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    if (selectedActivity) {
+                        // Create a new activity element
+                        const newActivity = selectedActivity.cloneNode(true);
+                        
+                        // Add click event to remove the activity
+                        newActivity.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            this.remove();
+                        });
+                        
+                        // Add the activity to the slot
+                        this.appendChild(newActivity);
+                        
+                        // Remove highlight from all slots
+                        activitySlots.forEach(s => {
+                            s.classList.remove('highlight');
+                        });
+                        
+                        // Clear selected activity
+                        clearSelectedActivity();
+                    }
+                });
+            });
+            
+            function clearSelectedActivity() {
+                // Remove selected class from all activities
+                activityItems.forEach(item => {
+                    item.classList.remove('selected');
+                });
+                
+                // Clear selected activity
+                selectedActivity = null;
+                
+                // Remove highlight from all activity slots
+                activitySlots.forEach(slot => {
+                    slot.classList.remove('highlight');
+                });
+            }
+            
+            // Behavior tracking
+            let goodDays = 0;
+            let badDays = 0;
+            const goodCounter = document.getElementById('good-counter');
+            const badCounter = document.getElementById('bad-counter');
+            const notification = document.getElementById('notification');
+            
+            // Load saved behavior data from localStorage
+            if (localStorage.getItem('goodDays')) {
+                goodDays = parseInt(localStorage.getItem('goodDays'));
+                badDays = parseInt(localStorage.getItem('badDays'));
+                updateBehaviorCounters();
+            }
+            
+            // Button functionality
+            const saveBtn = document.querySelector('.save-btn');
+            const printBtn = document.querySelector('.print-btn');
+            const goodBehaviorBtn = document.querySelector('.good-behavior');
+            const badBehaviorBtn = document.querySelector('.bad-behavior');
+            const aiSuggestBtn = document.getElementById('ai-suggest-btn');
+            const smartFeaturesBtn = document.getElementById('smart-features-btn');
+            
+            saveBtn.addEventListener('click', function() {
+                showNotification('Planning opgeslagen! 💾');
+                // In a real application, you would save the planning data here
+            });
+            
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+            
+            goodBehaviorBtn.addEventListener('click', function() {
+                if (goodDays + badDays < 7) {
+                    goodDays++;
+                    updateBehaviorCounters();
+                    saveBehaviorData();
+                    showNotification('Goed gedrag geregistreerd! 🎉✨');
+                } else {
+                    showNotification('Je hebt al 7 dagen ingevuld voor deze week! 📅');
+                }
+            });
+            
+            badBehaviorBtn.addEventListener('click', function() {
+                if (goodDays + badDays < 7) {
+                    badDays++;
+                    updateBehaviorCounters();
+                    saveBehaviorData();
+                    showNotification('Slecht gedrag geregistreerd! 😢');
+                } else {
+                    showNotification('Je hebt al 7 dagen ingevuld voor deze week! 📅');
+                }
+            });
+            
+            // AI functionality
+            aiSuggestBtn.addEventListener('click', function() {
+                generateAISuggestion();
+            });
+            
+            smartFeaturesBtn.addEventListener('click', function() {
+                showNotification('AI-instellingen worden geopend... ⚙️');
+                // In a real application, you would open a settings modal here
+            });
+            
+            function generateAISuggestion() {
+                // Clear all current activities
+                activitySlots.forEach(slot => {
+                    slot.innerHTML = '';
+                });
+                
+                // Define AI suggestions for different time slots
+                const aiSuggestions = {
+                    "6.00 – 7.00": ["opstaan", "tandenpoetsen"],
+                    "7.00 – 8.00": ["aankleden", "ontbijten"],
+                    "8.00 – 9.00": ["opruimen", "werken"],
+                    "9.00 – 10.00": ["werken", "fruit"],
+                    "10.00 – 11.00": ["buitenspelen"],
+                    "11.00 – 12.00": ["zelfspelen"],
+                    "12.00 – 13.00": ["lunch", "voorlezen"],
+                    "13.00 – 14.00": ["rusten"],
+                    "14.00 – 15.00": ["werken", "ipad"],
+                    "15.00 – 16.00": ["buitenspelen"],
+                    "16.00 – 17.00": ["zelfspelen"],
+                    "17.00 – 18.00": ["tv", "spelletjes"],
+                    "18.00 – 19.00": ["eten"],
+                    "19.00 – 20.00": ["naarbed", "voorlezen"]
+                };
+                
+                // Add AI suggestions to the schedule
+                activitySlots.forEach(slot => {
+                    const time = slot.getAttribute('data-time');
+                    const suggestions = aiSuggestions[time];
+                    
+                    if (suggestions) {
+                        suggestions.forEach(activityName => {
+                            const activityElement = document.querySelector(`[data-activity="${activityName}"]`);
+                            if (activityElement) {
+                                const newActivity = activityElement.cloneNode(true);
+                                newActivity.classList.remove('selected');
+                                newActivity.classList.add('dropped-activity');
+                                
+                                // Add click event to remove the activity
+                                newActivity.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                    this.remove();
+                                });
+                                
+                                slot.appendChild(newActivity);
+                            }
+                        });
+                    }
+                });
+                
+                showNotification('AI-planning gegenereerd! 🤖 Je planning is nu gevuld met voorgestelde activiteiten.');
+            }
+            
+            function updateBehaviorCounters() {
+                goodCounter.textContent = goodDays;
+                badCounter.textContent = badDays;
+            }
+            
+            function saveBehaviorData() {
+                localStorage.setItem('goodDays', goodDays);
+                localStorage.setItem('badDays', badDays);
+            }
+            
+            function showNotification(message) {
+                notification.textContent = message;
+                notification.style.display = 'block';
+                
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+            
+            // Update name in all name fields when input changes
+            const nameInput = document.getElementById('child-name');
+            nameInput.addEventListener('input', function() {
+                // In a more advanced version, we could save this to localStorage
+            });
+        });
+    </script>
+</body>
+</html>
