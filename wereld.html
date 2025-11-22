@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wereld Ontdekken - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Snelmenu */
+        .snelmenu {
+            background-color: var(--autism-purple);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snelmenu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .snelmenu li {
+            margin: 5px 15px;
+        }
+        
+        .snelmenu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .snelmenu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Wereldkaart Sectie */
+        .wereldkaart-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+        }
+        
+        .wereldkaart-section h1 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .wereldkaart-section h2 {
+            color: var(--autism-purple);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .wereldkaart-section p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .uitleg {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--autism-purple);
+        }
+        
+        .navigatie {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .navigatie a {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .navigatie a:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+        
+        /* Wereldkaart Container */
+        .wereldkaart-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-color: #e6f2ff;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            border: 2px solid var(--autism-light-blue);
+        }
+        
+        .wereldkaart {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        /* Land Markeringen */
+        .land {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--autism-pink);
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s;
+            box-shadow: 0 0 0 0 rgba(242, 109, 165, 0.7);
+            animation: pulse 2s infinite;
+        }
+        
+        .land:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: var(--autism-yellow);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(242, 109, 165, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(242, 109, 165, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(242, 109, 165, 0);
+            }
+        }
+        
+        /* Land Info Panel */
+        .land-info {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            border: 2px solid var(--autism-blue);
+        }
+        
+        .land-info.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .land-info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .vlag {
+            width: 60px;
+            height: 40px;
+            margin-right: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .land-naam {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .land-beschrijving {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .land-feiten {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .land-feiten h3 {
+            color: var(--autism-purple);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .feit {
+            margin-bottom: 5px;
+            display: flex;
+        }
+        
+        .feit-label {
+            font-weight: bold;
+            min-width: 100px;
+        }
+        
+        .close-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-info:hover {
+            color: var(--autism-pink);
+        }
+        
+        /* Quiz Sectie */
+        .quiz-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-pink);
+        }
+        
+        .quiz-section h1 {
+            color: var(--autism-pink);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .quiz-vraag {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-vraag-tekst {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .quiz-opties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .quiz-optie {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .quiz-optie:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: scale(1.05);
+        }
+        
+        .quiz-feedback {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .quiz-feedback.goed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .quiz-feedback.fout {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* AI Generator Sectie */
+        .ai-generator {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-yellow);
+        }
+        
+        .ai-generator h2 {
+            color: var(--autism-yellow);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .generator-form {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: translateY(-2px);
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--autism-light-blue);
+            border-top: 5px solid var(--autism-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .generated-content {
+            margin-top: 30px;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--autism-yellow);
+        }
+        
+        .content-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .content-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .content-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .content-body {
+            margin-top: 15px;
+        }
+        
+        .content-edit {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .content-edit textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .content-edit-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .saved-content {
+            margin-top: 30px;
+        }
+        
+        .saved-content h3 {
+            color: var(--autism-purple);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--autism-light-blue);
+            padding-bottom: 8px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .navigatie {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navigatie a {
+                text-align: center;
+            }
+            
+            .wereldkaart-container {
+                height: 300px;
+            }
+            
+            .land-info {
+                width: 250px;
+                right: 10px;
+                top: 10px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .content-actions {
+                flex-direction: column;
+            }
+            
+            .quiz-opties {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="wereld.html">Wereld Ontdekken</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🌍</div>
+            <h1>Wereld Ontdekken</h1>
+            <p>Leer over verschillende landen, hun vlaggen en culturen met interactieve oefeningen</p>
+        </div>
+    </section>
+    
+    <div class="snelmenu">
+        <ul>
+            <li><a href="#wereldkaart">Wereldkaart</a></li>
+            <li><a href="#quiz">Landen Quiz</a></li>
+            <li><a href="#ai-generator">AI Generator</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- Wereldkaart Sectie -->
+        <div class="wereldkaart-section" id="wereldkaart">
+            <h1>Interactieve Wereldkaart</h1>
+            <p>Klik op de gekleurde stippen om meer te leren over verschillende landen. Ontdek vlaggen, hoofdsteden en interessante feiten!</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op een land op de kaart om de vlag te zien en meer te leren over dat land. Je kunt de informatie ook laten voorlezen door op de tekst te klikken.</p>
+            </div>
+            
+            <div class="wereldkaart-container">
+                <div class="wereldkaart" id="worldMap">
+                    <!-- Land markeringen worden via JavaScript toegevoegd -->
+                </div>
+                
+                <div class="land-info" id="landInfo">
+                    <button class="close-info" id="closeInfo">×</button>
+                    <div class="land-info-header">
+                        <img class="vlag" id="vlagImg" src="" alt="Vlag">
+                        <div class="land-naam" id="landNaam">Landnaam</div>
+                    </div>
+                    <div class="land-beschrijving" id="landBeschrijving">
+                        Beschrijving van het land...
+                    </div>
+                    <div class="land-feiten">
+                        <h3>Feiten</h3>
+                        <div class="feit">
+                            <span class="feit-label">Hoofdstad:</span>
+                            <span id="hoofdstad">-</span>
+                        </div>
+                        <div class="feit">
+                            <span class="feit-label">Taal:</span>
+                            <span id="taal">-</span>
+                        </div>
+                        <div class="feit">
+                            <span class="feit-label">Bevolking:</span>
+                            <span id="bevolking">-</span>
+                        </div>
+                        <div class="feit">
+                            <span class="feit-label">Munt:</span>
+                            <span id="munt">-</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button id="playLandInfo">🔊</button>
+                        <span>Voorlezen</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#ai-generator" class="vorige">← Terug naar alle onderdelen</a>
+                <a href="#quiz" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Quiz Sectie -->
+        <div class="quiz-section" id="quiz">
+            <h1>Landen Quiz</h1>
+            <p>Test je kennis over landen en vlaggen met deze leuke quiz!</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Beantwoord de vragen over landen, vlaggen en culturen. Klik op het antwoord dat je denkt dat goed is. Je krijgt meteen feedback!</p>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-vraag">
+                    <div class="quiz-vraag-tekst">Welke vlag hoort bij Nederland?</div>
+                    <div class="quiz-opties">
+                        <div class="quiz-optie" data-correct="true">Rood, wit, blauw (horizontale strepen)</div>
+                        <div class="quiz-optie" data-correct="false">Rood, geel, zwart (horizontale strepen)</div>
+                        <div class="quiz-optie" data-correct="false">Blauw, geel, rood (verticale strepen)</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+                
+                <div class="quiz-vraag">
+                    <div class="quiz-vraag-tekst">Wat is de hoofdstad van Frankrijk?</div>
+                    <div class="quiz-opties">
+                        <div class="quiz-optie" data-correct="false">Londen</div>
+                        <div class="quiz-optie" data-correct="true">Parijs</div>
+                        <div class="quiz-optie" data-correct="false">Berlijn</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+                
+                <div class="quiz-vraag">
+                    <div class="quiz-vraag-tekst">In welk continent ligt Egypte?</div>
+                    <div class="quiz-opties">
+                        <div class="quiz-optie" data-correct="false">Europa</div>
+                        <div class="quiz-optie" data-correct="false">Azië</div>
+                        <div class="quiz-optie" data-correct="true">Afrika</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+                
+                <div class="quiz-vraag">
+                    <div class="quiz-vraag-tekst">Welke kleuren heeft de vlag van Duitsland?</div>
+                    <div class="quiz-opties">
+                        <div class="quiz-optie" data-correct="false">Rood, wit, blauw</div>
+                        <div class="quiz-optie" data-correct="true">Zwart, rood, geel</div>
+                        <div class="quiz-optie" data-correct="false">Groen, wit, rood</div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#wereldkaart" class="vorige">← Vorige oefening</a>
+                <a href="#ai-generator" class="volgende">AI Generator →</a>
+            </div>
+        </div>
+        
+        <!-- AI Generator Sectie -->
+        <div class="ai-generator" id="ai-generator">
+            <h2>🤖 AI Wereld Generator</h2>
+            <p>Genereer gepersonaliseerde landeninformatie, quizvragen en verhaaltjes op basis van leeftijd en interesses.</p>
+            
+            <div class="generator-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leerdoel">Wat wil je leren?</label>
+                        <select id="leerdoel">
+                            <option value="landen">Landen en vlaggen</option>
+                            <option value="hoofdsteden">Hoofdsteden</option>
+                            <option value="culturen">Culturen en tradities</option>
+                            <option value="dieren">Dieren per land</option>
+                            <option value="quiz">Quizvragen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leeftijd">Leeftijd</label>
+                        <select id="leeftijd">
+                            <option value="4-6">4-6 jaar</option>
+                            <option value="6-8">6-8 jaar</option>
+                            <option value="8-10">8-10 jaar</option>
+                            <option value="10-12">10-12 jaar</option>
+                            <option value="12-16">12-16 jaar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="moeilijkheid">Moeilijkheidsgraad</label>
+                        <select id="moeilijkheid">
+                            <option value="makkelijk">Makkelijk</option>
+                            <option value="normaal">Normaal</option>
+                            <option value="uitdagend">Uitdagend</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="thema">Thema / Continent</label>
+                        <select id="thema">
+                            <option value="europa">Europa</option>
+                            <option value="azie">Azië</option>
+                            <option value="afrika">Afrika</option>
+                            <option value="noord-amerika">Noord-Amerika</option>
+                            <option value="zuid-amerika">Zuid-Amerika</option>
+                            <option value="oceanie">Oceanië</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aantal">Aantal items</label>
+                        <select id="aantal">
+                            <option value="3">3 items</option>
+                            <option value="5">5 items</option>
+                            <option value="10">10 items</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specifieke_wensen">Specifieke wensen (optioneel)</label>
+                        <textarea id="specifieke_wensen" placeholder="Bijv. focus op bepaalde landen, specifieke feiten..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="generateBtn">Inhoud Genereren</button>
+                    <button class="btn btn-secondary" id="resetBtn">Formulier Resetten</button>
+                </div>
+            </div>
+            
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>AI genereert gepersonaliseerde inhoud...</p>
+            </div>
+            
+            <div class="generated-content" id="generatedContent">
+                <!-- Hier komt de gegenereerde inhoud -->
+            </div>
+            
+            <div class="saved-content" id="savedContent">
+                <h3>Opgeslagen Inhoud</h3>
+                <div id="savedContentList">
+                    <!-- Hier komen de opgeslagen inhoud -->
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#quiz" class="vorige">← Vorige oefening</a>
+                <a href="#wereldkaart" class="volgende">Terug naar wereldkaart →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="wereld.html">Wereld Ontdekken</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-integratie</h3>
+                    <ul>
+                        <li>Automatische inhoud generator</li>
+                        <li>Adaptieve leerpaden</li>
+                        <li>Interactieve wereldkaart</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Web Speech API voor het uitspreken van tekst
+        const synth = window.speechSynthesis;
+        
+        // Functie om tekst uit te spreken
+        function speakText(text) {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'nl-NL';
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            
+            synth.speak(utterance);
+        }
+        
+        // Landen data
+        const landenData = {
+            nederland: {
+                naam: "Nederland",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg",
+                beschrijving: "Nederland is een klein land in Europa. Het staat bekend om zijn windmolens, tulpen en kaas. Veel mensen fietsen in Nederland.",
+                hoofdstad: "Amsterdam",
+                taal: "Nederlands",
+                bevolking: "17 miljoen",
+                munt: "Euro",
+                positie: { x: "50%", y: "25%" }
+            },
+            belgie: {
+                naam: "België",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+                beschrijving: "België ligt naast Nederland. Het land staat bekend om zijn chocolade, wafels en frietjes. Er worden drie talen gesproken: Nederlands, Frans en Duits.",
+                hoofdstad: "Brussel",
+                taal: "Nederlands, Frans, Duits",
+                bevolking: "11 miljoen",
+                munt: "Euro",
+                positie: { x: "48%", y: "26%" }
+            },
+            duitsland: {
+                naam: "Duitsland",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg",
+                beschrijving: "Duitsland is een groot land in Europa. Het staat bekend om zijn auto's, kastelen en het Oktoberfest. De hoofdstad is Berlijn.",
+                hoofdstad: "Berlijn",
+                taal: "Duits",
+                bevolking: "83 miljoen",
+                munt: "Euro",
+                positie: { x: "52%", y: "26%" }
+            },
+            frankrijk: {
+                naam: "Frankrijk",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg",
+                beschrijving: "Frankrijk staat bekend om de Eiffeltoren, croissants en kaas. Parijs is de hoofdstad en wordt de 'Stad van de Liefde' genoemd.",
+                hoofdstad: "Parijs",
+                taal: "Frans",
+                bevolking: "67 miljoen",
+                munt: "Euro",
+                positie: { x: "47%", y: "28%" }
+            },
+            spanje: {
+                naam: "Spanje",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg",
+                beschrijving: "Spanje staat bekend om zijn stranden, flamenco dansen en paella. Het is een warm land waar veel mensen op vakantie gaan.",
+                hoofdstad: "Madrid",
+                taal: "Spaans",
+                bevolking: "47 miljoen",
+                munt: "Euro",
+                positie: { x: "44%", y: "30%" }
+            },
+            italie: {
+                naam: "Italië",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg",
+                beschrijving: "Italië heeft de vorm van een laars. Het staat bekend om pizza, pasta en ijs. Rome is de hoofdstad met het Colosseum.",
+                hoofdstad: "Rome",
+                taal: "Italiaans",
+                bevolking: "60 miljoen",
+                munt: "Euro",
+                positie: { x: "50%", y: "30%" }
+            },
+            egypte: {
+                naam: "Egypte",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+                beschrijving: "Egypte ligt in Afrika. Het staat bekend om de piramides, farao's en de Nijl rivier. Veel kamelen leven in de woestijn.",
+                hoofdstad: "Caïro",
+                taal: "Arabisch",
+                bevolking: "102 miljoen",
+                munt: "Egyptisch pond",
+                positie: { x: "55%", y: "35%" }
+            },
+            brazilie: {
+                naam: "Brazilië",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg",
+                beschrijving: "Brazilië is het grootste land in Zuid-Amerika. Het staat bekend om het carnaval, voetbal en het Amazonewoud.",
+                hoofdstad: "Brasilia",
+                taal: "Portugees",
+                bevolking: "213 miljoen",
+                munt: "Braziliaanse real",
+                positie: { x: "32%", y: "45%" }
+            },
+            vs: {
+                naam: "Verenigde Staten",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg",
+                beschrijving: "De Verenigde Staten is een groot land in Noord-Amerika. Het staat bekend om Hollywood, hamburgers en de Grand Canyon.",
+                hoofdstad: "Washington D.C.",
+                taal: "Engels",
+                bevolking: "331 miljoen",
+                munt: "Amerikaanse dollar",
+                positie: { x: "22%", y: "32%" }
+            },
+            japan: {
+                naam: "Japan",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg",
+                beschrijving: "Japan is een eilandland in Azië. Het staat bekend om sushi, samoerai en manga. Tokyo is een van de grootste steden ter wereld.",
+                hoofdstad: "Tokyo",
+                taal: "Japans",
+                bevolking: "126 miljoen",
+                munt: "Japanse yen",
+                positie: { x: "78%", y: "32%" }
+            },
+            australie: {
+                naam: "Australië",
+                vlag: "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
+                beschrijving: "Australië is een groot eilandcontinent. Het staat bekend om kangaroes, koala's en het Groot Barrièrerif. Veel mensen spreken Engels.",
+                hoofdstad: "Canberra",
+                taal: "Engels",
+                bevolking: "25 miljoen",
+                munt: "Australische dollar",
+                positie: { x: "78%", y: "60%" }
+            }
+        };
+        
+        // Wereldkaart initialiseren
+        function initWereldkaart() {
+            const wereldkaart = document.getElementById('worldMap');
+            
+            // Voeg land markeringen toe
+            for (const landId in landenData) {
+                const land = landenData[landId];
+                const landMarker = document.createElement('div');
+                landMarker.className = 'land';
+                landMarker.style.left = land.positie.x;
+                landMarker.style.top = land.positie.y;
+                landMarker.setAttribute('data-land', landId);
+                
+                landMarker.addEventListener('click', function() {
+                    toonLandInfo(landId);
+                });
+                
+                wereldkaart.appendChild(landMarker);
+            }
+        }
+        
+        // Toon land informatie
+        function toonLandInfo(landId) {
+            const land = landenData[landId];
+            const landInfo = document.getElementById('landInfo');
+            
+            document.getElementById('vlagImg').src = land.vlag;
+            document.getElementById('vlagImg').alt = `Vlag van ${land.naam}`;
+            document.getElementById('landNaam').textContent = land.naam;
+            document.getElementById('landBeschrijving').textContent = land.beschrijving;
+            document.getElementById('hoofdstad').textContent = land.hoofdstad;
+            document.getElementById('taal').textContent = land.taal;
+            document.getElementById('bevolking').textContent = land.bevolking;
+            document.getElementById('munt').textContent = land.munt;
+            
+            landInfo.classList.add('active');
+            
+            // Sla het huidige land op voor de voorleesfunctie
+            landInfo.setAttribute('data-current-land', landId);
+        }
+        
+        // Sluit land informatie
+        document.getElementById('closeInfo').addEventListener('click', function() {
+            document.getElementById('landInfo').classList.remove('active');
+        });
+        
+        // Voorleesfunctie voor land informatie
+        document.getElementById('playLandInfo').addEventListener('click', function() {
+            const landInfo = document.getElementById('landInfo');
+            const landId = landInfo.getAttribute('data-current-land');
+            
+            if (landId && landenData[landId]) {
+                const land = landenData[landId];
+                const tekst = `${land.naam}. ${land.beschrijving} De hoofdstad is ${land.hoofdstad}. Er wordt ${land.taal} gesproken. Er wonen ongeveer ${land.bevolking} mensen. Ze betalen met de ${land.munt}.`;
+                speakText(tekst);
+            }
+        });
+        
+        // Quiz functionaliteit
+        document.querySelectorAll('.quiz-optie').forEach(optie => {
+            optie.addEventListener('click', function() {
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const feedback = this.closest('.quiz-vraag').querySelector('.quiz-feedback');
+                
+                if (isCorrect) {
+                    feedback.textContent = 'Goed gedaan!';
+                    feedback.className = 'quiz-feedback goed';
+                    feedback.style.display = 'block';
+                    speakText("Goed gedaan!");
+                } else {
+                    feedback.textContent = 'Probeer het nog eens.';
+                    feedback.className = 'quiz-feedback fout';
+                    feedback.style.display = 'block';
+                    speakText("Probeer het nog eens.");
+                }
+                
+                // Verberg feedback na 3 seconden
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 3000);
+            });
+        });
+        
+        // Smooth scroll voor anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // AI Generator Functionaliteit
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const leerdoel = document.getElementById('leerdoel').value;
+            const leeftijd = document.getElementById('leeftijd').value;
+            const moeilijkheid = document.getElementById('moeilijkheid').value;
+            const thema = document.getElementById('thema').value;
+            const aantal = document.getElementById('aantal').value;
+            const specifieke_wensen = document.getElementById('specifieke_wensen').value;
+            
+            // Toon loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('generatedContent').innerHTML = '';
+            
+            // Simuleer AI verwerking (in een echte implementatie zou dit een API call zijn)
+            setTimeout(() => {
+                document.getElementById('loadingIndicator').style.display = 'none';
+                generateContent(leerdoel, leeftijd, moeilijkheid, thema, aantal, specifieke_wensen);
+            }, 2000);
+        });
+        
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('leerdoel').value = 'landen';
+            document.getElementById('leeftijd').value = '4-6';
+            document.getElementById('moeilijkheid').value = 'makkelijk';
+            document.getElementById('thema').value = 'europa';
+            document.getElementById('aantal').value = '3';
+            document.getElementById('specifieke_wensen').value = '';
+        });
+        
+        // Functie om inhoud te genereren
+        function generateContent(leerdoel, leeftijd, moeilijkheid, thema, aantal, specifieke_wensen) {
+            const generatedContent = document.getElementById('generatedContent');
+            generatedContent.innerHTML = '';
+            
+            // Voorbeeld inhoud op basis van parameters
+            const contentItems = getExampleContent(leerdoel, thema, aantal);
+            
+            contentItems.forEach((item, index) => {
+                const contentCard = document.createElement('div');
+                contentCard.className = 'content-card';
+                contentCard.innerHTML = `
+                    <h3>
+                        ${item.title}
+                        <div class="content-actions">
+                            <button class="btn-save" onclick="saveContent(${index})">Opslaan</button>
+                            <button class="btn-edit" onclick="toggleEdit(${index})">Bewerken</button>
+                        </div>
+                    </h3>
+                    <div class="content-body" id="content-body-${index}">
+                        ${item.content}
+                    </div>
+                    <div class="content-edit" id="content-edit-${index}">
+                        <textarea>${item.editContent || item.content}</textarea>
+                        <div class="content-edit-actions">
+                            <button class="btn-save" onclick="saveEdit(${index})">Opslaan</button>
+                            <button class="btn-cancel" onclick="toggleEdit(${index})">Annuleren</button>
+                        </div>
+                    </div>
+                `;
+                generatedContent.appendChild(contentCard);
+                
+                // Sla de inhoud op in een globale array voor bewerking
+                if (!window.generatedContentList) {
+                    window.generatedContentList = [];
+                }
+                window.generatedContentList[index] = item;
+            });
+        }
+        
+        // Voorbeeld inhoud
+        function getExampleContent(leerdoel, thema, aantal) {
+            const contentItems = [];
+            const count = parseInt(aantal);
+            
+            for (let i = 0; i < count; i++) {
+                let item;
+                
+                if (leerdoel === 'landen') {
+                    item = {
+                        title: `Land: ${getRandomCountry(thema)}`,
+                        content: `<p>${getCountryDescription(thema)}</p>`,
+                        editContent: `<p>${getCountryDescription(thema)}</p>`
+                    };
+                } else if (leerdoel === 'hoofdsteden') {
+                    item = {
+                        title: `Hoofdstad: ${getRandomCapital(thema)}`,
+                        content: `<p>${getCapitalDescription(thema)}</p>`,
+                        editContent: `<p>${getCapitalDescription(thema)}</p>`
+                    };
+                } else if (leerdoel === 'culturen') {
+                    item = {
+                        title: `Cultuur: ${getRandomCulture(thema)}`,
+                        content: `<p>${getCultureDescription(thema)}</p>`,
+                        editContent: `<p>${getCultureDescription(thema)}</p>`
+                    };
+                } else if (leerdoel === 'dieren') {
+                    item = {
+                        title: `Dier: ${getRandomAnimal(thema)}`,
+                        content: `<p>${getAnimalDescription(thema)}</p>`,
+                        editContent: `<p>${getAnimalDescription(thema)}</p>`
+                    };
+                } else if (leerdoel === 'quiz') {
+                    item = {
+                        title: `Quizvraag ${i + 1}`,
+                        content: `<p><strong>Vraag:</strong> ${getRandomQuestion(thema)}</p><p><strong>Antwoord:</strong> ${getRandomAnswer(thema)}</p>`,
+                        editContent: `<p><strong>Vraag:</strong> ${getRandomQuestion(thema)}</p><p><strong>Antwoord:</strong> ${getRandomAnswer(thema)}</p>`
+                    };
+                }
+                
+                contentItems.push(item);
+            }
+            
+            return contentItems;
+        }
+        
+        // Hulpfuncties voor het genereren van voorbeeldinhoud
+        function getRandomCountry(thema) {
+            const countryLists = {
+                europa: ['Nederland', 'België', 'Duitsland', 'Frankrijk', 'Spanje', 'Italië'],
+                azie: ['Japan', 'China', 'India', 'Zuid-Korea', 'Thailand', 'Vietnam'],
+                afrika: ['Egypte', 'Zuid-Afrika', 'Kenia', 'Marokko', 'Nigeria', 'Tanzania'],
+                'noord-amerika': ['Verenigde Staten', 'Canada', 'Mexico', 'Cuba', 'Jamaica'],
+                'zuid-amerika': ['Brazilië', 'Argentinië', 'Chili', 'Peru', 'Colombia'],
+                oceanie: ['Australië', 'Nieuw-Zeeland', 'Fiji', 'Papoea-Nieuw-Guinea']
+            };
+            
+            const countries = countryLists[thema] || countryLists.europa;
+            return countries[Math.floor(Math.random() * countries.length)];
+        }
+        
+        function getCountryDescription(thema) {
+            const descriptions = {
+                europa: 'Dit land ligt in Europa. Het heeft een interessante geschiedenis en cultuur.',
+                azie: 'Dit land ligt in Azië. Het heeft een rijke cultuur en oude tradities.',
+                afrika: 'Dit land ligt in Afrika. Het heeft diverse landschappen en wilde dieren.',
+                'noord-amerika': 'Dit land ligt in Noord-Amerika. Het heeft grote steden en natuurparken.',
+                'zuid-amerika': 'Dit land ligt in Zuid-Amerika. Het heeft regenwouden en bergen.',
+                oceanie: 'Dit land ligt in Oceanië. Het heeft prachtige stranden en koraalriffen.'
+            };
+            
+            return descriptions[thema] || descriptions.europa;
+        }
+        
+        function getRandomCapital(thema) {
+            const capitalLists = {
+                europa: ['Amsterdam', 'Brussel', 'Berlijn', 'Parijs', 'Madrid', 'Rome'],
+                azie: ['Tokyo', 'Beijing', 'New Delhi', 'Seoul', 'Bangkok', 'Hanoi'],
+                afrika: ['Caïro', 'Pretoria', 'Nairobi', 'Rabat', 'Abuja', 'Dodoma'],
+                'noord-amerika': ['Washington D.C.', 'Ottawa', 'Mexico-Stad', 'Havana', 'Kingston'],
+                'zuid-amerika': ['Brasilia', 'Buenos Aires', 'Santiago', 'Lima', 'Bogota'],
+                oceanie: ['Canberra', 'Wellington', 'Suva', 'Port Moresby']
+            };
+            
+            const capitals = capitalLists[thema] || capitalLists.europa;
+            return capitals[Math.floor(Math.random() * capitals.length)];
+        }
+        
+        function getCapitalDescription(thema) {
+            const descriptions = {
+                europa: 'Deze hoofdstad ligt in Europa. Het is een belangrijke stad met veel geschiedenis.',
+                azie: 'Deze hoofdstad ligt in Azië. Het is een drukke stad met moderne gebouwen.',
+                afrika: 'Deze hoofdstad ligt in Afrika. Het is een stad met een mix van oud en nieuw.',
+                'noord-amerika': 'Deze hoofdstad ligt in Noord-Amerika. Het is een stad met hoge gebouwen.',
+                'zuid-amerika': 'Deze hoofdstad ligt in Zuid-Amerika. Het is een stad met kleurrijke gebouwen.',
+                oceanie: 'Deze hoofdstad ligt in Oceanië. Het is een stad dicht bij de oceaan.'
+            };
+            
+            return descriptions[thema] || descriptions.europa;
+        }
+        
+        function getRandomCulture(thema) {
+            const cultureLists = {
+                europa: ['Carnaval', 'Oktoberfest', 'Flamenco', 'Sinterklaas', 'High Tea'],
+                azie: ['Theeceremonie', 'Lantaarnfestival', 'Drakendans', 'Hanami', 'Diwali'],
+                afrika: ['Djembe muziek', 'Masai dans', 'Kente stof', 'Tribale kunst', 'Storytelling'],
+                'noord-amerika': ['Thanksgiving', 'Halloween', 'Country muziek', 'Baseball', 'BBQ'],
+                'zuid-amerika': ['Carnaval', 'Tango', 'Capoeira', 'Dag van de Doden', 'Futbol'],
+                oceanie: ['Haka dans', 'Aboriginal kunst', 'Surfen', 'BBQ', 'Rugby']
+            };
+            
+            const cultures = cultureLists[thema] || cultureLists.europa;
+            return cultures[Math.floor(Math.random() * cultures.length)];
+        }
+        
+        function getCultureDescription(thema) {
+            const descriptions = {
+                europa: 'Deze traditie komt uit Europa. Mensen vieren dit op speciale dagen.',
+                azie: 'Deze traditie komt uit Azië. Het is een belangrijk onderdeel van de cultuur.',
+                afrika: 'Deze traditie komt uit Afrika. Het wordt doorgegeven van generatie op generatie.',
+                'noord-amerika': 'Deze traditie komt uit Noord-Amerika. Het is populair bij families.',
+                'zuid-amerika': 'Deze traditie komt uit Zuid-Amerika. Het is kleurrijk en muzikaal.',
+                oceanie: 'Deze traditie komt uit Oceanië. Het is verbonden met de natuur en de zee.'
+            };
+            
+            return descriptions[thema] || descriptions.europa;
+        }
+        
+        function getRandomAnimal(thema) {
+            const animalLists = {
+                europa: ['Eekhoorn', 'Vos', 'Everzwijn', 'Edelhert', 'Das', 'Otter'],
+                azie: ['Tijger', 'Panda', 'Olifant', 'Neushoorn', 'Orang-oetan', 'Komodovaraan'],
+                afrika: ['Leeuw', 'Giraffe', 'Nijlpaard', 'Zebra', 'Gorilla', 'Cheetah'],
+                'noord-amerika': ['Bizon', 'Zwarte beer', 'Wasbeer', 'Coyote', 'Adelaar', 'Poema'],
+                'zuid-amerika': ['Jaguar', 'Luiaard', 'Aap', 'Anaconda', 'Toekan', 'Capibara'],
+                oceanie: ['Kangoeroe', 'Koala', 'Kiwi', 'Tasmaanse duivel', 'Wallaby', 'Kookaburra']
+            };
+            
+            const animals = animalLists[thema] || animalLists.europa;
+            return animals[Math.floor(Math.random() * animals.length)];
+        }
+        
+        function getAnimalDescription(thema) {
+            const descriptions = {
+                europa: 'Dit dier leeft in Europa. Het past zich aan aan de seizoenen.',
+                azie: 'Dit dier leeft in Azië. Sommige soorten zijn met uitsterven bedreigd.',
+                afrika: 'Dit dier leeft in Afrika. Het is aangepast aan het warme klimaat.',
+                'noord-amerika': 'Dit dier leeft in Noord-Amerika. Het komt voor in bossen en parken.',
+                'zuid-amerika': 'Dit dier leeft in Zuid-Amerika. Het leeft in het regenwoud.',
+                oceanie: 'Dit dier leeft in Oceanië. Veel soorten komen nergens anders voor.'
+            };
+            
+            return descriptions[thema] || descriptions.europa;
+        }
+        
+        function getRandomQuestion(thema) {
+            const questions = {
+                europa: 'Welke kleuren heeft de vlag van Duitsland?',
+                azie: 'Wat is de hoofdstad van Japan?',
+                afrika: 'In welk land staan de piramides?',
+                'noord-amerika': 'Welke taal spreken ze in Mexico?',
+                'zuid-amerika': 'Wat is de grootste rivier in Zuid-Amerika?',
+                oceanie: 'Welk dier staat op het wapen van Australië?'
+            };
+            
+            return questions[thema] || questions.europa;
+        }
+        
+        function getRandomAnswer(thema) {
+            const answers = {
+                europa: 'Zwart, rood en geel',
+                azie: 'Tokyo',
+                afrika: 'Egypte',
+                'noord-amerika': 'Spaans',
+                'zuid-amerika': 'De Amazone',
+                oceanie: 'De kangoeroe en de emoe'
+            };
+            
+            return answers[thema] || answers.europa;
+        }
+        
+        // Bewerkingsfuncties
+        function toggleEdit(index) {
+            const content = document.getElementById(`content-body-${index}`);
+            const edit = document.getElementById(`content-edit-${index}`);
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                edit.style.display = 'none';
+            } else {
+                content.style.display = 'none';
+                edit.style.display = 'block';
+            }
+        }
+        
+        function saveEdit(index) {
+            const editTextarea = document.querySelector(`#content-edit-${index} textarea`);
+            const content = document.getElementById(`content-body-${index}`);
+            
+            content.innerHTML = editTextarea.value;
+            toggleEdit(index);
+            
+            // Update de inhoud in de globale lijst
+            if (window.generatedContentList && window.generatedContentList[index]) {
+                window.generatedContentList[index].content = editTextarea.value;
+            }
+        }
+        
+        function saveContent(index) {
+            if (!window.generatedContentList || !window.generatedContentList[index]) {
+                alert('Inhoud niet gevonden!');
+                return;
+            }
+            
+            // Haal opgeslagen inhoud op uit localStorage
+            let savedContent = JSON.parse(localStorage.getItem('savedWorldContent')) || [];
+            
+            // Voeg de nieuwe inhoud toe
+            savedContent.push({
+                id: Date.now(),
+                content: window.generatedContentList[index].content,
+                timestamp: new Date().toLocaleString()
+            });
+            
+            // Sla op in localStorage
+            localStorage.setItem('savedWorldContent', JSON.stringify(savedContent));
+            
+            // Update de weergave
+            displaySavedContent();
+            
+            alert('Inhoud opgeslagen!');
+        }
+        
+        function displaySavedContent() {
+            const savedContentList = document.getElementById('savedContentList');
+            const savedContent = JSON.parse(localStorage.getItem('savedWorldContent')) || [];
+            
+            if (savedContent.length === 0) {
+                savedContentList.innerHTML = '<div class="empty-state">Nog geen opgeslagen inhoud</div>';
+                return;
+            }
+            
+            savedContentList.innerHTML = '';
+            
+            savedContent.forEach((content, index) => {
+                const contentCard = document.createElement('div');
+                contentCard.className = 'content-card';
+                contentCard.innerHTML = `
+                    <h3>
+                        Opgeslagen Inhoud ${index + 1}
+                        <div class="content-actions">
+                            <button class="btn-delete" onclick="deleteSavedContent(${content.id})">Verwijderen</button>
+                        </div>
+                    </h3>
+                    <div class="content-body">
+                        ${content.content}
+                    </div>
+                    <p><small>Opgeslagen op: ${content.timestamp}</small></p>
+                `;
+                savedContentList.appendChild(contentCard);
+            });
+        }
+        
+        function deleteSavedContent(id) {
+            let savedContent = JSON.parse(localStorage.getItem('savedWorldContent')) || [];
+            savedContent = savedContent.filter(content => content.id !== id);
+            localStorage.setItem('savedWorldContent', JSON.stringify(savedContent));
+            displaySavedContent();
+        }
+        
+        // Laad opgeslagen inhoud bij het laden van de pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            initWereldkaart();
+            displaySavedContent();
+        });
+    </script>
+</body>
+</html>
