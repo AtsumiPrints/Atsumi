@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekenproblemen - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Snelmenu */
+        .snelmenu {
+            background-color: var(--autism-purple);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snelmenu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .snelmenu li {
+            margin: 5px 15px;
+        }
+        
+        .snelmenu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .snelmenu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Oefeningen Stijl */
+        .oefening {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+        }
+        
+        .oefening h1 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .oefening h2 {
+            color: var(--autism-purple);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .oefening p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .uitleg {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--autism-purple);
+        }
+        
+        .navigatie {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .navigatie a {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .navigatie a:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+        
+        /* Tellen Oefening Stijl */
+        .tellen-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .tellen-opgave {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .tellen-vraag {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--autism-blue);
+        }
+        
+        .tellen-objecten {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .tellen-object {
+            width: 60px;
+            height: 60px;
+            background-color: var(--autism-light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .tellen-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .tellen-optie {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .tellen-optie:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: scale(1.1);
+        }
+        
+        /* Basisbewerkingen Stijl */
+        .bewerkingen-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .bewerking-opgave {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .bewerking-vraag {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+            text-align: center;
+        }
+        
+        .bewerking-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .bewerking-optie {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .bewerking-optie:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: scale(1.05);
+        }
+        
+        /* Vermenigvuldigen Stijl */
+        .tafels-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .tafel-opgave {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .tafel-vraag {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+            text-align: center;
+        }
+        
+        .tafel-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .tafel-optie {
+            background: linear-gradient(to bottom, var(--autism-pink), #e61679);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .tafel-optie:hover {
+            background: linear-gradient(to bottom, #e61679, #d0156d);
+            transform: scale(1.05);
+        }
+        
+        /* Delen Stijl */
+        .delen-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .delen-opgave {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .delen-vraag {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+            text-align: center;
+        }
+        
+        .delen-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .delen-optie {
+            background: linear-gradient(to bottom, var(--autism-yellow), #e6b800);
+            color: var(--dark);
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .delen-optie:hover {
+            background: linear-gradient(to bottom, #e6b800, #cc9900);
+            transform: scale(1.05);
+        }
+        
+        /* Breuken Stijl */
+        .breuken-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .breuk-opgave {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .breuk-vraag {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+            text-align: center;
+        }
+        
+        .breuk-visueel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .breuk-cirkel {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--autism-pink) 0% 60%, var(--autism-light-blue) 60% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+        
+        .breuk-opties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .breuk-optie {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .breuk-optie:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: scale(1.05);
+        }
+        
+        /* Feedback */
+        .feedback {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .feedback.goed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .feedback.fout {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* AI Generator Sectie */
+        .ai-generator {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-pink);
+        }
+        
+        .ai-generator h2 {
+            color: var(--autism-pink);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .generator-form {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: translateY(-2px);
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--autism-light-blue);
+            border-top: 5px solid var(--autism-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .generated-exercises {
+            margin-top: 30px;
+        }
+        
+        .exercise-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--autism-yellow);
+        }
+        
+        .exercise-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .exercise-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-content {
+            margin-top: 15px;
+        }
+        
+        .exercise-edit {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .exercise-edit textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .exercise-edit-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .saved-exercises {
+            margin-top: 30px;
+        }
+        
+        .saved-exercises h3 {
+            color: var(--autism-purple);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--autism-light-blue);
+            padding-bottom: 8px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .navigatie {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navigatie a {
+                text-align: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .exercise-actions {
+                flex-direction: column;
+            }
+            
+            .breuk-cirkel {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🧮</div>
+            <h1>Rekenproblemen</h1>
+            <p>Stapsgewijze rekenoefeningen met visuele ondersteuning en herhaling</p>
+        </div>
+    </section>
+    
+    <div class="snelmenu">
+        <ul>
+            <li><a href="#tellen">Tellen</a></li>
+            <li><a href="#optellen">Optellen</a></li>
+            <li><a href="#aftrekken">Aftrekken</a></li>
+            <li><a href="#vermenigvuldigen">Vermenigvuldigen</a></li>
+            <li><a href="#delen">Delen</a></li>
+            <li><a href="#breuken">Breuken</a></li>
+            <li><a href="#ai-generator">AI Generator</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- Tellen Oefening -->
+        <div class="oefening" id="tellen">
+            <h1>Tellen</h1>
+            <p>Tel de voorwerpen en kies het juiste getal. Deze oefening helpt bij het leren tellen en getalherkenning.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Tel hoeveel voorwerpen je ziet en klik op het juiste getal. Als je het goed doet, wordt het getal groen.</p>
+            </div>
+            
+            <div class="tellen-container">
+                <div class="tellen-opgave">
+                    <div class="tellen-vraag">Hoeveel appels zie je?</div>
+                    <div class="tellen-objecten">
+                        <div class="tellen-object">🍎</div>
+                        <div class="tellen-object">🍎</div>
+                    </div>
+                    <div class="tellen-opties">
+                        <div class="tellen-optie" data-correct="true">2</div>
+                        <div class="tellen-optie" data-correct="false">3</div>
+                        <div class="tellen-optie" data-correct="false">1</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tellen-opgave">
+                    <div class="tellen-vraag">Hoeveel ballen zie je?</div>
+                    <div class="tellen-objecten">
+                        <div class="tellen-object">⚽</div>
+                        <div class="tellen-object">⚽</div>
+                        <div class="tellen-object">⚽</div>
+                    </div>
+                    <div class="tellen-opties">
+                        <div class="tellen-optie" data-correct="false">2</div>
+                        <div class="tellen-optie" data-correct="true">3</div>
+                        <div class="tellen-optie" data-correct="false">4</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tellen-opgave">
+                    <div class="tellen-vraag">Hoeveel vissen zie je?</div>
+                    <div class="tellen-objecten">
+                        <div class="tellen-object">🐠</div>
+                        <div class="tellen-object">🐠</div>
+                        <div class="tellen-object">🐠</div>
+                        <div class="tellen-object">🐠</div>
+                    </div>
+                    <div class="tellen-opties">
+                        <div class="tellen-optie" data-correct="false">3</div>
+                        <div class="tellen-optie" data-correct="true">4</div>
+                        <div class="tellen-optie" data-correct="false">5</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tellen-opgave">
+                    <div class="tellen-vraag">Hoeveel sterren zie je?</div>
+                    <div class="tellen-objecten">
+                        <div class="tellen-object">⭐</div>
+                        <div class="tellen-object">⭐</div>
+                        <div class="tellen-object">⭐</div>
+                        <div class="tellen-object">⭐</div>
+                        <div class="tellen-object">⭐</div>
+                    </div>
+                    <div class="tellen-opties">
+                        <div class="tellen-optie" data-correct="false">4</div>
+                        <div class="tellen-optie" data-correct="true">5</div>
+                        <div class="tellen-optie" data-correct="false">6</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#ai-generator" class="vorige">← Terug naar alle oefeningen</a>
+                <a href="#optellen" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Optellen Oefening -->
+        <div class="oefening" id="optellen">
+            <h1>Optellen</h1>
+            <p>Oefen met het optellen van getallen. Deze oefening helpt bij het ontwikkelen van basis rekenvaardigheden.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Tel de getallen bij elkaar op en kies het juiste antwoord.</p>
+            </div>
+            
+            <div class="bewerkingen-container">
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">2 + 3 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">4</div>
+                        <div class="bewerking-optie" data-correct="true">5</div>
+                        <div class="bewerking-optie" data-correct="false">6</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">4 + 5 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">8</div>
+                        <div class="bewerking-optie" data-correct="true">9</div>
+                        <div class="bewerking-optie" data-correct="false">10</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">7 + 6 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="true">13</div>
+                        <div class="bewerking-optie" data-correct="false">12</div>
+                        <div class="bewerking-optie" data-correct="false">14</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">9 + 8 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">16</div>
+                        <div class="bewerking-optie" data-correct="true">17</div>
+                        <div class="bewerking-optie" data-correct="false">18</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">12 + 15 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">26</div>
+                        <div class="bewerking-optie" data-correct="true">27</div>
+                        <div class="bewerking-optie" data-correct="false">28</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#tellen" class="vorige">← Vorige oefening</a>
+                <a href="#aftrekken" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Aftrekken Oefening -->
+        <div class="oefening" id="aftrekken">
+            <h1>Aftrekken</h1>
+            <p>Oefen met het aftrekken van getallen. Deze oefening helpt bij het ontwikkelen van basis rekenvaardigheden.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Trek de getallen van elkaar af en kies het juiste antwoord.</p>
+            </div>
+            
+            <div class="bewerkingen-container">
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">5 - 2 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="true">3</div>
+                        <div class="bewerking-optie" data-correct="false">2</div>
+                        <div class="bewerking-optie" data-correct="false">4</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">8 - 4 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">3</div>
+                        <div class="bewerking-optie" data-correct="true">4</div>
+                        <div class="bewerking-optie" data-correct="false">5</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">10 - 7 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="true">3</div>
+                        <div class="bewerking-optie" data-correct="false">2</div>
+                        <div class="bewerking-optie" data-correct="false">4</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">15 - 9 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">5</div>
+                        <div class="bewerking-optie" data-correct="true">6</div>
+                        <div class="bewerking-optie" data-correct="false">7</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="bewerking-opgave">
+                    <div class="bewerking-vraag">20 - 12 = ?</div>
+                    <div class="bewerking-opties">
+                        <div class="bewerking-optie" data-correct="false">7</div>
+                        <div class="bewerking-optie" data-correct="true">8</div>
+                        <div class="bewerking-optie" data-correct="false">9</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#optellen" class="vorige">← Vorige oefening</a>
+                <a href="#vermenigvuldigen" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Vermenigvuldigen Oefening -->
+        <div class="oefening" id="vermenigvuldigen">
+            <h1>Vermenigvuldigen</h1>
+            <p>Oefen met het vermenigvuldigen van getallen. Deze oefening helpt bij het leren van de tafels.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Vermenigvuldig de getallen en kies het juiste antwoord.</p>
+            </div>
+            
+            <div class="tafels-container">
+                <div class="tafel-opgave">
+                    <div class="tafel-vraag">2 × 3 = ?</div>
+                    <div class="tafel-opties">
+                        <div class="tafel-optie" data-correct="false">5</div>
+                        <div class="tafel-optie" data-correct="true">6</div>
+                        <div class="tafel-optie" data-correct="false">7</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tafel-opgave">
+                    <div class="tafel-vraag">4 × 5 = ?</div>
+                    <div class="tafel-opties">
+                        <div class="tafel-optie" data-correct="false">18</div>
+                        <div class="tafel-optie" data-correct="true">20</div>
+                        <div class="tafel-optie" data-correct="false">22</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tafel-opgave">
+                    <div class="tafel-vraag">6 × 7 = ?</div>
+                    <div class="tafel-opties">
+                        <div class="tafel-optie" data-correct="false">40</div>
+                        <div class="tafel-optie" data-correct="true">42</div>
+                        <div class="tafel-optie" data-correct="false">44</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tafel-opgave">
+                    <div class="tafel-vraag">8 × 9 = ?</div>
+                    <div class="tafel-opties">
+                        <div class="tafel-optie" data-correct="false">70</div>
+                        <div class="tafel-optie" data-correct="true">72</div>
+                        <div class="tafel-optie" data-correct="false">74</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="tafel-opgave">
+                    <div class="tafel-vraag">12 × 4 = ?</div>
+                    <div class="tafel-opties">
+                        <div class="tafel-optie" data-correct="false">46</div>
+                        <div class="tafel-optie" data-correct="true">48</div>
+                        <div class="tafel-optie" data-correct="false">50</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#aftrekken" class="vorige">← Vorige oefening</a>
+                <a href="#delen" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Delen Oefening -->
+        <div class="oefening" id="delen">
+            <h1>Delen</h1>
+            <p>Oefen met het delen van getallen. Deze oefening helpt bij het begrijpen van deling.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Deel de getallen en kies het juiste antwoord.</p>
+            </div>
+            
+            <div class="delen-container">
+                <div class="delen-opgave">
+                    <div class="delen-vraag">6 ÷ 2 = ?</div>
+                    <div class="delen-opties">
+                        <div class="delen-optie" data-correct="true">3</div>
+                        <div class="delen-optie" data-correct="false">2</div>
+                        <div class="delen-optie" data-correct="false">4</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="delen-opgave">
+                    <div class="delen-vraag">15 ÷ 3 = ?</div>
+                    <div class="delen-opties">
+                        <div class="delen-optie" data-correct="false">4</div>
+                        <div class="delen-optie" data-correct="true">5</div>
+                        <div class="delen-optie" data-correct="false">6</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="delen-opgave">
+                    <div class="delen-vraag">24 ÷ 6 = ?</div>
+                    <div class="delen-opties">
+                        <div class="delen-optie" data-correct="true">4</div>
+                        <div class="delen-optie" data-correct="false">3</div>
+                        <div class="delen-optie" data-correct="false">5</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="delen-opgave">
+                    <div class="delen-vraag">36 ÷ 9 = ?</div>
+                    <div class="delen-opties">
+                        <div class="delen-optie" data-correct="false">3</div>
+                        <div class="delen-optie" data-correct="true">4</div>
+                        <div class="delen-optie" data-correct="false">5</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="delen-opgave">
+                    <div class="delen-vraag">48 ÷ 8 = ?</div>
+                    <div class="delen-opties">
+                        <div class="delen-optie" data-correct="false">5</div>
+                        <div class="delen-optie" data-correct="true">6</div>
+                        <div class="delen-optie" data-correct="false">7</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#vermenigvuldigen" class="vorige">← Vorige oefening</a>
+                <a href="#breuken" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Breuken Oefening -->
+        <div class="oefening" id="breuken">
+            <h1>Breuken</h1>
+            <p>Oefen met het begrijpen van breuken. Deze oefening helpt bij het visualiseren en berekenen van breuken.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Kijk naar de visuele weergave van de breuk en kies het juiste antwoord.</p>
+            </div>
+            
+            <div class="breuken-container">
+                <div class="breuk-opgave">
+                    <div class="breuk-vraag">Welke breuk is hier weergegeven?</div>
+                    <div class="breuk-visueel">
+                        <div class="breuk-cirkel">3/5</div>
+                    </div>
+                    <div class="breuk-opties">
+                        <div class="breuk-optie" data-correct="false">2/5</div>
+                        <div class="breuk-optie" data-correct="true">3/5</div>
+                        <div class="breuk-optie" data-correct="false">4/5</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="breuk-opgave">
+                    <div class="breuk-vraag">Wat is 1/2 + 1/4?</div>
+                    <div class="breuk-visueel">
+                        <div class="breuk-cirkel">1/2</div>
+                        <span>+</span>
+                        <div class="breuk-cirkel">1/4</div>
+                    </div>
+                    <div class="breuk-opties">
+                        <div class="breuk-optie" data-correct="false">1/4</div>
+                        <div class="breuk-optie" data-correct="true">3/4</div>
+                        <div class="breuk-optie" data-correct="false">1</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="breuk-opgave">
+                    <div class="breuk-vraag">Wat is 2/3 van 12?</div>
+                    <div class="breuk-visueel">
+                        <div class="breuk-cirkel">2/3</div>
+                        <span>× 12 = ?</span>
+                    </div>
+                    <div class="breuk-opties">
+                        <div class="breuk-optie" data-correct="false">6</div>
+                        <div class="breuk-optie" data-correct="true">8</div>
+                        <div class="breuk-optie" data-correct="false">10</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="breuk-opgave">
+                    <div class="breuk-vraag">Welke breuk is gelijk aan 0.5?</div>
+                    <div class="breuk-visueel">
+                        <div class="breuk-cirkel">0.5</div>
+                    </div>
+                    <div class="breuk-opties">
+                        <div class="breuk-optie" data-correct="true">1/2</div>
+                        <div class="breuk-optie" data-correct="false">1/3</div>
+                        <div class="breuk-optie" data-correct="false">1/4</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="breuk-opgave">
+                    <div class="breuk-vraag">Wat is 3/4 - 1/4?</div>
+                    <div class="breuk-visueel">
+                        <div class="breuk-cirkel">3/4</div>
+                        <span>-</span>
+                        <div class="breuk-cirkel">1/4</div>
+                    </div>
+                    <div class="breuk-opties">
+                        <div class="breuk-optie" data-correct="false">1/4</div>
+                        <div class="breuk-optie" data-correct="true">1/2</div>
+                        <div class="breuk-optie" data-correct="false">1</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#delen" class="vorige">← Vorige oefening</a>
+                <a href="#ai-generator" class="volgende">AI Generator →</a>
+            </div>
+        </div>
+        
+        <!-- AI Generator Sectie -->
+        <div class="ai-generator" id="ai-generator">
+            <h2>🤖 AI Rekenoefening Generator</h2>
+            <p>Genereer gepersonaliseerde rekenoefeningen op basis van leerdoelen, leeftijd en interesses.</p>
+            
+            <div class="generator-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leerdoel">Leerdoel</label>
+                        <select id="leerdoel">
+                            <option value="tellen">Tellen</option>
+                            <option value="optellen">Optellen</option>
+                            <option value="aftrekken">Aftrekken</option>
+                            <option value="vermenigvuldigen">Vermenigvuldigen</option>
+                            <option value="delen">Delen</option>
+                            <option value="breuken">Breuken</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leeftijd">Leeftijd</label>
+                        <select id="leeftijd">
+                            <option value="4-6">4-6 jaar</option>
+                            <option value="6-8">6-8 jaar</option>
+                            <option value="8-10">8-10 jaar</option>
+                            <option value="10-12">10-12 jaar</option>
+                            <option value="12-14">12-14 jaar</option>
+                            <option value="14-16">14-16 jaar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="moeilijkheid">Moeilijkheidsgraad</label>
+                        <select id="moeilijkheid">
+                            <option value="makkelijk">Makkelijk</option>
+                            <option value="normaal">Normaal</option>
+                            <option value="uitdagend">Uitdagend</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="thema">Thema / Interesses</label>
+                        <select id="thema">
+                            <option value="dieren">Dieren</option>
+                            <option value="voertuigen">Voertuigen</option>
+                            <option value="school">School</option>
+                            <option value="familie">Familie</option>
+                            <option value="natuur">Natuur</option>
+                            <option value="sport">Sport</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aantal">Aantal oefeningen</label>
+                        <select id="aantal">
+                            <option value="5">5 oefeningen</option>
+                            <option value="10">10 oefeningen</option>
+                            <option value="15">15 oefeningen</option>
+                            <option value="20">20 oefeningen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specifieke_wensen">Specifieke wensen (optioneel)</label>
+                        <textarea id="specifieke_wensen" placeholder="Bijv. focus op bepaalde tafels, specifieke getallenbereik..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="generateBtn">Oefeningen Genereren</button>
+                    <button class="btn btn-secondary" id="resetBtn">Formulier Resetten</button>
+                </div>
+            </div>
+            
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>AI genereert gepersonaliseerde oefeningen...</p>
+            </div>
+            
+            <div class="generated-exercises" id="generatedExercises">
+                <!-- Hier komen de gegenereerde oefeningen -->
+            </div>
+            
+            <div class="saved-exercises" id="savedExercises">
+                <h3>Opgeslagen Oefeningen</h3>
+                <div id="savedExercisesList">
+                    <!-- Hier komen de opgeslagen oefeningen -->
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#breuken" class="vorige">← Vorige oefening</a>
+                <a href="#tellen" class="volgende">Terug naar alle oefeningen →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-integratie</h3>
+                    <ul>
+                        <li>Automatische oefeningengenerator</li>
+                        <li>Nieuws- en update-monitor</li>
+                        <li>Adaptief leerpad</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Event listeners voor antwoordopties
+        document.querySelectorAll('.tellen-optie, .bewerking-optie, .tafel-optie, .delen-optie, .breuk-optie').forEach(optie => {
+            optie.addEventListener('click', function() {
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const feedback = this.closest('.tellen-opgave, .bewerking-opgave, .tafel-opgave, .delen-opgave, .breuk-opgave').querySelector('.feedback');
+                
+                if (isCorrect) {
+                    feedback.textContent = 'Goed gedaan!';
+                    feedback.className = 'feedback goed';
+                    feedback.style.display = 'block';
+                    
+                    // Maak de gekozen optie groen
+                    this.style.background = 'linear-gradient(to bottom, #4CAF50, #45a049)';
+                } else {
+                    feedback.textContent = 'Probeer het nog eens.';
+                    feedback.className = 'feedback fout';
+                    feedback.style.display = 'block';
+                    
+                    // Maak de gekozen optie rood
+                    this.style.background = 'linear-gradient(to bottom, #f44336, #d32f2f)';
+                }
+                
+                // Verberg feedback na 3 seconden
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 3000);
+            });
+        });
+        
+        // Smooth scroll voor anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // AI Generator Functionaliteit
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const leerdoel = document.getElementById('leerdoel').value;
+            const leeftijd = document.getElementById('leeftijd').value;
+            const moeilijkheid = document.getElementById('moeilijkheid').value;
+            const thema = document.getElementById('thema').value;
+            const aantal = document.getElementById('aantal').value;
+            const specifieke_wensen = document.getElementById('specifieke_wensen').value;
+            
+            // Toon loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('generatedExercises').innerHTML = '';
+            
+            // Simuleer AI verwerking (in een echte implementatie zou dit een API call zijn)
+            setTimeout(() => {
+                document.getElementById('loadingIndicator').style.display = 'none';
+                generateExercises(leerdoel, leeftijd, moeilijkheid, thema, aantal, specifieke_wensen);
+            }, 2000);
+        });
+        
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('leerdoel').value = 'tellen';
+            document.getElementById('leeftijd').value = '4-6';
+            document.getElementById('moeilijkheid').value = 'makkelijk';
+            document.getElementById('thema').value = 'dieren';
+            document.getElementById('aantal').value = '5';
+            document.getElementById('specifieke_wensen').value = '';
+        });
+        
+        // Functie om oefeningen te genereren
+        function generateExercises(leerdoel, leeftijd, moeilijkheid, thema, aantal, specifieke_wensen) {
+            const generatedExercises = document.getElementById('generatedExercises');
+            generatedExercises.innerHTML = '';
+            
+            // Voorbeeld oefeningen op basis van parameters
+            const exercises = getExampleExercises(leerdoel, thema, aantal, moeilijkheid);
+            
+            exercises.forEach((exercise, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = 'exercise-card';
+                exerciseCard.innerHTML = `
+                    <h3>
+                        Oefening ${index + 1}
+                        <div class="exercise-actions">
+                            <button class="btn-save" onclick="saveExercise(${index})">Opslaan</button>
+                            <button class="btn-edit" onclick="toggleEdit(${index})">Bewerken</button>
+                        </div>
+                    </h3>
+                    <div class="exercise-content" id="exercise-content-${index}">
+                        ${exercise.content}
+                    </div>
+                    <div class="exercise-edit" id="exercise-edit-${index}">
+                        <textarea>${exercise.editContent || exercise.content}</textarea>
+                        <div class="exercise-edit-actions">
+                            <button class="btn-save" onclick="saveEdit(${index})">Opslaan</button>
+                            <button class="btn-cancel" onclick="toggleEdit(${index})">Annuleren</button>
+                        </div>
+                    </div>
+                `;
+                generatedExercises.appendChild(exerciseCard);
+                
+                // Sla de oefening op in een globale array voor bewerking
+                if (!window.generatedExercisesList) {
+                    window.generatedExercisesList = [];
+                }
+                window.generatedExercisesList[index] = exercise;
+            });
+        }
+        
+        // Voorbeeld oefeningen
+        function getExampleExercises(leerdoel, thema, aantal, moeilijkheid) {
+            const exercises = [];
+            const count = parseInt(aantal);
+            
+            for (let i = 0; i < count; i++) {
+                let exercise;
+                
+                if (leerdoel === 'tellen') {
+                    exercise = {
+                        content: `<div class="tellen-opgave">
+                                    <div class="tellen-vraag">Hoeveel ${getRandomObject(thema)} zie je?</div>
+                                    <div class="tellen-objecten">
+                                        ${generateObjects(thema, getRandomNumber(1, 10))}
+                                    </div>
+                                    <div class="tellen-opties">
+                                        ${generateCountingOptions(getRandomNumber(1, 10))}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`,
+                        editContent: `<div class="tellen-opgave">
+                                    <div class="tellen-vraag">Hoeveel ${getRandomObject(thema)} zie je?</div>
+                                    <div class="tellen-objecten">
+                                        ${generateObjects(thema, getRandomNumber(1, 10))}
+                                    </div>
+                                    <div class="tellen-opties">
+                                        ${generateCountingOptions(getRandomNumber(1, 10))}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`
+                    };
+                } else if (leerdoel === 'optellen') {
+                    const num1 = getRandomNumber(1, 20);
+                    const num2 = getRandomNumber(1, 20);
+                    exercise = {
+                        content: `<div class="bewerking-opgave">
+                                    <div class="bewerking-vraag">${num1} + ${num2} = ?</div>
+                                    <div class="bewerking-opties">
+                                        ${generateMathOptions(num1 + num2, 'optellen', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`,
+                        editContent: `<div class="bewerking-opgave">
+                                    <div class="bewerking-vraag">${num1} + ${num2} = ?</div>
+                                    <div class="bewerking-opties">
+                                        ${generateMathOptions(num1 + num2, 'optellen', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`
+                    };
+                } else if (leerdoel === 'aftrekken') {
+                    const num1 = getRandomNumber(10, 30);
+                    const num2 = getRandomNumber(1, num1);
+                    exercise = {
+                        content: `<div class="bewerking-opgave">
+                                    <div class="bewerking-vraag">${num1} - ${num2} = ?</div>
+                                    <div class="bewerking-opties">
+                                        ${generateMathOptions(num1 - num2, 'aftrekken', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`,
+                        editContent: `<div class="bewerking-opgave">
+                                    <div class="bewerking-vraag">${num1} - ${num2} = ?</div>
+                                    <div class="bewerking-opties">
+                                        ${generateMathOptions(num1 - num2, 'aftrekken', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`
+                    };
+                } else if (leerdoel === 'vermenigvuldigen') {
+                    const num1 = getRandomNumber(1, 12);
+                    const num2 = getRandomNumber(1, 12);
+                    exercise = {
+                        content: `<div class="tafel-opgave">
+                                    <div class="tafel-vraag">${num1} × ${num2} = ?</div>
+                                    <div class="tafel-opties">
+                                        ${generateMathOptions(num1 * num2, 'vermenigvuldigen', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`,
+                        editContent: `<div class="tafel-opgave">
+                                    <div class="tafel-vraag">${num1} × ${num2} = ?</div>
+                                    <div class="tafel-opties">
+                                        ${generateMathOptions(num1 * num2, 'vermenigvuldigen', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`
+                    };
+                } else if (leerdoel === 'delen') {
+                    const num2 = getRandomNumber(2, 10);
+                    const result = getRandomNumber(2, 10);
+                    const num1 = num2 * result;
+                    exercise = {
+                        content: `<div class="delen-opgave">
+                                    <div class="delen-vraag">${num1} ÷ ${num2} = ?</div>
+                                    <div class="delen-opties">
+                                        ${generateMathOptions(result, 'delen', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`,
+                        editContent: `<div class="delen-opgave">
+                                    <div class="delen-vraag">${num1} ÷ ${num2} = ?</div>
+                                    <div class="delen-opties">
+                                        ${generateMathOptions(result, 'delen', num1, num2)}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`
+                    };
+                } else if (leerdoel === 'breuken') {
+                    exercise = {
+                        content: `<div class="breuk-opgave">
+                                    <div class="breuk-vraag">Welke breuk is hier weergegeven?</div>
+                                    <div class="breuk-visueel">
+                                        <div class="breuk-cirkel">${getRandomFraction()}</div>
+                                    </div>
+                                    <div class="breuk-opties">
+                                        ${generateFractionOptions()}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`,
+                        editContent: `<div class="breuk-opgave">
+                                    <div class="breuk-vraag">Welke breuk is hier weergegeven?</div>
+                                    <div class="breuk-visueel">
+                                        <div class="breuk-cirkel">${getRandomFraction()}</div>
+                                    </div>
+                                    <div class="breuk-opties">
+                                        ${generateFractionOptions()}
+                                    </div>
+                                    <div class="feedback"></div>
+                                </div>`
+                    };
+                }
+                
+                exercises.push(exercise);
+            }
+            
+            return exercises;
+        }
+        
+        // Hulpfuncties voor het genereren van voorbeeldinhoud
+        function getRandomObject(thema) {
+            const objectLists = {
+                dieren: ['honden', 'katten', 'vissen', 'vogels', 'konijnen', 'paarden', 'koeien', 'kippen', 'eenden', 'schapen'],
+                voertuigen: ['auto\'s', 'fietsen', 'bussen', 'treinen', 'vliegtuigen', 'boten', 'scooters', 'steps', 'helikopters', 'brandweerwagens'],
+                school: ['pennen', 'potloden', 'gommen', 'linealen', 'boeken', 'schriften', 'rugzakken', 'bureaus', 'stoelen', 'schoolborden'],
+                familie: ['moeders', 'vaders', 'broers', 'zussen', 'oma\'s', 'opa\'s', 'tantes', 'ooms', 'neven', 'nichten'],
+                natuur: ['bomen', 'bloemen', 'zonnen', 'manen', 'sterren', 'wolken', 'druppels', 'sneeuwvlokken', 'bladert', 'stenen'],
+                sport: ['ballen', 'goals', 'voetballen', 'hockeysticks', 'tennisrackets', 'zwembaden', 'renbanen', 'springtouwen', 'fietsen', 'skateboards']
+            };
+            
+            const objects = objectLists[thema] || objectLists.dieren;
+            return objects[Math.floor(Math.random() * objects.length)];
+        }
+        
+        function generateObjects(thema, count) {
+            const emojiLists = {
+                dieren: ['🐶', '🐱', '🐠', '🐦', '🐰', '🐴', '🐮', '🐔', '🦆', '🐑'],
+                voertuigen: ['🚗', '🚲', '🚌', '🚂', '✈️', '🚤', '🛵', '🛴', '🚁', '🚒'],
+                school: ['✏️', '📝', '📏', '📐', '📚', '📓', '🎒', '🪑', '🪑', '📋'],
+                familie: ['👩', '👨', '👦', '👧', '👵', '👴', '👩', '👨', '👦', '👧'],
+                natuur: ['🌳', '🌷', '☀️', '🌙', '⭐', '☁️', '💧', '❄️', '🍃', '🪨'],
+                sport: ['⚽', '🥅', '⚽', '🏑', '🎾', '🏊', '🏃', '🪢', '🚴', '🛹']
+            };
+            
+            const emojis = emojiLists[thema] || emojiLists.dieren;
+            let objectsHTML = '';
+            for (let i = 0; i < count; i++) {
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                objectsHTML += `<div class="tellen-object">${emoji}</div>`;
+            }
+            return objectsHTML;
+        }
+        
+        function generateCountingOptions(correctCount) {
+            let optionsHTML = '';
+            const options = [correctCount];
+            
+            // Voeg twee foute opties toe
+            while (options.length < 3) {
+                const wrongOption = getRandomNumber(1, 10);
+                if (!options.includes(wrongOption) && wrongOption !== correctCount) {
+                    options.push(wrongOption);
+                }
+            }
+            
+            // Shuffle de opties
+            options.sort(() => Math.random() - 0.5);
+            
+            options.forEach(option => {
+                const isCorrect = option === correctCount;
+                optionsHTML += `<div class="tellen-optie" data-correct="${isCorrect}">${option}</div>`;
+            });
+            
+            return optionsHTML;
+        }
+        
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        function generateMathOptions(correctAnswer, operation, num1, num2) {
+            let optionsHTML = '';
+            const options = [correctAnswer];
+            
+            // Voeg twee foute opties toe
+            while (options.length < 3) {
+                let wrongOption;
+                if (operation === 'optellen') {
+                    wrongOption = getRandomNumber(num1 + num2 - 5, num1 + num2 + 5);
+                } else if (operation === 'aftrekken') {
+                    wrongOption = getRandomNumber(num1 - num2 - 5, num1 - num2 + 5);
+                } else if (operation === 'vermenigvuldigen') {
+                    wrongOption = getRandomNumber(num1 * num2 - 10, num1 * num2 + 10);
+                } else if (operation === 'delen') {
+                    wrongOption = getRandomNumber(correctAnswer - 3, correctAnswer + 3);
+                }
+                
+                if (!options.includes(wrongOption) && wrongOption !== correctAnswer && wrongOption > 0) {
+                    options.push(wrongOption);
+                }
+            }
+            
+            // Shuffle de opties
+            options.sort(() => Math.random() - 0.5);
+            
+            options.forEach(option => {
+                const isCorrect = option === correctAnswer;
+                const className = operation === 'vermenigvuldigen' ? 'tafel-optie' : 
+                                 operation === 'delen' ? 'delen-optie' : 'bewerking-optie';
+                optionsHTML += `<div class="${className}" data-correct="${isCorrect}">${option}</div>`;
+            });
+            
+            return optionsHTML;
+        }
+        
+        function getRandomFraction() {
+            const fractions = ['1/2', '1/3', '2/3', '1/4', '3/4', '2/5', '3/5', '4/5'];
+            return fractions[Math.floor(Math.random() * fractions.length)];
+        }
+        
+        function generateFractionOptions() {
+            const fractions = ['1/2', '1/3', '2/3', '1/4', '3/4', '2/5', '3/5', '4/5'];
+            const correctFraction = getRandomFraction();
+            let optionsHTML = '';
+            const options = [correctFraction];
+            
+            // Voeg twee foute opties toe
+            while (options.length < 3) {
+                const wrongOption = fractions[Math.floor(Math.random() * fractions.length)];
+                if (!options.includes(wrongOption) && wrongOption !== correctFraction) {
+                    options.push(wrongOption);
+                }
+            }
+            
+            // Shuffle de opties
+            options.sort(() => Math.random() - 0.5);
+            
+            options.forEach(option => {
+                const isCorrect = option === correctFraction;
+                optionsHTML += `<div class="breuk-optie" data-correct="${isCorrect}">${option}</div>`;
+            });
+            
+            return optionsHTML;
+        }
+        
+        // Bewerkingsfuncties
+        function toggleEdit(index) {
+            const content = document.getElementById(`exercise-content-${index}`);
+            const edit = document.getElementById(`exercise-edit-${index}`);
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                edit.style.display = 'none';
+            } else {
+                content.style.display = 'none';
+                edit.style.display = 'block';
+            }
+        }
+        
+        function saveEdit(index) {
+            const editTextarea = document.querySelector(`#exercise-edit-${index} textarea`);
+            const content = document.getElementById(`exercise-content-${index}`);
+            
+            content.innerHTML = editTextarea.value;
+            toggleEdit(index);
+            
+            // Update de oefening in de globale lijst
+            if (window.generatedExercisesList && window.generatedExercisesList[index]) {
+                window.generatedExercisesList[index].content = editTextarea.value;
+            }
+        }
+        
+        function saveExercise(index) {
+            if (!window.generatedExercisesList || !window.generatedExercisesList[index]) {
+                alert('Oefening niet gevonden!');
+                return;
+            }
+            
+            // Haal opgeslagen oefeningen op uit localStorage
+            let savedExercises = JSON.parse(localStorage.getItem('savedExercises')) || [];
+            
+            // Voeg de nieuwe oefening toe
+            savedExercises.push({
+                id: Date.now(),
+                content: window.generatedExercisesList[index].content,
+                timestamp: new Date().toLocaleString()
+            });
+            
+            // Sla op in localStorage
+            localStorage.setItem('savedExercises', JSON.stringify(savedExercises));
+            
+            // Update de weergave
+            displaySavedExercises();
+            
+            alert('Oefening opgeslagen!');
+        }
+        
+        function displaySavedExercises() {
+            const savedExercisesList = document.getElementById('savedExercisesList');
+            const savedExercises = JSON.parse(localStorage.getItem('savedExercises')) || [];
+            
+            if (savedExercises.length === 0) {
+                savedExercisesList.innerHTML = '<div class="empty-state">Nog geen opgeslagen oefeningen</div>';
+                return;
+            }
+            
+            savedExercisesList.innerHTML = '';
+            
+            savedExercises.forEach((exercise, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = 'exercise-card';
+                exerciseCard.innerHTML = `
+                    <h3>
+                        Opgeslagen Oefening ${index + 1}
+                        <div class="exercise-actions">
+                            <button class="btn-delete" onclick="deleteSavedExercise(${exercise.id})">Verwijderen</button>
+                        </div>
+                    </h3>
+                    <div class="exercise-content">
+                        ${exercise.content}
+                    </div>
+                    <p><small>Opgeslagen op: ${exercise.timestamp}</small></p>
+                `;
+                savedExercisesList.appendChild(exerciseCard);
+            });
+        }
+        
+        function deleteSavedExercise(id) {
+            let savedExercises = JSON.parse(localStorage.getItem('savedExercises')) || [];
+            savedExercises = savedExercises.filter(exercise => exercise.id !== id);
+            localStorage.setItem('savedExercises', JSON.stringify(savedExercises));
+            displaySavedExercises();
+        }
+        
+        // Laad opgeslagen oefeningen bij het laden van de pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            displaySavedExercises();
+            
+            // Voeg event listeners toe voor gegenereerde oefeningen
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('tellen-optie') || 
+                    e.target.classList.contains('bewerking-optie') || 
+                    e.target.classList.contains('tafel-optie') || 
+                    e.target.classList.contains('delen-optie') || 
+                    e.target.classList.contains('breuk-optie')) {
+                    
+                    const isCorrect = e.target.getAttribute('data-correct') === 'true';
+                    const feedback = e.target.closest('.tellen-opgave, .bewerking-opgave, .tafel-opgave, .delen-opgave, .breuk-opgave').querySelector('.feedback');
+                    
+                    if (isCorrect) {
+                        feedback.textContent = 'Goed gedaan!';
+                        feedback.className = 'feedback goed';
+                        feedback.style.display = 'block';
+                        
+                        // Maak de gekozen optie groen
+                        e.target.style.background = 'linear-gradient(to bottom, #4CAF50, #45a049)';
+                    } else {
+                        feedback.textContent = 'Probeer het nog eens.';
+                        feedback.className = 'feedback fout';
+                        feedback.style.display = 'block';
+                        
+                        // Maak de gekozen optie rood
+                        e.target.style.background = 'linear-gradient(to bottom, #f44336, #d32f2f)';
+                    }
+                    
+                    // Verberg feedback na 3 seconden
+                    setTimeout(() => {
+                        feedback.style.display = 'none';
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
