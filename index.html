@@ -429,13 +429,13 @@
             color: white;
         }
         
-        /* MINHO AI CHATBOT STYLES */
+        /* VERBETERDE MINHO AI CHATBOT STYLES */
         .minho-chatbot {
             position: fixed;
-            bottom: 20px;
+            bottom: 120px; /* Hoger geplaatst */
             right: 20px;
             width: 380px;
-            height: 500px;
+            height: 480px; /* Iets korter voor betere toegang */
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -506,6 +506,7 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            min-height: 70px; /* Zorg voor voldoende hoogte */
         }
         
         .minho-input {
@@ -514,7 +515,6 @@
             border: 1px solid #ddd;
             border-radius: 25px;
             font-size: 0.9rem;
-            margin: 0 5px;
         }
         
         .minho-send {
@@ -527,6 +527,7 @@
             font-weight: bold;
             transition: background 0.3s;
             white-space: nowrap;
+            min-width: 80px; /* Zorg voor voldoende breedte */
         }
         
         .minho-send:hover {
@@ -618,6 +619,37 @@
             align-self: flex-start;
             color: #666;
             font-style: italic;
+        }
+        
+        .api-key-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--autism-very-light-blue);
+            border-radius: 10px;
+        }
+        
+        .api-key-section p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .api-key-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .save-key-btn {
+            background: var(--autism-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
         }
         
         .typing-dots {
@@ -768,7 +800,8 @@
             .minho-chatbot {
                 width: 95%;
                 right: 2.5%;
-                height: 70%;
+                height: 65%; /* Meer ruimte op mobiel */
+                bottom: 100px;
             }
             
             .minho-toggle {
@@ -778,7 +811,8 @@
             }
             
             .minho-footer {
-                padding: 10px;
+                padding: 12px;
+                min-height: 65px;
             }
             
             .minho-input {
@@ -789,6 +823,7 @@
             .minho-send {
                 padding: 10px 15px;
                 font-size: 0.85rem;
+                min-width: 70px;
             }
         }
     </style>
@@ -1097,7 +1132,7 @@
         </div>
     </footer>
     
-    <!-- MINHO AI CHATBOT - VERBETERDE VERSIE -->
+    <!-- VERBETERDE MINHO AI CHATBOT -->
     <div class="minho-toggle">
         🐧
     </div>
@@ -1118,11 +1153,17 @@
                 Hallo! Ik ben Minho de pinguïn! 🐧 Waggell! Ik ben hier om je te helpen met leren en oefenen.
             </div>
             <div class="minho-message minho-bot-message">
-                Ik kan je helpen met oefeningen, spelletjes en vragen over leren! Wat wil je vandaag doen?
+                Om met mij te praten, heb je een OpenAI API key nodig. Die kun je gratis aanmaken op platform.openai.com!
+                <div class="api-key-section">
+                    <p><strong>Stap 1:</strong> Ga naar <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--autism-blue);">platform.openai.com/api-keys</a></p>
+                    <p><strong>Stap 2:</strong> Maak een account en kopieer je API key</p>
+                    <p><strong>Stap 3:</strong> Plak je key hieronder:</p>
+                    <input type="password" class="api-key-input" id="minhoApiKeyInput" placeholder="Plak hier je OpenAI API key">
+                    <button class="save-key-btn" onclick="saveApiKey()">Key Opslaan</button>
+                </div>
                 <div class="minho-quick-actions">
-                    <button class="minho-quick-action" data-action="kleuren">Kleuren leren</button>
-                    <button class="minho-quick-action" data-action="rekenen">Rekenen</button>
-                    <button class="minho-quick-action" data-action="lezen">Lezen</button>
+                    <button class="minho-quick-action" data-action="uitleg">Hoe krijg ik een key?</button>
+                    <button class="minho-quick-action" data-action="kosten">Zijn er kosten?</button>
                 </div>
             </div>
         </div>
@@ -1174,7 +1215,7 @@
             });
         });
         
-        // MINHO AI CHATBOT - VERBETERDE VERSIE
+        // VERBETERDE MINHO AI CHATBOT
         const minhoToggle = document.querySelector('.minho-toggle');
         const minhoChatbot = document.querySelector('.minho-chatbot');
         const minhoInput = document.getElementById('minhoInput');
@@ -1182,8 +1223,32 @@
         const minhoBody = document.getElementById('minhoBody');
         const minhoClose = document.querySelector('.minho-close');
 
-        // 🔑 🔑 🔑 VERVANG HIER JE API KEY 🔑 🔑 🔑
-        const MINHO_API_KEY = '';
+        let MINHO_API_KEY = '';
+
+        function saveApiKey() {
+            const keyInput = document.getElementById('minhoApiKeyInput');
+            const key = keyInput.value.trim();
+            
+            if (key && key.startsWith('sk-')) {
+                MINHO_API_KEY = key;
+                localStorage.setItem('minhoApiKey', MINHO_API_KEY);
+                document.querySelector('.api-key-section').style.display = 'none';
+                addMinhoMessage('Super! API key opgeslagen! 🎉 Je kunt nu met Minho praten! Stel me een vraag!', 'bot');
+                minhoInput.focus();
+            } else {
+                addMinhoMessage('Oeps! Dat lijkt geen geldige API key. Zorg dat hij begint met "sk-" en probeer opnieuw.', 'bot');
+            }
+        }
+
+        // Bij laden pagina: check of key al opgeslagen is
+        window.addEventListener('load', function() {
+            const savedKey = localStorage.getItem('minhoApiKey');
+            if (savedKey) {
+                MINHO_API_KEY = savedKey;
+                document.querySelector('.api-key-section').style.display = 'none';
+                addMinhoMessage('Hallo! Je API key is geladen. Je kunt direct met Minho praten! 🐧', 'bot');
+            }
+        });
 
         // Toggle chatbot open/dicht
         minhoToggle.addEventListener('click', function(e) {
@@ -1220,6 +1285,12 @@
 
         async function sendToMinhoAI() {
             const message = minhoInput.value.trim();
+            
+            if (!MINHO_API_KEY) {
+                addMinhoMessage('Je moet eerst een API key invoeren om met Minho te praten! 🗝️', 'bot');
+                document.querySelector('.api-key-section').style.display = 'block';
+                return;
+            }
             
             if (!message) return;
             
@@ -1296,81 +1367,88 @@ SPREEK STIJL:
 - Wees speels en enthousiast
 - Houd zinnen kort (max 2 zinnen per antwoord)
 - Noem altijd de complete link wanneer relevant`
-                    },
-                    {
-                        role: 'user',
-                        content: message
-                    }
-                ],
-                temperature: 0.8,
-                max_tokens: 200  // Meer tokens voor betere gesprekken
-            })
+                            },
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ],
+                        temperature: 0.8,
+                        max_tokens: 200
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Verwijder typing indicator
+                typingIndicator.remove();
+                
+                if (data.choices && data.choices[0]) {
+                    const antwoord = data.choices[0].message.content;
+                    addMinhoMessage(antwoord, 'bot');
+                } else {
+                    addMinhoMessage('Oeps! Minho is even verdwaald in de sneeuwstorm... 🐧❄️', 'bot');
+                }
+            } catch (error) {
+                // Verwijder typing indicator
+                typingIndicator.remove();
+                addMinhoMessage('Waggell! Er ging iets mis. Controleer je API key en internetverbinding! 📡', 'bot');
+            }
+        }
+
+        function addMinhoMessage(text, sender) {
+            const message = document.createElement('div');
+            message.classList.add('minho-message');
+            message.classList.add(sender === 'user' ? 'minho-user-message' : 'minho-bot-message');
+            message.textContent = text;
+            minhoBody.appendChild(message);
+            minhoBody.scrollTop = minhoBody.scrollHeight;
+        }
+
+        function handleMinhoQuickAction(action) {
+            let response = '';
+            
+            switch(action) {
+                case 'uitleg':
+                    response = 'Waggell! Een API key krijg je zo: 🗝️\n1. Ga naar platform.openai.com/api-keys\n2. Maak een gratis account\n3. Klik op "Create new secret key"\n4. Kopieer de key en plak hem hier!';
+                    break;
+                case 'kosten':
+                    response = 'Je krijgt $5 gratis credits bij aanmelding! 💰 Daarna betaal je alleen voor wat je gebruikt (paar cent per gesprek). Je kunt een budget instellen zodat je nooit te veel uitgeeft!';
+                    break;
+                case 'kleuren':
+                    response = 'Waggell! Kleuren leren is superleuk! 🎨 Ga naar: kleurplaten.html Daar kun je alle kleuren oefenen! Wat is jouw favoriete kleur?';
+                    break;
+                case 'rekenen':
+                    response = 'Rekenen is een avontuur! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html Welk getal vind je het leukst?';
+                    break;
+                case 'lezen':
+                    response = 'Lezen opent nieuwe werelden! 📖 Ontdek onze leesoefeningen op: leesproblemen.html Welk verhaal zou je willen lezen?';
+                    break;
+            }
+            
+            addMinhoMessage(response, 'bot');
+        }
+
+        // Click outside om chatbot te sluiten
+        document.addEventListener('click', function(event) {
+            if (minhoChatbot.style.display === 'flex') {
+                const isMinhoChatbot = event.target.closest('.minho-chatbot');
+                const isMinhoToggle = event.target.closest('.minho-toggle');
+                
+                if (!isMinhoChatbot && !isMinhoToggle) {
+                    minhoChatbot.style.display = 'none';
+                }
+            }
         });
-        
-        const data = await response.json();
-        
-        // Verwijder typing indicator
-        typingIndicator.remove();
-        
-        if (data.choices && data.choices[0]) {
-            const antwoord = data.choices[0].message.content;
-            addMinhoMessage(antwoord, 'bot');
-        } else {
-            addMinhoMessage('Oeps! Minho is even verdwaald in de sneeuwstorm... 🐧❄️', 'bot');
-        }
-    } catch (error) {
-        // Verwijder typing indicator
-        typingIndicator.remove();
-        addMinhoMessage('Waggell! Minho is even moe... Probeer het later opnieuw! 🐧💤', 'bot');
-    }
-}
 
-function addMinhoMessage(text, sender) {
-    const message = document.createElement('div');
-    message.classList.add('minho-message');
-    message.classList.add(sender === 'user' ? 'minho-user-message' : 'minho-bot-message');
-    message.textContent = text;
-    minhoBody.appendChild(message);
-    minhoBody.scrollTop = minhoBody.scrollHeight;
-}
-
-function handleMinhoQuickAction(action) {
-    let response = '';
-    
-    switch(action) {
-        case 'kleuren':
-            response = 'Waggell! Kleuren leren is superleuk! 🎨 Ga naar: kleurplaten.html Daar kun je alle kleuren oefenen! Wat is jouw favoriete kleur?';
-            break;
-        case 'rekenen':
-            response = 'Rekenen is een avontuur! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html Welk getal vind je het leukst?';
-            break;
-        case 'lezen':
-            response = 'Lezen opent nieuwe werelden! 📖 Ontdek onze leesoefeningen op: leesproblemen.html Welk verhaal zou je willen lezen?';
-            break;
-    }
-    
-    addMinhoMessage(response, 'bot');
-}
-
-// Click outside om chatbot te sluiten
-document.addEventListener('click', function(event) {
-    if (minhoChatbot.style.display === 'flex') {
-        const isMinhoChatbot = event.target.closest('.minho-chatbot');
-        const isMinhoToggle = event.target.closest('.minho-toggle');
-        
-        if (!isMinhoChatbot && !isMinhoToggle) {
-            minhoChatbot.style.display = 'none';
-        }
-    }
-});
-
-// Voorkom dat clicks binnen de chatbot de buitenste click triggeren
-minhoChatbot.addEventListener('click', function(event) {
-    event.stopPropagation();
-});
+        // Voorkom dat clicks binnen de chatbot de buitenste click triggeren
+        minhoChatbot.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
     </script>
 </body>
 </html>
+
 
 
 
