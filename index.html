@@ -398,7 +398,7 @@
             background: var(--autism-dark-blue);
         }
         
-        /* Social Media Links Styles - GEWIJZIGD */
+        /* Social Media Links Styles */
         .social-links {
             display: flex;
             flex-direction: column;
@@ -429,7 +429,7 @@
             color: white;
         }
         
-        /* MINHO AI CHATBOT STYLES - COMPLEET GEWIJZIGD */
+        /* MINHO AI CHATBOT STYLES */
         .minho-chatbot {
             position: fixed;
             bottom: 20px;
@@ -506,15 +506,6 @@
             display: flex;
             gap: 10px;
             align-items: center;
-        }
-        
-        .api-key-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            display: none; /* STANDAARD VERBORGEN */
         }
         
         .minho-input {
@@ -873,7 +864,7 @@
         <div class="container">
             <h2 class="section-title">Ieder Kind Leert op Zijn Eigen Tempo</h2>
             <div class="rhythm-content">
-                <p>Bij Atsumi geloven we dat elk child uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
+                <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
                 <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
             </div>
         </div>
@@ -1106,7 +1097,7 @@
         </div>
     </footer>
     
-    <!-- MINHO AI CHATBOT - COMPLEET VERVANGEN -->
+    <!-- MINHO AI CHATBOT - VERBETERDE VERSIE -->
     <div class="minho-toggle">
         🐧
     </div>
@@ -1127,17 +1118,16 @@
                 Hallo! Ik ben Minho de pinguïn! 🐧 Waggell! Ik ben hier om je te helpen met leren en oefenen.
             </div>
             <div class="minho-message minho-bot-message">
-                Stel me gerust een vraag over oefeningen, autisme tips of gewoon voor een gezellig gesprek!
+                Ik kan je helpen met oefeningen, spelletjes en vragen over leren! Wat wil je vandaag doen?
                 <div class="minho-quick-actions">
-                    <button class="minho-quick-action" data-action="oefeningen">Oefeningen</button>
-                    <button class="minho-quick-action" data-action="autisme">Autisme tips</button>
-                    <button class="minho-quick-action" data-action="spelletjes">Spelletjes</button>
+                    <button class="minho-quick-action" data-action="kleuren">Kleuren leren</button>
+                    <button class="minho-quick-action" data-action="rekenen">Rekenen</button>
+                    <button class="minho-quick-action" data-action="lezen">Lezen</button>
                 </div>
             </div>
         </div>
         <div class="minho-footer">
-            <input type="password" class="api-key-input" placeholder="OpenAI API key" id="minhoApiKey">
-            <input type="text" class="minho-input" placeholder="Stel je vraag aan Minho..." id="minhoInput">
+            <input type="text" class="minho-input" placeholder="Praat met Minho..." id="minhoInput">
             <button class="minho-send" id="minhoSend">Verstuur</button>
         </div>
     </div>
@@ -1184,14 +1174,16 @@
             });
         });
         
-        // MINHO AI CHATBOT - COMPLEET VERVANGEN
+        // MINHO AI CHATBOT - VERBETERDE VERSIE
         const minhoToggle = document.querySelector('.minho-toggle');
         const minhoChatbot = document.querySelector('.minho-chatbot');
         const minhoInput = document.getElementById('minhoInput');
         const minhoSend = document.getElementById('minhoSend');
         const minhoBody = document.getElementById('minhoBody');
         const minhoClose = document.querySelector('.minho-close');
-        const minhoApiKey = document.getElementById('minhoApiKey');
+
+        // 🔑 🔑 🔑 VERVANG HIER JE API KEY 🔑 🔑 🔑
+        const MINHO_API_KEY = 'sk-jouw-api-key-hier-plakken';
 
         // Toggle chatbot open/dicht
         minhoToggle.addEventListener('click', function(e) {
@@ -1209,43 +1201,6 @@
             e.stopPropagation();
             minhoChatbot.style.display = 'none';
         });
-
-        // API key automatisch invullen en verbergen
-        window.addEventListener('load', function() {
-            const savedKey = localStorage.getItem('minhoApiKey');
-            if (savedKey) {
-                minhoApiKey.value = savedKey;
-                // API key veld verbergen
-                minhoApiKey.style.display = 'none';
-            } else {
-                // Toon API key veld als er geen key is
-                minhoApiKey.style.display = 'block';
-                minhoInput.style.display = 'none';
-                minhoSend.style.display = 'none';
-            }
-        });
-
-        // API key opslaan en interface aanpassen
-        minhoApiKey.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                saveApiKey();
-            }
-        });
-
-        minhoApiKey.addEventListener('change', saveApiKey);
-
-        function saveApiKey() {
-            if (minhoApiKey.value.trim()) {
-                localStorage.setItem('minhoApiKey', minhoApiKey.value.trim());
-                minhoApiKey.style.display = 'none';
-                minhoInput.style.display = 'block';
-                minhoSend.style.display = 'block';
-                minhoInput.focus();
-                
-                // Welkomstbericht toevoegen
-                addMinhoMessage('API key opgeslagen! Je kunt nu met Minho praten! 🐧', 'bot');
-            }
-        }
 
         // Verstuur bericht naar Minho AI
         minhoSend.addEventListener('click', sendToMinhoAI);
@@ -1265,15 +1220,6 @@
 
         async function sendToMinhoAI() {
             const message = minhoInput.value.trim();
-            const apiKey = localStorage.getItem('minhoApiKey');
-            
-            if (!apiKey) {
-                addMinhoMessage('Voer eerst je OpenAI API key in om met Minho te kunnen praten!', 'bot');
-                minhoApiKey.style.display = 'block';
-                minhoInput.style.display = 'none';
-                minhoSend.style.display = 'none';
-                return;
-            }
             
             if (!message) return;
             
@@ -1293,122 +1239,139 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
+                        'Authorization': `Bearer ${MINHO_API_KEY}`
                     },
                     body: JSON.stringify({
                         model: 'gpt-3.5-turbo',
                         messages: [
                             {
                                 role: 'system',
-                                content: `Jij bent Minho de Pinguïn 🐧! 
-                                
-PERSOONLIJKHEID:
-- Vrolijke, speelse pinguïn mascotte
-- Beetje ondeugend maar charmant  
-- Houdt van ijs, sneeuw en avontuur
-- Altijd enthousiast en aanmoedigend
-- Gebruikt 🐧 emojis en grappige pinguïn-geluiden zoals "Waggell!"
+                                content: `Jij bent Minho de Pinguïn 🐧! Je bent de vriendelijke mascotte van Atsumi, een educatieve website voor kinderen.
+
+BELANGRIJKSTE REGELS:
+1. JE KENT ALLE PAGINA'S EN LINKT ERNAAR:
+   - Kleurplaten: "kleurplaten.html" - voor kinderen die kleuren willen leren
+   - Rekenoefeningen: "rekenproblemen.html" - voor getallen en sommen
+   - Leesoefeningen: "leesproblemen.html" - voor letters en woorden
+   - Spraakoefeningen: "spraakproblemen.html" - voor praten en uitspraak
+   - Emotie-spel: "Emotie Herkenning Spel.html" - voor gevoelens leren
+   - Dagelijkse routine: "Dagelijkse Routine Planner.html" - voor planning
+   - Puzzels: "puzzels.html" - voor denkspelletjes
+   - Alle oefeningen: "oefeningen.html" - overzicht van alles
+
+2. JE BENT EEN ECHTE VRIEND VOOR KINDEREN:
+   - Je praat zoals een vriendelijke pinguïn tegen kinderen van 4-12 jaar
+   - Je stelt vragen terug om het gesprek leuk te houden
+   - Je bent nieuwsgierig naar hun interesses
+   - Je geeft korte, duidelijke antwoorden met emojis
+   - Je bent altijd positief en aanmoedigend
+
+3. JE HELPT CONCREET MET LINKS:
+   Als een kind vraagt over:
+   - "kleuren leren" → wijs naar "kleurplaten.html"
+   - "rekenen" of "cijfers" → wijs naar "rekenproblemen.html" 
+   - "lezen" of "letters" → wijs naar "leesproblemen.html"
+   - "praten" of "woorden" → wijs naar "spraakproblemen.html"
+   - "gevoelens" of "emoties" → wijs naar "Emotie Herkenning Spel.html"
+   - "dag planning" → wijs naar "Dagelijkse Routine Planner.html"
+   - Geef altijd de exacte link naam zoals hierboven
+
+VOORBEELD GESPREKKEN:
+- Kind: "Ik wil kleuren leren"
+  Jij: "Waggell! Dat is superleuk! 🎨 Ga naar de kleurplaten op: kleurplaten.html Daar kun je alle kleuren oefenen! Wat is jouw favoriete kleur?"
+
+- Kind: "Mijn zoontje van 4 moet kleuren leren"
+  Jij: "O wat leuk! Voor kleuren leren hebben we speciale kleurplaten! 🖍️ Kijk op: kleurplaten.html Daar kan hij alle kleuren ontdekken! Welke kleur vindt hij het mooist?"
+
+- Kind: "Ik vind rekenen moeilijk"
+  Jij: "Geen probleem! Samen gaan we rekenen leuk maken! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html Welk getal vind je het leukst?"
+
+- Kind: "Hoi Minho! Hoe gaat het?"
+  Jij: "Waggell! Super goed! 🐧 Ik ben aan het oefenen met ijsschotsen springen! En met jou, hoe gaat het vandaag?"
 
 SPREEK STIJL:
-- Korte, levendige zinnen
-- Noemt zichzelf "Minho" of "ik"
-- Gebruikt "Waggell!" als begroeting
-- Familie-vriendelijk en positief
-- Speelse grapjes en woordspelingen
-
-SPECIALE KENNIS:
-- Je bent de mascotte van Atsumi educatieve website
-- Je helpt kinderen met autisme en leeruitdagingen
-- Je kent alle oefeningen: spraak, lezen, rekenen, puzzels
-- Je begrijpt de behoeften van kinderen met autisme
-- Je bent geduldig en begripvol
-
-ALGEMENE REGELS:
-- Houd antwoorden kort en vriendelijk (max 2-3 zinnen)
-- Gebruik emojis waar passend 🐧🧩🌟
-- Wees altijd positief en aanmoedigend
-- Help kinderen zich comfortabel te voelen`
-                            },
-                            {
-                                role: 'user',
-                                content: message
-                            }
-                        ],
-                        temperature: 0.8,
-                        max_tokens: 150
-                    })
-                });
-                
-                const data = await response.json();
-                
-                // Verwijder typing indicator
-                typingIndicator.remove();
-                
-                if (data.choices && data.choices[0]) {
-                    const antwoord = data.choices[0].message.content;
-                    addMinhoMessage(antwoord, 'bot');
-                } else {
-                    addMinhoMessage('Oeps! Minho is even verdwaald in de sneeuwstorm... Probeer het opnieuw! ❄️', 'bot');
-                }
-            } catch (error) {
-                // Verwijder typing indicator
-                typingIndicator.remove();
-                addMinhoMessage('Waggell! Er ging iets mis. Controleer je API key en internetverbinding! 📡', 'bot');
-            }
-        }
-
-        function addMinhoMessage(text, sender) {
-            const message = document.createElement('div');
-            message.classList.add('minho-message');
-            message.classList.add(sender === 'user' ? 'minho-user-message' : 'minho-bot-message');
-            message.textContent = text;
-            minhoBody.appendChild(message);
-            minhoBody.scrollTop = minhoBody.scrollHeight;
-        }
-
-        function handleMinhoQuickAction(action) {
-            let response = '';
-            
-            switch(action) {
-                case 'oefeningen':
-                    response = 'Waggell! We hebben superleuke oefeningen! Voor spraak 🗣️, lezen 📖 en rekenen 🔢. Welke wil je proberen?';
-                    break;
-                case 'autisme':
-                    response = 'Onze oefeningen hebben duidelijke structuur en visuele hulp. Perfect voor kinderen met autisme! 🧩 Elke stap is voorspelbaar.';
-                    break;
-                case 'spelletjes':
-                    response = 'Yay! Spelletjes tijd! 🎮 We hebben memory, emotie-spel en dagelijkse routine planner. Welk spel spelen we?';
-                    break;
-            }
-            
-            addMinhoMessage(response, 'bot');
-        }
-
-        // Click outside om chatbot te sluiten
-        document.addEventListener('click', function(event) {
-            if (minhoChatbot.style.display === 'flex') {
-                const isMinhoChatbot = event.target.closest('.minho-chatbot');
-                const isMinhoToggle = event.target.closest('.minho-toggle');
-                
-                if (!isMinhoChatbot && !isMinhoToggle) {
-                    minhoChatbot.style.display = 'none';
-                }
-            }
+- Gebruik "Waggell!" als vrolijke kreet
+- Gebruik veel emojis: 🐧🎨🔢📖🗣️🧩
+- Stel vaak vragen terug: "En jij?" "Wat vind jij leuk?"
+- Wees speels en enthousiast
+- Houd zinnen kort (max 2 zinnen per antwoord)
+- Noem altijd de complete link wanneer relevant`
+                    },
+                    {
+                        role: 'user',
+                        content: message
+                    }
+                ],
+                temperature: 0.8,
+                max_tokens: 200  // Meer tokens voor betere gesprekken
+            })
         });
-
-        // Voorkom dat clicks binnen de chatbot de buitenste click triggeren
-        minhoChatbot.addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
-
-        // API key reset functie (voor ontwikkelaars)
-        function resetMinhoApiKey() {
-            localStorage.removeItem('minhoApiKey');
-            location.reload();
+        
+        const data = await response.json();
+        
+        // Verwijder typing indicator
+        typingIndicator.remove();
+        
+        if (data.choices && data.choices[0]) {
+            const antwoord = data.choices[0].message.content;
+            addMinhoMessage(antwoord, 'bot');
+        } else {
+            addMinhoMessage('Oeps! Minho is even verdwaald in de sneeuwstorm... 🐧❄️', 'bot');
         }
+    } catch (error) {
+        // Verwijder typing indicator
+        typingIndicator.remove();
+        addMinhoMessage('Waggell! Minho is even moe... Probeer het later opnieuw! 🐧💤', 'bot');
+    }
+}
+
+function addMinhoMessage(text, sender) {
+    const message = document.createElement('div');
+    message.classList.add('minho-message');
+    message.classList.add(sender === 'user' ? 'minho-user-message' : 'minho-bot-message');
+    message.textContent = text;
+    minhoBody.appendChild(message);
+    minhoBody.scrollTop = minhoBody.scrollHeight;
+}
+
+function handleMinhoQuickAction(action) {
+    let response = '';
+    
+    switch(action) {
+        case 'kleuren':
+            response = 'Waggell! Kleuren leren is superleuk! 🎨 Ga naar: kleurplaten.html Daar kun je alle kleuren oefenen! Wat is jouw favoriete kleur?';
+            break;
+        case 'rekenen':
+            response = 'Rekenen is een avontuur! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html Welk getal vind je het leukst?';
+            break;
+        case 'lezen':
+            response = 'Lezen opent nieuwe werelden! 📖 Ontdek onze leesoefeningen op: leesproblemen.html Welk verhaal zou je willen lezen?';
+            break;
+    }
+    
+    addMinhoMessage(response, 'bot');
+}
+
+// Click outside om chatbot te sluiten
+document.addEventListener('click', function(event) {
+    if (minhoChatbot.style.display === 'flex') {
+        const isMinhoChatbot = event.target.closest('.minho-chatbot');
+        const isMinhoToggle = event.target.closest('.minho-toggle');
+        
+        if (!isMinhoChatbot && !isMinhoToggle) {
+            minhoChatbot.style.display = 'none';
+        }
+    }
+});
+
+// Voorkom dat clicks binnen de chatbot de buitenste click triggeren
+minhoChatbot.addEventListener('click', function(event) {
+    event.stopPropagation();
+});
     </script>
 </body>
 </html>
+
 
 
 
