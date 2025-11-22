@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zintuiglijk Memory - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --autism-green: #4CAF50;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Snelmenu */
+        .snelmenu {
+            background-color: var(--autism-purple);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snelmenu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .snelmenu li {
+            margin: 5px 15px;
+        }
+        
+        .snelmenu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .snelmenu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Oefeningen Stijl */
+        .oefening {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+        }
+        
+        .oefening h1 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .oefening h2 {
+            color: var(--autism-purple);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .oefening p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .uitleg {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--autism-purple);
+        }
+        
+        .navigatie {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .navigatie a {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .navigatie a:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.25);
+        }
+        
+        /* Memory Game Stijl */
+        .memory-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .memory-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .memory-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .memory-kaart {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            border-radius: 8px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .memory-kaart.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .memory-kaart.matched {
+            background: linear-gradient(to bottom, var(--autism-green), #3d8b40);
+            cursor: default;
+        }
+        
+        .memory-kaart-voorzijde, .memory-kaart-achterzijde {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .memory-kaart-voorzijde {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .memory-kaart-achterzijde {
+            background: white;
+            transform: rotateY(180deg);
+            padding: 10px;
+        }
+        
+        .memory-kaart-achterzijde img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .memory-kaart-achterzijde .text-content {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--autism-blue);
+            text-align: center;
+        }
+        
+        .memory-kaart-achterzijde .texture-pattern {
+            width: 80%;
+            height: 80%;
+            border-radius: 5px;
+        }
+        
+        /* Geluid Memory Stijl */
+        .geluid-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            gap: 10px;
+        }
+        
+        .geluid-controls button {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .geluid-controls button:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: scale(1.05);
+        }
+        
+        .geluid-controls span {
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        /* Texture Memory Stijl */
+        .texture-pattern {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .texture-dots {
+            background: radial-gradient(circle, #333 20%, transparent 20%),
+                        radial-gradient(circle, #333 20%, transparent 20%);
+            background-size: 10px 10px;
+            background-position: 0 0, 5px 5px;
+        }
+        
+        .texture-lines {
+            background: repeating-linear-gradient(0deg, 
+                        transparent, 
+                        transparent 5px, 
+                        #333 5px, 
+                        #333 10px);
+        }
+        
+        .texture-checker {
+            background: conic-gradient(#333 0% 25%, white 25% 50%, #333 50% 75%, white 75% 100%);
+            background-size: 20px 20px;
+        }
+        
+        .texture-waves {
+            background: radial-gradient(circle at 100% 50%, 
+                        transparent 20%, 
+                        #333 21%, 
+                        #333 40%, 
+                        transparent 41%),
+                        radial-gradient(circle at 0% 50%, 
+                        transparent 20%, 
+                        #333 21%, 
+                        #333 40%, 
+                        transparent 41%);
+            background-size: 30px 30px;
+        }
+        
+        /* Game Controls */
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .game-btn {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .game-btn:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .game-info {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 8px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        /* Feedback */
+        .feedback {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .feedback.goed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .feedback.fout {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* AI Generator Sectie */
+        .ai-generator {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-pink);
+        }
+        
+        .ai-generator h2 {
+            color: var(--autism-pink);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .generator-form {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: translateY(-2px);
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--autism-light-blue);
+            border-top: 5px solid var(--autism-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .generated-exercises {
+            margin-top: 30px;
+        }
+        
+        .exercise-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--autism-yellow);
+        }
+        
+        .exercise-card h3 {
+            color: var(--autism-blue);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .exercise-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-content {
+            margin-top: 15px;
+        }
+        
+        .exercise-edit {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .exercise-edit textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .exercise-edit-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .saved-exercises {
+            margin-top: 30px;
+        }
+        
+        .saved-exercises h3 {
+            color: var(--autism-purple);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--autism-light-blue);
+            padding-bottom: 8px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .navigatie {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navigatie a {
+                text-align: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .exercise-actions {
+                flex-direction: column;
+            }
+            
+            .game-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🎵👆👀</div>
+            <h1>Zintuiglijk Memory</h1>
+            <p>Sensorische oefeningen voor kinderen van 4-16 jaar met toenemende complexiteit</p>
+        </div>
+    </section>
+    
+    <div class="snelmenu">
+        <ul>
+            <li><a href="#visueel">Visueel Memory</a></li>
+            <li><a href="#geluid">Geluid Memory</a></li>
+            <li><a href="#textuur">Textuur Memory</a></li>
+            <li><a href="#combinatie">Combinatie Memory</a></li>
+            <li><a href="#geavanceerd">Geavanceerd Memory</a></li>
+            <li><a href="#ai-generator">AI Generator</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- Visueel Memory Oefening -->
+        <div class="oefening" id="visueel">
+            <h1>Visueel Memory</h1>
+            <p>Oefen je visueel geheugen door afbeeldingen te matchen. Deze oefening helpt bij het ontwikkelen van visuele waarneming en geheugen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op de kaarten om ze om te draaien. Zoek twee dezelfde afbeeldingen. Probeer de paren te onthouden en zo min mogelijk zetten te gebruiken.</p>
+            </div>
+            
+            <div class="game-info">
+                <p>Leeftijd: 4-8 jaar | Moeilijkheid: ★☆☆☆☆</p>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <div class="stat-value" id="visueelZetten">0</div>
+                    <div class="stat-label">Zetten</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="visueelGevonden">0</div>
+                    <div class="stat-label">Gevonden paren</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="visueelTijd">0</div>
+                    <div class="stat-label">Seconden</div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="game-btn" id="visueelStart">Start Spel</button>
+                <button class="game-btn" id="visueelReset">Opnieuw</button>
+            </div>
+            
+            <div class="memory-container" id="visueelMemory">
+                <!-- Memory kaarten worden hier gegenereerd -->
+            </div>
+            
+            <div class="feedback" id="visueelFeedback"></div>
+            
+            <div class="navigatie">
+                <a href="#ai-generator" class="vorige">← Terug naar alle oefeningen</a>
+                <a href="#geluid" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Geluid Memory Oefening -->
+        <div class="oefening" id="geluid">
+            <h1>Geluid Memory</h1>
+            <p>Oefen je auditief geheugen door geluiden te matchen. Deze oefening helpt bij het ontwikkelen van auditieve waarneming en geheugen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op de kaarten om geluiden af te spelen. Zoek twee dezelfde geluiden. Je mag elke kaart maar één keer per beurt afspelen.</p>
+            </div>
+            
+            <div class="game-info">
+                <p>Leeftijd: 6-10 jaar | Moeilijkheid: ★★☆☆☆</p>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <div class="stat-value" id="geluidZetten">0</div>
+                    <div class="stat-label">Zetten</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="geluidGevonden">0</div>
+                    <div class="stat-label">Gevonden paren</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="geluidTijd">0</div>
+                    <div class="stat-label">Seconden</div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="game-btn" id="geluidStart">Start Spel</button>
+                <button class="game-btn" id="geluidReset">Opnieuw</button>
+            </div>
+            
+            <div class="memory-container" id="geluidMemory">
+                <!-- Memory kaarten worden hier gegenereerd -->
+            </div>
+            
+            <div class="feedback" id="geluidFeedback"></div>
+            
+            <div class="navigatie">
+                <a href="#visueel" class="vorige">← Vorige oefening</a>
+                <a href="#textuur" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Textuur Memory Oefening -->
+        <div class="oefening" id="textuur">
+            <h1>Textuur Memory</h1>
+            <p>Oefen je tactiel geheugen door texturen te matchen. Deze oefening helpt bij het ontwikkelen van tactiele waarneming en geheugen.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op de kaarten om de texturen te zien. Zoek twee dezelfde texturen. Probeer de texturen te onthouden en zo min mogelijk zetten te gebruiken.</p>
+            </div>
+            
+            <div class="game-info">
+                <p>Leeftijd: 8-12 jaar | Moeilijkheid: ★★★☆☆</p>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <div class="stat-value" id="textuurZetten">0</div>
+                    <div class="stat-label">Zetten</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="textuurGevonden">0</div>
+                    <div class="stat-label">Gevonden paren</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="textuurTijd">0</div>
+                    <div class="stat-label">Seconden</div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="game-btn" id="textuurStart">Start Spel</button>
+                <button class="game-btn" id="textuurReset">Opnieuw</button>
+            </div>
+            
+            <div class="memory-container" id="textuurMemory">
+                <!-- Memory kaarten worden hier gegenereerd -->
+            </div>
+            
+            <div class="feedback" id="textuurFeedback"></div>
+            
+            <div class="navigatie">
+                <a href="#geluid" class="vorige">← Vorige oefening</a>
+                <a href="#combinatie" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Combinatie Memory Oefening -->
+        <div class="oefening" id="combinatie">
+            <h1>Combinatie Memory</h1>
+            <p>Oefen je geheugen door verschillende zintuiglijke elementen te combineren. Deze oefening helpt bij het ontwikkelen van multisensorische integratie.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op de kaarten om afbeeldingen en geluiden te combineren. Zoek paren die bij elkaar horen. Dit kan een afbeelding met een geluid zijn of een geluid met een beschrijving.</p>
+            </div>
+            
+            <div class="game-info">
+                <p>Leeftijd: 10-14 jaar | Moeilijkheid: ★★★★☆</p>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <div class="stat-value" id="combinatieZetten">0</div>
+                    <div class="stat-label">Zetten</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="combinatieGevonden">0</div>
+                    <div class="stat-label">Gevonden paren</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="combinatieTijd">0</div>
+                    <div class="stat-label">Seconden</div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="game-btn" id="combinatieStart">Start Spel</button>
+                <button class="game-btn" id="combinatieReset">Opnieuw</button>
+            </div>
+            
+            <div class="memory-container" id="combinatieMemory">
+                <!-- Memory kaarten worden hier gegenereerd -->
+            </div>
+            
+            <div class="feedback" id="combinatieFeedback"></div>
+            
+            <div class="navigatie">
+                <a href="#textuur" class="vorige">← Vorige oefening</a>
+                <a href="#geavanceerd" class="volgende">Volgende oefening →</a>
+            </div>
+        </div>
+        
+        <!-- Geavanceerd Memory Oefening -->
+        <div class="oefening" id="geavanceerd">
+            <h1>Geavanceerd Memory</h1>
+            <p>Uitdagende memory-oefeningen voor oudere kinderen. Deze oefening combineert complexe patronen, geluiden en abstracte concepten.</p>
+            
+            <div class="uitleg">
+                <h2>Hoe werkt het?</h2>
+                <p>Klik op de kaarten om complexe patronen, geluiden en abstracte concepten te zien. Zoek paren die bij elkaar horen. Deze oefening vereist hogere cognitieve vaardigheden.</p>
+            </div>
+            
+            <div class="game-info">
+                <p>Leeftijd: 12-16 jaar | Moeilijkheid: ★★★★★</p>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <div class="stat-value" id="geavanceerdZetten">0</div>
+                    <div class="stat-label">Zetten</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="geavanceerdGevonden">0</div>
+                    <div class="stat-label">Gevonden paren</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="geavanceerdTijd">0</div>
+                    <div class="stat-label">Seconden</div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="game-btn" id="geavanceerdStart">Start Spel</button>
+                <button class="game-btn" id="geavanceerdReset">Opnieuw</button>
+            </div>
+            
+            <div class="memory-container" id="geavanceerdMemory">
+                <!-- Memory kaarten worden hier gegenereerd -->
+            </div>
+            
+            <div class="feedback" id="geavanceerdFeedback"></div>
+            
+            <div class="navigatie">
+                <a href="#combinatie" class="vorige">← Vorige oefening</a>
+                <a href="#ai-generator" class="volgende">AI Generator →</a>
+            </div>
+        </div>
+        
+        <!-- AI Generator Sectie -->
+        <div class="ai-generator" id="ai-generator">
+            <h2>🤖 AI Zintuiglijk Memory Generator</h2>
+            <p>Genereer gepersonaliseerde zintuiglijke memory-oefeningen op basis van leeftijd, moeilijkheidsgraad en interesses.</p>
+            
+            <div class="generator-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leeftijd">Leeftijd</label>
+                        <select id="leeftijd">
+                            <option value="4-6">4-6 jaar</option>
+                            <option value="6-8">6-8 jaar</option>
+                            <option value="8-10">8-10 jaar</option>
+                            <option value="10-12">10-12 jaar</option>
+                            <option value="12-14">12-14 jaar</option>
+                            <option value="14-16">14-16 jaar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="moeilijkheid">Moeilijkheidsgraad</label>
+                        <select id="moeilijkheid">
+                            <option value="makkelijk">Makkelijk</option>
+                            <option value="normaal">Normaal</option>
+                            <option value="uitdagend">Uitdagend</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="zintuig">Zintuig</label>
+                        <select id="zintuig">
+                            <option value="visueel">Visueel</option>
+                            <option value="auditief">Auditief (geluid)</option>
+                            <option value="tactiel">Tactiel (textuur)</option>
+                            <option value="combinatie">Combinatie</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="thema">Thema / Interesses</label>
+                        <select id="thema">
+                            <option value="dieren">Dieren</option>
+                            <option value="natuur">Natuur</option>
+                            <option value="voertuigen">Voertuigen</option>
+                            <option value="muziek">Muziek</option>
+                            <option value="voeding">Voeding</option>
+                            <option value="abstract">Abstracte vormen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aantal">Aantal paren</label>
+                        <select id="aantal">
+                            <option value="6">6 paren (12 kaarten)</option>
+                            <option value="8">8 paren (16 kaarten)</option>
+                            <option value="10">10 paren (20 kaarten)</option>
+                            <option value="12">12 paren (24 kaarten)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specifieke_wensen">Specifieke wensen (optioneel)</label>
+                        <textarea id="specifieke_wensen" placeholder="Bijv. focus op bepaalde geluiden, specifieke texturen..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="generateBtn">Memory Genereren</button>
+                    <button class="btn btn-secondary" id="resetBtn">Formulier Resetten</button>
+                </div>
+            </div>
+            
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>AI genereert gepersonaliseerde memory-oefeningen...</p>
+            </div>
+            
+            <div class="generated-exercises" id="generatedExercises">
+                <!-- Hier komen de gegenereerde oefeningen -->
+            </div>
+            
+            <div class="saved-exercises" id="savedExercises">
+                <h3>Opgeslagen Memory Spellen</h3>
+                <div id="savedExercisesList">
+                    <!-- Hier komen de opgeslagen oefeningen -->
+                </div>
+            </div>
+            
+            <div class="navigatie">
+                <a href="#geavanceerd" class="vorige">← Vorige oefening</a>
+                <a href="#visueel" class="volgende">Terug naar alle oefeningen →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-integratie</h3>
+                    <ul>
+                        <li>Automatische oefeningengenerator</li>
+                        <li>Nieuws- en update-monitor</li>
+                        <li>Adaptief leerpad</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:AtsumiPrints@hotmail.com" class="email-link" style="color: #ddd;">AtsumiPrints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Web Speech API voor het uitspreken van tekst
+        const synth = window.speechSynthesis;
+        
+        // Functie om tekst uit te spreken
+        function speakText(text) {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'nl-NL';
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            
+            synth.speak(utterance);
+        }
+        
+        // Memory Game Logica
+        class MemoryGame {
+            constructor(containerId, type, options = {}) {
+                this.container = document.getElementById(containerId);
+                this.type = type;
+                this.options = options;
+                this.cards = [];
+                this.flippedCards = [];
+                this.matchedPairs = 0;
+                this.moves = 0;
+                this.gameStarted = false;
+                this.startTime = 0;
+                this.timer = null;
+                this.stats = {
+                    moves: document.getElementById(`${type}Zetten`),
+                    found: document.getElementById(`${type}Gevonden`),
+                    time: document.getElementById(`${type}Tijd`)
+                };
+                this.feedback = document.getElementById(`${type}Feedback`);
+                this.init();
+            }
+            
+            init() {
+                this.generateCards();
+                this.renderCards();
+                this.setupEventListeners();
+            }
+            
+            generateCards() {
+                // Standaard kaarten voor elk type
+                const cardData = {
+                    visueel: [
+                        { id: 1, content: '🐶', type: 'emoji' },
+                        { id: 2, content: '🐱', type: 'emoji' },
+                        { id: 3, content: '🐭', type: 'emoji' },
+                        { id: 4, content: '🐹', type: 'emoji' },
+                        { id: 5, content: '🐰', type: 'emoji' },
+                        { id: 6, content: '🦊', type: 'emoji' }
+                    ],
+                    geluid: [
+                        { id: 1, content: '🔔', type: 'emoji', sound: 'bell' },
+                        { id: 2, content: '🚨', type: 'emoji', sound: 'siren' },
+                        { id: 3, content: '🎵', type: 'emoji', sound: 'music' },
+                        { id: 4, content: '🐦', type: 'emoji', sound: 'bird' },
+                        { id: 5, content: '🐱', type: 'emoji', sound: 'cat' },
+                        { id: 6, content: '🐕', type: 'emoji', sound: 'dog' }
+                    ],
+                    textuur: [
+                        { id: 1, content: 'texture-dots', type: 'texture' },
+                        { id: 2, content: 'texture-lines', type: 'texture' },
+                        { id: 3, content: 'texture-checker', type: 'texture' },
+                        { id: 4, content: 'texture-waves', type: 'texture' },
+                        { id: 5, content: 'texture-dots', type: 'texture' },
+                        { id: 6, content: 'texture-lines', type: 'texture' }
+                    ],
+                    combinatie: [
+                        { id: 1, content: '🐶', type: 'emoji', match: 'hond' },
+                        { id: 2, content: '🔔', type: 'emoji', match: 'bel' },
+                        { id: 3, content: '🌳', type: 'emoji', match: 'boom' },
+                        { id: 4, content: '🎵', type: 'emoji', match: 'muziek' },
+                        { id: 5, content: 'hond', type: 'text', match: '🐶' },
+                        { id: 6, content: 'bel', type: 'text', match: '🔔' },
+                        { id: 7, content: 'boom', type: 'text', match: '🌳' },
+                        { id: 8, content: 'muziek', type: 'text', match: '🎵' }
+                    ],
+                    geavanceerd: [
+                        { id: 1, content: '🔺', type: 'emoji', description: 'driehoek' },
+                        { id: 2, content: '🔵', type: 'emoji', description: 'cirkel' },
+                        { id: 3, content: '🟦', type: 'emoji', description: 'vierkant' },
+                        { id: 4, content: '⭐', type: 'emoji', description: 'ster' },
+                        { id: 5, content: 'driehoek', type: 'text', description: '🔺' },
+                        { id: 6, content: 'cirkel', type: 'text', description: '🔵' },
+                        { id: 7, content: 'vierkant', type: 'text', description: '🟦' },
+                        { id: 8, content: 'ster', type: 'text', description: '⭐' }
+                    ]
+                };
+                
+                // Dubbele kaarten maken voor memory
+                const pairs = [...cardData[this.type], ...cardData[this.type]];
+                
+                // Kaarten shuffelen
+                this.cards = this.shuffleArray(pairs);
+            }
+            
+            shuffleArray(array) {
+                const newArray = [...array];
+                for (let i = newArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                }
+                return newArray;
+            }
+            
+            renderCards() {
+                this.container.innerHTML = '';
+                
+                this.cards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'memory-kaart';
+                    cardElement.dataset.index = index;
+                    cardElement.dataset.id = card.id;
+                    
+                    if (card.matched) {
+                        cardElement.classList.add('matched');
+                    }
+                    
+                    cardElement.innerHTML = `
+                        <div class="memory-kaart-voorzijde">?</div>
+                        <div class="memory-kaart-achterzijde">
+                            ${card.type === 'emoji' ? card.content : ''}
+                            ${card.type === 'text' ? `<div class="text-content">${card.content}</div>` : ''}
+                            ${card.type === 'texture' ? `<div class="texture-pattern ${card.content}"></div>` : ''}
+                        </div>
+                    `;
+                    
+                    this.container.appendChild(cardElement);
+                });
+            }
+            
+            setupEventListeners() {
+                this.container.addEventListener('click', (e) => {
+                    const cardElement = e.target.closest('.memory-kaart');
+                    if (!cardElement || cardElement.classList.contains('matched') || cardElement.classList.contains('flipped')) {
+                        return;
+                    }
+                    
+                    if (!this.gameStarted) {
+                        this.startGame();
+                    }
+                    
+                    this.flipCard(cardElement);
+                });
+            }
+            
+            flipCard(cardElement) {
+                if (this.flippedCards.length >= 2) {
+                    return;
+                }
+                
+                cardElement.classList.add('flipped');
+                this.flippedCards.push(cardElement);
+                
+                const cardIndex = parseInt(cardElement.dataset.index);
+                const card = this.cards[cardIndex];
+                
+                // Geluid afspelen voor geluidsmemory
+                if (this.type === 'geluid' && card.sound) {
+                    this.playSound(card.sound);
+                }
+                
+                // Tekst uitspreken voor combinatie en geavanceerd memory
+                if ((this.type === 'combinatie' || this.type === 'geavanceerd') && card.type === 'text') {
+                    speakText(card.content);
+                }
+                
+                if (this.flippedCards.length === 2) {
+                    this.moves++;
+                    this.updateStats();
+                    this.checkMatch();
+                }
+            }
+            
+            checkMatch() {
+                const card1 = this.flippedCards[0];
+                const card2 = this.flippedCards[1];
+                
+                const card1Index = parseInt(card1.dataset.index);
+                const card2Index = parseInt(card2.dataset.index);
+                
+                const card1Data = this.cards[card1Index];
+                const card2Data = this.cards[card2Index];
+                
+                let isMatch = false;
+                
+                if (this.type === 'combinatie' || this.type === 'geavanceerd') {
+                    isMatch = card1Data.match === card2Data.content || card2Data.match === card1Data.content;
+                } else {
+                    isMatch = card1Data.id === card2Data.id;
+                }
+                
+                if (isMatch) {
+                    this.handleMatch(card1, card2);
+                } else {
+                    this.handleMismatch(card1, card2);
+                }
+            }
+            
+            handleMatch(card1, card2) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                
+                this.matchedPairs++;
+                this.updateStats();
+                
+                this.showFeedback('Goed gedaan! Je hebt een match gevonden!', 'goed');
+                
+                this.flippedCards = [];
+                
+                if (this.matchedPairs === this.cards.length / 2) {
+                    this.endGame();
+                }
+            }
+            
+            handleMismatch(card1, card2) {
+                this.showFeedback('Probeer het nog eens!', 'fout');
+                
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    this.flippedCards = [];
+                }, 1000);
+            }
+            
+            playSound(soundType) {
+                // In een echte implementatie zouden hier echte geluiden worden afgespeeld
+                const soundMap = {
+                    bell: '🔔',
+                    siren: '🚨',
+                    music: '🎵',
+                    bird: '🐦',
+                    cat: '🐱',
+                    dog: '🐕'
+                };
+                
+                speakText(soundMap[soundType] || 'geluid');
+            }
+            
+            showFeedback(message, type) {
+                this.feedback.textContent = message;
+                this.feedback.className = `feedback ${type}`;
+                this.feedback.style.display = 'block';
+                
+                setTimeout(() => {
+                    this.feedback.style.display = 'none';
+                }, 2000);
+            }
+            
+            startGame() {
+                this.gameStarted = true;
+                this.startTime = Date.now();
+                
+                this.timer = setInterval(() => {
+                    const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+                    this.stats.time.textContent = elapsedTime;
+                }, 1000);
+            }
+            
+            endGame() {
+                clearInterval(this.timer);
+                
+                const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+                const message = `Gefeliciteerd! Je hebt alle paren gevonden in ${this.moves} zetten en ${elapsedTime} seconden!`;
+                
+                this.showFeedback(message, 'goed');
+                speakText(message);
+            }
+            
+            updateStats() {
+                this.stats.moves.textContent = this.moves;
+                this.stats.found.textContent = this.matchedPairs;
+            }
+            
+            resetGame() {
+                this.cards.forEach(card => {
+                    card.matched = false;
+                });
+                
+                this.flippedCards = [];
+                this.matchedPairs = 0;
+                this.moves = 0;
+                this.gameStarted = false;
+                this.startTime = 0;
+                
+                clearInterval(this.timer);
+                
+                this.updateStats();
+                this.renderCards();
+                
+                this.feedback.style.display = 'none';
+            }
+        }
+        
+        // Initialiseer memory spellen
+        document.addEventListener('DOMContentLoaded', function() {
+            const games = {};
+            
+            // Maak spellen voor elke sectie
+            games.visueel = new MemoryGame('visueelMemory', 'visueel');
+            games.geluid = new MemoryGame('geluidMemory', 'geluid');
+            games.textuur = new MemoryGame('textuurMemory', 'textuur');
+            games.combinatie = new MemoryGame('combinatieMemory', 'combinatie');
+            games.geavanceerd = new MemoryGame('geavanceerdMemory', 'geavanceerd');
+            
+            // Event listeners voor start en reset knoppen
+            document.getElementById('visueelStart').addEventListener('click', () => games.visueel.startGame());
+            document.getElementById('visueelReset').addEventListener('click', () => games.visueel.resetGame());
+            
+            document.getElementById('geluidStart').addEventListener('click', () => games.geluid.startGame());
+            document.getElementById('geluidReset').addEventListener('click', () => games.geluid.resetGame());
+            
+            document.getElementById('textuurStart').addEventListener('click', () => games.textuur.startGame());
+            document.getElementById('textuurReset').addEventListener('click', () => games.textuur.resetGame());
+            
+            document.getElementById('combinatieStart').addEventListener('click', () => games.combinatie.startGame());
+            document.getElementById('combinatieReset').addEventListener('click', () => games.combinatie.resetGame());
+            
+            document.getElementById('geavanceerdStart').addEventListener('click', () => games.geavanceerd.startGame());
+            document.getElementById('geavanceerdReset').addEventListener('click', () => games.geavanceerd.resetGame());
+            
+            // Smooth scroll voor anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // AI Generator Functionaliteit
+            document.getElementById('generateBtn').addEventListener('click', function() {
+                const leeftijd = document.getElementById('leeftijd').value;
+                const moeilijkheid = document.getElementById('moeilijkheid').value;
+                const zintuig = document.getElementById('zintuig').value;
+                const thema = document.getElementById('thema').value;
+                const aantal = document.getElementById('aantal').value;
+                const specifieke_wensen = document.getElementById('specifieke_wensen').value;
+                
+                // Toon loading indicator
+                document.getElementById('loadingIndicator').style.display = 'block';
+                document.getElementById('generatedExercises').innerHTML = '';
+                
+                // Simuleer AI verwerking (in een echte implementatie zou dit een API call zijn)
+                setTimeout(() => {
+                    document.getElementById('loadingIndicator').style.display = 'none';
+                    generateMemoryExercises(leeftijd, moeilijkheid, zintuig, thema, aantal, specifieke_wensen);
+                }, 2000);
+            });
+            
+            document.getElementById('resetBtn').addEventListener('click', function() {
+                document.getElementById('leeftijd').value = '4-6';
+                document.getElementById('moeilijkheid').value = 'makkelijk';
+                document.getElementById('zintuig').value = 'visueel';
+                document.getElementById('thema').value = 'dieren';
+                document.getElementById('aantal').value = '6';
+                document.getElementById('specifieke_wensen').value = '';
+            });
+            
+            // Functie om memory-oefeningen te genereren
+            function generateMemoryExercises(leeftijd, moeilijkheid, zintuig, thema, aantal, specifieke_wensen) {
+                const generatedExercises = document.getElementById('generatedExercises');
+                generatedExercises.innerHTML = '';
+                
+                // Voorbeeld oefeningen op basis van parameters
+                const exercises = getExampleMemoryExercises(leeftijd, zintuig, thema, aantal);
+                
+                exercises.forEach((exercise, index) => {
+                    const exerciseCard = document.createElement('div');
+                    exerciseCard.className = 'exercise-card';
+                    exerciseCard.innerHTML = `
+                        <h3>
+                            Memory Spel ${index + 1}
+                            <div class="exercise-actions">
+                                <button class="btn-save" onclick="saveMemoryExercise(${index})">Opslaan</button>
+                                <button class="btn-edit" onclick="toggleMemoryEdit(${index})">Bewerken</button>
+                            </div>
+                        </h3>
+                        <div class="exercise-content" id="memory-exercise-content-${index}">
+                            ${exercise.content}
+                        </div>
+                        <div class="exercise-edit" id="memory-exercise-edit-${index}">
+                            <textarea>${exercise.editContent || exercise.content}</textarea>
+                            <div class="exercise-edit-actions">
+                                <button class="btn-save" onclick="saveMemoryEdit(${index})">Opslaan</button>
+                                <button class="btn-cancel" onclick="toggleMemoryEdit(${index})">Annuleren</button>
+                            </div>
+                        </div>
+                    `;
+                    generatedExercises.appendChild(exerciseCard);
+                    
+                    // Sla de oefening op in een globale array voor bewerking
+                    if (!window.generatedMemoryExercisesList) {
+                        window.generatedMemoryExercisesList = [];
+                    }
+                    window.generatedMemoryExercisesList[index] = exercise;
+                });
+            }
+            
+            // Voorbeeld memory-oefeningen
+            function getExampleMemoryExercises(leeftijd, zintuig, thema, aantal) {
+                const exercises = [];
+                const count = parseInt(aantal) / 2; // Aantal paren
+                
+                for (let i = 0; i < count; i++) {
+                    let exercise;
+                    
+                    if (zintuig === 'visueel') {
+                        exercise = {
+                            content: `<p><strong>Visueel Memory Pair: </strong>${getRandomVisualItem(thema)}</p>`,
+                            editContent: `<p><strong>Visueel Memory Pair: </strong>${getRandomVisualItem(thema)}</p>`
+                        };
+                    } else if (zintuig === 'auditief') {
+                        exercise = {
+                            content: `<p><strong>Geluid Memory Pair: </strong>${getRandomSoundItem(thema)}</p>`,
+                            editContent: `<p><strong>Geluid Memory Pair: </strong>${getRandomSoundItem(thema)}</p>`
+                        };
+                    } else if (zintuig === 'tactiel') {
+                        exercise = {
+                            content: `<p><strong>Textuur Memory Pair: </strong>${getRandomTextureItem()}</p>`,
+                            editContent: `<p><strong>Textuur Memory Pair: </strong>${getRandomTextureItem()}</p>`
+                        };
+                    } else if (zintuig === 'combinatie') {
+                        exercise = {
+                            content: `<p><strong>Combinatie Memory Pair: </strong>${getRandomCombinationItem(thema)}</p>`,
+                            editContent: `<p><strong>Combinatie Memory Pair: </strong>${getRandomCombinationItem(thema)}</p>`
+                        };
+                    }
+                    
+                    exercises.push(exercise);
+                }
+                
+                return exercises;
+            }
+            
+            // Hulpfuncties voor het genereren van voorbeeldinhoud
+            function getRandomVisualItem(thema) {
+                const visualItems = {
+                    dieren: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'],
+                    natuur: ['🌳', '🌲', '🌴', '🌵', '🌷', '🌸', '🌹', '🍀'],
+                    voertuigen: ['🚗', '🚕', '🚙', '🚌', '🚎', '🏎️', '🚓', '🚑'],
+                    muziek: ['🎵', '🎶', '🎼', '🎹', '🎺', '🎸', '🎻', '🥁'],
+                    voeding: ['🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓'],
+                    abstract: ['🔺', '🔵', '🟦', '⭐', '❤️', '💛', '💚', '💙']
+                };
+                
+                const items = visualItems[thema] || visualItems.dieren;
+                return items[Math.floor(Math.random() * items.length)];
+            }
+            
+            function getRandomSoundItem(thema) {
+                const soundItems = {
+                    dieren: ['🐶 hond', '🐱 kat', '🐭 muis', '🐹 hamster', '🐰 konijn', '🦊 vos', '🐻 beer', '🐼 panda'],
+                    natuur: ['🌳 boom', '🌲 den', '🌴 palm', '🌵 cactus', '🌷 tulp', '🌸 bloesem', '🌹 roos', '🍀 klaver'],
+                    voertuigen: ['🚗 auto', '🚕 taxi', '🚙 jeep', '🚌 bus', '🚎 trolley', '🏎️ raceauto', '🚓 politie', '🚑 ambulance'],
+                    muziek: ['🎵 noot', '🎶 noten', '🎼 partituur', '🎹 piano', '🎺 trompet', '🎸 gitaar', '🎻 viool', '🥁 drum'],
+                    voeding: ['🍎 appel', '🍐 peer', '🍊 sinaasappel', '🍋 citroen', '🍌 banaan', '🍉 watermeloen', '🍇 druif', '🍓 aardbei'],
+                    abstract: ['🔺 driehoek', '🔵 cirkel', '🟦 vierkant', '⭐ ster', '❤️ hart', '💛 geel hart', '💚 groen hart', '💙 blauw hart']
+                };
+                
+                const items = soundItems[thema] || soundItems.dieren;
+                return items[Math.floor(Math.random() * items.length)];
+            }
+            
+            function getRandomTextureItem() {
+                const textures = ['texture-dots', 'texture-lines', 'texture-checker', 'texture-waves'];
+                return textures[Math.floor(Math.random() * textures.length)];
+            }
+            
+            function getRandomCombinationItem(thema) {
+                const combinations = {
+                    dieren: ['🐶 + hond', '🐱 + kat', '🐭 + muis', '🐹 + hamster'],
+                    natuur: ['🌳 + boom', '🌲 + den', '🌴 + palm', '🌵 + cactus'],
+                    voertuigen: ['🚗 + auto', '🚕 + taxi', '🚙 + jeep', '🚌 + bus'],
+                    muziek: ['🎵 + noot', '🎶 + noten', '🎼 + partituur', '🎹 + piano'],
+                    voeding: ['🍎 + appel', '🍐 + peer', '🍊 + sinaasappel', '🍋 + citroen'],
+                    abstract: ['🔺 + driehoek', '🔵 + cirkel', '🟦 + vierkant', '⭐ + ster']
+                };
+                
+                const items = combinations[thema] || combinations.dieren;
+                return items[Math.floor(Math.random() * items.length)];
+            }
+            
+            // Laad opgeslagen oefeningen bij het laden van de pagina
+            displaySavedMemoryExercises();
+        });
+        
+        // Bewerkingsfuncties voor memory-oefeningen
+        function toggleMemoryEdit(index) {
+            const content = document.getElementById(`memory-exercise-content-${index}`);
+            const edit = document.getElementById(`memory-exercise-edit-${index}`);
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                edit.style.display = 'none';
+            } else {
+                content.style.display = 'none';
+                edit.style.display = 'block';
+            }
+        }
+        
+        function saveMemoryEdit(index) {
+            const editTextarea = document.querySelector(`#memory-exercise-edit-${index} textarea`);
+            const content = document.getElementById(`memory-exercise-content-${index}`);
+            
+            content.innerHTML = editTextarea.value;
+            toggleMemoryEdit(index);
+            
+            // Update de oefening in de globale lijst
+            if (window.generatedMemoryExercisesList && window.generatedMemoryExercisesList[index]) {
+                window.generatedMemoryExercisesList[index].content = editTextarea.value;
+            }
+        }
+        
+        function saveMemoryExercise(index) {
+            if (!window.generatedMemoryExercisesList || !window.generatedMemoryExercisesList[index]) {
+                alert('Memory-oefening niet gevonden!');
+                return;
+            }
+            
+            // Haal opgeslagen oefeningen op uit localStorage
+            let savedExercises = JSON.parse(localStorage.getItem('savedMemoryExercises')) || [];
+            
+            // Voeg de nieuwe oefening toe
+            savedExercises.push({
+                id: Date.now(),
+                content: window.generatedMemoryExercisesList[index].content,
+                timestamp: new Date().toLocaleString()
+            });
+            
+            // Sla op in localStorage
+            localStorage.setItem('savedMemoryExercises', JSON.stringify(savedExercises));
+            
+            // Update de weergave
+            displaySavedMemoryExercises();
+            
+            alert('Memory-oefening opgeslagen!');
+        }
+        
+        function displaySavedMemoryExercises() {
+            const savedExercisesList = document.getElementById('savedExercisesList');
+            const savedExercises = JSON.parse(localStorage.getItem('savedMemoryExercises')) || [];
+            
+            if (savedExercises.length === 0) {
+                savedExercisesList.innerHTML = '<div class="empty-state">Nog geen opgeslagen memory-oefeningen</div>';
+                return;
+            }
+            
+            savedExercisesList.innerHTML = '';
+            
+            savedExercises.forEach((exercise, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = 'exercise-card';
+                exerciseCard.innerHTML = `
+                    <h3>
+                        Opgeslagen Memory Spel ${index + 1}
+                        <div class="exercise-actions">
+                            <button class="btn-delete" onclick="deleteSavedMemoryExercise(${exercise.id})">Verwijderen</button>
+                        </div>
+                    </h3>
+                    <div class="exercise-content">
+                        ${exercise.content}
+                    </div>
+                    <p><small>Opgeslagen op: ${exercise.timestamp}</small></p>
+                `;
+                savedExercisesList.appendChild(exerciseCard);
+            });
+        }
+        
+        function deleteSavedMemoryExercise(id) {
+            let savedExercises = JSON.parse(localStorage.getItem('savedMemoryExercises')) || [];
+            savedExercises = savedExercises.filter(exercise => exercise.id !== id);
+            localStorage.setItem('savedMemoryExercises', JSON.stringify(savedExercises));
+            displaySavedMemoryExercises();
+        }
+    </script>
+</body>
+</html>
