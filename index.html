@@ -86,8 +86,7 @@
         .hero {
             text-align: center;
             padding: 3rem 1rem;
-            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230077B6" opacity="0.1"/><path d="M10,10 L90,90 M90,10 L10,90" stroke="%237209B7" stroke-width="2" opacity="0.1"/></svg>');
+            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8));
             color: white;
         }
         
@@ -109,6 +108,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             border-radius: 50px;
             overflow: hidden;
+            background-color: white;
         }
         
         .search-box input {
@@ -116,6 +116,7 @@
             padding: 15px 20px;
             border: none;
             font-size: 1rem;
+            background: transparent;
         }
         
         .search-box button {
@@ -397,7 +398,7 @@
             background: var(--autism-dark-blue);
         }
         
-        /* Social Media Links Styles */
+        /* Social Media Links Styles - GEWIJZIGD */
         .social-links {
             display: flex;
             flex-direction: column;
@@ -408,37 +409,40 @@
         .social-link {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             padding: 10px 15px;
-            background: var(--autism-very-light-blue);
+            background: var(--autism-blue);
+            color: white;
             border-radius: 5px;
             text-decoration: none;
-            color: var(--dark);
             transition: background 0.3s;
+            font-weight: bold;
         }
         
         .social-link:hover {
-            background: var(--autism-light-blue);
+            background: var(--autism-dark-blue);
         }
         
         .social-link-icon {
             font-size: 1.2rem;
-            color: var(--autism-blue);
+            color: white;
         }
         
-        /* Verbeterde Chatbot Styles */
+        /* Verbeterde Chatbot Styles - GEWIJZIGD */
         .chatbot {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 300px;
-            height: 400px;
+            width: 350px;
+            height: 450px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.2);
             display: none;
             flex-direction: column;
             z-index: 1000;
+            overflow: hidden;
         }
         
         .chatbot-header {
@@ -458,6 +462,17 @@
             gap: 10px;
         }
         
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
         .minimize-btn {
             background: none;
             border: none;
@@ -474,12 +489,14 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            background-color: var(--light);
         }
         
         .chatbot-footer {
             padding: 10px;
             border-top: 1px solid #eee;
             display: flex;
+            background: white;
         }
         
         .chatbot-footer input {
@@ -514,6 +531,11 @@
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 10000;
+            transition: transform 0.3s;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
         }
         
         .message {
@@ -521,6 +543,7 @@
             padding: 8px 12px;
             border-radius: 15px;
             margin-bottom: 10px;
+            line-height: 1.4;
         }
         
         .bot-message {
@@ -534,6 +557,29 @@
             color: white;
             align-self: flex-end;
             border-bottom-right-radius: 5px;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quick-action {
+            background: var(--autism-light-blue);
+            color: var(--dark);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .quick-action:hover {
+            background: var(--autism-blue);
+            color: white;
         }
         
         .social-section {
@@ -705,8 +751,8 @@
             <h2>Educatieve Oefeningen voor Alle Kinderen</h2>
             <p>Speciaal ontwikkeld voor kinderen met autisme, spraak-, lees- en rekenproblemen. Maak leren leuk en toegankelijk!</p>
             <div class="search-box">
-                <input type="text" placeholder="Zoek oefeningen...">
-                <button>Zoeken</button>
+                <input type="text" placeholder="Zoek oefeningen..." id="searchInput">
+                <button id="searchButton">Zoeken</button>
             </div>
         </div>
     </section>
@@ -735,10 +781,12 @@
                     </a>
                 </div>
                 <div class="autism-card">
-                    <div class="autism-icon">🔢</div>
-                    <h3>Rekenproblemen</h3>
-                    <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
-                    <div class="social-btn">Bekijk oefeningen</div>
+                    <a href="rekenproblemen.html" style="text-decoration: none; color: inherit;">
+                        <div class="autism-icon">🔢</div>
+                        <h3>Rekenproblemen</h3>
+                        <p>Concrete en visuele rekenoefeningen voor beter begrip van getallen.</p>
+                        <div class="social-btn">Bekijk oefeningen</div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -748,7 +796,7 @@
         <div class="container">
             <h2 class="section-title">Ieder Kind Leert op Zijn Eigen Tempo</h2>
             <div class="rhythm-content">
-                <p>Bij Atsumi geloven we dat elk child uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
+                <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
                 <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
             </div>
         </div>
@@ -804,7 +852,7 @@
                     <div class="game-info">
                         <h3>Dagelijkse Routine Planner</h3>
                         <p>Plan je dag met deze visuele planning game.</p>
-                        <a href="#" class="play-btn">Spelen</a>
+                        <a href="Dagelijkse Routine Planner.html" class="play-btn">Spelen</a>
                     </div>
                 </div>
                 <div class="game-card">
@@ -812,7 +860,7 @@
                     <div class="game-info">
                         <h3>Emotie Herkenning Spel</h3>
                         <p>Leer emoties herkennen met onze vriendelijke pinguïn.</p>
-                        <a href="#" class="play-btn">Spelen</a>
+                        <a href="Emotie Herkenning Spel.html" class="play-btn">Spelen</a>
                     </div>
                 </div>
                 <div class="game-card">
@@ -820,17 +868,17 @@
                     <div class="game-info">
                         <h3>Zintuiglijk Memory</h3>
                         <p>Match geluiden en textures in dit sensorische spel.</p>
-                        <a href="#" class="play-btn">Spelen</a>
+                        <a href="Zintuiglijk Memory.html" class="play-btn">Spelen</a>
                     </div>
                 </div>
                 <div class="game-card">
-    <div class="game-image">🎨</div>
-    <div class="game-info">
-        <h3>Kleurplaten</h3>
-        <p>Kleur en ontspan met onze speciale kleurplaten.</p>
-        <a href="kleurplaten.html" class="play-btn">Kleuren</a>
-    </div>
-</div>
+                    <div class="game-image">🎨</div>
+                    <div class="game-info">
+                        <h3>Kleurplaten</h3>
+                        <p>Kleur en ontspan met onze speciale kleurplaten.</p>
+                        <a href="kleurplaten.html" class="play-btn">Kleuren</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -981,7 +1029,7 @@
         </div>
     </footer>
     
-    <!-- Chatbot -->
+    <!-- Verbeterde Chatbot met pinguïn icoon -->
     <div class="chatbot-toggle">
         <i class="fas fa-comments"></i>
     </div>
@@ -989,14 +1037,14 @@
     <div class="chatbot">
         <div class="chatbot-header">
             <div class="chatbot-title">
-                <div class="logo-icon">🐧</div>
-                <h3>Minho de Pinguïn</h3>
+                <div class="chatbot-avatar">🐧</div>
+                <h3>Minho</h3>
             </div>
             <button class="minimize-btn">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="chatbot-body">
+        <div class="chatbot-body" id="chatbotBody">
             <div class="message bot-message">
                 Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?
             </div>
@@ -1005,30 +1053,56 @@
                 <br>• Geschikte oefeningen vinden
                 <br>• Uitleg over autismevriendelijk leren
                 <br>• Technische ondersteuning
-                <br>• Downloadproblemen oplosten
+                <br>• Downloadproblemen oplossen
+                <div class="quick-actions">
+                    <button class="quick-action" data-action="oefeningen">Oefeningen</button>
+                    <button class="quick-action" data-action="spraak">Spraakproblemen</button>
+                    <button class="quick-action" data-action="rekenen">Rekenproblemen</button>
+                    <button class="quick-action" data-action="autisme">Autisme</button>
+                </div>
             </div>
         </div>
         <div class="chatbot-footer">
-            <input type="text" placeholder="Stel je vraag...">
-            <button>Verstuur</button>
+            <input type="text" placeholder="Stel je vraag..." id="chatbotInput">
+            <button id="chatbotSend">Verstuur</button>
         </div>
     </div>
 
     <script>
-        // Simpele zoekfunctie (placeholder)
-        document.querySelector('.search-box button').addEventListener('click', function() {
-            const searchTerm = document.querySelector('.search-box input').value;
-            if (searchTerm.trim() !== '') {
-                alert('Zoeken naar: ' + searchTerm);
-            }
-        });
-        
-        // Enter-toets ondersteuning voor zoeken
-        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+        // Verbeterde zoekfunctie
+        document.getElementById('searchButton').addEventListener('click', performSearch);
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                document.querySelector('.search-box button').click();
+                performSearch();
             }
         });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (searchTerm !== '') {
+                // Navigeer naar de juiste pagina op basis van zoekterm
+                if (searchTerm.includes('reken') || searchTerm.includes('cijfer') || searchTerm.includes('getal')) {
+                    window.location.href = 'rekenproblemen.html';
+                } else if (searchTerm.includes('spraak') || searchTerm.includes('taal') || searchTerm.includes('praten')) {
+                    window.location.href = 'spraakproblemen.html';
+                } else if (searchTerm.includes('lees') || searchTerm.includes('woord') || searchTerm.includes('boek')) {
+                    window.location.href = 'leesproblemen.html';
+                } else if (searchTerm.includes('puzzel') || searchTerm.includes('hersenkraker')) {
+                    window.location.href = 'puzzels.html';
+                } else if (searchTerm.includes('dagelijkse') || searchTerm.includes('routine') || searchTerm.includes('planning')) {
+                    window.location.href = 'Dagelijkse Routine Planner.html';
+                } else if (searchTerm.includes('emotie') || searchTerm.includes('gevoel')) {
+                    window.location.href = 'Emotie Herkenning Spel.html';
+                } else if (searchTerm.includes('zintuig') || searchTerm.includes('memory')) {
+                    window.location.href = 'Zintuiglijk Memory.html';
+                } else if (searchTerm.includes('wereld') || searchTerm.includes('land') || searchTerm.includes('aardrijkskunde')) {
+                    window.location.href = 'wereld.html';
+                } else {
+                    // Als geen specifieke pagina gevonden, ga naar de algemene oefeningen pagina
+                    window.location.href = 'oefeningen.html';
+                }
+            }
+        }
         
         // Forum preview interactie
         document.querySelectorAll('.like-btn').forEach(button => {
@@ -1038,12 +1112,12 @@
             });
         });
         
-        // Chatbot functionaliteit - Minho de Pinguïn
+        // Verbeterde Chatbot functionaliteit - Minho de Pinguïn
         const chatbotToggle = document.querySelector('.chatbot-toggle');
         const chatbot = document.querySelector('.chatbot');
-        const chatbotInput = document.querySelector('.chatbot-footer input');
-        const chatbotSend = document.querySelector('.chatbot-footer button');
-        const chatbotBody = document.querySelector('.chatbot-body');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+        const chatbotBody = document.getElementById('chatbotBody');
         const minimizeBtn = document.querySelector('.minimize-btn');
 
         // Zorg dat de toggle knop altijd zichtbaar is
@@ -1079,46 +1153,152 @@
             }
         });
 
+        // Quick actions in de chatbot
+        document.querySelectorAll('.quick-action').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.getAttribute('data-action');
+                handleQuickAction(action);
+            });
+        });
+
         function sendMessage() {
             const message = chatbotInput.value.trim();
             if (message !== '') {
                 // Voeg gebruikersbericht toe
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user-message');
-                userMessage.textContent = message;
-                chatbotBody.appendChild(userMessage);
+                addMessage(message, 'user');
                 
                 // Reset invoerveld
                 chatbotInput.value = '';
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
                 
                 // Minho antwoordt
                 setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot-message');
+                    generateBotResponse(message);
+                }, 500);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const message = document.createElement('div');
+            message.classList.add('message');
+            message.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            message.textContent = text;
+            chatbotBody.appendChild(message);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+
+        function handleQuickAction(action) {
+            let response = '';
+            let quickActions = '';
+            
+            switch(action) {
+                case 'oefeningen':
+                    response = 'We hebben oefeningen voor spraak, lezen en rekenen! Welke wil je bekijken?';
+                    quickActions = `
+                        <button class="quick-action" data-action="spraak">Spraak</button>
+                        <button class="quick-action" data-action="lezen">Lezen</button>
+                        <button class="quick-action" data-action="rekenen">Rekenen</button>
+                    `;
+                    break;
+                case 'spraak':
+                    response = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
+                    break;
+                case 'lezen':
+                    response = 'Leesoefeningen vind je bij "Leesproblemen". We hebben oefeningen voor letters, woorden en zinnen! 📖';
+                    break;
+                case 'rekenen':
+                    response = 'Rekenoefeningen staan bij "Rekenproblemen". We beginnen met tellen en eenvoudige sommen! 🔢';
+                    break;
+                case 'autisme':
+                    response = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
+                    break;
+            }
+            
+            addMessage(response, 'bot');
+            
+            if (quickActions) {
+                setTimeout(() => {
+                    const quickActionsDiv = document.createElement('div');
+                    quickActionsDiv.classList.add('quick-actions');
+                    quickActionsDiv.innerHTML = quickActions;
                     
-                    // Minho's antwoorden
-                    if (message.toLowerCase().includes('hallo') || message.toLowerCase().includes('hoi') || message.toLowerCase().includes('hey')) {
-                        botMessage.textContent = 'Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?';
-                    } else if (message.toLowerCase().includes('oefening') || message.toLowerCase().includes('spraak')) {
-                        botMessage.textContent = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
-                    } else if (message.toLowerCase().includes('alfabet')) {
-                        botMessage.textContent = 'Het alfabet vind je bij Spraakproblemen oefeningen! Klik op de letters om ze te horen. 🔤';
-                    } else if (message.toLowerCase().includes('autisme')) {
-                        botMessage.textContent = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
-                    } else if (message.toLowerCase().includes('download')) {
-                        botMessage.textContent = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw. 📥';
-                    } else if (message.toLowerCase().includes('dank') || message.toLowerCase().includes('bedankt')) {
-                        botMessage.textContent = 'Graag gedaan! Blijf oefenen, je doet het geweldig! 🌟';
-                    } else if (message.toLowerCase().includes('pinguïn') || message.toLowerCase().includes('minho')) {
-                        botMessage.textContent = 'Ja, ik ben Minho de pinguïn! 🐧 Ik help kinderen met leren. Pinguïns zijn heel sociaal, net als wij!';
-                    } else {
-                        botMessage.textContent = 'Leuke vraag! Voor oefeningen kun je naar "Spraakproblemen" gaan om letters te oefenen. 🐧';
-                    }
+                    const lastMessage = chatbotBody.lastElementChild;
+                    lastMessage.appendChild(quickActionsDiv);
                     
-                    chatbotBody.appendChild(botMessage);
+                    // Voeg event listeners toe aan de nieuwe quick actions
+                    quickActionsDiv.querySelectorAll('.quick-action').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const action = this.getAttribute('data-action');
+                            handleQuickAction(action);
+                        });
+                    });
+                    
                     chatbotBody.scrollTop = chatbotBody.scrollHeight;
-                }, 1000);
+                }, 100);
+            }
+        }
+
+        function generateBotResponse(message) {
+            let response = '';
+            let quickActions = '';
+            
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('hallo') || lowerMessage.includes('hoi') || lowerMessage.includes('hey') || lowerMessage.includes('dag')) {
+                response = 'Hallo! Ik ben Minho de pinguïn! 🐧 Hoe kan ik je helpen vandaag?';
+                quickActions = `
+                    <button class="quick-action" data-action="oefeningen">Oefeningen</button>
+                    <button class="quick-action" data-action="autisme">Autisme</button>
+                `;
+            } else if (lowerMessage.includes('oefening') || lowerMessage.includes('spel') || lowerMessage.includes('game')) {
+                response = 'We hebben veel verschillende oefeningen! Voor spraak, lezen, rekenen en meer. Waar ben je naar op zoek?';
+                quickActions = `
+                    <button class="quick-action" data-action="spraak">Spraak</button>
+                    <button class="quick-action" data-action="lezen">Lezen</button>
+                    <button class="quick-action" data-action="rekenen">Rekenen</button>
+                `;
+            } else if (lowerMessage.includes('spraak') || lowerMessage.includes('praten') || lowerMessage.includes('alfabet') || lowerMessage.includes('letter')) {
+                response = 'Voor spraakoefeningen kun je naar "Spraakproblemen" gaan! Daar vind je het alfabet om letters te oefenen. 🗣️';
+            } else if (lowerMessage.includes('lees') || lowerMessage.includes('woord') || lowerMessage.includes('zin') || lowerMessage.includes('boek')) {
+                response = 'Leesoefeningen vind je bij "Leesproblemen". We hebben oefeningen voor letters, woorden en zinnen! 📖';
+            } else if (lowerMessage.includes('reken') || lowerMessage.includes('cijfer') || lowerMessage.includes('getal') || lowerMessage.includes('tellen') || lowerMessage.includes('som')) {
+                response = 'Rekenoefeningen staan bij "Rekenproblemen". We beginnen met tellen en eenvoudige sommen! 🔢';
+            } else if (lowerMessage.includes('autisme') || lowerMessage.includes('spectrum') || lowerMessage.includes('ass')) {
+                response = 'Onze oefeningen zijn speciaal aangepast voor kinderen met autisme. Ze hebben duidelijke structuur en visuele ondersteuning. 🧩';
+            } else if (lowerMessage.includes('download') || lowerMessage.includes('probleem') || lowerMessage.includes('werkt niet')) {
+                response = 'Als je problemen hebt met downloaden, controleer dan je internetverbinding of probeer het later opnieuw. 📥';
+            } else if (lowerMessage.includes('dank') || lowerMessage.includes('bedankt')) {
+                response = 'Graag gedaan! Blijf oefenen, je doet het geweldig! 🌟';
+            } else if (lowerMessage.includes('pinguïn') || lowerMessage.includes('minho') || lowerMessage.includes('dier')) {
+                response = 'Ja, ik ben Minho de pinguïn! 🐧 Ik help kinderen met leren. Pinguïns zijn heel sociaal, net als wij!';
+            } else {
+                response = 'Leuke vraag! Ik kan je helpen met oefeningen voor spraak, lezen en rekenen. Waar wil je meer over weten?';
+                quickActions = `
+                    <button class="quick-action" data-action="oefeningen">Oefeningen</button>
+                    <button class="quick-action" data-action="autisme">Autisme</button>
+                `;
+            }
+            
+            addMessage(response, 'bot');
+            
+            if (quickActions) {
+                setTimeout(() => {
+                    const quickActionsDiv = document.createElement('div');
+                    quickActionsDiv.classList.add('quick-actions');
+                    quickActionsDiv.innerHTML = quickActions;
+                    
+                    const lastMessage = chatbotBody.lastElementChild;
+                    lastMessage.appendChild(quickActionsDiv);
+                    
+                    // Voeg event listeners toe aan de nieuwe quick actions
+                    quickActionsDiv.querySelectorAll('.quick-action').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const action = this.getAttribute('data-action');
+                            handleQuickAction(action);
+                        });
+                    });
+                    
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                }, 100);
             }
         }
 
@@ -1143,6 +1323,7 @@
     </script>
 </body>
 </html>
+
 
 
 
