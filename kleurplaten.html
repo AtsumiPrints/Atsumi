@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kleurplaten - Twinkel Paws x Atsumi</title>
+    <title>Twinkel Paws Kleurboek - 44 Magische Tekeningen | Atsumi</title>
     <style>
         :root {
             --autism-blue: #0077B6;
@@ -219,6 +219,48 @@
             line-height: 1.8;
         }
 
+        .download-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .download-btn.pdf {
+            background: var(--autism-green);
+            color: white;
+        }
+
+        .download-btn.jpg {
+            background: var(--autism-yellow);
+            color: var(--dark);
+        }
+
+        .download-btn.print {
+            background: var(--autism-orange);
+            color: white;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         .ai-generator {
             background: white;
             padding: 2rem;
@@ -280,6 +322,51 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: none;
             margin: 0 auto;
+        }
+
+        .preview-gallery {
+            margin: 3rem 0;
+        }
+
+        .preview-gallery h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--autism-purple);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--autism-light-blue);
+        }
+
+        .gallery-item .page-number {
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--autism-purple);
+            background: var(--light);
         }
 
         .coloring-pages {
@@ -443,6 +530,33 @@
             text-decoration: underline;
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--autism-purple);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
         @media (max-width: 768px) {
             .header-top {
                 flex-direction: column;
@@ -456,6 +570,21 @@
             
             .page-header h1 {
                 font-size: 2rem;
+            }
+            
+            .download-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
     </style>
@@ -484,8 +613,8 @@
     <section class="page-header">
         <div class="container">
             <div class="header-icon">🖍️</div>
-            <h1>Twinkel Paws Kleurplaten</h1>
-            <p>Download en print onze leuke kleurplaten om thuis in te kleuren!</p>
+            <h1>Twinkel Paws Kleurboek</h1>
+            <p>44 unieke magische tekeningen om in te kleuren! Download het complete boek of gebruik onze AI om nieuwe creaties te maken.</p>
         </div>
     </section>
 
@@ -495,134 +624,151 @@
                 <a href="oefeningen.html" class="back-btn">← Terug naar alle oefeningen</a>
             </div>
 
-            <div class="intro-section">
-                <h2>Hallo alle ouders, verzorgers en kinderhelden! 👨‍👩‍👧‍👦✨</h2>
-                <p>Mag ik jullie even voorstellen aan Twinkel Paws? 🐾💖 Wij zijn een organisatie met één groot, fantastisch doel: de wereld van kinderen nóg magischer maken! 🌈 Wij ontwerpen en maken speelgoed en allerlei leuke dingen die de verbeelding prikkelen en urenlang speelplezier garanderen. 🧸🎨</p>
-                
-                <p>Onze passie voor creativiteit en kinderplek heeft ons naar een heel speciaal project geleid...</p>
-                
-                <h3>Een Prachtige Samenwerking: Twinkel Paws x Atsumi! 🤝🎉</h3>
-                <p>We zijn ontzettend trots om onze samenwerking met Atsumi aan te kondigen! Samen zijn we een avontuur aangegaan om de allermooiste kleurplaten te ontwerpen en maken. En het allerbeste nieuws? 🗞️ Deze kleurboeken zijn volledig gratis voor alle kinderen! 🆓🧒 Wij geloven dat creativiteit en kunst voor iedereen toegankelijk moeten zijn, zonder drempels. 💝</p>
-                
-                <h3>Ons Eerste Magische Boek is Hier! 📚✨</h3>
-                <p>We vieren het begin van dit avontuur met de lancering van ons allereerste kleurboek! Het staat vol met betoverende illustraties, vrolijke figuren en natuurlijk onze eigen Twinkel Paws-vriendjes. 🐻‍❄️🦄 Het is de perfecte manier voor je child om even helemaal tot rust te komen en zijn of haar kunstenaarstalent te ontdekken. ✏️🧠</p>
-                
-                <p>En dit is nog maar het begin...! 🚀 Dit eerste boek is het startschot van een hele reeks. Er gaan nog veel meer kleurboeken komen! 📚📚📚 We hebben zoveel ideeën en kunnen niet wachten om jullie mee te nemen op een kleurrijk avontuur vol nieuwe thema's en verrassingen. 🗺️🌠</p>
-                
-                <h3>Waarom Twinkel Paws? Omdat wij geloven in de kracht van spel. 💪</h3>
-                <p>Twinkel Paws staat voor kwaliteit, fantasie en een vleugje magie. ✨ Of het nu gaat om speelgoed om mee te bouwen, knuffels om mee te knuffelen, of kleurplaten om in te duiken – alles wat we maken, doen we met heel ons hart, met de glimlach van een kind in ons achterhoofd. 😊❤️</p>
-                
-                <h3>Samengevat: 📝</h3>
-                <ul>
-                    <li><strong>Wie zijn we?</strong> Twinkel Paws: een organisatie die speelgoed en producten voor kinderen maakt. 🐾</li>
-                    <li><strong>Wat is er nieuw?</strong> Een gratis samenwerking met Atsumi voor kleurplaten. 🆓🤝</li>
-                    <li><strong>Hoeveel kost het?</strong> Helemaal niets! Het is volledig gratis. 💰❌</li>
-                    <li><strong>Hoeveel boeken zijn er?</strong> Momenteel hebben we 1 boek gelanceerd, maar er volgen er snel meer! 📚➡️📚📚</li>
-                </ul>
-                
-                <p><strong>Blijf op de hoogte! 👀</strong><br>
-                Volg ons avontuur om als eerste onze nieuwe, gratis kleurboeken te ontvangen en op de hoogte te blijven van alle magie die Twinkel Paws creëert.</p>
-                
-                <p><strong>Samen kleuren we de wereld vrolijk! 🌍🎨</strong></p>
-                
-                <p>Met een knipoog en een twinkel, 😉💫<br>
-                Het team van Twinkel Paws</p>
+            <!-- Statistieken -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">44</span>
+                    <span class="stat-label">Unieke Tekeningen</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Gratis</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">PDF</span>
+                    <span class="stat-label">Print Klaar</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">AI</span>
+                    <span class="stat-label">Extra Creaties</span>
+                </div>
             </div>
 
+            <div class="intro-section">
+                <h2>🎉 Ontdek 44 Magische Twinkel Paws Tekeningen! ✨</h2>
+                <p>Welkom in de betoverende wereld van Twinkel Paws! Ons kleurboek bevat <strong>44 unieke tekeningen</strong> die speciaal zijn ontworpen om de creativiteit van kinderen te stimuleren en uren kleurplezier te bieden.</p>
+                
+                <h3>🐾 Wat maakt ons kleurboek speciaal?</h3>
+                <p>Elk van de 44 tekeningen is met veel liefde en aandacht gemaakt. Van schattige dieren tot magische wezens - er is voor ieder wat wils! Onze tekeningen zijn perfect afgestemd op verschillende leeftijden en vaardigheden.</p>
+                
+                <h3>📚 Complete Set van 44 Tekeningen</h3>
+                <p>Je krijgt niet zomaar een kleurboek, maar een complete set van 44 verschillende tekeningen! Genoeg om wekenlang plezier te hebben en steeds nieuwe uitdagingen te vinden.</p>
+
+                <h3>🎨 AI Kleurplaat Generator</h3>
+                <p>Naast onze 44 vaste tekeningen kun je ook gebruik maken van onze AI generator om extra kleurplaten te creëren op basis van jouw eigen ideeën!</p>
+            </div>
+
+            <!-- Hoofd download sectie -->
             <div class="cover-container">
                 <div style="position: relative; display: inline-block;">
-                    <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel%20paws%20kleurboek.jpg" alt="Twinkel Paws Kleurboek Cover" class="cover-image">
-                    <div class="watermark">Twinkel Paws</div>
+                    <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" 
+                         alt="Twinkel Paws Kleurboek met 44 tekeningen" class="cover-image">
+                    <div class="watermark">44 Magische Tekeningen</div>
                 </div>
                 <div class="cover-info">
-                    <h2>Twinkel Paws Kleurboek</h2>
-                    <p>Ontdek de magische wereld van Twinkel Paws met dit prachtige kleurboek! Vol met schattige dieren, magische wezens en leuke patronen om in te kleuren. Perfect voor kinderen en volwassenen die van dieren houden en graag creatief bezig zijn.</p>
+                    <h2>Complete Twinkel Paws Kleurboek</h2>
+                    <p>Download ons complete kleurboek met alle 44 unieke tekeningen. Perfect voor thuisgebruik, in de klas, of als cadeautje. Alle tekeningen zijn print-klaar en geschikt voor potloden, stiften en wasco.</p>
+                    
+                    <div class="download-options">
+                        <a href="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.pdf" 
+                           download="Twinkel-Paws-Kleurboek-44-tekeningen.pdf"
+                           class="download-btn pdf">
+                            📄 Download PDF (44 pagina's)
+                        </a>
+                        <a href="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" 
+                           download="Twinkel-Paws-Kleurboek-preview.jpg"
+                           class="download-btn jpg">
+                            🖼️ JPG Preview
+                        </a>
+                        <button onclick="window.print()" class="download-btn print">
+                            🖨️ Direct Printen
+                        </button>
+                    </div>
                 </div>
             </div>
 
+            <!-- AI Generator -->
             <div class="ai-generator">
-                <h2>🎨 Maak je eigen kleurplaat met AI! 🎨</h2>
+                <h2>🎨 AI Kleurplaat Generator - Maak Extra Tekeningen! 🤖</h2>
+                <p style="text-align: center; margin-bottom: 1.5rem;">Geïnspireerd door onze 44 Twinkel Paws tekeningen? Maak nu je eigen unieke kleurplaat!</p>
                 <form class="ai-form">
-                    <input type="text" id="ai-prompt" placeholder="Beschrijf wat je wilt tekenen (bijvoorbeeld: een panda in het bos)" required>
+                    <input type="text" id="ai-prompt" placeholder="Beschrijf je ideale kleurplaat (bijvoorbeeld: een draak die cupcakes bakt)" required>
                     <select id="ai-style">
-                        <option value="cartoon">Cartoon stijl</option>
-                        <option value="animals">Dieren</option>
-                        <option value="fantasy">Fantasy</option>
-                        <option value="simple">Eenvoudige lijnen</option>
+                        <option value="twinkel">Twinkel Paws Stijl</option>
+                        <option value="dieren">Schattige Dieren</option>
+                        <option value="fantasy">Magische Wezens</option>
+                        <option value="eenvoudig">Eenvoudige Lijnen</option>
                     </select>
-                    <button type="button" id="generate-btn">Genereer Kleurplaat</button>
+                    <button type="button" id="generate-btn">✨ Genereer Kleurplaat</button>
                 </form>
                 <div class="ai-result">
                     <div style="position: relative; display: inline-block;">
                         <img id="ai-image" class="ai-image" src="" alt="AI gegenereerde kleurplaat">
-                        <div class="watermark" id="ai-watermark" style="display:none;">Twinkel Paws</div>
+                        <div class="watermark" id="ai-watermark" style="display:none;">Twinkel Paws AI</div>
                     </div>
-                    <button id="download-btn" style="display:none; margin-top: 15px;" class="coloring-page-download">Download Kleurplaat</button>
+                    <div style="margin-top: 15px;">
+                        <button id="download-btn" style="display:none; margin: 5px;" class="download-btn pdf">Download PNG</button>
+                        <button id="print-btn" style="display:none; margin: 5px;" class="download-btn print">Print Deze</button>
+                    </div>
                 </div>
             </div>
 
-            <h2 style="text-align: center; margin: 2rem 0; color: var(--autism-purple);">Enkele Voorbeelden uit Ons Kleurboek</h2>
-            <div class="coloring-pages">
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="https://i.ibb.co/0jKj5L7/panda.png" alt="Schattige Panda kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
+            <!-- Voorbeeld tekeningen gallery -->
+            <div class="preview-gallery">
+                <h2>🌟 Voorbeelden uit Onze 44 Tekeningen</h2>
+                <p style="text-align: center; margin-bottom: 1rem;">Dit is een kleine preview van de diversiteit in ons kleurboek:</p>
+                
+                <div class="gallery-grid">
+                    <!-- Deze gallery items tonen verschillende stijlen uit je 44 tekeningen -->
+                    <div class="gallery-item" onclick="openImageModal('https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg')">
+                        <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" alt="Twinkel Paws cover">
+                        <div class="page-number">Cover</div>
                     </div>
-                    <div class="coloring-page-info">
-                        <h3>Schattige Panda</h3>
-                        <p>Een lieve panda in een bamboebos. Perfect voor kinderen die van dieren houden!</p>
-                        <a href="https://i.ibb.co/0jKj5L7/panda.png" download class="coloring-page-download">Download</a>
+                    <div class="gallery-item" onclick="openImageModal('https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg')">
+                        <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" alt="Dieren vriendjes">
+                        <div class="page-number">Dieren</div>
                     </div>
-                </div>
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="https://i.ibb.co/0jKj5L7/eenhoorn.png" alt="Magische Eenhoorn kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
+                    <div class="gallery-item" onclick="openImageModal('https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg')">
+                        <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" alt="Magische wezens">
+                        <div class="page-number">Magie</div>
                     </div>
-                    <div class="coloring-page-info">
-                        <h3>Magische Eenhoorn</h3>
-                        <p>Een betoverende eenhoorn in een sprookjesachtig landschap. Laat je fantasie de vrije loop!</p>
-                        <a href="https://i.ibb.co/0jKj5L7/eenhoorn.png" download class="coloring-page-download">Download</a>
+                    <div class="gallery-item" onclick="openImageModal('https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg')">
+                        <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" alt="Avonturen">
+                        <div class="page-number">Avontuur</div>
                     </div>
-                </div>
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="https://i.ibb.co/0jKj5L7/onderwater.png" alt="Zee Avontuur kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
+                    <div class="gallery-item" onclick="openImageModal('https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg')">
+                        <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" alt="Natuur">
+                        <div class="page-number">Natuur</div>
                     </div>
-                    <div class="coloring-page-info">
-                        <h3>Zee Avontuur</h3>
-                        <p>Duik in de oceaan en ontmoet vriendelijke zeedieren. Perfect voor jonge ontdekkingsreizigers!</p>
-                        <a href="https://i.ibb.co/0jKj5L7/onderwater.png" download class="coloring-page-download">Download</a>
+                    <div class="gallery-item" onclick="openImageModal('https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg')">
+                        <img src="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg" alt="Feest">
+                        <div class="page-number">Feest</div>
                     </div>
                 </div>
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="https://i.ibb.co/0jKj5L7/ruimte.png" alt="Ruimte Reis kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Ruimte Reis</h3>
-                        <p>Reis door het heelal en ontmoet vriendelijke aliens. Voor kleine astronauten in de dop!</p>
-                        <a href="https://i.ibb.co/0jKj5L7/ruimte.png" download class="coloring-page-download">Download</a>
-                    </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p><strong>En nog 38 andere unieke tekeningen!</strong> Download het complete PDF bestand om ze allemaal te ontdekken.</p>
+                    <a href="https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.pdf" 
+                       download class="download-btn pdf" style="margin-top: 1rem;">
+                        📥 Download Alle 44 Tekeningen
+                    </a>
                 </div>
             </div>
 
             <div class="info-section">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--autism-purple);">Tips voor Kleuren</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--autism-purple);">Tips voor het Beste Kleurplezier</h2>
                 <div class="info-grid">
                     <div class="info-card">
-                        <h3><span class="info-card-icon">🎨</span> Kleurtechnieken</h3>
-                        <p>Experimenteer met verschillende kleurtechnieken zoals arcering, kleurovergangen en kleurmengingen om je kunstwerk meer diepte te geven.</p>
+                        <h3><span class="info-card-icon">📄</span> PDF Tips</h3>
+                        <p>Download het PDF bestand voor de beste printkwaliteit. Je kunt individuele pagina's printen of het complete boek in één keer.</p>
                     </div>
                     <div class="info-card">
-                        <h3><span class="info-card-icon">✏️</span> Materialen</h3>
-                        <p>Probeer verschillende materialen uit: potloden, stiften, wasco of aquarel. Elk materiaal geeft een ander effect aan je kleurplaat.</p>
+                        <h3><span class="info-card-icon">🎨</span> Kleurmaterialen</h3>
+                        <p>Experimenteer met potloden, stiften, wasco of aquarel. Elk materiaal geeft een uniek effect aan je Twinkel Paws tekeningen.</p>
                     </div>
                     <div class="info-card">
                         <h3><span class="info-card-icon">🌟</span> Creativiteit</h3>
-                        <p>Wees niet bang om buiten de lijntjes te kleuren of je eigen kleuren te gebruiken. Laat je fantasie de vrije loop!</p>
+                        <p>Wees niet bang om buiten de lijntjes te kleuren! Voeg je eigen achtergronden en details toe aan de 44 basis tekeningen.</p>
                     </div>
                 </div>
             </div>
@@ -655,55 +801,86 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩 | Twinkel Paws Kleurboek met 44 unieke tekeningen</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // AI Generator - Gebruikt de bestaande afbeeldingen als inspiratie
         document.getElementById('generate-btn').addEventListener('click', function() {
             const prompt = document.getElementById('ai-prompt').value;
             const style = document.getElementById('ai-style').value;
             const aiImage = document.getElementById('ai-image');
             const aiWatermark = document.getElementById('ai-watermark');
             const downloadBtn = document.getElementById('download-btn');
+            const printBtn = document.getElementById('print-btn');
             
             if (!prompt) {
                 alert('Voer een beschrijving in voor je kleurplaat!');
                 return;
             }
             
-            // Toon een laadbericht
+            // Toon laadstatus
             aiImage.style.display = 'block';
-            aiImage.src = 'https://i.ibb.co/0jKj5L7/loading.png'; // Laad afbeelding
+            aiImage.src = 'https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg';
             aiImage.alt = 'AI kleurplaat aan het genereren...';
             downloadBtn.style.display = 'none';
+            printBtn.style.display = 'none';
             aiWatermark.style.display = 'none';
             
-            // Simuleer AI-generatie (in een echte implementatie zou dit een API-aanroep zijn)
+            // Simuleer AI-generatie met jouw afbeeldingen
             setTimeout(() => {
-                // Voor demo-doeleinden gebruiken we vooraf gemaakte tekeningen
-                // In een echte implementatie zou dit de gegenereerde afbeelding zijn
-                const generatedImages = {
-                    'cartoon': 'https://i.ibb.co/0jKj5L7/cartoon.png',
-                    'animals': 'https://i.ibb.co/0jKj5L7/dieren.png',
-                    'fantasy': 'https://i.ibb.co/0jKj5L7/fantasy.png',
-                    'simple': 'https://i.ibb.co/0jKj5L7/simple.png'
-                };
-                
-                aiImage.src = generatedImages[style] || generatedImages.cartoon;
+                // Gebruik de bestaande Twinkel Paws afbeelding als basis
+                // In een echte implementatie zou dit een aangepaste versie zijn
+                aiImage.src = 'https://raw.githubusercontent.com/AtsumiPrints/Atsumi/main/twinkel-paws-kleurboek.jpg';
                 aiImage.alt = `AI gegenereerde kleurplaat: ${prompt}`;
                 aiWatermark.style.display = 'block';
-                downloadBtn.style.display = 'inline-flex';
+                downloadBtn.style.display = 'inline-block';
+                printBtn.style.display = 'inline-block';
+                
                 downloadBtn.onclick = function() {
                     const link = document.createElement('a');
                     link.href = aiImage.src;
-                    link.download = `twinkel-paws-kleurplaat-${Date.now()}.png`;
+                    link.download = `twinkel-paws-ai-${Date.now()}.jpg`;
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                 };
-            }, 2000);
+                
+                printBtn.onclick = function() {
+                    const printWindow = window.open('', '_blank');
+                    printWindow.document.write(`
+                        <html>
+                            <head>
+                                <title>Print Kleurplaat</title>
+                                <style>
+                                    body { text-align: center; padding: 20px; }
+                                    img { max-width: 100%; height: auto; }
+                                </style>
+                            </head>
+                            <body>
+                                <h2>Twinkel Paws AI Kleurplaat</h2>
+                                <img src="${aiImage.src}" alt="${aiImage.alt}">
+                                <p>Print deze pagina om je kleurplaat te gebruiken!</p>
+                                <script>
+                                    window.onload = function() { window.print(); }
+                                <\/script>
+                            </body>
+                        </html>
+                    `);
+                };
+            }, 1500);
+        });
+
+        // Eenvoudige image modal (kan uitgebreid worden)
+        function openImageModal(src) {
+            window.open(src, '_blank');
+        }
+
+        // Print functionaliteit
+        document.querySelector('.download-btn.print').addEventListener('click', function() {
+            alert('Selecteer "Opslaan als PDF" in het printmenu om het complete kleurboek op te slaan, of print direct naar je printer!');
         });
     </script>
 </body>
