@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Lid - Atsumi</title>
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-light-blue: #90E0EF;
+            --autism-purple: #7209B7;
+            --autism-pink: #F72585;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.9), rgba(114, 9, 183, 0.9));
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Leden teller */
+        .leden-teller {
+            background-color: var(--autism-yellow);
+            color: var(--dark);
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .leden-teller h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .leden-aantal {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--autism-purple);
+        }
+
+        /* Inspirerende tekst */
+        .inspiratie {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-pink);
+            text-align: center;
+        }
+
+        .inspiratie h2 {
+            color: var(--autism-pink);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .inspiratie p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Inschrijfformulier */
+        .inschrijving {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-blue);
+        }
+
+        .inschrijving h2 {
+            color: var(--autism-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .formulier {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-groep {
+            margin-bottom: 20px;
+        }
+
+        .form-groep label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--autism-blue);
+        }
+
+        .form-groep input[type="text"],
+        .form-groep input[type="email"],
+        .form-groep input[type="tel"],
+        .form-groep input[type="date"],
+        .form-groep textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .form-groep textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-groep.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .checkbox-groep {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-groep input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .kind-container {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--autism-purple);
+        }
+
+        .kind-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .kind-header h3 {
+            color: var(--autism-purple);
+        }
+
+        .verwijder-kind {
+            background-color: var(--autism-pink);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .kind-velden {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-acties {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to bottom, var(--autism-purple), #6208a7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #6208a7, #520797);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, var(--autism-blue), #0066a3);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to bottom, #0066a3, #00558c);
+            transform: translateY(-2px);
+        }
+
+        .btn-doneer {
+            background: linear-gradient(to bottom, var(--autism-yellow), #e6b800);
+            color: var(--dark);
+        }
+        
+        .btn-doneer:hover {
+            background: linear-gradient(to bottom, #e6b800, #d4a600);
+            transform: translateY(-2px);
+        }
+
+        .toestemming {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--autism-yellow);
+        }
+
+        .handtekening-veld {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .handtekening-canvas {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: crosshair;
+        }
+
+        .handtekening-acties {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Doneer sectie */
+        .doneer-sectie {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--autism-yellow);
+            text-align: center;
+        }
+
+        .doneer-sectie h2 {
+            color: var(--autism-yellow);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .doneer-sectie p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Bevestiging */
+        .bevestiging {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid #c3e6cb;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: var(--autism-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--autism-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .formulier {
+                grid-template-columns: 1fr;
+            }
+            
+            .kind-velden {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-acties {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🐧</div>
+                    <h1>Atsumi</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="leden.html">Word Lid</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">👥</div>
+            <h1>Word Lid van Atsumi</h1>
+            <p>Sluit je aan bij onze gemeenschap en help kinderen met autisme groeien</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Leden teller -->
+        <div class="leden-teller">
+            <h2>Onze Gemeenschap</h2>
+            <div class="leden-aantal" id="ledenAantal">0</div>
+            <p>leden maken al deel uit van Atsumi</p>
+        </div>
+
+        <!-- Inspirerende tekst -->
+        <div class="inspiratie">
+            <h2>Waarom lid worden van Atsumi?</h2>
+            <p>Bij Atsumi creëren we een veilige en ondersteunende omgeving voor kinderen en jongvolwassenen met autisme en hun families.</p>
+            <p>Als lid krijg je toegang tot onze speciale leermaterialen, ontmoet je andere ouders en kinderen die dezelfde uitdagingen ervaren, en draag je bij aan een inclusievere samenleving.</p>
+            <p>Samen bouwen we aan een gemeenschap waar iedereen zich begrepen en gewaardeerd voelt.</p>
+        </div>
+
+        <!-- Inschrijfformulier -->
+        <div class="inschrijving">
+            <h2>Inschrijving Nieuwe Leden</h2>
+            
+            <form id="inschrijfformulier">
+                <div class="formulier">
+                    <!-- Datum inschrijving -->
+                    <div class="form-groep">
+                        <label for="datum">Datum inschrijving:</label>
+                        <input type="date" id="datum" name="datum" required>
+                    </div>
+                    
+                    <!-- Persoonlijke gegevens -->
+                    <div class="form-groep full-width">
+                        <h3>Persoonlijke gegevens</h3>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="voornaam">Voornaam:</label>
+                        <input type="text" id="voornaam" name="voornaam" required>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="achternaam">Achternaam:</label>
+                        <input type="text" id="achternaam" name="achternaam" required>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="adres">Adres:</label>
+                        <input type="text" id="adres" name="adres" required>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="postcode">Postcode:</label>
+                        <input type="text" id="postcode" name="postcode" required>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="gemeente">Gemeente:</label>
+                        <input type="text" id="gemeente" name="gemeente" required>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="telefoon">Telefoon:</label>
+                        <input type="tel" id="telefoon" name="telefoon" required>
+                    </div>
+                    
+                    <div class="form-groep">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <!-- Gegevens kinderen -->
+                    <div class="form-groep full-width">
+                        <h3>Gegevens kind(eren)</h3>
+                        <div id="kinderenContainer">
+                            <!-- Hier komen de kindvelden -->
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="voegKindToe">+ Voeg kind toe</button>
+                    </div>
+                    
+                    <!-- Interesses -->
+                    <div class="form-groep full-width">
+                        <h3>Interesses</h3>
+                        <p>Waarom bij Atsumi?</p>
+                        
+                        <div class="checkbox-groep">
+                            <input type="checkbox" id="interesse1" name="interesses" value="ontmoeten">
+                            <label for="interesse1">Andere ouders/kinderen ontmoeten</label>
+                        </div>
+                        
+                        <div class="checkbox-groep">
+                            <input type="checkbox" id="interesse2" name="interesses" value="leerplatform">
+                            <label for="interesse2">Gebruik maken van leerplatform</label>
+                        </div>
+                        
+                        <div class="checkbox-groep">
+                            <input type="checkbox" id="interesse3" name="interesses" value="workshops">
+                            <label for="interesse3">Deelnemen workshops</label>
+                        </div>
+                        
+                        <div class="checkbox-groep">
+                            <input type="checkbox" id="interesse4" name="interesses" value="ondersteuning">
+                            <label for="interesse4">Ondersteuning en advies</label>
+                        </div>
+                        
+                        <div class="form-groep">
+                            <label for="interessesKind">Interesses kind:</label>
+                            <textarea id="interessesKind" name="interessesKind"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Vrijwillige bijdrage -->
+                    <div class="form-groep full-width">
+                        <h3>Vrijwillige bijdrage</h3>
+                        
+                        <div class="checkbox-groep">
+                            <input type="radio" id="bijdrageNee" name="bijdrage" value="nee" checked>
+                            <label for="bijdrageNee">Nee, dank u</label>
+                        </div>
+                        
+                        <div class="checkbox-groep">
+                            <input type="radio" id="bijdrageJa" name="bijdrage" value="ja">
+                            <label for="bijdrageJa">Ja, ik doneer €</label>
+                            <input type="number" id="bijdrageBedrag" name="bijdrageBedrag" min="1" style="width: 100px; margin-left: 10px;" disabled>
+                        </div>
+                    </div>
+                    
+                    <!-- Toestemming -->
+                    <div class="toestemming form-groep full-width">
+                        <div class="checkbox-groep">
+                            <input type="checkbox" id="toestemming" name="toestemming" required>
+                            <label for="toestemming">Ik ga akkoord met de verwerking van mijn gegevens en de huisregels.</label>
+                        </div>
+                        
+                        <div class="handtekening-veld">
+                            <label for="handtekening">Handtekening:</label>
+                            <canvas id="handtekeningCanvas" class="handtekening-canvas" width="400" height="150"></canvas>
+                            <div class="handtekening-acties">
+                                <button type="button" class="btn btn-secondary" id="wisHandtekening">Wis handtekening</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulier acties -->
+                    <div class="form-acties">
+                        <button type="button" class="btn btn-doneer" onclick="window.location.href='doneer.html'">Direct Doneren</button>
+                        <button type="submit" class="btn btn-primary">Inschrijven</button>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- Bevestiging -->
+            <div class="bevestiging" id="bevestiging">
+                <h3>Bedankt voor je inschrijving!</h3>
+                <p>We hebben je inschrijving ontvangen en nemen zo spoedig mogelijk contact met je op.</p>
+                <p>Welkom bij de Atsumi gemeenschap!</p>
+            </div>
+        </div>
+
+        <!-- Doneer sectie -->
+        <div class="doneer-sectie">
+            <h2>Steun Ons Werk</h2>
+            <p>Jouw donatie helpt ons om meer kinderen met autisme te ondersteunen en onze gemeenschap te laten groeien.</p>
+            <p>Elke bijdrage, groot of klein, maakt een verschil.</p>
+            <button class="btn btn-doneer" onclick="window.location.href='doneer.html'">Doneer Nu</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="leden.html">Word Lid</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-integratie</h3>
+                    <ul>
+                        <li>Automatische oefeningengenerator</li>
+                        <li>Nieuws- en update-monitor</li>
+                        <li>Adaptief leerpad</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> <a href="mailto:atsumiprints@hotmail.com" class="email-link" style="color: #ddd;">atsumiprints@hotmail.com</a></div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Leden teller
+        document.addEventListener('DOMContentLoaded', function() {
+            // Haal het aantal leden op uit localStorage of stel in op 0
+            let ledenAantal = localStorage.getItem('ledenAantal') || 0;
+            document.getElementById('ledenAantal').textContent = ledenAantal;
+            
+            // Stel de datum van vandaag in
+            document.getElementById('datum').valueAsDate = new Date();
+            
+            // Voeg het eerste kindveld toe
+            voegKindToe();
+            
+            // Activeer/deactiveer donatiebedrag op basis van selectie
+            document.getElementById('bijdrageNee').addEventListener('change', function() {
+                document.getElementById('bijdrageBedrag').disabled = true;
+            });
+            
+            document.getElementById('bijdrageJa').addEventListener('change', function() {
+                document.getElementById('bijdrageBedrag').disabled = false;
+            });
+        });
+
+        // Kind toevoegen functionaliteit
+        let kindTeller = 0;
+        
+        function voegKindToe() {
+            kindTeller++;
+            const kinderenContainer = document.getElementById('kinderenContainer');
+            
+            const kindDiv = document.createElement('div');
+            kindDiv.className = 'kind-container';
+            kindDiv.id = `kind-${kindTeller}`;
+            
+            kindDiv.innerHTML = `
+                <div class="kind-header">
+                    <h3>Kind ${kindTeller}</h3>
+                    ${kindTeller > 1 ? '<button type="button" class="verwijder-kind" onclick="verwijderKind(' + kindTeller + ')">Verwijder</button>' : ''}
+                </div>
+                <div class="kind-velden">
+                    <div class="form-groep">
+                        <label for="kindNaam-${kindTeller}">Naam kind:</label>
+                        <input type="text" id="kindNaam-${kindTeller}" name="kindNaam[]" required>
+                    </div>
+                    <div class="form-groep">
+                        <label for="kindLeeftijd-${kindTeller}">Leeftijd:</label>
+                        <input type="number" id="kindLeeftijd-${kindTeller}" name="kindLeeftijd[]" min="0" max="25" required>
+                    </div>
+                    <div class="form-groep">
+                        <label>Diagnose ASS:</label>
+                        <div class="checkbox-groep">
+                            <input type="radio" id="kindAssJa-${kindTeller}" name="kindAss[${kindTeller}]" value="ja" required>
+                            <label for="kindAssJa-${kindTeller}">Ja</label>
+                        </div>
+                        <div class="checkbox-groep">
+                            <input type="radio" id="kindAssNee-${kindTeller}" name="kindAss[${kindTeller}]" value="nee" required>
+                            <label for="kindAssNee-${kindTeller}">Nee</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            kinderenContainer.appendChild(kindDiv);
+        }
+        
+        function verwijderKind(kindId) {
+            const kindDiv = document.getElementById(`kind-${kindId}`);
+            if (kindDiv) {
+                kindDiv.remove();
+                // Hernummer de overgebleven kinderen
+                const kinderen = document.querySelectorAll('.kind-container');
+                kinderen.forEach((kind, index) => {
+                    const header = kind.querySelector('.kind-header h3');
+                    header.textContent = `Kind ${index + 1}`;
+                });
+                kindTeller = kinderen.length;
+            }
+        }
+        
+        document.getElementById('voegKindToe').addEventListener('click', voegKindToe);
+
+        // Handtekening functionaliteit
+        const canvas = document.getElementById('handtekeningCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        
+        // Responsive canvas
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.offsetWidth;
+            canvas.height = 150;
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('touchstart', startDrawingTouch);
+        
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('touchmove', drawTouch);
+        
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('touchend', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        function startDrawing(e) {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+        
+        function startDrawingTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            isDrawing = true;
+            [lastX, lastY] = [touch.clientX - rect.left, touch.clientY - rect.top];
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+        
+        function drawTouch(e) {
+            e.preventDefault();
+            if (!isDrawing) return;
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
+            ctx.stroke();
+            [lastX, lastY] = [touch.clientX - rect.left, touch.clientY - rect.top];
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        document.getElementById('wisHandtekening').addEventListener('click', function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Formulier verzenden
+        document.getElementById('inschrijfformulier').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Controleer of handtekening is ingevuld
+            const isCanvasEmpty = isCanvasBlank(canvas);
+            if (isCanvasEmpty) {
+                alert('Gelieve een handtekening te plaatsen.');
+                return;
+            }
+            
+            // Verhoog ledenaantal
+            let ledenAantal = parseInt(localStorage.getItem('ledenAantal') || 0);
+            ledenAantal++;
+            localStorage.setItem('ledenAantal', ledenAantal);
+            document.getElementById('ledenAantal').textContent = ledenAantal;
+            
+            // Verzamel formuliergegevens
+            const formulierGegevens = verzamelFormulierGegevens();
+            
+            // Verstuur e-mail
+            verstuurEmail(formulierGegevens);
+            
+            // Toon bevestiging
+            document.getElementById('bevestiging').style.display = 'block';
+            
+            // Scroll naar bevestiging
+            document.getElementById('bevestiging').scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset formulier
+            this.reset();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('bijdrageBedrag').disabled = true;
+            
+            // Verwijder alle kinderen behalve de eerste
+            const kinderen = document.querySelectorAll('.kind-container');
+            kinderen.forEach((kind, index) => {
+                if (index > 0) {
+                    kind.remove();
+                }
+            });
+            kindTeller = 1;
+            
+            // Reset eerste kind
+            document.getElementById('kindNaam-1').value = '';
+            document.getElementById('kindLeeftijd-1').value = '';
+            document.querySelectorAll('input[name="kindAss[1]"]').forEach(radio => {
+                radio.checked = false;
+            });
+        });
+        
+        function isCanvasBlank(canvas) {
+            const blank = document.createElement('canvas');
+            blank.width = canvas.width;
+            blank.height = canvas.height;
+            return canvas.toDataURL() === blank.toDataURL();
+        }
+        
+        function verzamelFormulierGegevens() {
+            const formulierGegevens = {
+                datum: document.getElementById('datum').value,
+                voornaam: document.getElementById('voornaam').value,
+                achternaam: document.getElementById('achternaam').value,
+                adres: document.getElementById('adres').value,
+                postcode: document.getElementById('postcode').value,
+                gemeente: document.getElementById('gemeente').value,
+                telefoon: document.getElementById('telefoon').value,
+                email: document.getElementById('email').value,
+                kinderen: [],
+                interesses: [],
+                interessesKind: document.getElementById('interessesKind').value,
+                bijdrage: document.querySelector('input[name="bijdrage"]:checked').value,
+                bijdrageBedrag: document.getElementById('bijdrageBedrag').value,
+                toestemming: document.getElementById('toestemming').checked
+            };
+            
+            // Verzamel gegevens van kinderen
+            for (let i = 1; i <= kindTeller; i++) {
+                const kindNaam = document.getElementById(`kindNaam-${i}`);
+                const kindLeeftijd = document.getElementById(`kindLeeftijd-${i}`);
+                const kindAss = document.querySelector(`input[name="kindAss[${i}]"]:checked`);
+                
+                if (kindNaam && kindLeeftijd && kindAss) {
+                    formulierGegevens.kinderen.push({
+                        naam: kindNaam.value,
+                        leeftijd: kindLeeftijd.value,
+                        ass: kindAss.value
+                    });
+                }
+            }
+            
+            // Verzamel interesses
+            document.querySelectorAll('input[name="interesses"]:checked').forEach(checkbox => {
+                formulierGegevens.interesses.push(checkbox.value);
+            });
+            
+            return formulierGegevens;
+        }
+        
+        function verstuurEmail(gegevens) {
+            // Maak e-mail body
+            let emailBody = "Hoera! Een nieuw lid heeft zich ingeschreven bij Atsumi.\n\n";
+            emailBody += "PERSOONLIJKE GEGEVENS:\n";
+            emailBody += `Datum: ${gegevens.datum}\n`;
+            emailBody += `Naam: ${gegevens.voornaam} ${gegevens.achternaam}\n`;
+            emailBody += `Adres: ${gegevens.adres}, ${gegevens.postcode} ${gegevens.gemeente}\n`;
+            emailBody += `Telefoon: ${gegevens.telefoon}\n`;
+            emailBody += `E-mail: ${gegevens.email}\n\n`;
+            
+            emailBody += "GEGEVENS KIND(EREN):\n";
+            gegevens.kinderen.forEach((kind, index) => {
+                emailBody += `Kind ${index + 1}: ${kind.naam}, ${kind.leeftijd} jaar, ASS: ${kind.ass}\n`;
+            });
+            emailBody += "\n";
+            
+            emailBody += "INTERESSES:\n";
+            emailBody += `Waarom bij Atsumi: ${gegevens.interesses.join(', ')}\n`;
+            emailBody += `Interesses kind: ${gegevens.interessesKind}\n\n`;
+            
+            emailBody += "VRIJWILLIGE BIJDRAGE:\n";
+            if (gegevens.bijdrage === 'ja') {
+                emailBody += `Ja, ik doneer € ${gegevens.bijdrageBedrag}\n`;
+            } else {
+                emailBody += "Nee, dank u\n";
+            }
+            emailBody += "\n";
+            
+            emailBody += "TOESTEMMING:\n";
+            emailBody += `Akkoord met verwerking gegevens: ${gegevens.toestemming ? 'Ja' : 'Nee'}\n`;
+            
+            // Codeer de e-mail body voor URL
+            const encodedBody = encodeURIComponent(emailBody);
+            
+            // Maak mailto link
+            const mailtoLink = `mailto:atsumiprints@hotmail.com?subject=Hoera nieuw lid&body=${encodedBody}`;
+            
+            // Open e-mail client
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
