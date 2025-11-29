@@ -28,6 +28,13 @@ De website is live beschikbaar op: [https://jouw-gebruikersnaam.github.io/atsumi
 
 - **Email**: AtsumiPrints@hotmail.com
 - **Telefoon**: +32 451 08 38 17
+  ## 🎨 Kleurboek Downloads
+
+Wil je meteen aan de slag met inkleuren? Download hier het **Twinkel Paws Kleurboek**:
+
+ [📄 Download als PDF](https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.pdf)
+ [🖼️ Download als JPG](https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg)
+
 
 ## 💝 Ondersteuning
 
