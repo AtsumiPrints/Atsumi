@@ -1540,7 +1540,1753 @@
     <script>
         // AI KLEURBOEK GENERATOR FUNCTIES
         // Vervang deze sleutel met je eigen OpenAI API-sleutel
+        const API_KEY = "<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twinkel Paws - Magisch Kleurboek</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-dark-blue: #3B5998;
+            --autism-light-blue: #8B9DC3;
+            --autism-very-light-blue: #DFE3EE;
+            --autism-purple: #7209B7;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .join-btn {
+            background: var(--autism-yellow);
+            color: var(--dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .join-btn:hover {
+            background: #ffc043;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8));
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--autism-blue);
+            font-size: 2rem;
+        }
+        
+        .intro-section {
+            padding: 3rem 1rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border-top: 5px solid var(--autism-blue);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--autism-purple);
+        }
+        
+        .download-section {
+            padding: 3rem 1rem;
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .download-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .book-preview {
+            max-width: 300px;
+            margin: 0 auto 20px;
+            border: 2px solid var(--autism-blue);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .book-preview img {
+            width: 100%;
+            display: block;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--autism-blue);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        /* AI KLEURBOEK GENERATOR STYLES */
+        .ai-coloring-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .coloring-container {
+            background: var(--autism-very-light-blue);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .coloring-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .coloring-icon {
+            font-size: 2.5rem;
+        }
+        
+        .coloring-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .coloring-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .coloring-textarea:focus {
+            outline: none;
+            border-color: var(--autism-blue);
+        }
+        
+        .coloring-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .coloring-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .coloring-generate {
+            background: var(--autism-blue);
+            color: white;
+        }
+        
+        .coloring-generate:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .coloring-clear {
+            background: var(--autism-yellow);
+            color: var(--dark);
+        }
+        
+        .coloring-clear:hover {
+            background: #ffc043;
+        }
+        
+        .coloring-preview {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .coloring-preview img {
+            max-width: 100%;
+            border: 2px solid var(--autism-blue);
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .coloring-loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .coloring-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--autism-blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .coloring-error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .coloring-download {
+            display: inline-block;
+            background: var(--autism-purple);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .coloring-download:hover {
+            background: #5a0a8c;
+        }
+        
+        .generated-image-container {
+            padding: 3rem 1rem;
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .generated-image-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px dashed var(--autism-blue);
+        }
+        
+        .generated-image-placeholder {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #666;
+        }
+        
+        .generated-image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--autism-light-blue);
+        }
+        
+        .generated-image-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--autism-blue);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .action-btn.save {
+            background: var(--autism-purple);
+        }
+        
+        .action-btn.save:hover {
+            background: #5a0a8c;
+        }
+        
+        .action-btn.gallery {
+            background: var(--autism-yellow);
+            color: var(--dark);
+        }
+        
+        .action-btn.gallery:hover {
+            background: #ffc043;
+        }
+        
+        .action-btn.clear {
+            background: #dc3545;
+        }
+        
+        .action-btn.clear:hover {
+            background: #c82333;
+        }
+        
+        .tips-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .tip-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-left: 5px solid var(--autism-yellow);
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+        
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .coloring-buttons {
+                flex-direction: column;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .generated-image-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🖍️</div>
+                    <h1>Twinkel Paws</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="kleurboek.html">Kleurboek</a></li>
+                        <li><a href="ai-generator.html">AI Generator</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Twinkel Paws Kleurboek</h2>
+            <p>Tekeningen om in te kleuren! Download het complete boek of gebruik onze AI om nieuwe creaties te maken.</p>
+        </div>
+    </section>
+    
+    <section class="intro-section">
+        <div class="container">
+            <h2 class="section-title">🎉 Ontdek onze Magische Twinkel Paws Tekeningen! ✨</h2>
+            <div class="intro-content">
+                <p>Welkom in de betoverende wereld van Twinkel Paws! Ons kleurboek bevat unieke tekeningen die speciaal zijn ontworpen om de creativiteit van kinderen te stimuleren en uren kleurplezier te bieden.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🐾</div>
+                        <h3>Wat maakt ons kleurboek speciaal?</h3>
+                        <p>Elk van de tekeningen is met veel liefde en aandacht gemaakt. Van schattige dieren tot magische wezens - er is voor ieder wat wils! Onze tekeningen zijn perfect afgestemd op verschillende leeftijden en vaardigheden.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Complete Set van Tekeningen</h3>
+                        <p>Je krijgt niet zomaar een kleurboek, maar een complete set van verschillende tekeningen! Genoeg om wekenlang plezier te hebben en steeds nieuwe uitdagingen te vinden.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>AI Kleurplaat Generator</h3>
+                        <p>Naast onze vaste tekeningen kun je ook gebruik maken van onze AI generator om extra kleurplaten te creëren op basis van jouw eigen ideeën!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="download-section">
+        <div class="container">
+            <h2 class="section-title">Twinkel Paws Kleurboek</h2>
+            <div class="download-container">
+                <h3>Magische Tekeningen</h3>
+                <p>Complete Twinkel Paws Kleurboek</p>
+                <p>Download ons complete kleurboek met unieke tekeningen. Perfect voor thuisgebruik, in de klas, of als cadeautje. Alle tekeningen zijn print-klaar en geschikt voor potloden, stiften en wasco.</p>
+                
+                <div class="book-preview">
+                    <img src="https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg" alt="Twinkel Paws Kleurboek preview">
+                </div>
+                
+                <div class="download-buttons">
+                    <a href="https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.pdf" download class="download-btn">
+                        <i class="far fa-file-pdf"></i> Download als PDF
+                    </a>
+                    <a href="https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg" download class="download-btn">
+                        <i class="far fa-image"></i> Download als JPG
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI KLEURBOEK GENERATOR SECTIE -->
+    <section class="ai-coloring-section">
+        <div class="container">
+            <h2 class="section-title">🎨 AI Kleurplaat Generator - Maak Extra Tekeningen! 🤖</h2>
+            <p>Geïnspireerd door onze Twinkel Paws tekeningen? Maak nu je eigen unieke kleurplaat!</p>
+            
+            <div class="coloring-container">
+                <div class="coloring-header">
+                    <div class="coloring-icon">🎨</div>
+                    <div>
+                        <h3>Ontwerp je eigen kleurplaat</h3>
+                        <p>Beschrijf wat je wilt tekenen en onze AI maakt er een kleurplaat van</p>
+                    </div>
+                </div>
+                
+                <div class="coloring-form">
+                    <textarea class="coloring-textarea" id="coloringPrompt" placeholder="Bijvoorbeeld: een pinguïn die een boek leest, een draak in een bloementuin, een ruimteschip tussen de sterren..."></textarea>
+                    
+                    <div class="coloring-buttons">
+                        <button class="coloring-btn coloring-generate" onclick="generateColoringPage()">✨ Genereer Kleurplaat</button>
+                        <button class="coloring-btn coloring-clear" onclick="clearColoringPage()">🗑️ Wissen</button>
+                    </div>
+                    
+                    <div class="coloring-loading" id="coloringLoading">
+                        <div class="coloring-spinner"></div>
+                        <p>Je kleurplaat wordt gegenereerd... Dit kan even duren.</p>
+                    </div>
+                    
+                    <div class="coloring-error" id="coloringError"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GENERATED IMAGE CONTAINER -->
+    <section class="generated-image-container">
+        <div class="container">
+            <h2 class="section-title">Je Gegeneerde AI Tekening</h2>
+            <div class="generated-image-box" id="generatedImageBox">
+                <div class="generated-image-placeholder" id="generatedImagePlaceholder">
+                    <i class="fas fa-image"></i>
+                    <p>Je gegenereerde AI-tekening verschijnt hier</p>
+                </div>
+                <div id="generatedImageContent" style="display: none;">
+                    <img id="generatedImage" src="" alt="Gegenereerde AI-tekening" style="max-width: 100%; border-radius: 8px;">
+                    <div class="generated-image-actions">
+                        <button class="action-btn save" onclick="saveImage()">
+                            <i class="fas fa-save"></i> Opslaan
+                        </button>
+                        <button class="action-btn gallery" onclick="viewGallery()">
+                            <i class="fas fa-images"></i> Galerij
+                        </button>
+                        <button class="action-btn clear" onclick="clearGeneratedImage()">
+                            <i class="fas fa-trash"></i> Wissen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="tips-section">
+        <div class="container">
+            <h2 class="section-title">Tips voor het Beste Kleurplezier</h2>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">📄</div>
+                    <h3>PDF Tips</h3>
+                    <p>Download het PDF bestand voor de beste printkwaliteit. Je kunt individuele pagina's printen of het complete boek in één keer.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🎨</div>
+                    <h3>Kleurmaterialen</h3>
+                    <p>Experimenteer met potloden, stiften, wasco of aquarel. Elk materiaal geeft een uniek effect aan je Twinkel Paws tekeningen.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🌟</div>
+                    <h3>Creativiteit</h3>
+                    <p>Wees niet bang om buiten de lijntjes te kleuren! Voeg je eigen achtergronden en details toe aan de basis tekeningen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-Functionaliteiten</h3>
+                    <ul>
+                        <li><a href="ai-integratie.html">AI-integratie</a></li>
+                        <li><a href="oefeningengenerator.html">Automatische oefeningengenerator</a></li>
+                        <li><a href="nieuws-monitor.html">Nieuws- en update-monitor</a></li>
+                        <li><a href="leerpad.html">Adaptief leerpad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                        <div><strong>Volg ons op sociale media</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // AI KLEURBOEK GENERATOR FUNCTIES
+        // Vervang deze sleutel met je eigen OpenAI API-sleutel
+        const API_KEY = "<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twinkel Paws - Magisch Kleurboek</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-dark-blue: #3B5998;
+            --autism-light-blue: #8B9DC3;
+            --autism-very-light-blue: #DFE3EE;
+            --autism-purple: #7209B7;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .join-btn {
+            background: var(--autism-yellow);
+            color: var(--dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .join-btn:hover {
+            background: #ffc043;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8));
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--autism-blue);
+            font-size: 2rem;
+        }
+        
+        .intro-section {
+            padding: 3rem 1rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border-top: 5px solid var(--autism-blue);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--autism-purple);
+        }
+        
+        .download-section {
+            padding: 3rem 1rem;
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .download-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .book-preview {
+            max-width: 300px;
+            margin: 0 auto 20px;
+            border: 2px solid var(--autism-blue);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .book-preview img {
+            width: 100%;
+            display: block;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--autism-blue);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        /* AI KLEURBOEK GENERATOR STYLES */
+        .ai-coloring-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .coloring-container {
+            background: var(--autism-very-light-blue);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .coloring-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .coloring-icon {
+            font-size: 2.5rem;
+        }
+        
+        .coloring-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .coloring-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 2px solid var(--autism-light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .coloring-textarea:focus {
+            outline: none;
+            border-color: var(--autism-blue);
+        }
+        
+        .coloring-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .coloring-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .coloring-generate {
+            background: var(--autism-blue);
+            color: white;
+        }
+        
+        .coloring-generate:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .coloring-clear {
+            background: var(--autism-yellow);
+            color: var(--dark);
+        }
+        
+        .coloring-clear:hover {
+            background: #ffc043;
+        }
+        
+        .coloring-preview {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .coloring-preview img {
+            max-width: 100%;
+            border: 2px solid var(--autism-blue);
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .coloring-loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .coloring-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--autism-blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .coloring-error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .coloring-download {
+            display: inline-block;
+            background: var(--autism-purple);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .coloring-download:hover {
+            background: #5a0a8c;
+        }
+        
+        .generated-image-container {
+            padding: 3rem 1rem;
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .generated-image-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px dashed var(--autism-blue);
+        }
+        
+        .generated-image-placeholder {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #666;
+        }
+        
+        .generated-image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--autism-light-blue);
+        }
+        
+        .generated-image-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--autism-blue);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background: var(--autism-dark-blue);
+        }
+        
+        .action-btn.save {
+            background: var(--autism-purple);
+        }
+        
+        .action-btn.save:hover {
+            background: #5a0a8c;
+        }
+        
+        .action-btn.gallery {
+            background: var(--autism-yellow);
+            color: var(--dark);
+        }
+        
+        .action-btn.gallery:hover {
+            background: #ffc043;
+        }
+        
+        .action-btn.clear {
+            background: #dc3545;
+        }
+        
+        .action-btn.clear:hover {
+            background: #c82333;
+        }
+        
+        .tips-section {
+            padding: 3rem 1rem;
+            background: white;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .tip-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-left: 5px solid var(--autism-yellow);
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--autism-yellow);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--autism-yellow);
+        }
+        
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .coloring-buttons {
+                flex-direction: column;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .generated-image-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">🖍️</div>
+                    <h1>Twinkel Paws</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="kleurboek.html">Kleurboek</a></li>
+                        <li><a href="ai-generator.html">AI Generator</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Twinkel Paws Kleurboek</h2>
+            <p>Tekeningen om in te kleuren! Download het complete boek of gebruik onze AI om nieuwe creaties te maken.</p>
+        </div>
+    </section>
+    
+    <section class="intro-section">
+        <div class="container">
+            <h2 class="section-title">🎉 Ontdek onze Magische Twinkel Paws Tekeningen! ✨</h2>
+            <div class="intro-content">
+                <p>Welkom in de betoverende wereld van Twinkel Paws! Ons kleurboek bevat unieke tekeningen die speciaal zijn ontworpen om de creativiteit van kinderen te stimuleren en uren kleurplezier te bieden.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🐾</div>
+                        <h3>Wat maakt ons kleurboek speciaal?</h3>
+                        <p>Elk van de tekeningen is met veel liefde en aandacht gemaakt. Van schattige dieren tot magische wezens - er is voor ieder wat wils! Onze tekeningen zijn perfect afgestemd op verschillende leeftijden en vaardigheden.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Complete Set van Tekeningen</h3>
+                        <p>Je krijgt niet zomaar een kleurboek, maar een complete set van verschillende tekeningen! Genoeg om wekenlang plezier te hebben en steeds nieuwe uitdagingen te vinden.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>AI Kleurplaat Generator</h3>
+                        <p>Naast onze vaste tekeningen kun je ook gebruik maken van onze AI generator om extra kleurplaten te creëren op basis van jouw eigen ideeën!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="download-section">
+        <div class="container">
+            <h2 class="section-title">Twinkel Paws Kleurboek</h2>
+            <div class="download-container">
+                <h3>Magische Tekeningen</h3>
+                <p>Complete Twinkel Paws Kleurboek</p>
+                <p>Download ons complete kleurboek met unieke tekeningen. Perfect voor thuisgebruik, in de klas, of als cadeautje. Alle tekeningen zijn print-klaar en geschikt voor potloden, stiften en wasco.</p>
+                
+                <div class="book-preview">
+                    <img src="https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg" alt="Twinkel Paws Kleurboek preview">
+                </div>
+                
+                <div class="download-buttons">
+                    <a href="https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.pdf" download class="download-btn">
+                        <i class="far fa-file-pdf"></i> Download als PDF
+                    </a>
+                    <a href="https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg" download class="download-btn">
+                        <i class="far fa-image"></i> Download als JPG
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI KLEURBOEK GENERATOR SECTIE -->
+    <section class="ai-coloring-section">
+        <div class="container">
+            <h2 class="section-title">🎨 AI Kleurplaat Generator - Maak Extra Tekeningen! 🤖</h2>
+            <p>Geïnspireerd door onze Twinkel Paws tekeningen? Maak nu je eigen unieke kleurplaat!</p>
+            
+            <div class="coloring-container">
+                <div class="coloring-header">
+                    <div class="coloring-icon">🎨</div>
+                    <div>
+                        <h3>Ontwerp je eigen kleurplaat</h3>
+                        <p>Beschrijf wat je wilt tekenen en onze AI maakt er een kleurplaat van</p>
+                    </div>
+                </div>
+                
+                <div class="coloring-form">
+                    <textarea class="coloring-textarea" id="coloringPrompt" placeholder="Bijvoorbeeld: een pinguïn die een boek leest, een draak in een bloementuin, een ruimteschip tussen de sterren..."></textarea>
+                    
+                    <div class="coloring-buttons">
+                        <button class="coloring-btn coloring-generate" onclick="generateColoringPage()">✨ Genereer Kleurplaat</button>
+                        <button class="coloring-btn coloring-clear" onclick="clearColoringPage()">🗑️ Wissen</button>
+                    </div>
+                    
+                    <div class="coloring-loading" id="coloringLoading">
+                        <div class="coloring-spinner"></div>
+                        <p>Je kleurplaat wordt gegenereerd... Dit kan even duren.</p>
+                    </div>
+                    
+                    <div class="coloring-error" id="coloringError"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GENERATED IMAGE CONTAINER -->
+    <section class="generated-image-container">
+        <div class="container">
+            <h2 class="section-title">Je Gegeneerde AI Tekening</h2>
+            <div class="generated-image-box" id="generatedImageBox">
+                <div class="generated-image-placeholder" id="generatedImagePlaceholder">
+                    <i class="fas fa-image"></i>
+                    <p>Je gegenereerde AI-tekening verschijnt hier</p>
+                </div>
+                <div id="generatedImageContent" style="display: none;">
+                    <img id="generatedImage" src="" alt="Gegenereerde AI-tekening" style="max-width: 100%; border-radius: 8px;">
+                    <div class="generated-image-actions">
+                        <button class="action-btn save" onclick="saveImage()">
+                            <i class="fas fa-save"></i> Opslaan
+                        </button>
+                        <button class="action-btn gallery" onclick="viewGallery()">
+                            <i class="fas fa-images"></i> Galerij
+                        </button>
+                        <button class="action-btn clear" onclick="clearGeneratedImage()">
+                            <i class="fas fa-trash"></i> Wissen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="tips-section">
+        <div class="container">
+            <h2 class="section-title">Tips voor het Beste Kleurplezier</h2>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">📄</div>
+                    <h3>PDF Tips</h3>
+                    <p>Download het PDF bestand voor de beste printkwaliteit. Je kunt individuele pagina's printen of het complete boek in één keer.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🎨</div>
+                    <h3>Kleurmaterialen</h3>
+                    <p>Experimenteer met potloden, stiften, wasco of aquarel. Elk materiaal geeft een uniek effect aan je Twinkel Paws tekeningen.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🌟</div>
+                    <h3>Creativiteit</h3>
+                    <p>Wees niet bang om buiten de lijntjes te kleuren! Voeg je eigen achtergronden en details toe aan de basis tekeningen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atsumi</h3>
+                    <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="oefeningen.html">Oefeningen</a></li>
+                        <li><a href="autisme.html">Autisme</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>AI-Functionaliteiten</h3>
+                    <ul>
+                        <li><a href="ai-integratie.html">AI-integratie</a></li>
+                        <li><a href="oefeningengenerator.html">Automatische oefeningengenerator</a></li>
+                        <li><a href="nieuws-monitor.html">Nieuws- en update-monitor</a></li>
+                        <li><a href="leerpad.html">Adaptief leerpad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
+                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                        <div><strong>Volg ons op sociale media</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // AI KLEURBOEK GENERATOR FUNCTIES
+        // Vervang deze sleutel met je eigen OpenAI API-sleutel
         const API_KEY = "JOUW_API_SLEUTEL_HIER";
+        
+        async function generateColoringPage() {
+            const prompt = document.getElementById('coloringPrompt').value.trim();
+            const loading = document.getElementById('coloringLoading');
+            const error = document.getElementById('coloringError');
+            const placeholder = document.getElementById('generatedImagePlaceholder');
+            const imageContent = document.getElementById('generatedImageContent');
+            const generatedImage = document.getElementById('generatedImage');
+            
+            // Verberg vorige foutmeldingen
+            error.style.display = 'none';
+            
+            if (!prompt) { 
+                showColoringError("Typ eerst een idee voor je kleurplaat!");
+                return; 
+            }
+            
+            // Toon laadindicator
+            loading.style.display = 'block';
+            
+            try {
+                // Controleer of API-sleutel is ingesteld
+                if (API_KEY === "JOUW_API_SLEUTEL_HIER") {
+                    throw new Error("API-sleutel niet geconfigureerd. Vervang JOUW_API_SLEUTEL_HIER met je eigen API-sleutel in de JavaScript-code.");
+                }
+                
+                const response = await fetch("https://api.openai.com/v1/images/generations", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + API_KEY
+                    },
+                    body: JSON.stringify({
+                        model: "dall-e-2",
+                        prompt: "zwart-wit kleurplaat, lijntekening, Twinkel Paws stijl, " + prompt + ", eenvoudige contouren, geen schaduwen, wit achtergrond",
+                        size: "512x512",
+                        n: 1
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || "Er ging iets mis bij het genereren van de afbeelding");
+                }
+
+                const data = await response.json();
+                const imageUrl = data.data[0].url;
+                
+                // Toon de gegenereerde afbeelding in het kader
+                generatedImage.src = imageUrl;
+                placeholder.style.display = 'none';
+                imageContent.style.display = 'block';
+                
+            } catch (err) {
+                showColoringError(err.message);
+            } finally {
+                // Verberg laadindicator
+                loading.style.display = 'none';
+            }
+        }
+
+        function clearColoringPage() {
+            document.getElementById('coloringPrompt').value = '';
+            document.getElementById('coloringError').style.display = 'none';
+        }
+        
+        function clearGeneratedImage() {
+            const placeholder = document.getElementById('generatedImagePlaceholder');
+            const imageContent = document.getElementById('generatedImageContent');
+            
+            placeholder.style.display = 'flex';
+            imageContent.style.display = 'none';
+            document.getElementById('coloringPrompt').value = '';
+        }
+        
+        function saveImage() {
+            const image = document.getElementById('generatedImage');
+            const prompt = document.getElementById('coloringPrompt').value.trim() || 'twinkel-paws-kleurplaat';
+            
+            // Maak een download link
+            const link = document.createElement('a');
+            link.href = image.src;
+            link.download = `${prompt.replace(/\s+/g, '-')}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function viewGallery() {
+            alert("Galerij functie wordt binnenkort toegevoegd! Hier kun je al je gegenereerde tekeningen bekijken.");
+            // In de toekomst kan hier een modal of nieuwe pagina geopend worden
+            // met alle gegenereerde afbeeldingen van de gebruiker
+        }
+        
+        function showColoringError(message) {
+            const error = document.getElementById('coloringError');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+    </script>
+</body>
+</html>";
+        
+        async function generateColoringPage() {
+            const prompt = document.getElementById('coloringPrompt').value.trim();
+            const loading = document.getElementById('coloringLoading');
+            const error = document.getElementById('coloringError');
+            const placeholder = document.getElementById('generatedImagePlaceholder');
+            const imageContent = document.getElementById('generatedImageContent');
+            const generatedImage = document.getElementById('generatedImage');
+            
+            // Verberg vorige foutmeldingen
+            error.style.display = 'none';
+            
+            if (!prompt) { 
+                showColoringError("Typ eerst een idee voor je kleurplaat!");
+                return; 
+            }
+            
+            // Toon laadindicator
+            loading.style.display = 'block';
+            
+            try {
+                // Controleer of API-sleutel is ingesteld
+                if (API_KEY === "JOUW_API_SLEUTEL_HIER") {
+                    throw new Error("API-sleutel niet geconfigureerd. Vervang JOUW_API_SLEUTEL_HIER met je eigen API-sleutel in de JavaScript-code.");
+                }
+                
+                const response = await fetch("https://api.openai.com/v1/images/generations", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + API_KEY
+                    },
+                    body: JSON.stringify({
+                        model: "dall-e-2",
+                        prompt: "zwart-wit kleurplaat, lijntekening, Twinkel Paws stijl, " + prompt + ", eenvoudige contouren, geen schaduwen, wit achtergrond",
+                        size: "512x512",
+                        n: 1
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || "Er ging iets mis bij het genereren van de afbeelding");
+                }
+
+                const data = await response.json();
+                const imageUrl = data.data[0].url;
+                
+                // Toon de gegenereerde afbeelding in het kader
+                generatedImage.src = imageUrl;
+                placeholder.style.display = 'none';
+                imageContent.style.display = 'block';
+                
+            } catch (err) {
+                showColoringError(err.message);
+            } finally {
+                // Verberg laadindicator
+                loading.style.display = 'none';
+            }
+        }
+
+        function clearColoringPage() {
+            document.getElementById('coloringPrompt').value = '';
+            document.getElementById('coloringError').style.display = 'none';
+        }
+        
+        function clearGeneratedImage() {
+            const placeholder = document.getElementById('generatedImagePlaceholder');
+            const imageContent = document.getElementById('generatedImageContent');
+            
+            placeholder.style.display = 'flex';
+            imageContent.style.display = 'none';
+            document.getElementById('coloringPrompt').value = '';
+        }
+        
+        function saveImage() {
+            const image = document.getElementById('generatedImage');
+            const prompt = document.getElementById('coloringPrompt').value.trim() || 'twinkel-paws-kleurplaat';
+            
+            // Maak een download link
+            const link = document.createElement('a');
+            link.href = image.src;
+            link.download = `${prompt.replace(/\s+/g, '-')}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function viewGallery() {
+            alert("Galerij functie wordt binnenkort toegevoegd! Hier kun je al je gegenereerde tekeningen bekijken.");
+            // In de toekomst kan hier een modal of nieuwe pagina geopend worden
+            // met alle gegenereerde afbeeldingen van de gebruiker
+        }
+        
+        function showColoringError(message) {
+            const error = document.getElementById('coloringError');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+    </script>
+</body>
+</html>";
         
         async function generateColoringPage() {
             const prompt = document.getElementById('coloringPrompt').value.trim();
