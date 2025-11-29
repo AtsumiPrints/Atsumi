@@ -383,8 +383,17 @@
         
         .forum-cta {
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
             background: var(--autism-very-light-blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+        }
+        
+        .forum-cta p {
+            margin-bottom: 15px;
         }
         
         .forum-link {
@@ -742,11 +751,29 @@
             padding: 1rem;
             background: rgba(255,255,255,0.1);
             border-radius: 10px;
+            text-align: left;
         }
         
         .update-item h4 {
             margin-bottom: 0.5rem;
             color: var(--autism-yellow);
+        }
+        
+        .game-link {
+            display: inline-block;
+            background: var(--autism-yellow);
+            color: var(--dark);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .game-link:hover {
+            background: white;
+            transform: translateY(-2px);
         }
         
         footer {
@@ -948,6 +975,15 @@
                     <div class="update-content">
                         <h3>Nieuws & Updates</h3>
                         <div class="update-item">
+                            <h4>Nieuw Spel: Neon City</h4>
+                            <p>Ervaar de opwindende wereld van Neon City! In dit nieuwe spel kun je kiezen uit twee modi:</p>
+                            <ul>
+                                <li><strong>Klassiek:</strong> Verzamel energiecellen in een kleurrijke stad vol licht en actie</li>
+                                <li><strong>Survival:</strong> Overleef tegen vijanden en verzamel zoveel mogelijk punten</li>
+                            </ul>
+                            <a href="neon-city.html" class="game-link">Speel Neon City Nu!</a>
+                        </div>
+                        <div class="update-item">
                             <h4>Twinkel Paws Kleurboek</h4>
                             <p>We zijn trots om aan te kondigen dat Twinkel Paws binnenkort komt met een prachtig kleurboek! Momenteel worden de illustraties nog gegenereerd met AI, maar binnenkort brengen we een fysiek kleurboek uit waarmee kinderen hun creativiteit kunnen uiten.</p>
                         </div>
@@ -976,7 +1012,7 @@
                 </a>
                 <a href="ademhaling-muziek.html" class="category-card">
                     <div class="category-icon">🎵</div>
-                    <h3>Ademhaling en Muziek Samen</h3>
+                    <h3>Ademhaling en Muziek</h3>
                 </a>
                 <a href="wereld.html" class="category-card">
                     <div class="category-icon">🌍</div>
@@ -994,6 +1030,14 @@
         <div class="container">
             <h2 class="section-title">Interactieve Spelletjes</h2>
             <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">🌃</div>
+                    <div class="game-info">
+                        <h3>Neon City</h3>
+                        <p>Verzamel energiecellen of overleef tegen vijanden in deze spannende stad vol licht.</p>
+                        <a href="neon-city.html" class="play-btn">Spelen</a>
+                    </div>
+                </div>
                 <div class="game-card">
                     <div class="game-image">📅</div>
                     <div class="game-info">
@@ -1296,22 +1340,24 @@
 
         // Quotes banner functionaliteit
         const quotesContainer = document.getElementById('quotesContainer');
-        let currentQuoteIndex = 0;
 
-        // Initialiseer quotes
+        // Initialiseer quotes met een willekeurige start
         function initQuotes() {
+            // Kies een willekeurige quote om mee te beginnen
+            const randomStartIndex = Math.floor(Math.random() * quotes.length);
+            
             // Voeg eerste quote toe
             const firstQuote = document.createElement('div');
             firstQuote.className = 'quote active';
-            firstQuote.textContent = quotes[0];
+            firstQuote.textContent = quotes[randomStartIndex];
             quotesContainer.appendChild(firstQuote);
             
             // Start de rotatie
-            rotateQuotes();
+            rotateQuotes(randomStartIndex);
         }
 
         // Roteer quotes
-        function rotateQuotes() {
+        function rotateQuotes(currentIndex) {
             setInterval(() => {
                 const currentQuote = document.querySelector('.quote.active');
                 if (currentQuote) {
@@ -1325,14 +1371,14 @@
                         let newIndex;
                         do {
                             newIndex = Math.floor(Math.random() * quotes.length);
-                        } while (newIndex === currentQuoteIndex && quotes.length > 1);
+                        } while (newIndex === currentIndex && quotes.length > 1);
                         
-                        currentQuoteIndex = newIndex;
+                        currentIndex = newIndex;
                         
                         // Voeg nieuwe quote toe
                         const newQuote = document.createElement('div');
                         newQuote.className = 'quote';
-                        newQuote.textContent = quotes[currentQuoteIndex];
+                        newQuote.textContent = quotes[currentIndex];
                         quotesContainer.appendChild(newQuote);
                         
                         // Forceer reflow en voeg active class toe
@@ -1389,11 +1435,12 @@
             "rekenen": ["Rekenen is leuk! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html", "Cijfers en getallen ontdekken is een avontuur! Bekijk onze rekenoefeningen op: rekenproblemen.html"],
             "lezen": ["Lezen opent nieuwe werelden! 📖 Ontdek onze leesoefeningen op: leesproblemen.html", "Woorden en verhalen zijn magisch! Probeer onze leesoefeningen op: leesproblemen.html"],
             "spraak": ["Praten en communiceren is belangrijk! 🗣️ Bekijk onze spraakoefeningen op: spraakproblemen.html", "We helpen kinderen met spraakontwikkeling! Kijk bij: spraakproblemen.html"],
-            "ademhaling": ["Ademhaling en muziek samen is heel ontspannend! 🎵 Probeer het op: ademhaling-muziek.html", "Muziek en ademhalingsoefeningen helpen om rustig te worden. Kijk bij: ademhaling-muziek.html"],
+            "ademhaling": ["Ademhaling en muziek is heel ontspannend! 🎵 Probeer het op: ademhaling-muziek.html", "Muziek en ademhalingsoefeningen helpen om rustig te worden. Kijk bij: ademhaling-muziek.html"],
             "kleuren": ["Kleuren is superleuk! 🎨 Ga naar: kleurplaten.html", "Creativiteit uiten met kleuren! Probeer: kleurplaten.html"],
             "emoties": ["Emoties leren herkennen is belangrijk! 😊😢😠 Probeer ons emotie herkenningsspel op: Emotie Herkenning Spel.html", "Gevoelens begrijpen helpt bij communicatie! Speel: Emotie Herkenning Spel.html"],
             "routine": ["Een dagelijkse routine helpt bij structuur! 📅 Plan je dag met: Dagelijkse Routine Planner.html", "Overgangen makkelijker maken met een planner! Gebruik: Dagelijkse Routine Planner.html"],
             "puzzels": ["Puzzels zijn geweldig voor je brein! 🧩 Speel: puzzels.html", "Hersenkrakers en denkspelletjes! Probeer: puzzels.html"],
+            "neon city": ["Neon City is ons nieuwste spel! 🌃 Speel het op: neon-city.html", "Verzamel energiecellen of overleef tegen vijanden in Neon City! Speel: neon-city.html"],
             "twinkel paws": ["Twinkel Paws komt binnenkort met een kleurboek! Momenteel wordt het nog gegenereerd met AI, maar binnenkort komt er een fysiek kleurboek!", "We zijn bezig met Twinkel Paws, een kleurboek voor kinderen! Binnenkort meer nieuws!"],
             "atsumiprints": ["AtsumiPrints komt eraan! Kinderen kunnen dan hun eigen ontwerpen maken voor T-shirts en andere producten!", "Bij AtsumiPrints kunnen kinderen binnenkort hun creaties laten bedrukken! We zijn er bijna!"],
             "default": ["Waggell! Dat is een interessante vraag! 🐧 Op dit moment kan ik hier geen antwoord op geven, maar stuur ons gerust een mailtje naar AtsumiPrints@hotmail.com met je vraag. Dankjewel voor je geduld!", "Hmm, daar heb ik op dit moment geen informatie over. Maar je kunt altijd contact met ons opnemen via AtsumiPrints@hotmail.com. Waggell! Dankjewel voor je begrip!"]
@@ -1470,6 +1517,7 @@
     </script>
 </body>
 </html>
+
 
 
 
