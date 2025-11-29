@@ -175,151 +175,431 @@
             background: white;
         }
         
-        .filter-buttons {
+        /* SMOG Galerij Styling */
+        .search-container {
+            margin-bottom: 20px;
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            justify-content: center;
-            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #dfeaf2;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         
         .filter-btn {
-            padding: 8px 16px;
             background: var(--autism-light-blue);
-            border: none;
-            border-radius: 20px;
+            border: 1px solid #dfeaf2;
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s;
+            font-size: 13px;
         }
         
         .filter-btn.active, .filter-btn:hover {
             background: var(--autism-blue);
             color: white;
+            border-color: var(--autism-blue);
         }
         
-        .gebaren-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
         }
         
-        .gebaren-card {
+        .card {
             background: white;
+            padding: 12px;
             border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border: 2px solid var(--autism-light-blue);
-            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(6,30,50,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+            border-top: 5px solid var(--autism-blue);
         }
         
-        .gebaren-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6,30,50,0.1);
         }
         
-        .gebaren-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            height: 60px;
+        .thumb {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            background: #f8fafc;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
         }
         
-        .gebaren-card p {
+        .thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        
+        .word {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--autism-blue);
+        }
+        
+        .sub {
+            font-size: 13px;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .controls-card {
+            display: flex;
+            gap: 6px;
+            width: 100%;
+            justify-content: center;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: var(--autism-blue);
+            color: white;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        .btn.secondary {
+            background: #fff;
+            color: var(--dark);
+            border: 1px solid #dfeaf2;
+        }
+        
+        .btn.success {
+            background: #10b981;
+        }
+        
+        .btn.warning {
+            background: #f59e0b;
+        }
+        
+        .btn.error {
+            background: #ef4444;
+        }
+        
+        .small {
+            padding: 6px 8px;
+            font-size: 13px;
+        }
+        
+        .file {
+            font-size: 13px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--dark);
+        }
+        
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 300px;
+            display: none;
+        }
+        
+        .status.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        .status.error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .status.success {
+            background: #10b981;
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; } 
+            to { opacity: 1; }
+        }
+        
+        /* AI Generator Sectie */
+        .ai-generator-section {
+            padding: 3rem 1rem;
+            background: var(--light);
+        }
+        
+        .ai-generator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .ai-generator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .ai-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .ai-option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .ai-option-group label {
             font-weight: bold;
             color: var(--autism-blue);
         }
         
-        /* Modal Styling */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
+        .ai-option-group input, 
+        .ai-option-group select, 
+        .ai-option-group textarea {
+            padding: 10px;
+            border: 1px solid #dfeaf2;
+            border-radius: 8px;
+            font-size: 14px;
         }
         
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
+        .ai-option-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .ai-style-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .ai-style-option {
+            border: 2px solid #dfeaf2;
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark);
+            transition: all 0.2s;
         }
         
-        .close-btn:hover {
-            color: var(--autism-pink);
+        .ai-style-option:hover {
+            border-color: var(--autism-blue);
         }
         
-        .animation-container {
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
+        .ai-style-option.selected {
+            border-color: var(--autism-blue);
+            background-color: var(--autism-light-blue);
+        }
+        
+        .ai-style-option img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+        
+        .ai-preview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .ai-preview {
+            width: 100%;
+            height: 250px;
             background: var(--light);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             overflow: hidden;
+            border: 2px dashed var(--autism-blue);
         }
         
-        .hand-animation {
-            font-size: 4rem;
-            animation: wave 2s infinite;
+        .ai-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         
-        @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(10deg); }
-            50% { transform: rotate(-10deg); }
-            75% { transform: rotate(5deg); }
+        .ai-loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
         }
         
-        @keyframes tap {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .ai-loading .spinner {
+            border: 4px solid rgba(0,0,0,0.1);
+            border-left-color: var(--autism-blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
         }
         
-        @keyframes point {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
-        @keyframes openClose {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(0.8); }
+        .ai-result-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
-        .modal-title {
+        .ai-advanced-options {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .ai-advanced-toggle {
+            background: none;
+            border: none;
             color: var(--autism-blue);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
         }
         
-        .modal-description {
+        .ai-advanced-content {
+            display: none;
+        }
+        
+        .ai-advanced-content.show {
+            display: block;
+        }
+        
+        .ai-slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .ai-slider {
+            width: 100%;
+        }
+        
+        .ai-slider-value {
+            text-align: center;
+            font-size: 12px;
             color: var(--dark);
-            margin-bottom: 20px;
+        }
+        
+        /* Print styling: compact cards, grid -> multiple columns */
+        @media print {
+            header, .controls, footer, .btn, .search-container, .ai-generator-section { 
+                display: none !important; 
+            }
+            body { 
+                background: white;
+            }
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 8px;
+            }
+            .card {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #eee;
+            }
+            .thumb {
+                width: 140px;
+                height: 140px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .benefit-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                min-width: auto;
+            }
+            
+            .ai-generator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-style-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         footer {
@@ -364,36 +644,6 @@
             border-top: 1px solid #444;
             color: #aaa;
             font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .header-top {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .benefit-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .benefit-icon {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            
-            .gebaren-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
         }
     </style>
 </head>
@@ -490,202 +740,148 @@
         <div class="container">
             <h2 class="section-title">Ontdek de SMOG-gebaren</h2>
             
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Alles</button>
-                <button class="filter-btn" data-filter="transport">Transport</button>
-                <button class="filter-btn" data-filter="kledij">Kledij</button>
-                <button class="filter-btn" data-filter="eigenschappen">Eigenschappen</button>
-                <button class="filter-btn" data-filter="personen">Personen</button>
-                <button class="filter-btn" data-filter="eten">Eten en drinken</button>
-                <button class="filter-btn" data-filter="huis">Huis en hygiëne</button>
-                <button class="filter-btn" data-filter="spelen">Spelen en speelgoed</button>
-                <button class="filter-btn" data-filter="gevoelens">Gevoelens</button>
-                <button class="filter-btn" data-filter="tijd">Tijd</button>
-                <button class="filter-btn" data-filter="werkwoorden">Werkwoorden</button>
-                <button class="filter-btn" data-filter="groeten">Groeten en wensen</button>
+            <div class="controls">
+                <button class="btn" id="loadGenerated">Laad gegenereerde afbeeldingen</button>
+                <button class="btn secondary" id="exportPdf">Exporteer naar PDF</button>
+                <button class="btn secondary" id="downloadAll">Download alle thumbnails</button>
             </div>
             
-            <div class="gebaren-grid">
-                <!-- Transport -->
-                <div class="gebaren-card" data-category="transport" data-animation="wave">
-                    <div class="gebaren-icon">🚗</div>
-                    <p>auto</p>
+            <div class="search-container">
+                <input type="text" class="search-box" id="searchInput" placeholder="Zoek gebaar..." aria-label="Zoek gebaar">
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">Alle</button>
+                    <button class="filter-btn" data-filter="custom">Aangepast</button>
+                    <button class="filter-btn" data-filter="generated">Gegenereerd</button>
+                    <button class="filter-btn" data-filter="ai">AI-gegenereerd</button>
                 </div>
-                <div class="gebaren-card" data-category="transport" data-animation="tap">
-                    <div class="gebaren-icon">🚲</div>
-                    <p>fiets</p>
-                </div>
-                
-                <!-- Kledij -->
-                <div class="gebaren-card" data-category="kledij" data-animation="point">
-                    <div class="gebaren-icon">🧥</div>
-                    <p>jas</p>
-                </div>
-                <div class="gebaren-card" data-category="kledij" data-animation="openClose">
-                    <div class="gebaren-icon">👖</div>
-                    <p>aandoen</p>
-                </div>
-                
-                <!-- Eigenschappen -->
-                <div class="gebaren-card" data-category="eigenschappen" data-animation="wave">
-                    <div class="gebaren-icon">👍</div>
-                    <p>braaf</p>
-                </div>
-                <div class="gebaren-card" data-category="eigenschappen" data-animation="tap">
-                    <div class="gebaren-icon">✅</div>
-                    <p>goed</p>
-                </div>
-                <div class="gebaren-card" data-category="eigenschappen" data-animation="point">
-                    <div class="gebaren-icon">⚠️</div>
-                    <p>gevaarlijk</p>
-                </div>
-                
-                <!-- Personen -->
-                <div class="gebaren-card" data-category="personen" data-animation="wave">
-                    <div class="gebaren-icon">👨</div>
-                    <p>papa</p>
-                </div>
-                <div class="gebaren-card" data-category="personen" data-animation="wave">
-                    <div class="gebaren-icon">👩</div>
-                    <p>mama</p>
-                </div>
-                <div class="gebaren-card" data-category="personen" data-animation="tap">
-                    <div class="gebaren-icon">👦</div>
-                    <p>broer</p>
-                </div>
-                <div class="gebaren-card" data-category="personen" data-animation="tap">
-                    <div class="gebaren-icon">👧</div>
-                    <p>zus</p>
-                </div>
-                
-                <!-- Eten en drinken -->
-                <div class="gebaren-card" data-category="eten" data-animation="openClose">
-                    <div class="gebaren-icon">🍎</div>
-                    <p>fruit</p>
-                </div>
-                <div class="gebaren-card" data-category="eten" data-animation="tap">
-                    <div class="gebaren-icon">🍪</div>
-                    <p>koek</p>
-                </div>
-                <div class="gebaren-card" data-category="eten" data-animation="point">
-                    <div class="gebaren-icon">🍽️</div>
-                    <p>eten</p>
-                </div>
-                <div class="gebaren-card" data-category="eten" data-animation="wave">
-                    <div class="gebaren-icon">🥤</div>
-                    <p>drinken</p>
-                </div>
-                <div class="gebaren-card" data-category="eten" data-animation="tap">
-                    <div class="gebaren-icon">😋</div>
-                    <p>graag</p>
-                </div>
-                <div class="gebaren-card" data-category="eten" data-animation="point">
-                    <div class="gebaren-icon">🍽️</div>
-                    <p>honger</p>
-                </div>
-                
-                <!-- Huis en hygiëne -->
-                <div class="gebaren-card" data-category="huis" data-animation="wave">
-                    <div class="gebaren-icon">🏠</div>
-                    <p>huis</p>
-                </div>
-                <div class="gebaren-card" data-category="huis" data-animation="point">
-                    <div class="gebaren-icon">🚽</div>
-                    <p>kaka</p>
-                </div>
-                
-                <!-- Spelen en speelgoed -->
-                <div class="gebaren-card" data-category="spelen" data-animation="tap">
-                    <div class="gebaren-icon">⚽</div>
-                    <p>bal</p>
-                </div>
-                <div class="gebaren-card" data-category="spelen" data-animation="openClose">
-                    <div class="gebaren-icon">🧩</div>
-                    <p>blokken</p>
-                </div>
-                <div class="gebaren-card" data-category="spelen" data-animation="wave">
-                    <div class="gebaren-icon">📚</div>
-                    <p>boek</p>
-                </div>
-                <div class="gebaren-card" data-category="spelen" data-animation="point">
-                    <div class="gebaren-icon">🍼</div>
-                    <p>fopspeen</p>
-                </div>
-                
-                <!-- Gevoelens -->
-                <div class="gebaren-card" data-category="gevoelens" data-animation="wave">
-                    <div class="gebaren-icon">😨</div>
-                    <p>bang</p>
-                </div>
-                <div class="gebaren-card" data-category="gevoelens" data-animation="tap">
-                    <div class="gebaren-icon">😄</div>
-                    <p>blij</p>
-                </div>
-                <div class="gebaren-card" data-category="gevoelens" data-animation="point">
-                    <div class="gebaren-icon">😠</div>
-                    <p>boos</p>
-                </div>
-                
-                <!-- Tijd -->
-                <div class="gebaren-card" data-category="tijd" data-animation="point">
-                    <div class="gebaren-icon">⏰</div>
-                    <p>eerst</p>
-                </div>
-                
-                <!-- Werkwoorden -->
-                <div class="gebaren-card" data-category="werkwoorden" data-animation="wave">
-                    <div class="gebaren-icon">🚶</div>
-                    <p>gaan</p>
-                </div>
-                <div class="gebaren-card" data-category="werkwoorden" data-animation="tap">
-                    <div class="gebaren-icon">✅</div>
-                    <p>gedaan</p>
-                </div>
-                <div class="gebaren-card" data-category="werkwoorden" data-animation="point">
-                    <div class="gebaren-icon">🔨</div>
-                    <p>breken</p>
-                </div>
-                <div class="gebaren-card" data-category="werkwoorden" data-animation="openClose">
-                    <div class="gebaren-icon">🔄</div>
-                    <p>geven en krijgen</p>
-                </div>
-                <div class="gebaren-card" data-category="werkwoorden" data-animation="wave">
-                    <div class="gebaren-icon">🤝</div>
-                    <p>helpen</p>
-                </div>
-                
-                <!-- Groeten en wensen -->
-                <div class="gebaren-card" data-category="groeten" data-animation="wave">
-                    <div class="gebaren-icon">🙏</div>
-                    <p>danku</p>
-                </div>
-                
-                <!-- Cijfers -->
-                <div class="gebaren-card" data-category="cijfers" data-animation="tap">
-                    <div class="gebaren-icon">1️⃣</div>
-                    <p>1</p>
-                </div>
-                <div class="gebaren-card" data-category="cijfers" data-animation="tap">
-                    <div class="gebaren-icon">2️⃣</div>
-                    <p>2</p>
-                </div>
-                <div class="gebaren-card" data-category="cijfers" data-animation="tap">
-                    <div class="gebaren-icon">3️⃣</div>
-                    <p>3</p>
-                </div>
-                
-                <!-- Alfabet -->
-                <div class="gebaren-card" data-category="alfabet" data-animation="wave">
-                    <div class="gebaren-icon">A</div>
-                    <p>A</p>
-                </div>
-                <div class="gebaren-card" data-category="alfabet" data-animation="wave">
-                    <div class="gebaren-icon">B</div>
-                    <p>B</p>
-                </div>
-                <div class="gebaren-card" data-category="alfabet" data-animation="wave">
-                    <div class="gebaren-icon">C</div>
-                    <p>C</p>
+            </div>
+
+            <section class="grid" id="gallery" aria-live="polite">
+                <!-- Dynamisch gevuld door JS -->
+            </section>
+
+            <div id="emptyState" class="empty-state" style="display:none">
+                <h3>Geen gebaren gevonden</h3>
+                <p>Probeer een andere zoekterm of filter</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI Generator Sectie -->
+    <section class="ai-generator-section">
+        <div class="container">
+            <h2 class="section-title">AI Gebaren Generator</h2>
+            <p>Genereer automatisch afbeeldingen voor gebaren met behulp van kunstmatige intelligentie.</p>
+            
+            <div class="ai-generator-container">
+                <div class="ai-generator-grid">
+                    <div class="ai-controls">
+                        <div class="ai-option-group">
+                            <label for="ai-word-input">Gebaar woord:</label>
+                            <input type="text" id="ai-word-input" placeholder="Voer een woord in (bijv. 'eten')">
+                        </div>
+                        
+                        <div class="ai-option-group">
+                            <label for="ai-prompt-input">Aanvullende beschrijving:</label>
+                            <textarea id="ai-prompt-input" placeholder="Beschrijf het gebaar of voeg extra details toe..."></textarea>
+                        </div>
+                        
+                        <div class="ai-option-group">
+                            <label>Stijl:</label>
+                            <div class="ai-style-options">
+                                <div class="ai-style-option selected" data-style="cartoon">
+                                    <div>🎨</div>
+                                    <span>Cartoon</span>
+                                </div>
+                                <div class="ai-style-option" data-style="realistic">
+                                    <div>📷</div>
+                                    <span>Realistisch</span>
+                                </div>
+                                <div class="ai-style-option" data-style="minimalist">
+                                    <div>⚪</div>
+                                    <span>Minimalistisch</span>
+                                </div>
+                                <div class="ai-style-option" data-style="colorful">
+                                    <div>🌈</div>
+                                    <span>Kleurrijk</span>
+                                </div>
+                                <div class="ai-style-option" data-style="sketch">
+                                    <div>✏️</div>
+                                    <span>Schets</span>
+                                </div>
+                                <div class="ai-style-option" data-style="watercolor">
+                                    <div>🎨</div>
+                                    <span>Waterverf</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-option-group">
+                            <label for="ai-background-select">Achtergrond:</label>
+                            <select id="ai-background-select">
+                                <option value="transparent">Transparant</option>
+                                <option value="white">Wit</option>
+                                <option value="light">Licht</option>
+                                <option value="gradient">Kleurovergang</option>
+                                <option value="pattern">Patroon</option>
+                            </select>
+                        </div>
+                        
+                        <div class="ai-advanced-options">
+                            <button class="ai-advanced-toggle" id="ai-advanced-toggle">
+                                <span>⚙️ Geavanceerde opties</span>
+                                <span id="ai-advanced-arrow">▼</span>
+                            </button>
+                            <div class="ai-advanced-content" id="ai-advanced-content">
+                                <div class="ai-option-group">
+                                    <label for="ai-complexity">Complexiteit:</label>
+                                    <div class="ai-slider-container">
+                                        <input type="range" id="ai-complexity" class="ai-slider" min="1" max="5" value="3">
+                                        <div class="ai-slider-value" id="ai-complexity-value">Gemiddeld</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="ai-option-group">
+                                    <label for="ai-color-scheme">Kleurenschema:</label>
+                                    <select id="ai-color-scheme">
+                                        <option value="autism">Autisme-vriendelijk</option>
+                                        <option value="bright">Helder</option>
+                                        <option value="pastel">Pastel</option>
+                                        <option value="monochrome">Monochroom</option>
+                                        <option value="custom">Aangepast</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="ai-option-group">
+                                    <label for="ai-size">Grootte:</label>
+                                    <select id="ai-size">
+                                        <option value="small">Klein (150x150)</option>
+                                        <option value="medium" selected>Medium (300x300)</option>
+                                        <option value="large">Groot (512x512)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn" id="generate-ai-image">🤖 Genereer Afbeelding</button>
+                    </div>
+                    
+                    <div class="ai-preview-container">
+                        <div class="ai-preview" id="ai-preview">
+                            <p>Voorbeeld verschijnt hier</p>
+                        </div>
+                        
+                        <div class="ai-loading" id="ai-loading">
+                            <div class="spinner"></div>
+                            <p>AI-generatie bezig...</p>
+                        </div>
+                        
+                        <div class="ai-result-controls" id="ai-result-controls" style="display:none">
+                            <button class="btn small" id="save-ai-image">💾 Opslaan bij gebaar</button>
+                            <button class="btn small secondary" id="download-ai-image">⬇️ Download</button>
+                            <button class="btn small secondary" id="regenerate-ai-image">🔄 Opnieuw</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -722,18 +918,6 @@
         </div>
     </section>
     
-    <!-- Modal voor gebaren animaties -->
-    <div id="gebaren-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2 class="modal-title" id="modal-title">Gebaar Titel</h2>
-            <div class="animation-container">
-                <div class="hand-animation" id="hand-animation">👐</div>
-            </div>
-            <p class="modal-description" id="modal-description">Beschrijving van het gebaar komt hier.</p>
-        </div>
-    </div>
-    
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -766,112 +950,556 @@
         </div>
     </footer>
 
+    <div class="status" id="statusMessage"></div>
+
     <script>
-        // Filter functionaliteit voor gebaren
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Verwijder actieve klasse van alle knoppen
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
+        // SMOG Galerij Script
+        (function() {
+            /* ---------- CONFIGURATIE ---------- */
+            // Base folder waar later de gegenereerde pictogrammen komen te staan.
+            const generatedBase = './generated/'; // pas aan als je andere map gebruikt
+
+            // Lijst met woorden die we willen tonen (uitbreidbaar)
+            const WORDS = [
+                'eten','drinken','buiten','binnen','fietsen','jas','opruimen','toilet','slapen','spelen',
+                'papa','mama','stop','warm','koud','zon','regen','school','bus','huis','help'
+            ];
+
+            // Statusmeldingen
+            function showStatus(message, type = 'info', duration = 3000) {
+                const statusEl = document.getElementById('statusMessage');
+                statusEl.textContent = message;
+                statusEl.className = `status ${type} show`;
+                
+                setTimeout(() => {
+                    statusEl.classList.remove('show');
+                }, duration);
+            }
+
+            /* ---------- HULPFUNCTIES ---------- */
+            function sanitizeFileName(s){ return s.toLowerCase().replace(/[^a-z0-9-_]/g,'_'); }
+
+            function createSVGPlaceholder(word){
+                // eenvoudige SVG placeholder met het woord (schematisch)
+                const svg = `
+                    <svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${word}">
+                        <rect width="150" height="150" rx="10" fill="#f8fafc"/>
+                        <g transform="translate(10,20)" stroke="#0b5566" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="35" cy="12" r="10" fill="#fff"/>
+                            <path d="M20 40 q30 0 30 18 v10 h-48 v-12 q0 -10 14 -18" fill="#fff"/>
+                            <text x="75" y="130" font-size="12" text-anchor="middle" fill="#0b5566">${word}</text>
+                        </g>
+                    </svg>`;
+                return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+            }
+
+            /* ---------- RENDERING ---------- */
+            const gallery = document.getElementById('gallery');
+            const emptyState = document.getElementById('emptyState');
+
+            function makeCard(word){
+                const name = word;
+                const fname = sanitizeFileName(name);
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.setAttribute('data-word', name);
+                card.setAttribute('data-type', 'placeholder'); // standaard placeholder
+
+                // thumbnail container
+                const thumb = document.createElement('div');
+                thumb.className = 'thumb';
+                const img = document.createElement('img');
+                img.alt = name;
+                img.loading = 'lazy';
+                img.src = createSVGPlaceholder(name); // default placeholder
+                thumb.appendChild(img);
+
+                // word + desc
+                const w = document.createElement('div');
+                w.className = 'word';
+                w.textContent = name;
+
+                const sub = document.createElement('div');
+                sub.className = 'sub';
+                sub.textContent = 'Gebaar - druk voor audio of vervang afbeelding';
+
+                // card controls (play audio, upload audio, vervang afbeelding)
+                const controls = document.createElement('div');
+                controls.className = 'controls-card';
+
+                const playBtn = document.createElement('button');
+                playBtn.className = 'btn small';
+                playBtn.textContent = '🔊 Speel woord';
+                playBtn.title = 'Spreek het woord uit';
+                playBtn.onclick = ()=> speakWord(name);
+
+                const uploadAudio = document.createElement('input');
+                uploadAudio.type = 'file';
+                uploadAudio.accept = 'audio/*';
+                uploadAudio.className = 'file';
+                uploadAudio.title = 'Upload een eigen audio (mp3/ogg)';
+                uploadAudio.onchange = (e)=> {
+                    const f = e.target.files[0];
+                    if(!f) return;
+                    const reader = new FileReader();
+                    reader.onload = ()=> {
+                        // sla audio base64 op in dataset van kaart (tijdelijk)
+                        card.dataset.customAudio = reader.result;
+                        showStatus('Eigen audio geüpload voor "'+name+'"', 'success');
+                    };
+                    reader.readAsDataURL(f);
+                };
+
+                const replaceBtn = document.createElement('button');
+                replaceBtn.className = 'btn small secondary';
+                replaceBtn.textContent = '📁 Vervang afbeelding';
+                replaceBtn.onclick = ()=> {
+                    // prompt gebruiker om bestand te kiezen en tonen (client-side)
+                    const fi = document.createElement('input');
+                    fi.type = 'file';
+                    fi.accept = 'image/*';
+                    fi.onchange = (ev)=> {
+                        const f = ev.target.files[0];
+                        if(!f) return;
+                        const fr = new FileReader();
+                        fr.onload = ()=> { 
+                            img.src = fr.result; 
+                            card.dataset.customImage = fr.result;
+                            card.dataset.type = 'custom';
+                            showStatus('Afbeelding vervangen voor "'+name+'"', 'success');
+                        };
+                        fr.readAsDataURL(f);
+                    };
+                    fi.click();
+                };
+
+                const aiGenerateBtn = document.createElement('button');
+                aiGenerateBtn.className = 'btn small';
+                aiGenerateBtn.textContent = '🤖 AI Genereer';
+                aiGenerateBtn.title = 'Genereer afbeelding met AI';
+                aiGenerateBtn.onclick = ()=> {
+                    document.getElementById('ai-word-input').value = name;
+                    document.querySelector('.ai-generator-section').scrollIntoView({ behavior: 'smooth' });
+                };
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'btn small secondary';
+                downloadBtn.textContent = '⬇️ Download kaart';
+                downloadBtn.onclick = ()=> downloadCardAsImage(card, name);
+
+                controls.appendChild(playBtn);
+                controls.appendChild(uploadAudio);
+                controls.appendChild(replaceBtn);
+                controls.appendChild(aiGenerateBtn);
+                controls.appendChild(downloadBtn);
+
+                // klik op thumbnail speelt ook audio
+                thumb.onclick = ()=> speakWord(name);
+
+                card.appendChild(thumb);
+                card.appendChild(w);
+                card.appendChild(sub);
+                card.appendChild(controls);
+
+                return { card, img, name, fname };
+            }
+
+            function renderGallery(filteredWords = WORDS){
+                gallery.innerHTML = '';
+                
+                if (filteredWords.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                emptyState.style.display = 'none';
+                
+                for(const word of filteredWords){
+                    const { card, img, name, fname } = makeCard(word);
+                    gallery.appendChild(card);
+                    // asynchrone poging om gegenereerde afbeelding te laden
+                    const generatedUrl = generatedBase + fname + '.png';
+                    // probeersel: fetch head request to check if exists
+                    fetch(generatedUrl, {method:'HEAD'}).then(resp=>{
+                        if(resp.ok){ 
+                            img.src = generatedUrl; 
+                            img.dataset.src = generatedUrl; 
+                            card.dataset.type = 'generated';
+                        }
+                    }).catch(()=>{/* geen bestand */});
+                }
+            }
+
+            /* ---------- ZOEKEN EN FILTEREN ---------- */
+            function initSearchAndFilter() {
+                const searchInput = document.getElementById('searchInput');
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                
+                // Zoekfunctionaliteit
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    filterGallery(searchTerm, getActiveFilter());
                 });
                 
-                // Voeg actieve klasse toe aan geklikte knop
-                this.classList.add('active');
+                // Filterknoppen
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Verwijder actieve klasse van alle knoppen
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        // Voeg actieve klasse toe aan geklikte knop
+                        btn.classList.add('active');
+                        
+                        // Filter de galerij
+                        filterGallery(searchInput.value.toLowerCase(), btn.dataset.filter);
+                    });
+                });
+            }
+
+            function getActiveFilter() {
+                const activeBtn = document.querySelector('.filter-btn.active');
+                return activeBtn ? activeBtn.dataset.filter : 'all';
+            }
+
+            function filterGallery(searchTerm, filterType) {
+                const cards = Array.from(document.querySelectorAll('.card'));
+                let visibleCount = 0;
                 
-                const filter = this.getAttribute('data-filter');
-                const gebarenCards = document.querySelectorAll('.gebaren-card');
-                
-                gebarenCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
+                cards.forEach(card => {
+                    const word = card.dataset.word.toLowerCase();
+                    const cardType = card.dataset.type || 'placeholder';
+                    const matchesSearch = word.includes(searchTerm);
+                    const matchesFilter = filterType === 'all' || 
+                                         (filterType === 'custom' && cardType === 'custom') ||
+                                         (filterType === 'generated' && cardType === 'generated') ||
+                                         (filterType === 'ai' && cardType === 'ai');
+                    
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = 'flex';
+                        visibleCount++;
                     } else {
                         card.style.display = 'none';
                     }
                 });
-            });
-        });
-        
-        // Modal functionaliteit voor gebaren
-        const modal = document.getElementById('gebaren-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDescription = document.getElementById('modal-description');
-        const handAnimation = document.getElementById('hand-animation');
-        const closeBtn = document.querySelector('.close-btn');
-        
-        // Gebaren beschrijvingen
-        const gebarenDescriptions = {
-            'auto': 'Maak een stuurbeweging met je handen alsof je aan het rijden bent.',
-            'fiets': 'Maak trappende bewegingen met je voeten en houd je handen alsof je een stuur vasthoudt.',
-            'jas': 'Doe alsof je een jas aantrekt over je schouders.',
-            'aandoen': 'Maak een beweging alsof je kleding aantrekt.',
-            'braaf': 'Leg je hand plat op je borst en glimlach.',
-            'goed': 'Steek je duim omhoog.',
-            'gevaarlijk': 'Zwaai met je hand alsof je waarschuwt.',
-            'papa': 'Tik met je vinger op je voorhoofd.',
-            'mama': 'Tik met je vinger op je kin.',
-            'broer': 'Wijs naar een denkbeeldige persoon naast je.',
-            'zus': 'Wijs naar een denkbeeldige persoon naast je.',
-            'fruit': 'Doe alsof je een appel opeet.',
-            'koek': 'Doe alsof je een koekje in je mond stopt.',
-            'eten': 'Breng je vingers naar je mond alsof je eet.',
-            'drinken': 'Doe alsof je uit een glas drinkt.',
-            'graag': 'Leg je hand op je borst en knik.',
-            'honger': 'Wrijf over je buik.',
-            'huis': 'Maak een dakvorm met je handen boven je hoofd.',
-            'kaka': 'Knijp je neus dicht en maak een vies gezicht.',
-            'bal': 'Maak een ronde beweging met je handen.',
-            'blokken': 'Doe alsof je blokken op elkaar stapelt.',
-            'boek': 'Houd je handen open alsof je een boek leest.',
-            'fopspeen': 'Doe alsof je een speen in je mond doet.',
-            'bang': 'Sla je armen om jezelf heen en kijk bezorgd.',
-            'blij': 'Lach breed en spreid je armen.',
-            'boos': 'Vouw je armen en frons.',
-            'eerst': 'Steek je wijsvinger omhoog.',
-            'gaan': 'Wijs in de richting waar je naartoe wilt.',
-            'gedaan': 'Wrijf je handen tegen elkaar alsof je stof verwijdert.',
-            'breken': 'Maak een brekende beweging met je handen.',
-            'geven en krijgen': 'Houd je hand open en maak een ontvangende beweging.',
-            'helpen': 'Houd je handen open alsof je hulp aanbiedt.',
-            'danku': 'Breng je vingertoppen naar je kin en beweeg je hand naar voren.',
-            '1': 'Steek één vinger op.',
-            '2': 'Steek twee vingers op.',
-            '3': 'Steek drie vingers op.',
-            'A': 'Maak de letter A met je vingers in gebarentaal.',
-            'B': 'Maak de letter B met je vingers in gebarentaal.',
-            'C': 'Maak de letter C met je vingers in gebarentaal.'
-        };
-        
-        // Klik op gebaren kaartjes om modal te openen
-        document.querySelectorAll('.gebaren-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const woord = this.querySelector('p').textContent;
-                const animationType = this.getAttribute('data-animation');
-                const icon = this.querySelector('.gebaren-icon').textContent;
                 
-                // Stel modal inhoud in
-                modalTitle.textContent = woord;
-                modalDescription.textContent = gebarenDescriptions[woord] || 'Leer dit gebaar door de beweging na te doen.';
-                handAnimation.textContent = icon;
-                
-                // Stel animatie in
-                handAnimation.style.animation = `${animationType} 2s infinite`;
-                
-                // Toon modal
-                modal.style.display = 'flex';
-            });
-        });
-        
-        // Sluit modal
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        // Sluit modal als er buiten geklikt wordt
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+                // Toon lege staat als er geen kaarten zichtbaar zijn
+                if (visibleCount === 0) {
+                    emptyState.style.display = 'block';
+                } else {
+                    emptyState.style.display = 'none';
+                }
             }
-        });
+
+            /* ---------- AUDIO / TTS ---------- */
+            function speakWord(word){
+                const card = document.querySelector(`.card[data-word="${word}"]`);
+                // als er custom audio is geüpload, speel dat eerst
+                if(card && card.dataset.customAudio){
+                    const audio = new Audio(card.dataset.customAudio);
+                    audio.play();
+                    return;
+                }
+                // gebruik browser TTS
+                if('speechSynthesis' in window){
+                    const msg = new SpeechSynthesisUtterance(word);
+                    // kies Nederlandse stem als beschikbaar
+                    const voices = window.speechSynthesis.getVoices();
+                    const dutch = voices.find(v=> v.lang && v.lang.startsWith('nl'));
+                    if(dutch) msg.voice = dutch;
+                    msg.lang = 'nl-NL';
+                    window.sechSynthesis.cancel();
+                    window.speechSynthesis.speak(msg);
+                }else{
+                    showStatus('TTS niet ondersteund in jouw browser.', 'warning');
+                }
+            }
+
+            /* ---------- LAAD GEGENEREERDE AFBEELDINGEN (handmatig) ---------- */
+            document.getElementById('loadGenerated').addEventListener('click', async ()=>{
+                showStatus('Bezig met laden van gegenereerde afbeeldingen...', 'info');
+                const cards = Array.from(document.querySelectorAll('.card'));
+                let found=0, missing=0;
+                for(const c of cards){
+                    const word = c.dataset.word;
+                    const fname = sanitizeFileName(word);
+                    const url = generatedBase + fname + '.png';
+                    try{
+                        const res = await fetch(url, { method:'HEAD' });
+                        if(res.ok){
+                            const img = c.querySelector('img');
+                            img.src = url;
+                            img.dataset.src = url;
+                            c.dataset.type = 'generated';
+                            found++;
+                        }else missing++;
+                    }catch(e){ missing++; }
+                }
+                showStatus(`Gevonden: ${found}, niet gevonden: ${missing}`, found > 0 ? 'success' : 'warning');
+            });
+
+            /* ---------- EXPORT PRINT / PDF ---------- */
+            document.getElementById('exportPdf').addEventListener('click', ()=> {
+                showStatus('Voorbereiden voor PDF-export...', 'info');
+                setTimeout(() => {
+                    window.print();
+                }, 500);
+            });
+
+            /* ---------- DOWNLOAD KAART ALS IMAGE (client-side) ---------- */
+            async function downloadCardAsImage(card, name){
+                showStatus(`Downloaden kaart voor "${name}"...`, 'info');
+                const img = card.querySelector('img');
+                const src = img.src;
+                try{
+                    const res = await fetch(src);
+                    const blob = await res.blob();
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = sanitizeFileName(name) + '.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                    showStatus(`Kaart gedownload voor "${name}"`, 'success');
+                }catch(e){
+                    showStatus(`Kon kaart niet downloaden: ${e.message}`, 'error');
+                }
+            }
+
+            /* ---------- DOWNLOAD ALLES - verbeterde implementatie ---------- */
+            document.getElementById('downloadAll').addEventListener('click', async ()=>{
+                showStatus('Voorbereiden download van alle afbeeldingen...', 'info');
+                const cards = Array.from(document.querySelectorAll('.card'));
+                let downloaded = 0;
+                const total = cards.length;
+                
+                // Download één voor één met vertraging om browser te voorkomen dat het blokkeert
+                for (const card of cards) {
+                    const word = card.dataset.word;
+                    const img = card.querySelector('img');
+                    const src = img.src;
+                    
+                    try {
+                        const res = await fetch(src);
+                        const blob = await res.blob();
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = sanitizeFileName(word) + '.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        downloaded++;
+                        
+                        // Toon voortgang
+                        showStatus(`Gedownload: ${downloaded}/${total}`, 'info', 1000);
+                        
+                        // Wacht even tussen downloads
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    } catch (e) {
+                        console.error(`Kon ${word} niet downloaden:`, e);
+                    }
+                }
+                
+                showStatus(`Alle ${downloaded} afbeeldingen gedownload!`, 'success');
+            });
+
+            /* ---------- AI GENERATOR ---------- */
+            const aiWordInput = document.getElementById('ai-word-input');
+            const aiPromptInput = document.getElementById('ai-prompt-input');
+            const aiStyleOptions = document.querySelectorAll('.ai-style-option');
+            const aiBackgroundSelect = document.getElementById('ai-background-select');
+            const aiComplexitySlider = document.getElementById('ai-complexity');
+            const aiComplexityValue = document.getElementById('ai-complexity-value');
+            const aiColorScheme = document.getElementById('ai-color-scheme');
+            const aiSize = document.getElementById('ai-size');
+            const generateAiImageBtn = document.getElementById('generate-ai-image');
+            const aiLoading = document.getElementById('ai-loading');
+            const aiPreview = document.getElementById('ai-preview');
+            const saveAiImageBtn = document.getElementById('save-ai-image');
+            const downloadAiImageBtn = document.getElementById('download-ai-image');
+            const regenerateAiImageBtn = document.getElementById('regenerate-ai-image');
+            const aiResultControls = document.getElementById('ai-result-controls');
+            const aiAdvancedToggle = document.getElementById('ai-advanced-toggle');
+            const aiAdvancedContent = document.getElementById('ai-advanced-content');
+            const aiAdvancedArrow = document.getElementById('ai-advanced-arrow');
+            
+            let currentAiWord = '';
+            let currentAiImage = null;
+            let selectedStyle = 'cartoon';
+            
+            // Stijl opties
+            aiStyleOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    aiStyleOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    selectedStyle = option.dataset.style;
+                });
+            });
+            
+            // Complexiteit slider
+            aiComplexitySlider.addEventListener('input', () => {
+                const value = parseInt(aiComplexitySlider.value);
+                const labels = ['Zeer eenvoudig', 'Eenvoudig', 'Gemiddeld', 'Complex', 'Zeer complex'];
+                aiComplexityValue.textContent = labels[value - 1];
+            });
+            
+            // Geavanceerde opties toggle
+            aiAdvancedToggle.addEventListener('click', () => {
+                aiAdvancedContent.classList.toggle('show');
+                aiAdvancedArrow.textContent = aiAdvancedContent.classList.contains('show') ? '▲' : '▼';
+            });
+            
+            // AI afbeelding genereren
+            function generateAIImage() {
+                const word = aiWordInput.value.trim();
+                
+                if (!word) {
+                    showStatus('Voer een woord in', 'error');
+                    return;
+                }
+                
+                currentAiWord = word;
+                aiLoading.style.display = 'block';
+                aiResultControls.style.display = 'none';
+                
+                // Simuleer AI-generatie (in een echte implementatie zou dit een API-aanroep zijn)
+                setTimeout(() => {
+                    aiLoading.style.display = 'none';
+                    
+                    // Maak een gegenereerde afbeelding (in een echte implementatie zou dit van een AI-service komen)
+                    const generatedImage = createAIGeneratedImage(
+                        word, 
+                        selectedStyle, 
+                        aiBackgroundSelect.value,
+                        parseInt(aiComplexitySlider.value),
+                        aiColorScheme.value,
+                        aiSize.value
+                    );
+                    
+                    aiPreview.innerHTML = '';
+                    aiPreview.appendChild(generatedImage);
+                    currentAiImage = generatedImage.src;
+                    
+                    aiResultControls.style.display = 'flex';
+                    showStatus('AI-afbeelding gegenereerd!', 'success');
+                }, 2000);
+            }
+            
+            function createAIGeneratedImage(word, style, background, complexity, colorScheme, size) {
+                // In een echte implementatie zou dit een afbeelding van een AI-service zijn
+                // Hier maken we een SVG als placeholder
+                const colors = {
+                    cartoon: ['#FF6B6B', '#4ECDC4', '#FFD166', '#6A0572'],
+                    realistic: ['#8B7355', '#A9A9A9', '#696969', '#2F4F4F'],
+                    minimalist: ['#FFFFFF', '#000000', '#CCCCCC', '#333333'],
+                    colorful: ['#FF6B6B', '#4ECDC4', '#FFD166', '#6A0572', '#118AB2', '#06D6A0'],
+                    sketch: ['#000000', '#333333', '#666666', '#999999'],
+                    watercolor: ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7']
+                };
+                
+                const colorSet = colors[style] || colors.cartoon;
+                
+                // Achtergrond
+                let bgFill = '#FFFFFF';
+                if (background === 'light') bgFill = '#f8fafc';
+                if (background === 'gradient') bgFill = `url(#gradient)`;
+                if (background === 'pattern') bgFill = `url(#pattern)`;
+                
+                // Grootte
+                const sizes = {
+                    small: { width: 150, height: 150 },
+                    medium: { width: 300, height: 300 },
+                    large: { width: 512, height: 512 }
+                };
+                const { width, height } = sizes[size] || sizes.medium;
+                
+                // Complexiteit beïnvloedt details
+                const detailLevel = complexity;
+                
+                const svg = `
+                    <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="${colorSet[0]}" />
+                                <stop offset="100%" stop-color="${colorSet[1]}" />
+                            </linearGradient>
+                            <pattern id="pattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                                <circle cx="10" cy="10" r="2" fill="${colorSet[2]}" opacity="0.3"/>
+                            </pattern>
+                        </defs>
+                        <rect width="${width}" height="${height}" fill="${bgFill}" rx="10"/>
+                        <g transform="translate(${width/10},${height/6})" stroke="${colorSet[1]}" stroke-width="${style === 'sketch' ? '3' : '2'}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="${width/6}" cy="${height/10}" r="${width/15}" fill="${style === 'minimalist' ? 'none' : colorSet[3]}"/>
+                            <path d="M${width/20} ${height/3} q${width/4} 0 ${width/4} ${height/8} v${height/13} h-${width/2.5} v-${height/9} q0 -${height/20} ${width/10} -${height/8}" fill="${style === 'minimalist' ? 'none' : colorSet[2]}"/>
+                            ${detailLevel >= 4 ? `<circle cx="${width/3}" cy="${height/4}" r="${width/30}" fill="${colorSet[0]}"/>` : ''}
+                            <text x="${width/2}" y="${height*0.85}" font-size="${width/15}" text-anchor="middle" fill="${colorSet[1]}" font-weight="bold">${word}</text>
+                            <text x="${width/2}" y="${height*0.95}" font-size="${width/25}" text-anchor="middle" fill="${colorSet[1]}">${style}</text>
+                        </g>
+                    </svg>`;
+                
+                const svgBlob = new Blob([svg], {type: 'image/svg+xml'});
+                const svgUrl = URL.createObjectURL(svgBlob);
+                
+                const img = document.createElement('img');
+                img.src = svgUrl;
+                img.alt = `AI-gegenereerd gebaar voor ${word}`;
+                
+                return img;
+            }
+            
+            function saveAIImage() {
+                if (!currentAiImage || !currentAiWord) return;
+                
+                // Zoek de kaart voor dit woord
+                const card = document.querySelector(`.card[data-word="${currentAiWord}"]`);
+                if (card) {
+                    const img = card.querySelector('img');
+                    img.src = currentAiImage;
+                    card.dataset.type = 'ai';
+                    showStatus(`AI-afbeelding opgeslagen voor "${currentAiWord}"`, 'success');
+                } else {
+                    showStatus(`Kon kaart voor "${currentAiWord}" niet vinden`, 'error');
+                }
+            }
+            
+            function downloadAIImage() {
+                if (!currentAiImage) return;
+                
+                const a = document.createElement('a');
+                a.href = currentAiImage;
+                a.download = `ai_gebaar_${sanitizeFileName(currentAiWord)}.svg`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                showStatus(`AI-afbeelding gedownload voor "${currentAiWord}"`, 'success');
+            }
+            
+            // Event listeners voor AI-generator
+            generateAiImageBtn.addEventListener('click', generateAIImage);
+            saveAiImageBtn.addEventListener('click', saveAIImage);
+            downloadAiImageBtn.addEventListener('click', downloadAIImage);
+            regenerateAiImageBtn.addEventListener('click', generateAIImage);
+
+            /* ---------- INIT ---------- */
+            function init() {
+                renderGallery();
+                initSearchAndFilter();
+                
+                // Extra: luister naar voices change (soms asynchroon)
+                if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+                    window.speechSynthesis.onvoiceschanged = () => { /* noop */ };
+                }
+            }
+
+            // Start de applicatie wanneer de DOM geladen is
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
     </script>
 </body>
 </html>
