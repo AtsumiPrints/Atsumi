@@ -1,0 +1,2486 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neon City: Energiecrisis</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --secondary: #1e40af;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --success: #10b981;
+      --danger: #ef4444;
+      --neon-blue: #00eeff;
+      --neon-pink: #ff00ff;
+      --neon-purple: #8b5cf6;
+      --neon-green: #00ff88;
+      --neon-orange: #ff9900;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+      background-color: var(--dark);
+      color: var(--light);
+      background: linear-gradient(135deg, #0a0a2a, #1a1a4a);
+      overflow: hidden;
+    }
+    
+    #sidebar {
+      width: 360px;
+      padding: 18px;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--light);
+      overflow: auto;
+      border-right: 1px solid var(--neon-purple);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    }
+    
+    #game {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    #view {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #0a0a2a, #1a1a4a);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    canvas {
+      background: #0a0a2a;
+      border-radius: 8px;
+      max-width: 100%;
+      box-shadow: 0 0 30px rgba(0, 238, 255, 0.2);
+      border: 1px solid var(--neon-blue);
+    }
+    
+    .hint {
+      font-size: 13px;
+      opacity: .9;
+      line-height: 1.4;
+    }
+    
+    .section {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: rgba(30, 41, 59, 0.7);
+      border-radius: 8px;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.1);
+    }
+    
+    .flex-row {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .small {
+      width: 48%;
+    }
+    
+    input, button, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #475569;
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--light);
+      font-size: 14px;
+    }
+    
+    button {
+      background: var(--neon-purple);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+    }
+    
+    button:hover {
+      background: var(--neon-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 238, 255, 0.5);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button.secondary {
+      background: #475569;
+    }
+    
+    button.success {
+      background: var(--neon-green);
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
+    
+    button.danger {
+      background: var(--neon-pink);
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+    }
+    
+    button.warning {
+      background: var(--neon-orange);
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    h2, h3 {
+      margin-top: 0;
+      color: var(--light);
+      text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+    }
+    
+    h2 {
+      border-bottom: 2px solid var(--neon-blue);
+      padding-bottom: 10px;
+    }
+    
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--neon-purple);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    }
+    
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .player-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--neon-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    }
+    
+    .controls-info {
+      display: flex;
+      gap: 15px;
+      font-size: 14px;
+    }
+    
+    .game-ui {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--neon-purple);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+    
+    .leaderboard {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--neon-purple);
+      min-width: 150px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+    
+    .leaderboard h4 {
+      margin: 0 0 10px 0;
+      text-align: center;
+      color: var(--neon-blue);
+    }
+    
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, #0a0a2a, #1a1a4a);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      border: 2px solid var(--neon-blue);
+      box-shadow: 0 0 30px rgba(0, 238, 255, 0.5);
+      text-align: center;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .item {
+      background: rgba(30, 41, 59, 0.7);
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    
+    .item:hover {
+      background: rgba(30, 41, 59, 1);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 10px rgba(0, 238, 255, 0.3);
+    }
+    
+    .item.selected {
+      border-color: var(--neon-blue);
+      background: rgba(0, 238, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 238, 255, 0.5);
+    }
+    
+    .item-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 5px;
+      background: var(--neon-purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    }
+    
+    .tab-container {
+      display: flex;
+      border-bottom: 1px solid var(--neon-purple);
+      margin-bottom: 15px;
+    }
+    
+    .tab {
+      padding: 10px 15px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab.active {
+      border-bottom: 2px solid var(--neon-blue);
+      color: var(--neon-blue);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--neon-green);
+      color: #0a0a2a;
+      padding: 10px 15px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+      font-weight: bold;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      background: var(--neon-blue);
+      width: 0%;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+    }
+    
+    .energy-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--neon-blue), var(--neon-purple));
+      box-shadow: 0 0 30px rgba(0, 238, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a0a2a;
+      font-weight: bold;
+      z-index: 5;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px rgba(0, 238, 255, 0.7); }
+      50% { box-shadow: 0 0 40px rgba(0, 238, 255, 0.9); }
+      100% { box-shadow: 0 0 20px rgba(0, 238, 255, 0.7); }
+    }
+    
+    .role-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    
+    .role-hero {
+      background: var(--neon-green);
+      color: #0a0a2a;
+    }
+    
+    .role-saboteur {
+      background: var(--neon-pink);
+      color: #0a0a2a;
+    }
+    
+    .city-background {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(transparent, #1a1a4a);
+      z-index: 1;
+    }
+    
+    .building {
+      position: absolute;
+      bottom: 0;
+      background: linear-gradient(to top, #1a1a4a, #3b3b8a);
+      border: 1px solid var(--neon-purple);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+    }
+    
+    .building-window {
+      position: absolute;
+      background: var(--neon-blue);
+      box-shadow: 0 0 5px rgba(0, 238, 255, 0.7);
+    }
+    
+    .neon-text {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px rgba(0, 238, 255, 0.7);
+    }
+    
+    .energy-cell {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--neon-green), #00aa66);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+      animation: float 3s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    
+    .sabotage-tool {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: radial-gradient(circle, var(--neon-pink), #cc00cc);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+    
+    .timer {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px rgba(0, 238, 255, 0.7);
+      margin: 10px 0;
+    }
+    
+    .role-description {
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--neon-purple);
+    }
+    
+    .role-hero-desc {
+      border-color: var(--neon-green);
+    }
+    
+    .role-saboteur-desc {
+      border-color: var(--neon-pink);
+    }
+    
+    /* Nieuwe HUD elementen */
+    .hud-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .hud-top {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .hud-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .hud-bottom {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .objective-panel {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--neon-purple);
+      border-radius: 8px;
+      padding: 10px 15px;
+      min-width: 250px;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+      backdrop-filter: blur(5px);
+    }
+    
+    .objective-item {
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .objective-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    
+    .objective-name {
+      color: var(--neon-blue);
+    }
+    
+    .objective-progress {
+      color: var(--neon-green);
+    }
+    
+    .objective-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .objective-fill {
+      height: 100%;
+      background: var(--neon-green);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+    }
+    
+    .game-mode-display {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px rgba(0, 238, 255, 0.7);
+      margin-bottom: 5px;
+    }
+    
+    .round-timer {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--neon-blue);
+      text-shadow: 0 0 15px rgba(0, 238, 255, 0.8);
+      background: rgba(15, 23, 42, 0.7);
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
+    }
+    
+    .stability-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--neon-purple);
+      border-radius: 8px;
+      padding: 10px 15px;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+      backdrop-filter: blur(5px);
+    }
+    
+    .stability-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px rgba(0, 238, 255, 0.7);
+    }
+    
+    .stability-label {
+      font-size: 14px;
+      color: var(--neon-blue);
+      margin-bottom: 5px;
+    }
+    
+    .upgrade-panel {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--neon-purple);
+      border-radius: 8px;
+      padding: 10px 15px;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+      backdrop-filter: blur(5px);
+      pointer-events: auto;
+    }
+    
+    .upgrade-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding: 5px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    
+    .upgrade-item:hover {
+      background: rgba(139, 92, 246, 0.2);
+    }
+    
+    .upgrade-name {
+      font-size: 14px;
+      color: var(--neon-blue);
+    }
+    
+    .upgrade-cost {
+      font-size: 12px;
+      color: var(--neon-green);
+    }
+    
+    .upgrade-button {
+      padding: 4px 8px;
+      font-size: 12px;
+      pointer-events: auto;
+    }
+    
+    .shadow-enemy {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, #330066, #000000);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(102, 0, 255, 0.7);
+      z-index: 4;
+    }
+    
+    .mode-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .mode-option {
+      padding: 10px;
+      border: 1px solid var(--neon-purple);
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .mode-option:hover {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: var(--neon-blue);
+    }
+    
+    .mode-option.selected {
+      background: rgba(0, 238, 255, 0.2);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+    }
+    
+    .mode-name {
+      font-weight: bold;
+      color: var(--neon-blue);
+      margin-bottom: 5px;
+    }
+    
+    .mode-desc {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .server-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--neon-purple);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+      z-index: 1001;
+      backdrop-filter: blur(5px);
+      max-width: 80%;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Server Messages -->
+  <div id="serverMessage" class="server-message"></div>
+
+  <div id="sidebar">
+    <h2>Neon City: Energiecrisis</h2>
+    
+    <div class="tab-container">
+      <div class="tab active" data-tab="game">Spel</div>
+      <div class="tab" data-tab="editor">Karakter</div>
+      <div class="tab" data-tab="upgrades">Upgrades</div>
+      <div class="tab" data-tab="info">Info</div>
+    </div>
+    
+    <div class="tab-content active" id="game-tab">
+      <div class="section">
+        <h3>Spelmodus</h3>
+        <div class="mode-selector">
+          <div class="mode-option selected" data-mode="classic">
+            <div class="mode-name">Klassiek</div>
+            <div class="mode-desc">Verzamel energiecellen</div>
+          </div>
+          <div class="mode-option" data-mode="survival">
+            <div class="mode-name">Survival</div>
+            <div class="mode-desc">Overleef zo lang mogelijk</div>
+          </div>
+          <div class="mode-option" data-mode="sabotage">
+            <div class="mode-name">Sabotage</div>
+            <div class="mode-desc">Verzwak de kern</div>
+          </div>
+          <div class="mode-option" data-mode="rush">
+            <div class="mode-name">Energie Rush</div>
+            <div class="mode-desc">Verzamel zoveel mogelijk</div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <button id="startGameBtn" class="small success">Start spel</button>
+          <button id="resetGameBtn" class="small danger">Reset</button>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h3>Spelstatus</h3>
+        <div id="roleDisplay" class="hint">Rol: <span class="role-badge role-hero">Held</span></div>
+        <div id="modeDisplay" class="hint">Modus: Klassiek</div>
+        <div id="roundStatus" class="hint">Status: Klaar om te starten</div>
+        <div class="hint" style="color: var(--neon-green); margin-top: 10px;">✅ Lokale game - Geen verbinding nodig</div>
+      </div>
+
+      <div class="section">
+        <h3>Prestaties</h3>
+        <div class="flex-row">
+          <div class="small">
+            <label>Hoogste Score</label>
+            <div id="highScore" class="hint">0</div>
+          </div>
+          <div class="small">
+            <label>Record Energie</label>
+            <div id="energyRecord" class="hint">0</div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="small">
+            <label>Geredde Steden</label>
+            <div id="citiesSaved" class="hint">0</div>
+          </div>
+          <div class="small">
+            <label>Gespeelde Ronden</label>
+            <div id="roundsPlayed" class="hint">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tab-content" id="editor-tab">
+      <div class="section">
+        <h3>Karakter Creator</h3>
+        <p class="hint">Kies je Neon City karakter stijl</p>
+        
+        <label>Karakterbeschrijving</label>
+        <textarea id="aiPrompt" placeholder="Bijv: cybernetische agent met energie-wapen">Cyber Agent</textarea>
+        <div class="flex-row">
+          <button id="genBtn" class="small">Genereer Ontwerp</button>
+          <button id="randBtn" class="small secondary">Willekeurig</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Karakter-editor</h3>
+        <label>Hoofd</label>
+        <select id="optHead">
+          <option value="cyber">Cyber</option>
+          <option value="tech">Tech</option>
+          <option value="helmet">Helm</option>
+          <option value="hood">Capuchon</option>
+          <option value="mask">Masker</option>
+        </select>
+        <label>Lichaam</label>
+        <select id="optBody">
+          <option value="tech">Tech</option>
+          <option value="armored">Pantser</option>
+          <option value="suit">Pak</option>
+          <option value="armor">Harnas</option>
+          <option value="jacket">Jack</option>
+        </select>
+        <label>Accessoires</label>
+        <select id="optAccessory">
+          <option value="none">Geen</option>
+          <option value="visor">Vizier</option>
+          <option value="tool">Gereedschap</option>
+          <option value="shield">Schild</option>
+          <option value="device">Apparaat</option>
+        </select>
+        <label>Kleur</label>
+        <input id="optColor" type="color" value="#00eeff" />
+        <div class="flex-row">
+          <button id="applyBtn" class="small">Pas toe</button>
+          <button id="saveBtn" class="small success">Sla op</button>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h3>Neon Stijlen</h3>
+        <div class="item-grid">
+          <div class="item" data-style="cyber-agent">
+            <div class="item-icon">👁️</div>
+            <div>Cyber Agent</div>
+          </div>
+          <div class="item" data-style="energy-tech">
+            <div class="item-icon">⚡</div>
+            <div>Energy Tech</div>
+          </div>
+          <div class="item" data-style="core-guardian">
+            <div class="item-icon">🛡️</div>
+            <div>Core Guardian</div>
+          </div>
+          <div class="item" data-style="data-hacker">
+            <div class="item-icon">💻</div>
+            <div>Data Hacker</div>
+          </div>
+          <div class="item" data-style="rogue-saboteur">
+            <div class="item-icon">🔪</div>
+            <div>Rogue Saboteur</div>
+          </div>
+          <div class="item" data-style="corp-executive">
+            <div class="item-icon">👔</div>
+            <div>Corp Executive</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tab-content" id="upgrades-tab">
+      <div class="section">
+        <h3>Upgrades & Vaardigheden</h3>
+        <p class="hint">Koop upgrades met verzamelde energie. Upgrades blijven behouden tussen sessies.</p>
+        
+        <div class="flex-row">
+          <div class="small">
+            <label>Jouw Energie</label>
+            <div id="upgradeEnergy" class="hint">0</div>
+          </div>
+          <div class="small">
+            <label>Totale Score</label>
+            <div id="totalScore" class="hint">0</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h4>Beweging Upgrades</h4>
+        <div class="upgrade-list" id="movementUpgrades">
+          <!-- Wordt dynamisch gevuld -->
+        </div>
+      </div>
+      
+      <div class="section">
+        <h4>Verzameling Upgrades</h4>
+        <div class="upgrade-list" id="collectionUpgrades">
+          <!-- Wordt dynamisch gevuld -->
+        </div>
+      </div>
+      
+      <div class="section">
+        <h4>Speciale Vaardigheden</h4>
+        <div class="upgrade-list" id="specialUpgrades">
+          <!-- Wordt dynamisch gevuld -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="tab-content" id="info-tab">
+      <div class="section">
+        <h3>Handleiding</h3>
+        <div class="role-description">
+          <h4>🎮 Besturing</h4>
+          <p><strong>WASD of pijltjestoetsen:</strong> Beweeg je karakter</p>
+          <p><strong>Spatiebalk:</strong> Springen</p>
+          <p><strong>Shift:</strong> Rennen</p>
+          <p><strong>E:</strong> Interactie met objecten</p>
+          <p><strong>Q:</strong> Speciale vaardigheid</p>
+        </div>
+        
+        <div class="role-description role-hero-desc">
+          <h4>🛡️ Held Rol</h4>
+          <p>Verzamel energiecellen (groene bollen) en breng ze naar de kern in het midden</p>
+          <p>Deactiveer sabotage-apparaten (paarse blokken)</p>
+          <p>Houd de kernstabiliteit boven 0%</p>
+        </div>
+        
+        <div class="role-description">
+          <h4>🎯 Spelmodi</h4>
+          <p><strong>Klassiek:</strong> Verzamel 25 energiecellen en houd de kern stabiel</p>
+          <p><strong>Survival:</strong> Overleef zo lang mogelijk tegen vijanden</p>
+          <p><strong>Sabotage:</strong> Verzwak de kern als saboteur</p>
+          <p><strong>Energie Rush:</strong> Verzamel zoveel mogelijk energie in 5 minuten</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="game">
+    <div class="status-bar">
+      <div class="player-info">
+        <div class="player-avatar" id="playerAvatar">C</div>
+        <div id="playerName">Cyber Agent</div>
+        <div id="playerRole"><span class="role-badge role-hero">Held</span></div>
+      </div>
+      <div class="controls-info">
+        <div>Energie: <span id="energyDisplay">0</span></div>
+        <div>Level: <span id="levelDisplay">1</span></div>
+        <div>Upgrades: <span id="upgradesCount">0</span></div>
+      </div>
+    </div>
+    
+    <div id="view">
+      <canvas id="canvas" width="1000" height="600"></canvas>
+      
+      <!-- HUD Elements -->
+      <div class="hud-container">
+        <div class="hud-top">
+          <div class="game-mode-display" id="hudModeDisplay">Neon City: Energiecrisis - Klassiek</div>
+          <div class="round-timer" id="hudTimer">10:00</div>
+        </div>
+        
+        <div class="hud-bottom">
+          <div class="objective-panel" id="objectivePanel">
+            <h4>Doelen</h4>
+            <div id="objectiveList">
+              <!-- Wordt dynamisch gevuld -->
+            </div>
+          </div>
+          
+          <div class="stability-display">
+            <div class="stability-label">Kern Stabiliteit</div>
+            <div class="stability-value" id="hudStability">100%</div>
+            <div class="progress-bar">
+              <div class="progress" id="hudStabilityBar" style="width: 100%"></div>
+            </div>
+          </div>
+          
+          <div class="upgrade-panel">
+            <h4>Snelkoop</h4>
+            <div id="quickUpgrades">
+              <!-- Wordt dynamisch gevuld -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="energy-core" id="energyCore">
+        KERN
+      </div>
+      
+      <div class="game-ui">
+        <div>Spelmodus: <span id="roomDisplay">Lokaal</span></div>
+        <div>Status: <span id="gameStatusDisplay">Wachten</span></div>
+      </div>
+      
+      <div class="leaderboard">
+        <h4>Prestaties</h4>
+        <div id="leaderboardList">
+          <div class="leaderboard-item">
+            <span>🏆 Hoogste Score</span>
+            <span id="hudHighScore">0</span>
+          </div>
+          <div class="leaderboard-item">
+            <span>⚡ Energie Record</span>
+            <span id="hudEnergyRecord">0</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="city-background" id="cityBackground"></div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="introModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2 class="neon-text">⚡ Neon City: Energiecrisis ⚡</h2>
+      <div class="role-description">
+        <p>Welkom bij Neon City! De energiekern van Lumina is onstabiel geworden.</p>
+        <p>⏳ Je hebt <span id="introTimer">10:00</span> minuten om de stad te redden.</p>
+        <p><strong>Kies je rol om te beginnen:</strong></p>
+      </div>
+      
+      <div class="role-description role-hero-desc">
+        <h3 class="neon-text">🛡️ Stad Redden</h3>
+        <p>Verzamel energiecellen, herstel de kern en voorkom sabotage.</p>
+      </div>
+      
+      <div class="role-description role-saboteur-desc">
+        <h3 class="neon-text">🔪 Sabotage</h3>
+        <p>Plaats sabotage-apparaten en verzwak de kern.</p>
+      </div>
+      
+      <div class="modal-buttons">
+        <button id="heroBtn" class="success">Ik help de stad redden!</button>
+        <button id="saboteurBtn" class="danger">Ik kies voor sabotage...</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameOverModal" class="modal">
+    <div class="modal-content">
+      <h2 class="neon-text" id="gameOverTitle">Game Over!</h2>
+      <div id="gameOverMessage">
+        <p>De energiekern is gestabiliseerd! Lumina is gered!</p>
+        <p>Jouw bijdrage: <span id="finalEnergy">0</span> energie-eenheden</p>
+      </div>
+      <div class="modal-buttons">
+        <button id="playAgainBtn" class="success">Opnieuw spelen</button>
+        <button id="quitBtn" class="danger">Stoppen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div id="notification" class="notification">
+    <span id="notificationText">Welkom bij Neon City!</span>
+  </div>
+
+  <script>
+    // Game state - Volledig lokaal
+    let gameState = {
+      status: 'waiting',
+      mode: 'classic',
+      energyCells: {},
+      sabotageTools: {},
+      shadowEnemies: {},
+      coreStability: 100,
+      startTime: null,
+      gameDuration: 10 * 60,
+      objectives: {
+        collectEnergy: { goal: 25, current: 0, desc: "Verzamel energiecellen" },
+        protectCore: { goal: 3, current: 0, desc: "Voorkom sabotages" },
+        stabilizeCore: { goal: 100, current: 0, desc: "Stabiliseer de kern" }
+      },
+      currentRound: null
+    };
+    
+    // Mode Configuration
+    const ModeConfig = {
+      classic: {
+        displayName: "Klassiek",
+        duration: 10 * 60,
+        objectives: {
+          collectEnergy: { goal: 25, current: 0, desc: "Verzamel energiecellen" },
+          protectCore: { goal: 3, current: 0, desc: "Voorkom sabotages" },
+          stabilizeCore: { goal: 100, current: 0, desc: "Stabiliseer de kern" }
+        },
+        enemyRespawnRate: 20,
+        energyCellSpawn: { perWave: 8, waveInterval: 18 },
+        coreDecayRate: 0.1
+      },
+      survival: {
+        displayName: "Survival",
+        duration: 5 * 60,
+        objectives: {
+          survive: { goal: 300, current: 0, desc: "Overleef 5 minuten" },
+          defeatEnemies: { goal: 10, current: 0, desc: "Versla 10 vijanden" }
+        },
+        enemyRespawnRate: 5,
+        energyCellSpawn: { perWave: 3, waveInterval: 10 },
+        coreDecayRate: 0.3
+      },
+      sabotage: {
+        displayName: "Sabotage",
+        duration: 8 * 60,
+        objectives: {
+          sabotageCore: { goal: 0, current: 0, desc: "Verlaag kern naar 0%" },
+          placeTraps: { goal: 5, current: 0, desc: "Plaats 5 sabotages" }
+        },
+        enemyRespawnRate: 15,
+        energyCellSpawn: { perWave: 5, waveInterval: 15 },
+        coreDecayRate: 0.2
+      },
+      rush: {
+        displayName: "Energie Rush",
+        duration: 5 * 60,
+        objectives: {
+          collectEnergy: { goal: 50, current: 0, desc: "Verzamel 50 energiecellen" },
+          fastCollection: { goal: 10, current: 0, desc: "Verzamel 10 cellen in 30s" }
+        },
+        enemyRespawnRate: 25,
+        energyCellSpawn: { perWave: 12, waveInterval: 12 },
+        coreDecayRate: 0.05
+      }
+    };
+    
+    // Upgrades Configuration
+    const UpgradesConfig = {
+      movement: [
+        { id: "speed", name: "Snelheid Boost", cost: 50, level: 0, maxLevel: 5, effect: "Verhoog bewegingssnelheid met 10%" },
+        { id: "jump", name: "Springkracht", cost: 30, level: 0, maxLevel: 3, effect: "Verhoog springhoogte met 15%" },
+        { id: "stamina", name: "Uithoudingsvermogen", cost: 40, level: 0, maxLevel: 4, effect: "Verminder energieverbruik bij rennen" }
+      ],
+      collection: [
+        { id: "magnet", name: "Energie Magnet", cost: 60, level: 0, maxLevel: 3, effect: "Trek energiecellen automatisch aan" },
+        { id: "capacity", name: "Opslag Capaciteit", cost: 80, level: 0, maxLevel: 5, effect: "Verhoog maximale energie met 20%" },
+        { id: "efficiency", name: "Verzamel Efficiëntie", cost: 70, level: 0, maxLevel: 4, effect: "Krijg 10% meer energie per cel" }
+      ],
+      special: [
+        { id: "shield", name: "Energie Schild", cost: 100, level: 0, maxLevel: 2, effect: "Bescherm tegen schaduwwezens" },
+        { id: "teleport", name: "Korte Teleport", cost: 120, level: 0, maxLevel: 2, effect: "Teleporteer korte afstanden" },
+        { id: "reveal", name: "Sabotage Reveal", cost: 90, level: 0, maxLevel: 3, effect: "Onthul verborgen sabotage-apparaten" }
+      ]
+    };
+    
+    // Speler state
+    let localState = {
+      x: 100 + Math.random()*300,
+      y: 100 + Math.random()*200,
+      meta: { 
+        head: 'cyber', 
+        body: 'tech',
+        accessory: 'none',
+        color: '#00eeff'
+      },
+      energy: 0,
+      role: 'hero',
+      health: 100,
+      velocityY: 0,
+      isJumping: false,
+      isRunning: false,
+      upgrades: {
+        speed: 0,
+        jump: 0,
+        stamina: 0,
+        magnet: 0,
+        capacity: 0,
+        efficiency: 0,
+        shield: 0,
+        teleport: 0,
+        reveal: 0
+      },
+      totalScore: 0
+    };
+    
+    // High scores en statistieken
+    let gameStats = {
+      highScore: parseInt(localStorage.getItem('neonCity_highScore')) || 0,
+      energyRecord: parseInt(localStorage.getItem('neonCity_energyRecord')) || 0,
+      citiesSaved: parseInt(localStorage.getItem('neonCity_citiesSaved')) || 0,
+      roundsPlayed: parseInt(localStorage.getItem('neonCity_roundsPlayed')) || 0
+    };
+    
+    // Canvas en rendering
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Game constants
+    const GRAVITY = 0.5;
+    const JUMP_FORCE = -12;
+    const PLAYER_SPEED = 4;
+    const RUN_SPEED = 6;
+    const GROUND_LEVEL = canvas.height - 50;
+    
+    // UI elements
+    const startGameBtn = document.getElementById('startGameBtn');
+    const resetGameBtn = document.getElementById('resetGameBtn');
+    const heroBtn = document.getElementById('heroBtn');
+    const saboteurBtn = document.getElementById('saboteurBtn');
+    const playAgainBtn = document.getElementById('playAgainBtn');
+    const quitBtn = document.getElementById('quitBtn');
+    const modeOptions = document.querySelectorAll('.mode-option');
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    
+    // Predefined styles for Neon City
+    const PREDEFINED_STYLES = {
+      'cyber-agent': { head: 'cyber', body: 'armored', accessory: 'visor', color: '#00eeff' },
+      'energy-tech': { head: 'tech', body: 'suit', accessory: 'tool', color: '#00ff88' },
+      'core-guardian': { head: 'helmet', body: 'armor', accessory: 'shield', color: '#3b82f6' },
+      'data-hacker': { head: 'hood', body: 'jacket', accessory: 'device', color: '#8b5cf6' },
+      'rogue-saboteur': { head: 'mask', body: 'stealth', accessory: 'blade', color: '#ff00ff' },
+      'corp-executive': { head: 'formal', body: 'suit', accessory: 'badge', color: '#fbbf24' }
+    };
+    
+    // Input handling
+    const keys = {};
+    
+    // Initialize UI
+    function updateUI() {
+      // Update player info
+      document.getElementById('playerName').textContent = 'Cyber Agent';
+      document.getElementById('energyDisplay').textContent = localState.energy;
+      document.getElementById('levelDisplay').textContent = Math.floor(localState.totalScore / 100) + 1;
+      document.getElementById('upgradesCount').textContent = Object.values(localState.upgrades).reduce((a, b) => a + b, 0);
+      
+      // Update game info
+      document.getElementById('upgradeEnergy').textContent = localState.energy;
+      document.getElementById('totalScore').textContent = localState.totalScore;
+      
+      // Update high scores
+      document.getElementById('highScore').textContent = gameStats.highScore;
+      document.getElementById('energyRecord').textContent = gameStats.energyRecord;
+      document.getElementById('citiesSaved').textContent = gameStats.citiesSaved;
+      document.getElementById('roundsPlayed').textContent = gameStats.roundsPlayed;
+      document.getElementById('hudHighScore').textContent = gameStats.highScore;
+      document.getElementById('hudEnergyRecord').textContent = gameStats.energyRecord;
+      
+      // Update HUD
+      document.getElementById('hudStability').textContent = `${gameState.coreStability}%`;
+      document.getElementById('hudStabilityBar').style.width = `${gameState.coreStability}%`;
+      document.getElementById('hudModeDisplay').textContent = `Neon City: Energiecrisis - ${ModeConfig[gameState.mode].displayName}`;
+      
+      // Update objectives
+      updateObjectivesUI();
+      
+      // Update round status
+      if (gameState.status === 'playing') {
+        document.getElementById('roundStatus').textContent = `Status: Bezig - ${gameState.currentRound?.timeLeft || 0}s over`;
+        document.getElementById('gameStatusDisplay').textContent = 'Bezig';
+      } else {
+        document.getElementById('roundStatus').textContent = 'Status: Klaar om te starten';
+        document.getElementById('gameStatusDisplay').textContent = 'Wachten';
+      }
+    }
+    
+    function updateObjectivesUI() {
+      const objectiveList = document.getElementById('objectiveList');
+      objectiveList.innerHTML = '';
+      
+      const objectives = gameState.objectives;
+      for (const [id, objective] of Object.entries(objectives)) {
+        const progress = Math.min(100, (objective.current / objective.goal) * 100);
+        
+        const item = document.createElement('div');
+        item.className = 'objective-item';
+        item.innerHTML = `
+          <div class="objective-header">
+            <span class="objective-name">${objective.desc}</span>
+            <span class="objective-progress">${objective.current}/${objective.goal}</span>
+          </div>
+          <div class="objective-bar">
+            <div class="objective-fill" style="width: ${progress}%"></div>
+          </div>
+        `;
+        
+        objectiveList.appendChild(item);
+      }
+    }
+    
+    function updateUpgradesUI() {
+      // Movement upgrades
+      const movementUpgrades = document.getElementById('movementUpgrades');
+      movementUpgrades.innerHTML = '';
+      UpgradesConfig.movement.forEach(upgrade => {
+        const level = localState.upgrades[upgrade.id] || 0;
+        const nextCost = upgrade.cost * (level + 1);
+        const canAfford = localState.energy >= nextCost;
+        const maxed = level >= upgrade.maxLevel;
+        
+        const item = document.createElement('div');
+        item.className = 'upgrade-item';
+        item.innerHTML = `
+          <div>
+            <div class="upgrade-name">${upgrade.name} (Niveau ${level}/${upgrade.maxLevel})</div>
+            <div class="upgrade-cost">${upgrade.effect}</div>
+          </div>
+          <button class="upgrade-button ${canAfford && !maxed ? 'success' : 'secondary'}" 
+                  data-id="${upgrade.id}" ${!canAfford || maxed ? 'disabled' : ''}>
+            ${maxed ? 'MAX' : `${nextCost} E`}
+          </button>
+        `;
+        movementUpgrades.appendChild(item);
+      });
+      
+      // Collection upgrades
+      const collectionUpgrades = document.getElementById('collectionUpgrades');
+      collectionUpgrades.innerHTML = '';
+      UpgradesConfig.collection.forEach(upgrade => {
+        const level = localState.upgrades[upgrade.id] || 0;
+        const nextCost = upgrade.cost * (level + 1);
+        const canAfford = localState.energy >= nextCost;
+        const maxed = level >= upgrade.maxLevel;
+        
+        const item = document.createElement('div');
+        item.className = 'upgrade-item';
+        item.innerHTML = `
+          <div>
+            <div class="upgrade-name">${upgrade.name} (Niveau ${level}/${upgrade.maxLevel})</div>
+            <div class="upgrade-cost">${upgrade.effect}</div>
+          </div>
+          <button class="upgrade-button ${canAfford && !maxed ? 'success' : 'secondary'}" 
+                  data-id="${upgrade.id}" ${!canAfford || maxed ? 'disabled' : ''}>
+            ${maxed ? 'MAX' : `${nextCost} E`}
+          </button>
+        `;
+        collectionUpgrades.appendChild(item);
+      });
+      
+      // Special upgrades
+      const specialUpgrades = document.getElementById('specialUpgrades');
+      specialUpgrades.innerHTML = '';
+      UpgradesConfig.special.forEach(upgrade => {
+        const level = localState.upgrades[upgrade.id] || 0;
+        const nextCost = upgrade.cost * (level + 1);
+        const canAfford = localState.energy >= nextCost;
+        const maxed = level >= upgrade.maxLevel;
+        
+        const item = document.createElement('div');
+        item.className = 'upgrade-item';
+        item.innerHTML = `
+          <div>
+            <div class="upgrade-name">${upgrade.name} (Niveau ${level}/${upgrade.maxLevel})</div>
+            <div class="upgrade-cost">${upgrade.effect}</div>
+          </div>
+          <button class="upgrade-button ${canAfford && !maxed ? 'success' : 'secondary'}" 
+                  data-id="${upgrade.id}" ${!canAfford || maxed ? 'disabled' : ''}>
+            ${maxed ? 'MAX' : `${nextCost} E`}
+          </button>
+        `;
+        specialUpgrades.appendChild(item);
+      });
+      
+      // Quick upgrades (voor HUD)
+      const quickUpgrades = document.getElementById('quickUpgrades');
+      quickUpgrades.innerHTML = '';
+      const quickUpgradeList = [
+        ...UpgradesConfig.movement.slice(0, 1),
+        ...UpgradesConfig.collection.slice(0, 1),
+        ...UpgradesConfig.special.slice(0, 1)
+      ];
+      
+      quickUpgradeList.forEach(upgrade => {
+        const level = localState.upgrades[upgrade.id] || 0;
+        const nextCost = upgrade.cost * (level + 1);
+        const canAfford = localState.energy >= nextCost;
+        const maxed = level >= upgrade.maxLevel;
+        
+        const item = document.createElement('div');
+        item.className = 'upgrade-item';
+        item.innerHTML = `
+          <div>
+            <div class="upgrade-name">${upgrade.name} (${level}/${upgrade.maxLevel})</div>
+          </div>
+          <button class="upgrade-button ${canAfford && !maxed ? 'success' : 'secondary'}" 
+                  data-id="${upgrade.id}" ${!canAfford || maxed ? 'disabled' : ''}>
+            ${maxed ? 'MAX' : `${nextCost} E`}
+          </button>
+        `;
+        quickUpgrades.appendChild(item);
+      });
+      
+      // Add event listeners to upgrade buttons
+      document.querySelectorAll('.upgrade-button').forEach(button => {
+        button.addEventListener('click', function() {
+          const upgradeId = this.getAttribute('data-id');
+          purchaseUpgrade(upgradeId);
+        });
+      });
+    }
+    
+    function purchaseUpgrade(upgradeId) {
+      // Find the upgrade config
+      let upgradeConfig;
+      for (const category of Object.values(UpgradesConfig)) {
+        const upgrade = category.find(u => u.id === upgradeId);
+        if (upgrade) {
+          upgradeConfig = upgrade;
+          break;
+        }
+      }
+      
+      if (!upgradeConfig) return;
+      
+      const currentLevel = localState.upgrades[upgradeId] || 0;
+      
+      // Check if already at max level
+      if (currentLevel >= upgradeConfig.maxLevel) {
+        showNotification('Deze upgrade is al op het maximum niveau!');
+        return;
+      }
+      
+      // Calculate cost
+      const cost = upgradeConfig.cost * (currentLevel + 1);
+      
+      // Check if player has enough energy
+      if (localState.energy < cost) {
+        showNotification('Niet genoeg energie voor deze upgrade!');
+        return;
+      }
+      
+      // Purchase upgrade
+      localState.energy -= cost;
+      localState.upgrades[upgradeId] = currentLevel + 1;
+      localState.totalScore += cost;
+      
+      // Update UI
+      updateUI();
+      updateUpgradesUI();
+      saveGameState();
+      
+      showNotification(`${upgradeConfig.name} verbeterd naar niveau ${currentLevel + 1}!`);
+    }
+    
+    function showNotification(text, duration = 3000) {
+      notificationText.textContent = text;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, duration);
+    }
+    
+    // Game elements generation
+    function generateEnergyCells(count) {
+      const cells = {};
+      for (let i = 0; i < count; i++) {
+        cells[`cell-${i}`] = {
+          x: Math.random() * (canvas.width - 40) + 20,
+          y: Math.random() * (canvas.height - 100) + 20,
+          value: 5,
+          id: `cell-${i}`
+        };
+      }
+      return cells;
+    }
+    
+    function generateSabotageTools(count) {
+      const tools = {};
+      for (let i = 0; i < count; i++) {
+        tools[`sabotage-${i}`] = {
+          x: Math.random() * (canvas.width - 40) + 20,
+          y: Math.random() * (canvas.height - 100) + 20,
+          active: false,
+          id: `sabotage-${i}`
+        };
+      }
+      return tools;
+    }
+    
+    function generateShadowEnemies(count) {
+      const enemies = {};
+      for (let i = 0; i < count; i++) {
+        enemies[`enemy-${i}`] = {
+          x: Math.random() * (canvas.width - 40) + 20,
+          y: Math.random() * (canvas.height - 100) + 20,
+          targetX: Math.random() * canvas.width,
+          targetY: Math.random() * (canvas.height - 100),
+          speed: 1 + Math.random() * 0.5,
+          id: `enemy-${i}`
+        };
+      }
+      return enemies;
+    }
+    
+    // Create city background
+    function createCityBackground() {
+      const background = document.getElementById('cityBackground');
+      background.innerHTML = '';
+      
+      // Create buildings
+      for (let i = 0; i < 15; i++) {
+        const building = document.createElement('div');
+        building.className = 'building';
+        
+        const width = 40 + Math.random() * 60;
+        const height = 80 + Math.random() * 120;
+        const left = i * 70 + Math.random() * 30;
+        
+        building.style.width = `${width}px`;
+        building.style.height = `${height}px`;
+        building.style.left = `${left}px`;
+        
+        // Add windows to building
+        const windowCount = Math.floor(height / 30);
+        for (let w = 0; w < windowCount; w++) {
+          const buildingWindow = document.createElement('div');
+          buildingWindow.className = 'building-window';
+          
+          const windowWidth = 8;
+          const windowHeight = 12;
+          const windowLeft = 5 + Math.random() * (width - 15);
+          const windowTop = 10 + w * 25;
+          
+          buildingWindow.style.width = `${windowWidth}px`;
+          buildingWindow.style.height = `${windowHeight}px`;
+          buildingWindow.style.left = `${windowLeft}px`;
+          buildingWindow.style.top = `${windowTop}px`;
+          
+          // Randomly light up some windows
+          if (Math.random() > 0.3) {
+            buildingWindow.style.opacity = '0.7';
+          } else {
+            buildingWindow.style.opacity = '0.3';
+          }
+          
+          building.appendChild(buildingWindow);
+        }
+        
+        background.appendChild(building);
+      }
+    }
+    
+    // Game controls
+    window.addEventListener('keydown', e => {
+      keys[e.key.toLowerCase()] = true;
+      
+      // Jump with spacebar
+      if (e.key === ' ' && !localState.isJumping && localState.y >= GROUND_LEVEL - 30) {
+        const jumpForce = JUMP_FORCE * (1 + localState.upgrades.jump * 0.15);
+        localState.velocityY = jumpForce;
+        localState.isJumping = true;
+      }
+      
+      // Run with shift
+      if (e.key === 'Shift') {
+        localState.isRunning = true;
+      }
+      
+      // Interact with E
+      if (e.key === 'e' || e.key === 'E') {
+        interactWithObject();
+      }
+      
+      // Use special ability with Q
+      if (e.key === 'q' || e.key === 'Q') {
+        useSpecialAbility();
+      }
+    });
+    
+    window.addEventListener('keyup', e => {
+      keys[e.key.toLowerCase()] = false;
+      
+      if (e.key === 'Shift') {
+        localState.isRunning = false;
+      }
+    });
+    
+    // Start and reset game
+    startGameBtn.addEventListener('click', () => {
+      if (gameState.status === 'playing') {
+        showNotification('Er loopt al een spel!');
+        return;
+      }
+      
+      gameState.status = 'playing';
+      gameState.startTime = Date.now();
+      gameState.gameDuration = ModeConfig[gameState.mode].duration;
+      gameState.coreStability = 100;
+      
+      // Initialize objectives based on mode
+      gameState.objectives = JSON.parse(JSON.stringify(ModeConfig[gameState.mode].objectives));
+      
+      // Initialize game elements
+      gameState.energyCells = generateEnergyCells(15);
+      gameState.sabotageTools = generateSabotageTools(8);
+      gameState.shadowEnemies = generateShadowEnemies(3);
+      
+      // Start round
+      startRound();
+      
+      showNotification(`${ModeConfig[gameState.mode].displayName} begint!`);
+    });
+    
+    resetGameBtn.addEventListener('click', () => {
+      gameState.status = 'waiting';
+      gameState.energyCells = {};
+      gameState.sabotageTools = {};
+      gameState.shadowEnemies = {};
+      gameState.coreStability = 100;
+      gameState.startTime = null;
+      gameState.objectives = {};
+      gameState.currentRound = null;
+      
+      // Reset player state but keep upgrades
+      localState.energy = 0;
+      localState.health = 100;
+      
+      updateUI();
+      showNotification('Spel gereset');
+    });
+    
+    // Role selection
+    heroBtn.addEventListener('click', () => {
+      localState.role = 'hero';
+      document.getElementById('introModal').style.display = 'none';
+      updateUI();
+      saveGameState();
+      showNotification('Je bent nu een Held! Verzamel energiecellen en red Lumina!');
+    });
+    
+    saboteurBtn.addEventListener('click', () => {
+      localState.role = 'saboteur';
+      document.getElementById('introModal').style.display = 'none';
+      updateUI();
+      saveGameState();
+      showNotification('Je bent nu een Saboteur! Verzwak de kern en help Lumina vallen!');
+    });
+    
+    // Game over handlers
+    playAgainBtn.addEventListener('click', () => {
+      document.getElementById('gameOverModal').style.display = 'none';
+      resetGameBtn.click();
+    });
+    
+    quitBtn.addEventListener('click', () => {
+      document.getElementById('gameOverModal').style.display = 'none';
+    });
+    
+    // Mode selection
+    modeOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        modeOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        gameState.mode = option.getAttribute('data-mode');
+        updateUI();
+      });
+    });
+    
+    // Tab navigation
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+        
+        if (tabId === 'upgrades') {
+          updateUpgradesUI();
+        }
+      });
+    });
+    
+    // Item selection for character styles
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        const style = item.getAttribute('data-style');
+        if (PREDEFINED_STYLES[style]) {
+          applyStyle(PREDEFINED_STYLES[style]);
+          showNotification(`Neon stijl "${style}" toegepast!`);
+        }
+      });
+    });
+    
+    function applyStyle(style) {
+      document.getElementById('optHead').value = style.head;
+      document.getElementById('optBody').value = style.body;
+      document.getElementById('optAccessory').value = style.accessory;
+      document.getElementById('optColor').value = style.color;
+      
+      // Apply to local state
+      localState.meta.head = style.head;
+      localState.meta.body = style.body;
+      localState.meta.accessory = style.accessory;
+      localState.meta.color = style.color;
+      
+      saveGameState();
+    }
+    
+    // Character generation
+    document.getElementById('genBtn').addEventListener('click', () => {
+      const prompt = document.getElementById('aiPrompt').value.trim();
+      const result = localAIGenerate(prompt);
+      applyAIResult(result);
+      showNotification('Karakter gegenereerd!');
+    });
+    
+    document.getElementById('randBtn').addEventListener('click', () => {
+      const r = localAIGenerate('random');
+      applyAIResult(r);
+      showNotification('Willekeurig karakter gegenereerd');
+    });
+    
+    function applyAIResult(obj) {
+      if (!obj) return;
+      document.getElementById('optHead').value = obj.head || document.getElementById('optHead').value;
+      document.getElementById('optBody').value = obj.body || document.getElementById('optBody').value;
+      document.getElementById('optAccessory').value = obj.accessory || document.getElementById('optAccessory').value;
+      document.getElementById('optColor').value = obj.color || document.getElementById('optColor').value;
+      
+      // Apply to local state
+      localState.meta.head = document.getElementById('optHead').value;
+      localState.meta.body = document.getElementById('optBody').value;
+      localState.meta.accessory = document.getElementById('optAccessory').value;
+      localState.meta.color = document.getElementById('optColor').value;
+      
+      saveGameState();
+    }
+    
+    // Simple local AI simulator for Neon City theme
+    function localAIGenerate(prompt) {
+      const HEADS = ['cyber', 'tech', 'helmet', 'hood', 'mask', 'formal', 'visor'];
+      const BODIES = ['tech', 'armored', 'suit', 'armor', 'jacket', 'stealth', 'casual'];
+      const ACCESSORIES = ['none', 'visor', 'tool', 'shield', 'device', 'blade', 'badge', 'pack', 'wings'];
+      
+      const low = prompt.toLowerCase();
+      const res = {
+        head: HEADS[Math.floor(Math.random() * HEADS.length)],
+        body: BODIES[Math.floor(Math.random() * BODIES.length)],
+        accessory: ACCESSORIES[Math.floor(Math.random() * ACCESSORIES.length)],
+        color: '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')
+      };
+      
+      if (low.includes('cyber') || low.includes('agent')) {
+        res.head = 'cyber';
+        res.body = 'armored';
+        res.accessory = 'visor';
+      }
+      if (low.includes('tech') || low.includes('energy')) {
+        res.head = 'tech';
+        res.body = 'suit';
+        res.accessory = 'tool';
+      }
+      if (low.includes('guardian') || low.includes('protect')) {
+        res.head = 'helmet';
+        res.body = 'armor';
+        res.accessory = 'shield';
+      }
+      if (low.includes('hacker') || low.includes('data')) {
+        res.head = 'hood';
+        res.body = 'jacket';
+        res.accessory = 'device';
+      }
+      if (low.includes('saboteur') || low.includes('rogue')) {
+        res.head = 'mask';
+        res.body = 'stealth';
+        res.accessory = 'blade';
+      }
+      if (low.includes('executive') || low.includes('corp')) {
+        res.head = 'formal';
+        res.body = 'suit';
+        res.accessory = 'badge';
+      }
+      if (low.includes('visor') || low.includes('goggles')) res.accessory = 'visor';
+      
+      // Color heuristics
+      if (low.includes('blauw') || low.includes('blue')) res.color = '#00eeff';
+      if (low.includes('roze') || low.includes('pink')) res.color = '#ff00ff';
+      if (low.includes('groen') || low.includes('green')) res.color = '#00ff88';
+      if (low.includes('paars') || low.includes('purple')) res.color = '#8b5cf6';
+      if (low.includes('oranje') || low.includes('orange')) res.color = '#f59e0b';
+      
+      return res;
+    }
+    
+    // Apply and save buttons
+    document.getElementById('applyBtn').addEventListener('click', () => {
+      localState.meta.head = document.getElementById('optHead').value;
+      localState.meta.body = document.getElementById('optBody').value;
+      localState.meta.accessory = document.getElementById('optAccessory').value;
+      localState.meta.color = document.getElementById('optColor').value;
+      saveGameState();
+      showNotification('Karakter aangepast');
+    });
+    
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      saveGameState();
+      showNotification('Karakter opgeslagen');
+    });
+    
+    // Round management
+    function startRound() {
+      const round = {
+        id: Date.now().toString(),
+        mode: gameState.mode,
+        timeLeft: ModeConfig[gameState.mode].duration,
+        startedAt: Date.now()
+      };
+      
+      gameState.currentRound = round;
+      
+      // Start round loop
+      startRoundLoop(round);
+    }
+    
+    function startRoundLoop(round) {
+      const roundInterval = setInterval(() => {
+        if (!gameState.currentRound || gameState.currentRound.id !== round.id) {
+          clearInterval(roundInterval);
+          return;
+        }
+        
+        gameState.currentRound.timeLeft--;
+        
+        // Update timer display
+        const minutes = Math.floor(gameState.currentRound.timeLeft / 60);
+        const seconds = gameState.currentRound.timeLeft % 60;
+        document.getElementById('hudTimer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        // Waarschuwingen
+        if (gameState.currentRound.timeLeft === 60) {
+          showNotification('60 seconden over!', 'warning');
+        }
+        
+        // Ronde eindigt
+        if (gameState.currentRound.timeLeft <= 0) {
+          clearInterval(roundInterval);
+          endRound('tijd op');
+        }
+      }, 1000);
+    }
+    
+    function endRound(reason) {
+      gameStats.roundsPlayed++;
+      
+      if (reason === 'tijd op') {
+        gameOver('timeout');
+      }
+      
+      // Reset game state but keep player progress
+      gameState.currentRound = null;
+      gameState.status = 'waiting';
+      gameState.energyCells = {};
+      gameState.sabotageTools = {};
+      gameState.shadowEnemies = {};
+      gameState.coreStability = 100;
+      gameState.startTime = null;
+      
+      updateUI();
+      saveGameState();
+    }
+    
+    function gameOver(outcome) {
+      gameState.status = 'gameover';
+      
+      // Update statistics
+      if (localState.totalScore > gameStats.highScore) {
+        gameStats.highScore = localState.totalScore;
+      }
+      if (localState.energy > gameStats.energyRecord) {
+        gameStats.energyRecord = localState.energy;
+      }
+      if (outcome === 'heroes' || outcome === 'objectives') {
+        gameStats.citiesSaved++;
+      }
+      
+      if (outcome === 'heroes' || outcome === 'objectives') {
+        document.getElementById('gameOverTitle').textContent = 'Lumina is gered!';
+        document.getElementById('gameOverMessage').innerHTML = `
+          <p>De energiekern is gestabiliseerd! Lumina is gered!</p>
+          <p>Jouw bijdrage: <span id="finalEnergy">${localState.energy}</span> energie-eenheden</p>
+          <p>Totaal score: <span>${localState.totalScore}</span></p>
+        `;
+      } else if (outcome === 'sabotage') {
+        document.getElementById('gameOverTitle').textContent = 'Lumina is gevallen!';
+        document.getElementById('gameOverMessage').innerHTML = `
+          <p>De energiekern is ingestort! Lumina is in duisternis gehuld.</p>
+          <p>Jouw bijdrage: <span id="finalEnergy">${localState.energy}</span> energie-eenheden</p>
+          <p>Totaal score: <span>${localState.totalScore}</span></p>
+        `;
+      } else { // timeout
+        document.getElementById('gameOverTitle').textContent = 'Tijd is op!';
+        document.getElementById('gameOverMessage').innerHTML = `
+          <p>De tijd is verstreken. Lumina's lot is onzeker...</p>
+          <p>Jouw bijdrage: <span id="finalEnergy">${localState.energy}</span> energie-eenheden</p>
+          <p>Totaal score: <span>${localState.totalScore}</span></p>
+        `;
+      }
+      
+      document.getElementById('finalEnergy').textContent = localState.energy;
+      document.getElementById('gameOverModal').style.display = 'flex';
+      
+      saveGameState();
+    }
+    
+    // Game loop
+    function gameTick() {
+      // Player movement with upgrades
+      const speedMultiplier = 1 + localState.upgrades.speed * 0.1;
+      const baseSpeed = localState.isRunning ? RUN_SPEED : PLAYER_SPEED;
+      const speed = baseSpeed * speedMultiplier;
+      
+      let moved = false;
+      
+      if (keys['arrowup'] || keys['w']) { localState.y -= speed; moved = true; }
+      if (keys['arrowdown'] || keys['s']) { localState.y += speed; moved = true; }
+      if (keys['arrowleft'] || keys['a']) { localState.x -= speed; moved = true; }
+      if (keys['arrowright'] || keys['d']) { localState.x += speed; moved = true; }
+      
+      // Apply gravity and jumping
+      if (localState.y < GROUND_LEVEL - 30 || localState.velocityY < 0) {
+        localState.velocityY += GRAVITY;
+        localState.y += localState.velocityY;
+      } else {
+        localState.y = GROUND_LEVEL - 30;
+        localState.velocityY = 0;
+        localState.isJumping = false;
+      }
+      
+      // Boundary checks
+      localState.x = Math.max(12, Math.min(canvas.width - 12, localState.x));
+      localState.y = Math.max(12, Math.min(canvas.height - 12, localState.y));
+      
+      // Update game state if playing
+      if (gameState.status === 'playing') {
+        updateGameElements();
+        checkCoreProximity();
+        updateObjectives();
+        
+        // Automatic energy collection with magnet upgrade
+        if (localState.upgrades.magnet > 0) {
+          collectEnergyWithMagnet();
+        }
+      }
+      
+      render();
+      requestAnimationFrame(gameTick);
+    }
+    
+    function updateGameElements() {
+      const modeConfig = ModeConfig[gameState.mode];
+      
+      // Update shadow enemies
+      Object.keys(gameState.shadowEnemies).forEach(key => {
+        const enemy = gameState.shadowEnemies[key];
+        
+        // Random movement if no target
+        if (Math.random() < 0.05) {
+          enemy.targetX = Math.random() * canvas.width;
+          enemy.targetY = Math.random() * (canvas.height - 100);
+        }
+        
+        // Move towards target
+        if (enemy.targetX && enemy.targetY) {
+          const dx = enemy.targetX - enemy.x;
+          const dy = enemy.targetY - enemy.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance > 10) {
+            enemy.x += (dx / distance) * enemy.speed;
+            enemy.y += (dy / distance) * enemy.speed;
+          } else {
+            enemy.targetX = null;
+            enemy.targetY = null;
+          }
+        }
+        
+        // Check collision with player
+        const distance = Math.sqrt(
+          Math.pow(enemy.x - localState.x, 2) + 
+          Math.pow(enemy.y - localState.y, 2)
+        );
+        
+        if (distance < 30) {
+          // Damage player if they don't have shield
+          if (!localState.upgrades.shield || Math.random() > localState.upgrades.shield * 0.3) {
+            localState.health = Math.max(0, localState.health - 5);
+            if (localState.health <= 0) {
+              gameOver('defeat');
+            }
+          }
+        }
+      });
+      
+      // Update sabotage tools
+      Object.keys(gameState.sabotageTools).forEach(key => {
+        const tool = gameState.sabotageTools[key];
+        if (tool.active && Math.random() < 0.01) {
+          gameState.coreStability = Math.max(0, gameState.coreStability - 1);
+          
+          if (gameState.objectives.protectCore) {
+            gameState.objectives.protectCore.current += 1;
+          }
+        }
+      });
+      
+      // Core decay over time
+      if (Math.random() < 0.02) {
+        gameState.coreStability = Math.max(0, gameState.coreStability - modeConfig.coreDecayRate);
+      }
+      
+      // Check for game over conditions
+      if (gameState.coreStability <= 0) {
+        gameOver('sabotage');
+      }
+      
+      // Check if objectives are completed
+      let allCompleted = true;
+      for (const [id, objective] of Object.entries(gameState.objectives)) {
+        if (objective.current < objective.goal) {
+          allCompleted = false;
+        }
+      }
+      
+      if (allCompleted && gameState.status === 'playing') {
+        gameOver('objectives');
+      }
+    }
+    
+    function collectEnergyWithMagnet() {
+      const magnetRange = 50 + localState.upgrades.magnet * 20;
+      
+      Object.keys(gameState.energyCells).forEach(key => {
+        const cell = gameState.energyCells[key];
+        const distance = Math.sqrt(
+          Math.pow(localState.x - cell.x, 2) + 
+          Math.pow(localState.y - cell.y, 2)
+        );
+        
+        if (distance < magnetRange) {
+          // Move cell towards player
+          const dx = localState.x - cell.x;
+          const dy = localState.y - cell.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist > 10) {
+            cell.x += (dx / dist) * 2;
+            cell.y += (dy / dist) * 2;
+          } else {
+            // Collect cell when close enough
+            if (localState.role === 'hero') {
+              const efficiencyMultiplier = 1 + localState.upgrades.efficiency * 0.1;
+              localState.energy += cell.value * efficiencyMultiplier;
+              delete gameState.energyCells[key];
+              
+              if (gameState.objectives.collectEnergy) {
+                gameState.objectives.collectEnergy.current += 1;
+              }
+              
+              showNotification(`Energiecel verzameld! +${cell.value * efficiencyMultiplier} energie`);
+            }
+          }
+        }
+      });
+    }
+    
+    function interactWithObject() {
+      if (gameState.status !== 'playing') return;
+      
+      // Check energy cells
+      Object.keys(gameState.energyCells).forEach(key => {
+        const cell = gameState.energyCells[key];
+        const distance = Math.sqrt(
+          Math.pow(localState.x - cell.x, 2) + 
+          Math.pow(localState.y - cell.y, 2)
+        );
+        
+        if (distance < 30) {
+          // Collect energy cell
+          if (localState.role === 'hero') {
+            const efficiencyMultiplier = 1 + localState.upgrades.efficiency * 0.1;
+            localState.energy += cell.value * efficiencyMultiplier;
+            delete gameState.energyCells[key];
+            
+            if (gameState.objectives.collectEnergy) {
+              gameState.objectives.collectEnergy.current += 1;
+            }
+            
+            showNotification(`Energiecel verzameld! +${cell.value * efficiencyMultiplier} energie`);
+          }
+        }
+      });
+      
+      // Check sabotage tools
+      Object.keys(gameState.sabotageTools).forEach(key => {
+        const tool = gameState.sabotageTools[key];
+        const distance = Math.sqrt(
+          Math.pow(localState.x - tool.x, 2) + 
+          Math.pow(localState.y - tool.y, 2)
+        );
+        
+        if (distance < 30) {
+          // Activate/deactivate sabotage tool
+          if (localState.role === 'saboteur') {
+            tool.active = !tool.active;
+            
+            if (tool.active) {
+              showNotification('Sabotage-apparaat geactiveerd!');
+            } else {
+              showNotification('Sabotage-apparaat gedeactiveerd');
+            }
+          } else if (localState.role === 'hero' && tool.active) {
+            // Heroes can deactivate active sabotage tools
+            tool.active = false;
+            showNotification('Sabotage-apparaat gedeactiveerd! +10 energie');
+            localState.energy += 10;
+            
+            if (gameState.objectives.protectCore) {
+              gameState.objectives.protectCore.current += 1;
+            }
+          }
+        }
+      });
+    }
+    
+    function useSpecialAbility() {
+      if (localState.upgrades.teleport > 0) {
+        // Teleport short distance
+        const teleportDistance = 50 + localState.upgrades.teleport * 25;
+        const angle = Math.random() * Math.PI * 2;
+        
+        localState.x += Math.cos(angle) * teleportDistance;
+        localState.y += Math.sin(angle) * teleportDistance;
+        
+        // Boundary checks
+        localState.x = Math.max(12, Math.min(canvas.width - 12, localState.x));
+        localState.y = Math.max(12, Math.min(canvas.height - 12, localState.y));
+        
+        showNotification('Geteleporteerd!');
+      }
+      
+      if (localState.upgrades.reveal > 0) {
+        // Reveal hidden sabotage tools
+        const revealDuration = 5 + localState.upgrades.reveal * 3;
+        showNotification(`Sabotage-apparaten zichtbaar voor ${revealDuration} seconden!`);
+      }
+    }
+    
+    function checkCoreProximity() {
+      // Check if player is near the core (center of canvas)
+      const coreX = canvas.width / 2;
+      const coreY = canvas.height / 2;
+      const distance = Math.sqrt(
+        Math.pow(localState.x - coreX, 2) + 
+        Math.pow(localState.y - coreY, 2)
+      );
+      
+      if (distance < 60) {
+        // Player is near the core
+        if (localState.role === 'hero' && localState.energy > 0) {
+          // Heroes can deposit energy to stabilize the core
+          const energyToDeposit = Math.min(localState.energy, 5);
+          localState.energy -= energyToDeposit;
+          gameState.coreStability = Math.min(100, gameState.coreStability + energyToDeposit);
+          
+          if (gameState.objectives.stabilizeCore) {
+            gameState.objectives.stabilizeCore.current = gameState.coreStability;
+          }
+          
+          showNotification(`Energie gedeponeerd! +${energyToDeposit}% stabiliteit`);
+        } else if (localState.role === 'saboteur') {
+          // Saboteurs can directly damage the core
+          if (Math.random() < 0.05) {
+            gameState.coreStability = Math.max(0, gameState.coreStability - 1);
+            showNotification('Kern beschadigd! -1% stabiliteit');
+          }
+        }
+      }
+    }
+    
+    function updateObjectives() {
+      // Update survival objective (time-based)
+      if (gameState.objectives.survive && gameState.startTime) {
+        const elapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
+        gameState.objectives.survive.current = elapsed;
+      }
+    }
+    
+    // Rendering
+    function render() {
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw background
+      ctx.fillStyle = '#0a0a2a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw grid lines for cyberpunk effect
+      ctx.strokeStyle = 'rgba(0, 238, 255, 0.1)';
+      ctx.lineWidth = 1;
+      
+      for (let x = 0; x < canvas.width; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      
+      for (let y = 0; y < canvas.height; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+      
+      // Draw ground
+      ctx.fillStyle = '#1a1a4a';
+      ctx.fillRect(0, GROUND_LEVEL, canvas.width, canvas.height - GROUND_LEVEL);
+      
+      // Draw game elements if playing
+      if (gameState.status === 'playing') {
+        // Draw energy cells
+        Object.values(gameState.energyCells).forEach(cell => {
+          ctx.fillStyle = '#00ff88';
+          ctx.beginPath();
+          ctx.arc(cell.x, cell.y, 10, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#00aa66';
+          ctx.beginPath();
+          ctx.arc(cell.x, cell.y, 6, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Add glow effect
+          ctx.shadowColor = '#00ff88';
+          ctx.shadowBlur = 15;
+          ctx.fillStyle = 'rgba(0, 255, 136, 0.3)';
+          ctx.beginPath();
+          ctx.arc(cell.x, cell.y, 15, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+        
+        // Draw sabotage tools
+        Object.values(gameState.sabotageTools).forEach(tool => {
+          ctx.fillStyle = tool.active ? '#ff00ff' : '#8b5cf6';
+          ctx.fillRect(tool.x - 12, tool.y - 12, 24, 24);
+          ctx.fillStyle = '#000';
+          ctx.fillRect(tool.x - 8, tool.y - 8, 16, 16);
+          
+          // Add glow effect if active
+          if (tool.active) {
+            ctx.shadowColor = '#ff00ff';
+            ctx.shadowBlur = 15;
+            ctx.fillStyle = 'rgba(255, 0, 255, 0.3)';
+            ctx.fillRect(tool.x - 15, tool.y - 15, 30, 30);
+            ctx.shadowBlur = 0;
+          }
+        });
+        
+        // Draw shadow enemies
+        Object.values(gameState.shadowEnemies).forEach(enemy => {
+          ctx.fillStyle = '#330066';
+          ctx.beginPath();
+          ctx.arc(enemy.x, enemy.y, 15, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = '#220044';
+          ctx.beginPath();
+          ctx.arc(enemy.x, enemy.y, 10, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Add glow effect
+          ctx.shadowColor = '#6600ff';
+          ctx.shadowBlur = 15;
+          ctx.fillStyle = 'rgba(102, 0, 255, 0.3)';
+          ctx.beginPath();
+          ctx.arc(enemy.x, enemy.y, 20, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+      }
+      
+      // Draw player
+      drawAvatar(localState.x, localState.y, localState.meta, localState.role, true);
+      
+      // Draw core area
+      const coreX = canvas.width / 2;
+      const coreY = canvas.height / 2;
+      ctx.strokeStyle = 'rgba(0, 238, 255, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(coreX, coreY, 60, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Update core pulse based on stability
+      const pulseIntensity = gameState.coreStability / 100;
+      document.getElementById('energyCore').style.boxShadow = `0 0 ${20 + 20 * pulseIntensity}px rgba(0, 238, 255, ${0.5 + 0.5 * pulseIntensity})`;
+    }
+    
+    function drawAvatar(x, y, meta, role, isLocal) {
+      const color = meta.color || '#00eeff';
+      
+      // Draw body based on body type
+      ctx.fillStyle = color;
+      if (meta.body === 'armored') {
+        ctx.fillRect(x-14, y-20, 28, 32);
+        ctx.fillStyle = '#6b7280';
+        ctx.fillRect(x-12, y-18, 24, 28);
+      } else if (meta.body === 'suit') {
+        ctx.fillRect(x-12, y-20, 24, 30);
+        ctx.fillStyle = '#8b5cf6';
+        ctx.fillRect(x-10, y-15, 20, 25);
+      } else if (meta.body === 'armor') {
+        ctx.fillRect(x-16, y-20, 32, 32);
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(x-14, y-18, 28, 28);
+      } else if (meta.body === 'jacket') {
+        ctx.fillRect(x-14, y-20, 28, 32);
+        ctx.fillStyle = '#8b5cf6';
+        ctx.fillRect(x-12, y-15, 24, 27);
+      } else if (meta.body === 'stealth') {
+        ctx.fillRect(x-12, y-20, 24, 30);
+        ctx.fillStyle = '#475569';
+        ctx.fillRect(x-10, y-18, 20, 28);
+      } else {
+        // Tech body (default)
+        ctx.fillRect(x-14, y-20, 28, 32);
+        ctx.fillStyle = '#1e40af';
+        ctx.fillRect(x-12, y-18, 24, 28);
+      }
+      
+      // Draw head based on head type
+      ctx.fillStyle = '#fff';
+      if (meta.head === 'cyber') {
+        ctx.beginPath();
+        ctx.arc(x, y-25, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#00eeff';
+        ctx.fillRect(x-8, y-28, 16, 3);
+      } else if (meta.head === 'tech') {
+        ctx.fillRect(x-10, y-30, 20, 15);
+        ctx.fillStyle = '#00eeff';
+        ctx.fillRect(x-8, y-28, 16, 10);
+      } else if (meta.head === 'helmet') {
+        ctx.fillRect(x-12, y-30, 24, 15);
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(x-10, y-28, 20, 10);
+      } else if (meta.head === 'hood') {
+        ctx.beginPath();
+        ctx.arc(x, y-25, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#8b5cf6';
+        ctx.fillRect(x-12, y-30, 24, 8);
+      } else if (meta.head === 'mask') {
+        ctx.beginPath();
+        ctx.arc(x, y-25, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ff00ff';
+        ctx.fillRect(x-8, y-22, 16, 8);
+      } else if (meta.head === 'formal') {
+        ctx.beginPath();
+        ctx.arc(x, y-25, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fbbf24';
+        ctx.fillRect(x-10, y-30, 20, 5);
+      } else {
+        // Default head
+        ctx.beginPath();
+        ctx.arc(x, y-25, 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Draw accessories
+      if (meta.accessory === 'visor') {
+        ctx.strokeStyle = '#00eeff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x-8, y-26, 16, 6);
+      } else if (meta.accessory === 'tool') {
+        ctx.fillStyle = '#00ff88';
+        ctx.fillRect(x+15, y-15, 5, 15);
+      } else if (meta.accessory === 'shield') {
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(x+15, y-20, 8, 20);
+      } else if (meta.accessory === 'device') {
+        ctx.fillStyle = '#8b5cf6';
+        ctx.fillRect(x+15, y-15, 10, 10);
+      }
+      
+      // Draw role indicator
+      ctx.fillStyle = role === 'hero' ? '#00ff88' : '#ff00ff';
+      ctx.font = '12px Arial';
+      ctx.fillText(role === 'hero' ? '🛡️' : '🔪', x - 6, y + 28);
+      
+      // Highlight local player
+      if (isLocal) {
+        ctx.strokeStyle = '#00eeff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x-16, y-22, 32, 34);
+        
+        // Draw energy amount above player
+        ctx.fillStyle = '#00eeff';
+        ctx.font = '12px Arial';
+        ctx.fillText(localState.energy + 'E', x - 10, y - 50);
+        
+        // Draw health bar
+        ctx.fillStyle = '#ef4444';
+        ctx.fillRect(x-25, y-40, 50, 5);
+        ctx.fillStyle = '#00ff88';
+        ctx.fillRect(x-25, y-40, 50 * (localState.health / 100), 5);
+      }
+    }
+    
+    // Save and load game state
+    function saveGameState() {
+      const saveData = {
+        localState: localState,
+        gameStats: gameStats
+      };
+      
+      localStorage.setItem('neonCity_save', JSON.stringify(saveData));
+      localStorage.setItem('neonCity_highScore', gameStats.highScore);
+      localStorage.setItem('neonCity_energyRecord', gameStats.energyRecord);
+      localStorage.setItem('neonCity_citiesSaved', gameStats.citiesSaved);
+      localStorage.setItem('neonCity_roundsPlayed', gameStats.roundsPlayed);
+    }
+    
+    function loadGameState() {
+      const saved = localStorage.getItem('neonCity_save');
+      if (saved) {
+        try {
+          const saveData = JSON.parse(saved);
+          localState = { ...localState, ...saveData.localState };
+          gameStats = { ...gameStats, ...saveData.gameStats };
+          showNotification('Game progressie geladen!');
+        } catch (e) {
+          console.error('Fout bij laden game state:', e);
+        }
+      }
+    }
+    
+    // Initialize game
+    function initGame() {
+      // Load saved state
+      loadGameState();
+      
+      // Set up UI
+      updateUI();
+      createCityBackground();
+      updateUpgradesUI();
+      
+      // Show welcome message
+      showNotification('Welkom bij Neon City: Energiecrisis! Kies een spelmodus en druk op Start.', 5000);
+      
+      // Start game loop
+      requestAnimationFrame(gameTick);
+      
+      console.log("Neon City: Energiecrisis lokaal gestart!");
+    }
+    
+    // Start the game when page loads
+    window.addEventListener('load', initGame);
+  </script>
+</body>
+</html>
