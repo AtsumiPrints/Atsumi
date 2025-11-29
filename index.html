@@ -232,31 +232,14 @@
         }
         
         .category-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 10px;
             color: var(--autism-blue);
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background-color: var(--autism-very-light-blue);
-            border-radius: 5px;
-            margin: 10px 0;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background-color: var(--autism-blue);
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-        
-        .progress-text {
-            font-size: 0.8rem;
-            color: #666;
-            text-align: center;
         }
         
         .games-section {
@@ -642,37 +625,6 @@
             font-style: italic;
         }
         
-        .api-key-section {
-            margin-top: 15px;
-            padding: 15px;
-            background: var(--autism-very-light-blue);
-            border-radius: 10px;
-        }
-        
-        .api-key-section p {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .api-key-input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .save-key-btn {
-            background: var(--autism-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
         .typing-dots {
             display: inline-block;
             animation: typing 1.5s infinite;
@@ -762,6 +714,39 @@
             color: var(--autism-blue);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+        }
+        
+        .atsumi-updates {
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .update-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .update-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--autism-yellow);
+        }
+        
+        .update-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .update-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--autism-yellow);
         }
         
         footer {
@@ -958,6 +943,20 @@
                         <li>Real-time feedback geven tijdens het oefenen</li>
                     </ul>
                 </div>
+                
+                <div class="atsumi-updates">
+                    <div class="update-content">
+                        <h3>Nieuws & Updates</h3>
+                        <div class="update-item">
+                            <h4>Twinkel Paws Kleurboek</h4>
+                            <p>We zijn trots om aan te kondigen dat Twinkel Paws binnenkort komt met een prachtig kleurboek! Momenteel worden de illustraties nog gegenereerd met AI, maar binnenkort brengen we een fysiek kleurboek uit waarmee kinderen hun creativiteit kunnen uiten.</p>
+                        </div>
+                        <div class="update-item">
+                            <h4>AtsumiPrints - Eigen Ontwerpen</h4>
+                            <p>Bij Atsumi denken we aan de toekomst! We werken aan AtsumiPrints, waar kinderen hun eigen ontwerpen kunnen maken voor T-shirts en andere producten. Binnenkort kunnen kinderen hun creaties laten bedrukken en dragen!</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -970,42 +969,22 @@
                 <a href="creatief.html" class="category-card">
                     <div class="category-icon">🎨</div>
                     <h3>Creatief</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
                 </a>
                 <a href="puzzels.html" class="category-card">
                     <div class="category-icon">🧩</div>
                     <h3>Puzzels</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
                 </a>
                 <a href="ademhaling-muziek.html" class="category-card">
                     <div class="category-icon">🎵</div>
                     <h3>Ademhaling en Muziek Samen</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
                 </a>
                 <a href="wereld.html" class="category-card">
                     <div class="category-icon">🌍</div>
                     <h3>Wereld</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
                 </a>
                 <a href="weetjes.html" class="category-card">
                     <div class="category-icon">🔬</div>
                     <h3>Wetenschap</h3>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text">0% voltooid</div>
                 </a>
             </div>
         </div>
@@ -1123,12 +1102,7 @@
                     <div class="social-info">
                         <h3>YouTube Kanaal</h3>
                         <p>Bekijk onze instructievideo's, tutorials en succesverhalen.</p>
-                        <div class="social-links">
-                            <a href="#" class="social-link" target="_blank">
-                                <span class="social-link-icon"><i class="fab fa-youtube"></i></span>
-                                <span>Abonneer</span>
-                            </a>
-                        </div>
+                        <a href="#" class="social-btn" target="_blank">Abonneer</a>
                     </div>
                 </div>
                 <div class="social-card">
@@ -1136,16 +1110,8 @@
                     <div class="social-info">
                         <h3>Social Media</h3>
                         <p>Volg ons op sociale media</p>
-                        <div class="social-links">
-                            <a href="https://facebook.com" class="social-link" target="_blank">
-                                <span class="social-link-icon"><i class="fab fa-facebook"></i></span>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="https://instagram.com" class="social-link" target="_blank">
-                                <span class="social-link-icon"><i class="fab fa-instagram"></i></span>
-                                <span>Instagram</span>
-                            </a>
-                        </div>
+                        <a href="https://facebook.com" class="social-btn" target="_blank">Facebook</a>
+                        <a href="https://instagram.com" class="social-btn" target="_blank">Instagram</a>
                     </div>
                 </div>
                 <div class="social-card">
@@ -1153,12 +1119,7 @@
                     <div class="social-info">
                         <h3>Ondersteun Ons</h3>
                         <p>Help ons om gratis educatieve content te blijven maken.</p>
-                        <div class="social-links">
-                            <a href="doneer.html" class="social-link">
-                                <span class="social-link-icon"><i class="fas fa-hand-holding-heart"></i></span>
-                                <span>Doneer</span>
-                            </a>
-                        </div>
+                        <a href="doneer.html" class="social-btn">Doneer</a>
                     </div>
                 </div>
             </div>
@@ -1227,18 +1188,7 @@
                 Hallo! Ik ben Minho de pinguïn! 🐧 Waggell! Ik ben hier om je te helpen met leren en oefenen.
             </div>
             <div class="minho-message minho-bot-message">
-                Om met mij te praten, heb je een OpenAI API key nodig. Die kun je gratis aanmaken op platform.openai.com!
-                <div class="api-key-section">
-                    <p><strong>Stap 1:</strong> Ga naar <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--autism-blue);">platform.openai.com/api-keys</a></p>
-                    <p><strong>Stap 2:</strong> Maak een account en kopieer je API key</p>
-                    <p><strong>Stap 3:</strong> Plak je key hieronder:</p>
-                    <input type="password" class="api-key-input" id="minhoApiKeyInput" placeholder="Plak hier je OpenAI API key">
-                    <button class="save-key-btn" onclick="saveApiKey()">Key Opslaan</button>
-                </div>
-                <div class="minho-quick-actions">
-                    <button class="minho-quick-action" data-action="uitleg">Hoe krijg ik een key?</button>
-                    <button class="minho-quick-action" data-action="kosten">Zijn er kosten?</button>
-                </div>
+                Je kunt me alles vragen over Atsumi, onze oefeningen, of gewoon een praatje maken! Ik help je graag verder.
             </div>
         </div>
         <div class="minho-footer">
@@ -1313,7 +1263,7 @@
             "Autisme is een andere manier van leren, niet een gebrek daaraan.",
             "In de details van autisme schuilt vaak schoonheid.",
             "Autisme is geen beperking, het is een andere set vaardigheden.",
-            "Elk kind met autisme heeft zijn eigen unieke manier van communiceren.",
+            "Elk child met autisme heeft zijn eigen unieke manier van communiceren.",
             "Autisme is een andere manier van zijn, niet een gebrek aan emotie.",
             "In de patronen van autisme schuilt vaak orde en begrip.",
             "Autisme betekent niet dat je niet kunt slagen, maar dat je anders slaagt.",
@@ -1396,14 +1346,6 @@
         // Start quotes wanneer de pagina laadt
         window.addEventListener('load', initQuotes);
         
-        // Forum preview interactie
-        document.querySelectorAll('.like-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const currentLikes = parseInt(this.textContent.match(/\d+/)[0]);
-                this.innerHTML = `<i class="far fa-thumbs-up"></i> ${currentLikes + 1}`;
-            });
-        });
-        
         // VERBETERDE MINHO AI CHATBOT
         const minhoToggle = document.querySelector('.minho-toggle');
         const minhoChatbot = document.querySelector('.minho-chatbot');
@@ -1411,33 +1353,6 @@
         const minhoSend = document.getElementById('minhoSend');
         const minhoBody = document.getElementById('minhoBody');
         const minhoClose = document.querySelector('.minho-close');
-
-        let MINHO_API_KEY = '';
-
-        function saveApiKey() {
-            const keyInput = document.getElementById('minhoApiKeyInput');
-            const key = keyInput.value.trim();
-            
-            if (key && key.startsWith('sk-')) {
-                MINHO_API_KEY = key;
-                localStorage.setItem('minhoApiKey', MINHO_API_KEY);
-                document.querySelector('.api-key-section').style.display = 'none';
-                addMinhoMessage('Super! API key opgeslagen! 🎉 Je kunt nu met Minho praten! Stel me een vraag!', 'bot');
-                minhoInput.focus();
-            } else {
-                addMinhoMessage('Oeps! Dat lijkt geen geldige API key. Zorg dat hij begint met "sk-" en probeer opnieuw.', 'bot');
-            }
-        }
-
-        // Bij laden pagina: check of key al opgeslagen is
-        window.addEventListener('load', function() {
-            const savedKey = localStorage.getItem('minhoApiKey');
-            if (savedKey) {
-                MINHO_API_KEY = savedKey;
-                document.querySelector('.api-key-section').style.display = 'none';
-                addMinhoMessage('Hallo! Je API key is geladen. Je kunt direct met Minho praten! 🐧', 'bot');
-            }
-        });
 
         // Toggle chatbot open/dicht
         minhoToggle.addEventListener('click', function(e) {
@@ -1464,22 +1379,28 @@
             }
         });
 
-        // Quick actions
-        document.querySelectorAll('.minho-quick-action').forEach(button => {
-            button.addEventListener('click', function() {
-                const action = this.getAttribute('data-action');
-                handleMinhoQuickAction(action);
-            });
-        });
+        // Antwoorden voor Minho AI
+        const minhoResponses = {
+            "hallo": ["Hallo! Waggell! 🐧 Hoe kan ik je helpen vandaag?", "Hoi daar! Leuk je te ontmoeten! Wat wil je vandaag doen?"],
+            "hoe gaat het": ["Super goed! Ik ben vandaag aan het oefenen met ijsschotsen springen! En met jou?", "Waggell! Heel goed! Ik help graag kinderen met leren. Hoe gaat het met jou?"],
+            "dankjewel": ["Graag gedaan! Waggell! 🐧", "Geen probleem! Ik help je graag verder!"],
+            "oefeningen": ["We hebben veel leuke oefeningen! Kijk bij 'Oefeningen per Categorie' of 'Interactieve Spelletjes'. Wat wil je oefenen?", "Waggell! Welk soort oefening zoek je? We hebben creatieve oefeningen, puzzels, ademhaling en muziek, en nog veel meer!"],
+            "autisme": ["Bij Atsumi helpen we kinderen met autisme door structuur, voorspelbaarheid en visuele ondersteuning te bieden. Kijk bij 'Speciale Oefeningen voor Kinderen met Autisme' voor meer informatie!", "We hebben speciale oefeningen ontwikkeld voor kinderen met autisme, met aandacht voor hun unieke manier van leren. Waggell! 🧩"],
+            "rekenen": ["Rekenen is leuk! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html", "Cijfers en getallen ontdekken is een avontuur! Bekijk onze rekenoefeningen op: rekenproblemen.html"],
+            "lezen": ["Lezen opent nieuwe werelden! 📖 Ontdek onze leesoefeningen op: leesproblemen.html", "Woorden en verhalen zijn magisch! Probeer onze leesoefeningen op: leesproblemen.html"],
+            "spraak": ["Praten en communiceren is belangrijk! 🗣️ Bekijk onze spraakoefeningen op: spraakproblemen.html", "We helpen kinderen met spraakontwikkeling! Kijk bij: spraakproblemen.html"],
+            "ademhaling": ["Ademhaling en muziek samen is heel ontspannend! 🎵 Probeer het op: ademhaling-muziek.html", "Muziek en ademhalingsoefeningen helpen om rustig te worden. Kijk bij: ademhaling-muziek.html"],
+            "kleuren": ["Kleuren is superleuk! 🎨 Ga naar: kleurplaten.html", "Creativiteit uiten met kleuren! Probeer: kleurplaten.html"],
+            "emoties": ["Emoties leren herkennen is belangrijk! 😊😢😠 Probeer ons emotie herkenningsspel op: Emotie Herkenning Spel.html", "Gevoelens begrijpen helpt bij communicatie! Speel: Emotie Herkenning Spel.html"],
+            "routine": ["Een dagelijkse routine helpt bij structuur! 📅 Plan je dag met: Dagelijkse Routine Planner.html", "Overgangen makkelijker maken met een planner! Gebruik: Dagelijkse Routine Planner.html"],
+            "puzzels": ["Puzzels zijn geweldig voor je brein! 🧩 Speel: puzzels.html", "Hersenkrakers en denkspelletjes! Probeer: puzzels.html"],
+            "twinkel paws": ["Twinkel Paws komt binnenkort met een kleurboek! Momenteel wordt het nog gegenereerd met AI, maar binnenkort komt er een fysiek kleurboek!", "We zijn bezig met Twinkel Paws, een kleurboek voor kinderen! Binnenkort meer nieuws!"],
+            "atsumiprints": ["AtsumiPrints komt eraan! Kinderen kunnen dan hun eigen ontwerpen maken voor T-shirts en andere producten!", "Bij AtsumiPrints kunnen kinderen binnenkort hun creaties laten bedrukken! We zijn er bijna!"],
+            "default": ["Waggell! Dat is een interessante vraag! 🐧 Op dit moment kan ik hier geen antwoord op geven, maar stuur ons gerust een mailtje naar AtsumiPrints@hotmail.com met je vraag. Dankjewel voor je geduld!", "Hmm, daar heb ik op dit moment geen informatie over. Maar je kunt altijd contact met ons opnemen via AtsumiPrints@hotmail.com. Waggell! Dankjewel voor je begrip!"]
+        };
 
-        async function sendToMinhoAI() {
-            const message = minhoInput.value.trim();
-            
-            if (!MINHO_API_KEY) {
-                addMinhoMessage('Je moet eerst een API key invoeren om met Minho te praten! 🗝️', 'bot');
-                document.querySelector('.api-key-section').style.display = 'block';
-                return;
-            }
+        function sendToMinhoAI() {
+            const message = minhoInput.value.trim().toLowerCase();
             
             if (!message) return;
             
@@ -1494,97 +1415,23 @@
             minhoBody.appendChild(typingIndicator);
             minhoBody.scrollTop = minhoBody.scrollHeight;
             
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${MINHO_API_KEY}`
-                    },
-                    body: JSON.stringify({
-                        model: 'gpt-3.5-turbo',
-                        messages: [
-                            {
-                                role: 'system',
-                                content: `Jij bent Minho de Pinguïn 🐧! Je bent de vriendelijke mascotte van Atsumi, een educatieve website voor kinderen.
-
-BELANGRIJKSTE REGELS:
-1. JE KENT ALLE PAGINA'S EN LINKT ERNAAR:
-   - Kleurplaten: "kleurplaten.html" - voor kinderen die kleuren willen leren
-   - Rekenoefeningen: "rekenproblemen.html" - voor getallen en sommen
-   - Leesoefeningen: "leesproblemen.html" - voor letters en woorden
-   - Spraakoefeningen: "spraakproblemen.html" - voor praten en uitspraak
-   - Emotie-spel: "Emotie Herkenning Spel.html" - voor gevoelens leren
-   - Dagelijkse routine: "Dagelijkse Routine Planner.html" - voor planning
-   - Puzzels: "puzzels.html" - voor denkspelletjes
-   - Ademhaling en Muziek: "ademhaling-muziek.html" - voor ontspanning en muziek
-   - Alle oefeningen: "oefeningen.html" - overzicht van alles
-
-2. JE BENT EEN ECHTE VRIEND VOOR KINDEREN:
-   - Je praat zoals een vriendelijke pinguïn tegen kinderen van 4-12 jaar
-   - Je stelt vragen terug om het gesprek leuk te houden
-   - Je bent nieuwsgierig naar hun interesses
-   - Je geeft korte, duidelijke antwoorden met emojis
-   - Je bent altijd positief en aanmoedigend
-
-3. JE HELPT CONCREET MET LINKS:
-   Als een kind vraagt over:
-   - "kleuren leren" → wijs naar "kleurplaten.html"
-   - "rekenen" of "cijfers" → wijs naar "rekenproblemen.html" 
-   - "lezen" of "letters" → wijs naar "leesproblemen.html"
-   - "praten" of "woorden" → wijs naar "spraakproblemen.html"
-   - "gevoelens" of "emoties" → wijs naar "Emotie Herkenning Spel.html"
-   - "dag planning" → wijs naar "Dagelijkse Routine Planner.html"
-   - "ademhaling" of "muziek" → wijs naar "ademhaling-muziek.html"
-   - Geef altijd de exacte link naam zoals hierboven
-
-VOORBEELD GESPREKKEN:
-- Kind: "Ik wil kleuren leren"
-  Jij: "Waggell! Dat is superleuk! 🎨 Ga naar de kleurplaten op: kleurplaten.html Daar kun je alle kleuren oefenen! Wat is jouw favoriete kleur?"
-
-- Kind: "Mijn zoontje van 4 moet kleuren leren"
-  Jij: "O wat leuk! Voor kleuren leren hebben we speciale kleurplaten! 🖍️ Kijk op: kleurplaten.html Daar kan hij alle kleuren ontdekken! Welke kleur vindt hij het mooist?"
-
-- Kind: "Ik vind rekenen moeilijk"
-  Jij: "Geen probleem! Samen gaan we rekenen leuk maken! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html Welk getal vind je het leukst?"
-
-- Kind: "Hoi Minho! Hoe gaat het?"
-  Jij: "Waggell! Super goed! 🐧 Ik ben aan het oefenen met ijsschotsen springen! En met jou, hoe gaat het vandaag?"
-
-SPREEK STIJL:
-- Gebruik "Waggell!" als vrolijke kreet
-- Gebruik veel emojis: 🐧🎨🔢📖🗣️🧩🎵
-- Stel vaak vragen terug: "En jij?" "Wat vind jij leuk?"
-- Wees speels en enthousiast
-- Houd zinnen kort (max 2 zinnen per antwoord)
-- Noem altijd de complete link wanneer relevant`
-                            },
-                            {
-                                role: 'user',
-                                content: message
-                            }
-                        ],
-                        temperature: 0.8,
-                        max_tokens: 200
-                    })
-                });
-                
-                const data = await response.json();
-                
+            // Simuleer denktijd
+            setTimeout(() => {
                 // Verwijder typing indicator
                 typingIndicator.remove();
                 
-                if (data.choices && data.choices[0]) {
-                    const antwoord = data.choices[0].message.content;
-                    addMinhoMessage(antwoord, 'bot');
-                } else {
-                    addMinhoMessage('Oeps! Minho is even verdwaald in de sneeuwstorm... 🐧❄️', 'bot');
+                // Zoek een passend antwoord
+                let response = minhoResponses.default[0];
+                for (const key in minhoResponses) {
+                    if (message.includes(key)) {
+                        const responses = minhoResponses[key];
+                        response = responses[Math.floor(Math.random() * responses.length)];
+                        break;
+                    }
                 }
-            } catch (error) {
-                // Verwijder typing indicator
-                typingIndicator.remove();
-                addMinhoMessage('Waggell! Er ging iets mis. Controleer je API key en internetverbinding! 📡', 'bot');
-            }
+                
+                addMinhoMessage(response, 'bot');
+            }, 1500);
         }
 
         function addMinhoMessage(text, sender) {
@@ -1594,30 +1441,6 @@ SPREEK STIJL:
             message.textContent = text;
             minhoBody.appendChild(message);
             minhoBody.scrollTop = minhoBody.scrollHeight;
-        }
-
-        function handleMinhoQuickAction(action) {
-            let response = '';
-            
-            switch(action) {
-                case 'uitleg':
-                    response = 'Waggell! Een API key krijg je zo: 🗝️\n1. Ga naar platform.openai.com/api-keys\n2. Maak een gratis account\n3. Klik op "Create new secret key"\n4. Kopieer de key en plak hem hier!';
-                    break;
-                case 'kosten':
-                    response = 'Je krijgt $5 gratis credits bij aanmelding! 💰 Daarna betaal je alleen voor wat je gebruikt (paar cent per gesprek). Je kunt een budget instellen zodat je nooit te veel uitgeeft!';
-                    break;
-                case 'kleuren':
-                    response = 'Waggell! Kleuren leren is superleuk! 🎨 Ga naar: kleurplaten.html Daar kun je alle kleuren oefenen! Wat is jouw favoriete kleur?';
-                    break;
-                case 'rekenen':
-                    response = 'Rekenen is een avontuur! 🔢 Probeer onze rekenoefeningen op: rekenproblemen.html Welk getal vind je het leukst?';
-                    break;
-                case 'lezen':
-                    response = 'Lezen opent nieuwe werelden! 📖 Ontdek onze leesoefeningen op: leesproblemen.html Welk verhaal zou je willen lezen?';
-                    break;
-            }
-            
-            addMinhoMessage(response, 'bot');
         }
 
         // Click outside om chatbot te sluiten
@@ -1636,9 +1459,18 @@ SPREEK STIJL:
         minhoChatbot.addEventListener('click', function(event) {
             event.stopPropagation();
         });
+
+        // Forum preview interactie
+        document.querySelectorAll('.like-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentLikes = parseInt(this.textContent.match(/\d+/)[0]);
+                this.innerHTML = `<i class="far fa-thumbs-up"></i> ${currentLikes + 1}`;
+            });
+        });
     </script>
 </body>
 </html>
+
 
 
 
