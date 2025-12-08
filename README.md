@@ -32,13 +32,6 @@ De website is live beschikbaar op: [https://jouw-gebruikersnaam.github.io/atsumi
 
 Wil je meteen aan de slag met inkleuren? Download hier het **Twinkel Paws Kleurboek**:
 
-![Twinkel Paws Kleurboek preview](https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg)
-
-➡️ [📄 Download als PDF](https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.pdf)  
-➡️ [🖼️ Download als JPG](https://github.com/AtsumiPrints/Atsumi/raw/main/twinkel-paws-kleurboek.jpg)
-
-
-
 ## 💝 Ondersteuning
 
 Atsumi is een gratis platform. Als je ons wilt steunen, neem dan contact op voor donatiemogelijkheden.
