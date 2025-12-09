@@ -277,77 +277,6 @@
             margin: 0 auto;
         }
 
-        .coloring-pages {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 2rem;
-        }
-
-        .coloring-page {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            position: relative;
-        }
-
-        .coloring-page:hover {
-            transform: translateY(-5px);
-        }
-
-        .coloring-page img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--autism-light-blue);
-        }
-
-        .coloring-page-info {
-            padding: 15px;
-        }
-
-        .coloring-page-info h3 {
-            color: var(--autism-purple);
-            margin-bottom: 10px;
-        }
-
-        .coloring-page-info p {
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .coloring-page-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 15px;
-            background: var(--autism-yellow);
-            color: var(--dark);
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .coloring-page-download:hover {
-            background: var(--autism-orange);
-        }
-
-        .watermark {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: var(--autism-purple);
-        }
-
         .info-section {
             background: var(--light);
             padding: 3rem 1rem;
@@ -383,6 +312,162 @@
 
         .info-card-icon {
             font-size: 1.5rem;
+        }
+
+        /* PDF Galerij Styling */
+        .pdf-section {
+            margin: 3rem 0;
+        }
+        
+        .pdf-section h2 {
+            text-align: center;
+            color: var(--autism-purple);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        /* Galerij Styling van jouw code */
+        .pdf-gallery { 
+            display:flex; 
+            flex-direction:column; 
+            gap:14px; 
+            margin:18px 0; 
+        }
+        
+        .pdf-item { 
+            display:flex; 
+            gap:12px; 
+            align-items:center; 
+            padding:10px; 
+            border:1px solid #eee; 
+            border-radius:8px; 
+            background:#fff; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .pdf-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            transition: all 0.3s;
+        }
+        
+        .thumb-wrap { 
+            width:140px; 
+            flex:0 0 140px; 
+        }
+        
+        .thumb { 
+            width:140px; 
+            height:auto; 
+            border-radius:6px; 
+            object-fit:cover; 
+            display:block; 
+            border: 2px solid var(--autism-light-blue);
+        }
+        
+        .meta { 
+            flex:1; 
+            display:flex; 
+            flex-direction:column; 
+            gap:8px; 
+        }
+        
+        .meta h4 { 
+            margin:0; 
+            font-size:16px; 
+            text-transform:capitalize; 
+            color:var(--dark); 
+        }
+        
+        .meta p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .actions { 
+            display:flex; 
+            gap:8px; 
+            align-items:center; 
+            flex-wrap: wrap;
+        }
+        
+        .btn { 
+            display:inline-block; 
+            padding:8px 12px; 
+            border-radius:6px; 
+            text-decoration:none; 
+            color:#fff; 
+            background:#4CAF50; 
+            transition: all .12s ease;
+            font-weight: bold;
+        }
+        
+        .btn.view { 
+            background:#007acc; 
+        }
+        
+        .btn.download { 
+            background:#4CAF50; 
+        }
+        
+        .btn:hover { 
+            opacity:0.95; 
+            transform:translateY(-1px); 
+        }
+        
+        .modal-backdrop { 
+            position:fixed; 
+            inset:0; 
+            background:rgba(0,0,0,0.6); 
+            display:none; 
+            align-items:center; 
+            justify-content:center; 
+            z-index:9999; 
+        }
+        
+        .modal { 
+            width:90%; 
+            max-width:1000px; 
+            height:80vh; 
+            background:#fff; 
+            border-radius:8px; 
+            overflow:hidden; 
+            display:flex; 
+            flex-direction:column; 
+        }
+        
+        .modal-header { 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            padding:8px 12px; 
+            background:var(--autism-light-blue); 
+            border-bottom:1px solid #eee; 
+        }
+        
+        .modal-body { 
+            flex:1; 
+            background: #f5f5f5;
+        }
+        
+        .modal iframe { 
+            width:100%; 
+            height:100%; 
+            border:0; 
+        }
+        
+        .close-btn { 
+            background:#e74c3c; 
+            color:#fff; 
+            padding:6px 10px; 
+            border-radius:6px; 
+            text-decoration:none; 
+        }
+        
+        .close-btn:hover {
+            background: #c0392b;
         }
 
         footer {
@@ -465,8 +550,23 @@
                 font-size: 2rem;
             }
             
-            .coloring-pages {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            .pdf-item { 
+                flex-direction:column; 
+                align-items:flex-start; 
+            }
+            
+            .thumb-wrap { 
+                width:100%; 
+            }
+            
+            .thumb { 
+                width:100%; 
+                height: auto;
+            }
+            
+            .actions {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -528,6 +628,27 @@
                 </p>
             </div>
 
+            <!-- PDF Galerij Sectie -->
+            <div class="pdf-section">
+                <h2>📚 Alle Kleurplaten PDF's 📚</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--dark);">Klik op een kleurplaat om te bekijken, downloaden of in een nieuw tabblad te openen.</p>
+                
+                <div id="pdfGallery" class="pdf-gallery" aria-live="polite"></div>
+                
+                <!-- Modal voor inline preview -->
+                <div id="pdfModal" class="modal-backdrop" role="dialog" aria-hidden="true">
+                    <div class="modal" role="document">
+                        <div class="modal-header">
+                            <strong id="modalTitle">Preview</strong>
+                            <a href="#" id="modalClose" class="close-btn">Sluiten</a>
+                        </div>
+                        <div class="modal-body">
+                            <iframe id="modalFrame" src="" title="PDF preview"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="ai-generator">
                 <h2>🎨 Maak je eigen kleurplaat met AI! 🎨</h2>
                 <form class="ai-form">
@@ -545,114 +666,7 @@
                         <img id="ai-image" class="ai-image" src="" alt="AI gegenereerde kleurplaat">
                         <div class="watermark" id="ai-watermark" style="display:none;">Twinkel Paws</div>
                     </div>
-                    <button id="download-btn" style="display:none; margin-top: 15px;" class="coloring-page-download">Download Kleurplaat</button>
-                </div>
-            </div>
-
-            <h2 style="text-align: center; margin: 2rem 0; color: var(--autism-purple);">Enkele Voorbeelden uit Ons Kleurboek</h2>
-            <div class="coloring-pages">
-                <!-- Schattige Panda kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/schattige-panda-kleurplaat.jpg" alt="Schattige Panda kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Schattige Panda</h3>
-                        <p>Een lieve panda in een bamboebos. Perfect voor kinderen die van dieren houden!</p>
-                        <a href="images/schattige-panda-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Magische Eenhoorn kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/magische-eenhoorn-kleurplaat.jpg" alt="Magische Eenhoorn kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Magische Eenhoorn</h3>
-                        <p>Een betoverende eenhoorn in een sprookjesachtig landschap. Laat je fantasie de vrije loop!</p>
-                        <a href="images/magische-eenhoorn-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Zee Avontuur kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/zee-avontuur-kleurplaat.jpg" alt="Zee Avontuur kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Zee Avontuur</h3>
-                        <p>Duik in de oceaan en ontmoet vriendelijke zeedieren. Perfect voor jonge ontdekkingsreizigers!</p>
-                        <a href="images/zee-avontuur-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Ruimte Reis kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/ruimte-reis-kleurplaat.jpg" alt="Ruimte Reis kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Ruimte Reis</h3>
-                        <p>Reis door het heelal en ontmoet vriendelijke aliens. Voor kleine astronauten in de dop!</p>
-                        <a href="images/ruimte-reis-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Dinosaurussen kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/dinosaurussen-kleurplaat.jpg" alt="Dinosaurussen kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Dinosaurussen</h3>
-                        <p>Reis terug in de tijd en ontmoet vriendelijke dinosaurussen. Perfect voor jonge paleontologen!</p>
-                        <a href="images/dinosaurussen-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Prinsessen Kasteel kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/prinsessen-kasteel-kleurplaat.jpg" alt="Prinsessen Kasteel kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Prinsessen Kasteel</h3>
-                        <p>Een magisch kasteel met prinsessen en draken. Voor alle sprookjesliefhebbers!</p>
-                        <a href="images/prinsessen-kasteel-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Vrolijke Vlinders kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/vrolijke-vlinders-kleurplaat.jpg" alt="Vrolijke Vlinders kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Vrolijke Vlinders</h3>
-                        <p>Kleurrijke vlinders in een bloemenweide. Perfect voor lenteliefhebbers!</p>
-                        <a href="images/vrolijke-vlinders-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
-                </div>
-                
-                <!-- Schattige Kitten kleurplaat -->
-                <div class="coloring-page">
-                    <div style="position: relative;">
-                        <img src="images/schattige-kitten-kleurplaat.jpg" alt="Schattige Kitten kleurplaat">
-                        <div class="watermark">Twinkel Paws</div>
-                    </div>
-                    <div class="coloring-page-info">
-                        <h3>Schattige Kitten</h3>
-                        <p>Speelse kleine katjes met bolletjes wol. Voor alle dierenliefhebbers!</p>
-                        <a href="images/schattige-kitten-kleurplaat.jpg" download class="coloring-page-download">Download</a>
-                    </div>
+                    <button id="download-btn" style="display:none; margin-top: 15px;" class="btn download">Download Kleurplaat</button>
                 </div>
             </div>
 
@@ -708,6 +722,184 @@
     </footer>
 
     <script>
+        // PDF Galerij JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            const files = [
+                "labubu-met-een-hart.pdf",
+                "coco-wyo-kleurplaten-makkelijk.pdf",
+                "sapwinkel-kleurplaten.pdf",
+                "coco-wyo-kerstmis-kleurplaat.pdf",
+                "coco-wyo-op-ontdekkingstocht-kleurplaat.pdf",
+                "coco-wyo-kleurplaten-eenvoudig.pdf",
+                "coco-wyo-kleurplaat-voor-kinderen.pdf",
+                "coco-wyo-kleurplaat-makkelijk.pdf",
+                "kleurplaat-coco-wyo-ninja.pdf",
+                "coco-wyo-kleurplaten-afdrukbaar.pdf",
+                "coco-wyo-kleurplaten-voor-kinderen.pdf",
+                "coco-wyo-feest-kleurplaten.pdf",
+                "coco-wyo-halloween-kleurplaten.pdf",
+                "cozy-buiten-venster-kleurplaat.pdf",
+                "coco-wyo-kleurplaten-schattig.pdf",
+                "coco-wyo-speeltuin-kleurplaten.pdf",
+                "kleurplaat-popcornverkoper-coco-wyo.pdf",
+                "coco-wyo-kleurplaat-gratis.pdf",
+                "coco-wyo-nu-huppelen-met-vrienden-kleurplaten.pdf",
+                "coco-wyo-kleurplaat-printen.pdf",
+                "coco-wyo-kleurplaat-schattig.pdf",
+                "coco-wyo-badkamer-kleurplaat.pdf",
+                "cozy-vrienden-coco-wyo-kleurplaat.pdf",
+                "coco-wyo-boekenwinkel-kleurplaat.pdf",
+                "coco-wyo-kleurplaat-eenvoudig.pdf",
+                "labubu-in-de-winter.pdf",
+                "labubu-kleurplaat-schattig.pdf",
+                "labubu-blij-met-een-bloem.pdf",
+                "labubu-kleurplaten-eenvoudig.pdf",
+                "labubu-kleurplaat-eenvoudig.pdf",
+                "labubu-kleurplaten-afdrukbaar.pdf",
+                "labubu-kleurplaten-onhandig.pdf",
+                "labubu-kleurplaten-voor-kinderen.pdf",
+                "labubu-kleurplaten-gratis.pdf",
+                "labubu-kleurplaat-makkelijk.pdf",
+                "labubu-kleurplaat-printen.pdf",
+                "labubu-kleurplaten-schattig.pdf",
+                "labubu-kleurplaten-met-een-bloem.pdf",
+                "labubu-kleurplaat-voor-kinderen.pdf",
+                "labubu-speelt-met-speelgoed.pdf",
+                "labubu-bouwt-een-kasteel.pdf",
+                "labubu-met-een-taart.pdf",
+                "labubu-makkelijk.pdf",
+                "labubu-gaat-baden.pdf"
+            ];
+
+            // Beschrijvingen voor elk PDF bestand
+            const descriptions = {
+                "labubu-met-een-hart.pdf": "Labubu houdt een groot hart vast - perfect voor Valentijnsdag of om liefde te tonen!",
+                "coco-wyo-kleurplaten-makkelijk.pdf": "Eenvoudige Coco Wyo kleurplaten met grote vlakken voor jonge kinderen.",
+                "sapwinkel-kleurplaten.pdf": "Kleur de gezellige sapwinkel met allerlei fruitige drankjes.",
+                "coco-wyo-kerstmis-kleurplaat.pdf": "Coco Wyo viert Kerstmis met kerstballen en versieringen.",
+                "coco-wyo-op-ontdekkingstocht-kleurplaat.pdf": "Avontuurlijke Coco Wyo verkent de natuur.",
+                "coco-wyo-kleurplaten-eenvoudig.pdf": "Simpele ontwerpen speciaal voor peuters en kleuters.",
+                "coco-wyo-kleurplaat-voor-kinderen.pdf": "Vrolijke Coco Wyo in kindvriendelijke stijl.",
+                "coco-wyo-kleurplaat-makkelijk.pdf": "Makkelijke kleurplaat met weinig details.",
+                "kleurplaat-coco-wyo-ninja.pdf": "Coco Wyo als stoere ninja - actie en avontuur!",
+                "coco-wyo-kleurplaten-afdrukbaar.pdf": "Direct afdrukbare Coco Wyo kleurplaten.",
+                "coco-wyo-feest-kleurplaten.pdf": "Feestelijke Coco Wyo met slingers en ballonnen.",
+                "coco-wyo-halloween-kleurplaten.pdf": "Spookachtige Halloween thema met Coco Wyo.",
+                "cozy-buiten-venster-kleurplaat.pdf": "Gezellig raam met mooi uitzicht - rustgevend om in te kleuren.",
+                "coco-wyo-kleurplaten-schattig.pdf": "Extra schattige Coco Wyo plaatjes.",
+                "coco-wyo-speeltuin-kleurplaten.pdf": "Coco Wyo speelt in de speeltuin met vriendjes.",
+                "kleurplaat-popcornverkoper-coco-wyo.pdf": "Coco Wyo verkoopt popcorn op de kermis.",
+                "coco-wyo-kleurplaat-gratis.pdf": "Gratis Coco Wyo kleurplaat voor iedereen.",
+                "coco-wyo-nu-huppelen-met-vrienden-kleurplaten.pdf": "Coco Wyo huppelt vrolijk met vrienden.",
+                "coco-wyo-kleurplaat-printen.pdf": "Klaar om te printen - direct aan de slag!",
+                "coco-wyo-kleurplaat-schattig.pdf": "Liefelijke Coco Wyo met grote ogen.",
+                "coco-wyo-badkamer-kleurplaat.pdf": "Coco Wyo in bad met rubbereendjes.",
+                "cozy-vrienden-coco-wyo-kleurplaat.pdf": "Gezellig samenzijn met Coco Wyo en vrienden.",
+                "coco-wyo-boekenwinkel-kleurplaat.pdf": "Coco Wyo tussen de boeken in de boekenwinkel.",
+                "coco-wyo-kleurplaat-eenvoudig.pdf": "Heel eenvoudige Coco Wyo voor beginners.",
+                "labubu-in-de-winter.pdf": "Labubu geniet van de winter met sneeuwpret.",
+                "labubu-kleurplaat-schattig.pdf": "Schattige Labubu in verschillende poses.",
+                "labubu-blij-met-een-bloem.pdf": "Labubu is blij met een mooie bloem.",
+                "labubu-kleurplaten-eenvoudig.pdf": "Eenvoudige Labubu kleurplaten.",
+                "labubu-kleurplaat-eenvoudig.pdf": "Makkelijke Labubu voor jonge kinderen.",
+                "labubu-kleurplaten-afdrukbaar.pdf": "Direct afdrukbare Labubu kleurplaten.",
+                "labubu-kleurplaten-onhandig.pdf": "Grappige Labubu in onhandige situaties.",
+                "labubu-kleurplaten-voor-kinderen.pdf": "Kindvriendelijke Labubu kleurplaten.",
+                "labubu-kleurplaten-gratis.pdf": "Gratis Labubu kleurplaten.",
+                "labubu-kleurplaat-makkelijk.pdf": "Makkelijke Labubu met simpele lijnen.",
+                "labubu-kleurplaat-printen.pdf": "Print en kleur direct met Labubu.",
+                "labubu-kleurplaten-schattig.pdf": "Schattige Labubu varianten.",
+                "labubu-kleurplaten-met-een-bloem.pdf": "Labubu met verschillende bloemen.",
+                "labubu-kleurplaat-voor-kinderen.pdf": "Speciaal voor kinderen ontworpen Labubu.",
+                "labubu-speelt-met-speelgoed.pdf": "Labubu speelt met speelgoed en knuffels.",
+                "labubu-bouwt-een-kasteel.pdf": "Labubu bouwt een zandkasteel op het strand.",
+                "labubu-met-een-taart.pdf": "Labubu heeft een verjaardagstaart!",
+                "labubu-makkelijk.pdf": "Heel makkelijk Labubu voor de allerkleinsten.",
+                "labubu-gaat-baden.pdf": "Labubu neemt een lekker bad."
+            };
+
+            // Afbeeldingsbronnen voor verschillende categorieën
+            const categoryImages = {
+                'labubu': 'images/schattige-panda-kleurplaat.jpg',
+                'coco': 'images/magische-eenhoorn-kleurplaat.jpg',
+                'cozy': 'images/prinsessen-kasteel-kleurplaat.jpg',
+                'sapwinkel': 'images/zee-avontuur-kleurplaat.jpg',
+                'default': 'images/ruimte-reis-kleurplaat.jpg'
+            };
+
+            const gallery = document.getElementById('pdfGallery');
+            const modal = document.getElementById('pdfModal');
+            const modalFrame = document.getElementById('modalFrame');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalClose = document.getElementById('modalClose');
+
+            files.forEach(filename => {
+                const base = filename.replace(/\.pdf$/i, '');
+                const thumb = base + '.jpg';
+                const pdfPath = filename; // root: gebruik exact filename
+
+                // Bepaal welke voorbeeldafbeelding te gebruiken
+                let imageSrc = categoryImages.default;
+                if (base.toLowerCase().includes('labubu')) {
+                    imageSrc = categoryImages.labubu;
+                } else if (base.toLowerCase().includes('coco')) {
+                    imageSrc = categoryImages.coco;
+                } else if (base.toLowerCase().includes('cozy')) {
+                    imageSrc = categoryImages.cozy;
+                } else if (base.toLowerCase().includes('sapwinkel')) {
+                    imageSrc = categoryImages.sapwinkel;
+                }
+
+                const description = descriptions[filename] || `Kleurplaat: ${base.replace(/-/g, ' ')}`;
+
+                const item = document.createElement('div');
+                item.className = 'pdf-item';
+                item.innerHTML = `
+                    <div class="thumb-wrap">
+                        <img src="${imageSrc}" alt="${base}" class="thumb" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                    </div>
+                    <div class="meta">
+                        <h4>${base.replace(/-/g, ' ')}</h4>
+                        <p>${description}</p>
+                        <div class="actions">
+                            <a href="#" class="btn view" data-file="${pdfPath}">🔍 Bekijk</a>
+                            <a href="${pdfPath}" class="btn download" download>📄 Download</a>
+                            <a href="${pdfPath}" target="_blank" rel="noopener" class="btn" style="background:#6c757d">🌐 Nieuw tabblad</a>
+                        </div>
+                    </div>
+                `;
+                gallery.appendChild(item);
+            });
+
+            /* Modal events */
+            gallery.addEventListener('click', (e) => {
+                const view = e.target.closest('.view');
+                if (!view) return;
+                e.preventDefault();
+                const file = view.getAttribute('data-file');
+                modalFrame.src = file;
+                modalTitle.textContent = file.replace(/\.pdf$/i,'').replace(/-/g,' ');
+                modal.style.display = 'flex';
+                modal.setAttribute('aria-hidden','false');
+            });
+
+            modalClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal();
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            function closeModal() {
+                modalFrame.src = '';
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden','true');
+            }
+        });
+
+        // AI Generator Script
         document.getElementById('generate-btn').addEventListener('click', function() {
             const prompt = document.getElementById('ai-prompt').value;
             const style = document.getElementById('ai-style').value;
@@ -722,7 +914,7 @@
             
             // Toon een laadbericht
             aiImage.style.display = 'block';
-            aiImage.src = 'images/magische-eenhoorn-kleurplaat.jpg'; // Gebruik een echte afbeelding als laadscherm
+            aiImage.src = 'images/magische-eenhoorn-kleurplaat.jpg';
             aiImage.alt = 'AI kleurplaat aan het genereren...';
             downloadBtn.style.display = 'none';
             aiWatermark.style.display = 'none';
