@@ -56,12 +56,20 @@
             gap: 10px;
         }
         
-        .logo h1 {
-            font-size: 1.8rem;
+        .logo-img {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .logo-icon {
-            font-size: 2.5rem;
+        .logo-penguin {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            height: 40px;
+            width: auto;
         }
         
         nav ul {
@@ -103,9 +111,10 @@
         
         .hero {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 3rem 1rem 1rem;
             background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(114, 9, 183, 0.8));
             color: white;
+            position: relative;
         }
         
         .hero h2 {
@@ -119,10 +128,10 @@
             margin: 0 auto 2rem;
         }
         
-        .quotes-banner {
+        .hero-quotes {
             max-width: 800px;
-            margin: 0 auto;
-            height: 60px;
+            margin: 0 auto 1.5rem;
+            height: 70px;
             overflow: hidden;
             position: relative;
             background: rgba(255, 255, 255, 0.2);
@@ -161,9 +170,12 @@
         }
         
         .puzzle-piece {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .section-title {
@@ -442,13 +454,13 @@
             color: white;
         }
         
-        /* VERBETERDE MINHO AI CHATBOT STYLES */
+        /* MINHO AI CHATBOT STYLES */
         .minho-chatbot {
             position: fixed;
-            bottom: 120px; /* Hoger geplaatst */
+            bottom: 120px;
             right: 20px;
             width: 380px;
-            height: 480px; /* Iets korter voor betere toegang */
+            height: 480px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -519,7 +531,7 @@
             display: flex;
             gap: 10px;
             align-items: center;
-            min-height: 70px; /* Zorg voor voldoende hoogte */
+            min-height: 70px;
         }
         
         .minho-input {
@@ -540,7 +552,7 @@
             font-weight: bold;
             transition: background 0.3s;
             white-space: nowrap;
-            min-width: 80px; /* Zorg voor voldoende breedte */
+            min-width: 80px;
         }
         
         .minho-send:hover {
@@ -712,19 +724,6 @@
             margin-bottom: 1.5rem;
         }
         
-        .ai-features {
-            background: var(--autism-very-light-blue);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-        }
-        
-        .ai-features h3 {
-            color: var(--autism-blue);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
         .atsumi-updates {
             background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
@@ -785,7 +784,7 @@
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            gap: 15px;
             margin-bottom: 2rem;
         }
         
@@ -796,6 +795,7 @@
         
         .footer-section ul {
             list-style: none;
+            margin-bottom: 20px;
         }
         
         .footer-section ul li {
@@ -843,7 +843,7 @@
                 font-size: 2rem;
             }
             
-            .quotes-banner {
+            .hero-quotes {
                 height: 80px;
             }
             
@@ -854,7 +854,7 @@
             .minho-chatbot {
                 width: 95%;
                 right: 2.5%;
-                height: 65%; /* Meer ruimte op mobiel */
+                height: 65%;
                 bottom: 100px;
             }
             
@@ -879,34 +879,23 @@
                 font-size: 0.85rem;
                 min-width: 70px;
             }
-        .minho-footer {
-    padding: 12px;
-    min-height: 65px;
-}
-
-.minho-input {
-    padding: 10px 12px;
-    font-size: 0.85rem;
-}
-
-.minho-send {
-    padding: 10px 15px;
-    font-size: 0.85rem;
-    min-width: 70px;
-}
-
-
-
-</style>
-
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-top">
                 <div class="logo">
-                    <div class="logo-icon">🐧</div>
-                    <h1>Atsumi</h1>
+                    <div class="logo-img">
+                        <img src="images/penguin.png" alt="Atsumi Pinguïn" class="logo-penguin">
+                        <img src="images/atsumi-logo.png" alt="Atsumi Logo" class="logo-text">
+                    </div>
                 </div>
                 <nav>
                     <ul>
@@ -922,24 +911,25 @@
         </div>
     </header>
     
-<section class="hero">
-    <div class="container">
-        <h2>Educatieve Oefeningen voor Alle Kinderen</h2>
-        <p>Speciaal ontwikkeld voor kinderen met autisme, spraak-, lees- en rekenproblemen. Maak leren leuk en toegankelijk!</p>
-    </div>
-</section>
-
-<!-- Quotes banner vervangt de zoekbalk -->
-<div class="quotes-banner">
-    <div class="quotes-container" id="quotesContainer">
-        <!-- Quotes worden hier via JavaScript ingevoegd -->
-    </div>
-</div>
-
+    <section class="hero">
+        <div class="container">
+            <h2>Educatieve Oefeningen voor Alle Kinderen</h2>
+            <p>Speciaal ontwikkeld voor kinderen met autisme, spraak-, lees- en rekenproblemen. Maak leren leuk en toegankelijk!</p>
+            
+            <!-- Quotes banner in de hero sectie -->
+            <div class="hero-quotes">
+                <div class="quotes-container" id="quotesContainer">
+                    <!-- Quotes worden hier via JavaScript ingevoegd -->
+                </div>
+            </div>
+        </div>
+    </section>
     
     <section class="autism-section">
         <div class="container">
-            <span class="puzzle-piece">🧩</span>
+            <div class="puzzle-piece">
+                <img src="images/puzzelstukje.png" alt="Autisme puzzelstukje" style="width: 80px; height: auto;">
+            </div>
             <h2 class="section-title">Speciale Oefeningen voor Kinderen met Autisme</h2>
             <p>Onze oefeningen zijn zorgvuldig ontwikkeld met aandacht voor structuur, voorspelbaarheid en visuele ondersteuning.</p>
             
@@ -979,29 +969,9 @@
                 <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
                 <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
                 
-                <div class="ai-features">
-                    <h3>AI-ondersteuning voor gepersonaliseerd leren</h3>
-                    <p>We hebben AI-technologie geïntegreerd in ons platform om leerkrachten en ouders te helpen oefeningen nog beter af te stemmen op de behoeften van elk kind. Met behulp van AI kunnen we:</p>
-                    <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-                        <li>Oefeningen automatisch aanpassen aan het niveau en de voortgang van elk kind</li>
-                        <li>Een grotere variatie aan oefeningen genereren dan traditionele methoden</li>
-                        <li>Persoonlijke leerpaden creëren op basis van individuele sterktes en uitdagingen</li>
-                        <li>Real-time feedback geven tijdens het oefenen</li>
-                    </ul>
-                </div>
-                
                 <div class="atsumi-updates">
                     <div class="update-content">
                         <h3>Nieuws & Updates</h3>
-                        <div class="update-item">
-                            <h4>Nieuw Spel: Neon City</h4>
-                            <p>Ervaar de opwindende wereld van Neon City! In dit nieuwe spel kun je kiezen uit twee modi:</p>
-                            <ul>
-                                <li><strong>Klassiek:</strong> Verzamel energiecellen in een kleurrijke stad vol licht en actie</li>
-                                <li><strong>Survival:</strong> Overleef tegen vijanden en verzamel zoveel mogelijk punten</li>
-                            </ul>
-                            <a href="neon-city.html" class="game-link">Speel Neon City Nu!</a>
-                        </div>
                         <div class="update-item">
                             <h4>Twinkel Paws Kleurboek</h4>
                             <p>We zijn trots om aan te kondigen dat Twinkel Paws binnenkort komt met een prachtig kleurboek! Momenteel worden de illustraties nog gegenereerd met AI, maar binnenkort brengen we een fysiek kleurboek uit waarmee kinderen hun creativiteit kunnen uiten.</p>
@@ -1049,14 +1019,6 @@
         <div class="container">
             <h2 class="section-title">Interactieve Spelletjes</h2>
             <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-image">🌃</div>
-                    <div class="game-info">
-                        <h3>Neon City</h3>
-                        <p>Verzamel energiecellen of overleef tegen vijanden in deze spannende stad vol licht.</p>
-                        <a href="neon-city.html" class="play-btn">Spelen</a>
-                    </div>
-                </div>
                 <div class="game-card">
                     <div class="game-image">📅</div>
                     <div class="game-info">
@@ -1219,7 +1181,7 @@
                     <h3>Contact</h3>
                     <div class="contact-info">
                         <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
-                        <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                        <div><strong>Telefoon:</strong> Binnenkort beschikbaar</div>
                         <div><strong>Volg ons op sociale media</strong></div>
                     </div>
                 </div>
@@ -1536,6 +1498,7 @@
     </script>
 </body>
 </html>
+
 
 
 
