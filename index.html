@@ -53,7 +53,6 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
         }
         
         .logo-img {
@@ -63,50 +62,55 @@
         }
         
         .logo-penguin {
-            height: 50px;
+            height: 60px;
             width: auto;
         }
         
         .logo-text {
-            height: 40px;
+            height: 50px;
             width: auto;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 15px;
         }
         
         nav a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 5px 10px;
+            padding: 8px 15px;
             border-radius: 20px;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-size: 0.95rem;
         }
         
         nav a:hover {
             background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
         
         .join-btn {
             background: var(--autism-yellow);
             color: var(--dark);
             border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 25px;
+            border-radius: 25px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .join-btn:hover {
             background: #ffc043;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }
         
         .hero {
@@ -198,14 +202,14 @@
             padding: 25px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             cursor: pointer;
             border-top: 5px solid var(--autism-blue);
         }
         
         .autism-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
         
         .autism-icon {
@@ -231,7 +235,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
@@ -239,8 +243,8 @@
         }
         
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
         
         .category-icon {
@@ -270,13 +274,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: all 0.3s;
             border: 2px solid var(--autism-purple);
         }
         
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
         
         .game-image {
@@ -312,11 +316,12 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .play-btn:hover {
             background: var(--autism-dark-blue);
+            transform: translateY(-2px);
         }
         
         /* Forum Section Styles */
@@ -391,6 +396,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .reply-btn:hover, .like-btn:hover {
+            color: var(--autism-purple);
+            transform: scale(1.05);
         }
         
         .forum-cta {
@@ -416,11 +427,12 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .forum-link:hover {
             background: var(--autism-dark-blue);
+            transform: translateY(-2px);
         }
         
         /* Social Media Links Styles */
@@ -441,12 +453,13 @@
             color: white;
             border-radius: 5px;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s;
             font-weight: bold;
         }
         
         .social-link:hover {
             background: var(--autism-dark-blue);
+            transform: translateY(-2px);
         }
         
         .social-link-icon {
@@ -512,6 +525,11 @@
             cursor: pointer;
             margin-left: auto;
             padding: 5px;
+            transition: all 0.3s;
+        }
+        
+        .minho-close:hover {
+            transform: scale(1.1);
         }
         
         .minho-body {
@@ -540,6 +558,13 @@
             border: 1px solid #ddd;
             border-radius: 25px;
             font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .minho-input:focus {
+            outline: none;
+            border-color: var(--autism-blue);
+            box-shadow: 0 0 0 2px rgba(0,119,182,0.2);
         }
         
         .minho-send {
@@ -550,13 +575,14 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
             white-space: nowrap;
             min-width: 80px;
         }
         
         .minho-send:hover {
             background: var(--autism-dark-blue);
+            transform: translateY(-2px);
         }
         
         .minho-toggle {
@@ -574,13 +600,13 @@
             cursor: pointer;
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             z-index: 10000;
-            transition: transform 0.3s;
+            transition: all 0.3s;
             border: 3px solid white;
             font-size: 1.8rem;
         }
         
         .minho-toggle:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(10deg);
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         
@@ -672,11 +698,12 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
         
         .social-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
         
         .social-icon {
@@ -684,6 +711,12 @@
             text-align: center;
             padding: 20px;
             color: var(--autism-blue);
+            transition: all 0.3s;
+        }
+        
+        .social-card:hover .social-icon {
+            transform: scale(1.1);
+            color: var(--autism-purple);
         }
         
         .social-info {
@@ -699,12 +732,13 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
             margin-top: 10px;
         }
         
         .social-btn:hover {
             background: var(--autism-dark-blue);
+            transform: translateY(-2px);
         }
         
         .learning-rhythm {
@@ -731,6 +765,12 @@
             margin-top: 3rem;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+        
+        .atsumi-updates:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
         }
         
         .update-content {
@@ -751,6 +791,12 @@
             background: rgba(255,255,255,0.1);
             border-radius: 10px;
             text-align: left;
+            transition: all 0.3s;
+        }
+        
+        .update-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
         }
         
         .update-item h4 {
@@ -784,13 +830,23 @@
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 30px;
             margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            margin-bottom: 10px;
         }
         
         .footer-section h3 {
             margin-bottom: 15px;
             color: var(--autism-yellow);
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
         
         .footer-section ul {
@@ -799,17 +855,19 @@
         }
         
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .footer-section a {
             color: #ddd;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: inline-block;
         }
         
         .footer-section a:hover {
             color: var(--autism-yellow);
+            transform: translateX(5px);
         }
         
         .contact-info {
@@ -818,6 +876,7 @@
         
         .contact-info div {
             margin-bottom: 8px;
+            line-height: 1.5;
         }
         
         .copyright {
@@ -837,6 +896,25 @@
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .join-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .logo-penguin {
+                height: 50px;
+            }
+            
+            .logo-text {
+                height: 40px;
             }
             
             .hero h2 {
@@ -885,6 +963,43 @@
                 gap: 30px;
             }
         }
+        
+        @media (max-width: 480px) {
+            .logo-img {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .logo-penguin {
+                height: 45px;
+            }
+            
+            .logo-text {
+                height: 35px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .autism-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -899,7 +1014,6 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
                         <li><a href="oefeningen.html">Oefeningen</a></li>
                         <li><a href="autisme.html">Autisme</a></li>
                         <li><a href="forum.html">Forum</a></li>
@@ -1158,6 +1272,7 @@
                     <h3>Atsumi</h3>
                     <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
                 </div>
+                
                 <div class="footer-section">
                     <h3>Snelle Links</h3>
                     <ul>
@@ -1167,8 +1282,7 @@
                         <li><a href="forum.html">Forum</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
+                    
                     <h3>AI-Functionaliteiten</h3>
                     <ul>
                         <li><a href="ai-integratie.html">AI-integratie</a></li>
@@ -1177,6 +1291,7 @@
                         <li><a href="leerpad.html">Adaptief leerpad</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <div class="contact-info">
@@ -1498,6 +1613,7 @@
     </script>
 </body>
 </html>
+
 
 
 
