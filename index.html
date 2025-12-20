@@ -37,7 +37,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 30px;
+            padding: 10px 30px;
             background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
@@ -45,40 +45,25 @@
             z-index: 100;
         }
         
-        .banner-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .banner-left img:first-child {
-            height: 80px; /* 30% groter */
-            width: auto;
-        }
-        
-        .banner-left img:last-child {
-            height: 120px; /* 30% groter */
-            width: auto;
-            object-fit: contain;
-        }
-        
         .header-nav {
             display: flex;
             align-items: center;
+            width: 100%;
         }
         
         .header-nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
+            margin: 0 auto;
         }
         
         .header-nav a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 18px;
+            padding: 8px 16px;
             border-radius: 25px;
             transition: all 0.3s;
             font-size: 1rem;
@@ -94,14 +79,14 @@
             background: var(--autism-yellow);
             color: var(--dark);
             border: none;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            font-size: 1.05rem;
+            font-size: 1rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             margin-left: 10px;
         }
@@ -172,15 +157,46 @@
             opacity: 1;
         }
         
+        /* Logo sectie styling */
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .logo-section img {
+            height: 100px;
+            object-fit: contain;
+        }
+        
+        /* Hoofdinhoud layout */
+        .main-content {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+            align-items: flex-start;
+        }
+        
+        .left-content {
+            flex: 1;
+        }
+        
+        .right-content {
+            flex: 1;
+            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
         #speciale-oefeningen {
             text-align: center;
             padding: 40px 0;
             background: white;
-        }
-        
-        #speciale-oefeningen img {
-            width: 80px;
-            margin-bottom: 20px;
         }
         
         #speciale-oefeningen h2 {
@@ -465,54 +481,47 @@
             transform: translateY(-2px);
         }
         
-        .learning-rhythm {
-            padding: 3rem 1rem;
-            background: white;
-            text-align: center;
+        .learning-rhythm h2 {
+            color: var(--autism-blue);
+            margin-bottom: 20px;
         }
         
-        .rhythm-content {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
+        .learning-rhythm p {
+            margin-bottom: 15px;
             line-height: 1.8;
         }
         
-        .rhythm-content p {
-            margin-bottom: 1.5rem;
-        }
-        
         #nieuws-updates {
-            background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
+            background: none;
             color: white;
-            padding: 3rem 1rem;
-            margin-top: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            transition: all 0.3s;
+            padding: 0;
+            margin-top: 0;
+            border-radius: 0;
+            box-shadow: none;
+            transition: none;
         }
         
         #nieuws-updates:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            transform: none;
+            box-shadow: none;
         }
         
         #nieuws-updates h2 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--autism-yellow);
-            text-align: center;
+            text-align: left;
         }
         
         #nieuws-updates p {
-            text-align: center;
+            text-align: left;
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
         }
         
         .update-content {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
         }
         
         .update-item {
@@ -669,13 +678,17 @@
         .minho-avatar {
             width: 50px;
             height: 50px;
-            background: white;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
             border: 2px solid var(--autism-yellow);
+        }
+        
+        .minho-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
         }
         
         .minho-title h3 {
@@ -766,15 +779,21 @@
             background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             z-index: 10000;
             transition: all 0.3s;
             border: 3px solid white;
-            font-size: 1.8rem;
+            font-size: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .minho-toggle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
         }
         
         .minho-toggle:hover {
@@ -855,7 +874,7 @@
         }
         
         /* ===================== */
-        /* ORIGINELE FOOTER STYLING */
+        /* VERBETERDE FOOTER STYLING */
         /* ===================== */
         footer {
             background: var(--dark);
@@ -866,21 +885,17 @@
         
         .footer-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
         
-        .footer-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .footer-logo img {
-            height: 80px;
+        .footer-logo h3 {
+            color: var(--autism-yellow);
             margin-bottom: 15px;
+            font-size: 1.8rem;
         }
         
         .footer-logo p {
@@ -924,7 +939,8 @@
         .contact-info div {
             margin-bottom: 10px;
             display: flex;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
         }
         
         .contact-info strong {
@@ -946,50 +962,29 @@
         
         @media (max-width: 992px) {
             .banner {
-                padding: 15px 20px;
-            }
-            
-            .banner-left img:first-child {
-                height: 70px;
-            }
-            
-            .banner-left img:last-child {
-                height: 100px;
+                padding: 10px 20px;
             }
             
             .header-nav ul {
-                gap: 15px;
+                gap: 12px;
             }
             
             .header-nav a {
-                padding: 8px 15px;
+                padding: 7px 14px;
                 font-size: 0.95rem;
             }
             
             .join-btn {
-                padding: 10px 22px;
+                padding: 8px 20px;
             }
         }
         
         @media (max-width: 768px) {
             .banner {
                 flex-direction: column;
-                gap: 20px;
-                text-align: center;
-                padding: 20px 15px;
-            }
-            
-            .banner-left {
-                flex-direction: column;
                 gap: 15px;
-            }
-            
-            .banner-left img:first-child {
-                height: 70px;
-            }
-            
-            .banner-left img:last-child {
-                height: 90px;
+                text-align: center;
+                padding: 15px 10px;
             }
             
             .header-nav {
@@ -999,17 +994,17 @@
             .header-nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
+                gap: 8px;
                 width: 100%;
             }
             
             .header-nav a {
-                padding: 8px 15px;
+                padding: 7px 12px;
                 font-size: 0.9rem;
             }
             
             .join-btn {
-                padding: 10px 20px;
+                padding: 8px 18px;
                 font-size: 0.95rem;
                 margin-left: 0;
             }
@@ -1024,6 +1019,19 @@
             
             .quote {
                 font-size: 1rem;
+            }
+            
+            .logo-section {
+                gap: 20px;
+            }
+            
+            .logo-section img {
+                height: 80px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+                gap: 30px;
             }
             
             .autism-grid {
@@ -1068,7 +1076,6 @@
             .minho-toggle {
                 width: 60px;
                 height: 60px;
-                font-size: 1.5rem;
             }
             
             .minho-footer {
@@ -1091,31 +1098,9 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
-            .footer-logo {
-                align-items: center;
-                text-align: center;
-            }
-            
-            .footer-links,
-            .footer-contact {
-                text-align: center;
-            }
-            
-            .footer-links a:hover {
-                padding-left: 0;
-            }
         }
         
         @media (max-width: 480px) {
-            .banner-left img:first-child {
-                height: 60px;
-            }
-            
-            .banner-left img:last-child {
-                height: 80px;
-            }
-            
             .header-nav ul {
                 flex-direction: column;
                 align-items: center;
@@ -1136,6 +1121,15 @@
                 font-size: 1.8rem;
             }
             
+            .logo-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo-section img {
+                height: 70px;
+            }
+            
             .category-grid {
                 grid-template-columns: 1fr;
             }
@@ -1144,7 +1138,7 @@
                 font-size: 1.6rem;
             }
             
-            #nieuws-updates h2 {
+            .main-content h2 {
                 font-size: 1.5rem;
             }
         }
@@ -1155,11 +1149,6 @@
     <!-- VERBETERDE HEADER -->
     <!-- ==================== -->
     <header class="banner">
-        <div class="banner-left">
-            <img src="images/pinguin.png" alt="Pinguïn">
-            <img src="images/atsumi-logo.png" alt="Atsumi-Logo">
-        </div>
-        
         <nav class="header-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -1186,12 +1175,52 @@
         </div>
     </section>
     
+    <!-- Logo sectie -->
+    <div class="container">
+        <div class="logo-section">
+            <img src="images/pinguin.png" alt="Pinguïn">
+            <img src="images/atsumi-logo.png" alt="Atsumi-Logo">
+            <img src="images/puzzelstukje.png" alt="Puzzelstukje">
+        </div>
+    </div>
+    
+    <!-- Hoofdinhoud sectie -->
+    <div class="container">
+        <div class="main-content">
+            <div class="left-content">
+                <section class="learning-rhythm">
+                    <h2>Speciale Oefeningen voor Kinderen met Autisme</h2>
+                    <p>Onze oefeningen zijn zorgvuldig ontwikkeld met aandacht voor structuur, voorspelbaarheid en visuele ondersteuning.</p>
+                    
+                    <h2 style="margin-top: 40px;">Ieder Kind Leert op Zijn Eigen Tempo</h2>
+                    <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
+                    <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
+                </section>
+            </div>
+            
+            <div class="right-content">
+                <section id="nieuws-updates">
+                    <h2>Nieuws & Updates</h2>
+                    <p>Bekijk hier onze laatste ontwikkelingen en nieuwe functies op het platform.</p>
+                    
+                    <div class="update-content">
+                        <div class="update-item">
+                            <h4>Twinkel Paws Kleurboek</h4>
+                            <p>We zijn trots om aan te kondigen dat Twinkel Paws binnenkort komt met een prachtig kleurboek! Momenteel worden de illustraties nog gegenereerd met AI, maar binnenkort brengen we een fysiek kleurboek uit waarmee kinderen hun creativiteit kunnen uiten.</p>
+                        </div>
+                        <div class="update-item">
+                            <h4>AtsumiPrints - Eigen Ontwerpen</h4>
+                            <p>Bij Atsumi denken we aan de toekomst! We werken aan AtsumiPrints, waar kinderen hun eigen ontwerpen kunnen maken voor T-shirts en andere producten. Binnenkort kunnen kinderen hun creaties laten bedrukken en dragen!</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SPECIALE OEFENINGEN sectie -->
     <section id="speciale-oefeningen">
         <div class="container">
-            <img src="images/puzzelstukje.png" alt="Puzzelstukje">
-            <h2>Speciale Oefeningen voor Kinderen met Autisme</h2>
-            <p>Onze oefeningen zijn zorgvuldig ontwikkeld met aandacht voor structuur, voorspelbaarheid en visuele ondersteuning.</p>
-            
             <div class="autism-grid">
                 <div class="autism-card">
                     <a href="spraakproblemen.html" style="text-decoration: none; color: inherit;">
@@ -1217,32 +1246,6 @@
                         <div class="social-btn">Bekijk oefeningen</div>
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="learning-rhythm">
-        <div class="container">
-            <h2 class="section-title">Ieder Kind Leert op Zijn Eigen Tempo</h2>
-            <div class="rhythm-content">
-                <p>Bij Atsumi geloven we dat elk kind uniek is en op zijn eigen tempo leert. We bieden oefeningen aan die aansluiten bij het individuele leerritme van elk kind, zonder druk of vergelijking met leeftijdsgenoten.</p>
-                <p>Onze materialen zijn zo ontworpen dat kinderen kunnen groeien in hun eigen tempo, met oefeningen die meegroeien met hun ontwikkeling.</p>
-                
-                <section id="nieuws-updates">
-                    <h2>Nieuws & Updates</h2>
-                    <p>Bekijk hier onze laatste ontwikkelingen en nieuwe functies op het platform.</p>
-                    
-                    <div class="update-content">
-                        <div class="update-item">
-                            <h4>Twinkel Paws Kleurboek</h4>
-                            <p>We zijn trots om aan te kondigen dat Twinkel Paws binnenkort komt met een prachtig kleurboek! Momenteel worden de illustraties nog gegenereerd met AI, maar binnenkort brengen we een fysiek kleurboek uit waarmee kinderen hun creativiteit kunnen uiten.</p>
-                        </div>
-                        <div class="update-item">
-                            <h4>AtsumiPrints - Eigen Ontwerpen</h4>
-                            <p>Bij Atsumi denken we aan de toekomst! We werken aan AtsumiPrints, waar kinderen hun eigen ontwerpen kunnen maken voor T-shirts en andere producten. Binnenkort kunnen kinderen hun creaties laten bedrukken en dragen!</p>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </section>
@@ -1430,12 +1433,12 @@
     </section>
     
     <!-- ==================== -->
-    <!-- ORIGINELE FOOTER -->
+    <!-- VERBETERDE FOOTER -->
     <!-- ==================== -->
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <h3>Atsumi</h3>
+                <h3 style="color: var(--autism-yellow);">Atsumi</h3>
                 <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
             </div>
             
@@ -1467,12 +1470,14 @@
     
     <!-- VERBETERDE MINHO AI CHATBOT -->
     <div class="minho-toggle">
-        🐧
+        <img src="images/pinguin.png" alt="Pinguïn">
     </div>
     
     <div class="minho-chatbot">
         <div class="minho-header">
-            <div class="minho-avatar">🐧</div>
+            <div class="minho-avatar">
+                <img src="images/pinguin.png" alt="Minho Pinguïn">
+            </div>
             <div class="minho-title">
                 <h3>Minho AI</h3>
                 <p>Jouw pinguïn assistent</p>
@@ -1507,89 +1512,7 @@
             "Autisme is een andere manier van informatie verwerken.",
             "Elk kind met autisme is uniek en speciaal op zijn eigen manier.",
             "Autisme is geen beperking, het is een andere vaardigheid.",
-            "Soms zijn de meest buitengewone geesten verstopt in een stille schil.",
-            "Autisme is geen gebrek aan empathie, maar soms een overvloed aan gevoelens.",
-            "Anders zijn is wat ons bijzonder maakt.",
-            "Autisme betekent niet dat je niet kunt leren, maar dat je anders leert.",
-            "In de stilte van autisme schuilt vaak een wereld van gedachten.",
-            "Autisme is een andere manier van communiceren, niet een gebrek daaraan.",
-            "Kinderen met autisme hebben hun eigen tempo, en dat is oké.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan zijn.",
-            "Soms is de mooiste muziek de stilte tussen de noten.",
-            "Autisme betekent niet dat je niet kunt voelen, maar soms dat je te veel voelt.",
-            "Elk kind met autisme heeft zijn eigen unieke talenten en gaven.",
-            "Autisme is een andere manier van waarnemen, niet een gebrek daaraan.",
-            "In de wereld van autisme zijn details vaak het hele plaatje.",
-            "Autisme is geen obstakel, het is een andere weg.",
-            "Anders zijn is wat de wereld interessant maakt.",
-            "Autisme betekent niet dat je niet kunt verbinden, maar dat je anders verbindt.",
-            "Kinderen met autisme hebben hun eigen manier van spelen en leren.",
-            "Autisme is een andere manier van denken, niet een gebrek daaraan.",
-            "In de complexiteit van autisme schuilt vaak genialiteit.",
-            "Autisme is geen ziekte om te genezen, maar een manier van zijn om te begrijpen.",
-            "Elk kind met autisme heeft zijn eigen stem, soms op een andere manier.",
-            "Autisme is een andere manier van ervaren, niet een gebrek daaraan.",
-            "In de herhaling van autisme schuilt vaak troost en begrip.",
-            "Autisme betekent niet dat je niet kunt groeien, maar dat je anders groeit.",
-            "Kinderen met autisme hebben hun eigen unieke perspectief op de wereld.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan persoonlijkheid.",
-            "In de focus van autisme schuilt vaak een diep begrip.",
-            "Autisme is geen fout in het systeem, het is een ander besturingssysteem.",
-            "Anders zijn is wat ons menselijk maakt.",
-            "Autisme betekent niet dat je niet kunt liefhebben, maar dat je anders liefhebt.",
-            "Kinderen met autisme hebben hun eigen manier van de wereld zien.",
-            "Autisme is een andere manier van leren, niet een gebrek daaraan.",
-            "In de details van autisme schuilt vaak schoonheid.",
-            "Autisme is geen beperking, het is een andere set vaardigheden.",
-            "Elk kind met autisme heeft zijn eigen unieke manier van communiceren.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan emotie.",
-            "In de patronen van autisme schuilt vaak orde en begrip.",
-            "Autisme betekent niet dat je niet kunt slagen, maar dat je anders slaagt.",
-            "Kinderen met autisme hebben hun eigen unieke manier van spelen.",
-            "Autisme is een andere manier van denken, niet een gebrek aan intelligentie.",
-            "In de intensiteit van autisme schuilt vaak passie.",
-            "Autisme is geen obstakel voor succes, het is een andere weg ernaartoe.",
-            "Anders zijn is wat ons verbindt in onze menselijkheid.",
-            "Autisme betekent niet dat je niet kunt leren, maar dat je anders leert.",
-            "Kinderen met autisme hebben hun eigen unieke manier van ervaren.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan persoonlijkheid.",
-            "In de focus van autisme schuilt vaak een diep begrip.",
-            "Autisme is geen fout in het systeem, het is een ander besturingssysteem.",
-            "Anders zijn is wat ons menselijk maakt.",
-            "Autisme betekent niet dat je niet kunt liefhebben, maar dat je anders liefhebt.",
-            "Kinderen met autisme hebben hun eigen manier van de wereld zien.",
-            "Autisme is een andere manier van leren, niet een gebrek daaraan.",
-            "In de details van autisme schuilt vaak schoonheid.",
-            "Autisme is geen beperking, het is een andere set vaardigheden.",
-            "Elk child met autisme heeft zijn eigen unieke manier van communiceren.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan emotie.",
-            "In de patronen van autisme schuilt vaak orde en begrip.",
-            "Autisme betekent niet dat je niet kunt slagen, maar dat je anders slaagt.",
-            "Kinderen met autisme hebben hun eigen unieke manier van spelen.",
-            "Autisme is een andere manier van denken, niet een gebrek aan intelligentie.",
-            "In de intensiteit van autisme schuilt vaak passie.",
-            "Autisme is geen obstakel voor succes, het is een andere weg ernaartoe.",
-            "Anders zijn is wat ons verbindt in onze menselijkheid.",
-            "Autisme betekent niet dat je niet kunt leren, maar dat je anders leert.",
-            "Kinderen met autisme hebben hun eigen unieke manier van ervaren.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan persoonlijkheid.",
-            "In de focus van autisme schuilt vaak een diep begrip.",
-            "Autisme is geen fout in het systeem, het is een ander besturingssysteem.",
-            "Anders zijn is wat ons menselijk maakt.",
-            "Autisme betekent niet dat je niet kunt liefhebben, maar dat je anders liefhebt.",
-            "Kinderen met autisme hebben hun eigen manier van de wereld zien.",
-            "Autisme is een andere manier van leren, niet een gebrek daaraan.",
-            "In de details van autisme schuilt vaak schoonheid.",
-            "Autisme is geen beperking, het is een andere set vaardigheden.",
-            "Elk kind met autisme heeft zijn eigen unieke manier van communiceren.",
-            "Autisme is een andere manier van zijn, niet een gebrek aan emotie.",
-            "In de patronen van autisme schuilt vaak orde en begrip.",
-            "Autisme betekent niet dat je niet kunt slagen, maar dat je anders slaagt.",
-            "Kinderen met autisme hebben hun eigen unieke manier van spelen.",
-            "Autisme is een andere manier van denken, niet een gebrek aan intelligentie.",
-            "In de intensiteit van autisme schuilt vaak passion.",
-            "Autisme is geen obstakel voor succes, het is een andere weg ernaartoe.",
-            "Anders zijn is wat ons verbindt in onze menselijkheid."
+            "Soms zijn de meest buitengewone geesten verstopt in een stille schil."
         ];
 
         // Quotes banner functionaliteit
@@ -1771,6 +1694,7 @@
     </script>
 </body>
 </html>
+
 
 
 
