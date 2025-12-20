@@ -30,14 +30,17 @@
             line-height: 1.6;
         }
         
+        /* ====================== */
+        /* VERBETERDE HEADER STYLING */
+        /* ====================== */
         .banner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
+            padding: 15px 30px;
             background: linear-gradient(135deg, var(--autism-blue), var(--autism-purple));
             color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: relative;
             z-index: 100;
         }
@@ -45,42 +48,44 @@
         .banner-left {
             display: flex;
             align-items: center;
+            gap: 20px;
         }
         
         .banner-left img:first-child {
-            height: 60px;
-            margin-right: 15px;
+            height: 80px; /* 30% groter */
+            width: auto;
         }
         
         .banner-left img:last-child {
-            height: 100px;
+            height: 120px; /* 30% groter */
             width: auto;
             object-fit: contain;
         }
         
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+        .header-nav {
+            display: flex;
+            align-items: center;
         }
         
-        nav ul {
+        .header-nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 20px;
+            align-items: center;
         }
         
-        nav a {
+        .header-nav a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 18px;
+            border-radius: 25px;
             transition: all 0.3s;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            white-space: nowrap;
         }
         
-        nav a:hover {
+        .header-nav a:hover {
             background: rgba(255,255,255,0.2);
             transform: translateY(-2px);
         }
@@ -89,21 +94,28 @@
             background: var(--autism-yellow);
             color: var(--dark);
             border: none;
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 12px 28px;
+            border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            font-size: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 1.05rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-left: 10px;
         }
         
         .join-btn:hover {
             background: #ffc043;
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .hero {
@@ -522,42 +534,109 @@
             color: var(--autism-yellow);
         }
         
-        /* Social Media Links Styles */
+        /* =============================== */
+        /* VERBETERDE SOCIAL MEDIA SECTIE */
+        /* =============================== */
         .social-section {
             padding: 3rem 1rem;
             background: var(--light);
+            text-align: center;
         }
         
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
         
         .social-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
             transition: all 0.3s;
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 350px;
         }
         
         .social-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .social-icon-container {
+            margin-bottom: 20px;
         }
         
         .social-icon {
-            font-size: 3rem;
-            text-align: center;
-            padding: 20px;
+            font-size: 3.5rem;
             color: var(--autism-blue);
             transition: all 0.3s;
         }
         
         .social-card:hover .social-icon {
-            transform: scale(1.1);
             color: var(--autism-purple);
+            transform: scale(1.1);
+        }
+        
+        .social-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .social-info h3 {
+            margin-bottom: 15px;
+            color: var(--autism-blue);
+            font-size: 1.5rem;
+        }
+        
+        .social-info p {
+            margin-bottom: 25px;
+            color: #666;
+            line-height: 1.5;
+            max-width: 280px;
+        }
+        
+        .social-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: auto;
+        }
+        
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--autism-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 120px;
+            height: 45px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .social-button:hover {
+            background: var(--autism-dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
         /* MINHO AI CHATBOT STYLES */
@@ -775,184 +854,164 @@
             30% { opacity: 0.5; }
         }
         
-        /* Nieuwe Footer Stijl */
+        /* ===================== */
+        /* ORIGINELE FOOTER STYLING */
+        /* ===================== */
         footer {
-            background-color: #f8f8f8;
-            padding: 40px 20px;
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1.5rem;
             margin-top: 40px;
         }
         
         .footer-container {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
-            flex-wrap: wrap;
         }
         
-        .footer-columns {
+        .footer-logo {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            flex: 1;
+            align-items: flex-start;
         }
         
-        .column {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .column h3 {
-            color: var(--autism-blue);
+        .footer-logo img {
+            height: 80px;
             margin-bottom: 15px;
-            font-size: 1.2rem;
         }
         
-        .column ul {
-            list-style: none;
-            padding: 0;
+        .footer-logo p {
+            color: #ddd;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
         
-        .column li {
-            margin-bottom: 8px;
-        }
-        
-        .column a {
-            color: var(--dark);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .column a:hover {
-            color: var(--autism-purple);
-            transform: translateX(5px);
-        }
-        
-        .footer-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            min-width: 300px;
-        }
-        
-        .action-buttons {
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--autism-yellow);
             margin-bottom: 20px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            font-size: 1.3rem;
         }
         
-        .action-button {
-            background: var(--autism-blue);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            min-width: 120px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .action-button:hover {
-            background: var(--autism-dark-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        .social-media-container {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            width: 100%;
-        }
-        
-        .social-media-item {
-            background: white;
-            color: var(--autism-blue);
-            border: 2px solid var(--autism-blue);
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
             transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            min-width: 120px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            font-size: 0.95rem;
         }
         
-        .social-media-item:hover {
-            background: var(--autism-blue);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        .footer-links a:hover {
+            color: var(--autism-yellow);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            color: #ddd;
+            line-height: 1.8;
+        }
+        
+        .contact-info div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info strong {
+            color: var(--autism-yellow);
+            margin-right: 8px;
+            min-width: 60px;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 25px;
             margin-top: 30px;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
             font-size: 0.9rem;
-            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto 0;
         }
         
-        .contact-info {
-            margin-top: 15px;
-            text-align: center;
-            color: #666;
-        }
-        
-        .contact-info p {
-            margin: 5px 0;
+        @media (max-width: 992px) {
+            .banner {
+                padding: 15px 20px;
+            }
+            
+            .banner-left img:first-child {
+                height: 70px;
+            }
+            
+            .banner-left img:last-child {
+                height: 100px;
+            }
+            
+            .header-nav ul {
+                gap: 15px;
+            }
+            
+            .header-nav a {
+                padding: 8px 15px;
+                font-size: 0.95rem;
+            }
+            
+            .join-btn {
+                padding: 10px 22px;
+            }
         }
         
         @media (max-width: 768px) {
             .banner {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
                 text-align: center;
-                padding: 15px;
+                padding: 20px 15px;
             }
             
             .banner-left {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
             }
             
             .banner-left img:first-child {
-                margin-right: 0;
-                height: 50px;
+                height: 70px;
             }
             
             .banner-left img:last-child {
-                height: 80px;
+                height: 90px;
             }
             
-            nav ul {
+            .header-nav {
+                width: 100%;
+            }
+            
+            .header-nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 10px;
+                width: 100%;
             }
             
-            nav a {
-                padding: 6px 12px;
+            .header-nav a {
+                padding: 8px 15px;
                 font-size: 0.9rem;
             }
             
             .join-btn {
-                padding: 8px 20px;
-                font-size: 0.9rem;
+                padding: 10px 20px;
+                font-size: 0.95rem;
+                margin-left: 0;
             }
             
             .hero h2 {
@@ -977,6 +1036,26 @@
             
             .category-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .social-card {
+                min-height: 320px;
+                padding: 25px 20px;
+            }
+            
+            .social-button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-button {
+                width: 100%;
+                max-width: 200px;
             }
             
             .minho-chatbot {
@@ -1009,39 +1088,50 @@
             }
             
             .footer-container {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 gap: 30px;
             }
             
-            .footer-columns {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .footer-right {
+            .footer-logo {
                 align-items: center;
-                min-width: 100%;
+                text-align: center;
             }
             
-            .action-buttons {
-                justify-content: center;
-                width: 100%;
+            .footer-links,
+            .footer-contact {
+                text-align: center;
             }
             
-            .action-button {
-                min-width: 140px;
-            }
-            
-            .social-media-container {
-                justify-content: center;
-            }
-            
-            .social-media-item {
-                min-width: 140px;
+            .footer-links a:hover {
+                padding-left: 0;
             }
         }
         
         @media (max-width: 480px) {
+            .banner-left img:first-child {
+                height: 60px;
+            }
+            
+            .banner-left img:last-child {
+                height: 80px;
+            }
+            
+            .header-nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .header-nav a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .join-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
             .hero h2 {
                 font-size: 1.8rem;
             }
@@ -1057,32 +1147,20 @@
             #nieuws-updates h2 {
                 font-size: 1.5rem;
             }
-            
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .social-media-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .action-button, .social-media-item {
-                width: 100%;
-                max-width: 250px;
-            }
         }
     </style>
 </head>
 <body>
+    <!-- ==================== -->
+    <!-- VERBETERDE HEADER -->
+    <!-- ==================== -->
     <header class="banner">
         <div class="banner-left">
             <img src="images/pinguin.png" alt="Pinguïn">
             <img src="images/atsumi-logo.png" alt="Atsumi-Logo">
         </div>
         
-        <nav>
+        <nav class="header-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="oefeningen.html">Oefeningen</a></li>
@@ -1301,72 +1379,89 @@
         </div>
     </section>
     
+    <!-- =============================== -->
+    <!-- VERBETERDE SOCIAL MEDIA SECTIE -->
+    <!-- =============================== -->
     <section class="social-section">
         <div class="container">
             <h2 class="section-title">Volg Ons op Sociale Media</h2>
             <div class="social-grid">
                 <div class="social-card">
-                    <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    <div class="social-icon-container">
+                        <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    </div>
                     <div class="social-info">
                         <h3>YouTube Kanaal</h3>
-                        <p>Bekijk onze instructievideo's, tutorials en succesverhalen.</p>
-                        <a href="#" class="social-btn" target="_blank">Abonneer</a>
+                        <p>Bekijk onze instructievideo's, tutorials en succesverhalen. Abonneer op ons kanaal voor de nieuwste updates.</p>
+                        <div class="social-button-container">
+                            <a href="#" class="social-button">Abonneer</a>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="social-card">
-                    <div class="social-icon"><i class="fas fa-globe"></i></div>
+                    <div class="social-icon-container">
+                        <div class="social-icon"><i class="fas fa-globe"></i></div>
+                    </div>
                     <div class="social-info">
                         <h3>Social Media</h3>
-                        <p>Volg ons op sociale media</p>
-                        <a href="https://facebook.com" class="social-btn" target="_blank">Facebook</a>
-                        <a href="https://instagram.com" class="social-btn" target="_blank">Instagram</a>
+                        <p>Volg ons op sociale media voor dagelijkse tips, nieuws en inspiratie. Blijf op de hoogte van onze activiteiten.</p>
+                        <div class="social-button-container">
+                            <a href="https://facebook.com" class="social-button" target="_blank">Facebook</a>
+                            <a href="https://instagram.com" class="social-button" target="_blank">Instagram</a>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="social-card">
-                    <div class="social-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="social-icon-container">
+                        <div class="social-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    </div>
                     <div class="social-info">
                         <h3>Ondersteun Ons</h3>
-                        <p>Help ons om gratis educatieve content te blijven maken.</p>
-                        <a href="doneer.html" class="social-btn">Doneer</a>
+                        <p>Help ons om gratis educatieve content te blijven maken. Jouw steun maakt een groot verschil voor kinderen.</p>
+                        <div class="social-button-container">
+                            <a href="doneer.html" class="social-button">Doneer</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
+    <!-- ==================== -->
+    <!-- ORIGINELE FOOTER -->
+    <!-- ==================== -->
     <footer>
         <div class="footer-container">
-            <div class="footer-columns">
-                <div class="column">
-                    <h3>Snelle Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="oefeningen.html">Oefeningen</a></li>
-                        <li><a href="autisme.html">Autisme</a></li>
-                        <li><a href="forum.html">Forum</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
+            <div class="footer-logo">
+                <h3>Atsumi</h3>
+                <p>Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen. Ons doel is leren toegankelijk en leuk te maken voor elk kind!</p>
             </div>
-
-            <div class="footer-right">
-                <div class="action-buttons">
-                    <a href="#" class="action-button">Abonneer</a>
-                    <a href="doneer.html" class="action-button">Doneer</a>
-                </div>
-                <div class="social-media-container">
-                    <a href="https://facebook.com" target="_blank" class="social-media-item">Facebook</a>
-                    <a href="https://instagram.com" target="_blank" class="social-media-item">Instagram</a>
+            
+            <div class="footer-links">
+                <h3>Snelle Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="oefeningen.html">Oefeningen</a></li>
+                    <li><a href="autisme.html">Autisme</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div><strong>Email:</strong> AtsumiPrints@hotmail.com</div>
+                    <div><strong>Telefoon:</strong> +32 451 08 38 17</div>
+                    <div><strong>Volg ons op sociale media</strong></div>
                 </div>
             </div>
         </div>
         
         <div class="copyright">
             <p>&copy; 2023 Atsumi. Alle rechten voorbehouden. 🧩</p>
-            <div class="contact-info">
-                <p>Email: AtsumiPrints@hotmail.com</p>
-                <p>Telefoon: Binnenkort beschikbaar</p>
-            </div>
         </div>
     </footer>
     
@@ -1676,6 +1771,7 @@
     </script>
 </body>
 </html>
+
 
 
 
