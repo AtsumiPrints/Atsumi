@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atsumi - Educatieve Oefeningen voor Kinderen</title>
 
-    <!-- ATSUMI BASISSTYLING -->
+    <!-- ORIGINELE ATSUMI KLEUREN -->
     <style>
+        :root {
+            --autism-blue: #0077B6;
+            --autism-dark-blue: #3B5998;
+            --autism-light-blue: #8B9DC3;
+            --autism-very-light-blue: #DFE3EE;
+            --autism-purple: #7209B7;
+            --autism-yellow: #FFD166;
+            --light: #f0f9ff;
+            --dark: #023047;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,13 +26,13 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #f5f7fb;
-            color: #222;
+            background: var(--light);
+            color: var(--dark);
             line-height: 1.6;
         }
 
         a {
-            color: #005f9e;
+            color: var(--autism-blue);
             text-decoration: none;
         }
 
@@ -32,7 +43,7 @@
         /* HEADER */
         header {
             background: #ffffff;
-            border-bottom: 1px solid #dce3f0;
+            border-bottom: 1px solid var(--autism-very-light-blue);
             padding: 10px 0;
         }
 
@@ -60,7 +71,7 @@
         .logo-title {
             font-size: 1.4rem;
             font-weight: bold;
-            color: #003b6f;
+            color: var(--autism-dark-blue);
         }
 
         nav ul {
@@ -76,7 +87,7 @@
 
         /* HERO */
         .hero {
-            background: linear-gradient(135deg, #e3f3ff, #f6f7ff);
+            background: linear-gradient(135deg, var(--autism-light-blue), var(--autism-very-light-blue));
             padding: 50px 20px;
         }
 
@@ -92,7 +103,7 @@
         .hero h1 {
             font-size: 2.2rem;
             margin-bottom: 10px;
-            color: #003b6f;
+            color: var(--autism-dark-blue);
         }
 
         .hero p {
@@ -100,26 +111,45 @@
             font-size: 1.05rem;
         }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            background: #fff;
-            border: 1px solid #ccd9f0;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            margin-top: 10px;
+        /* QUOTE BALK */
+        #quotesContainer {
+            margin: 15px 0;
+            padding: 12px 18px;
+            background: rgba(0, 119, 182, 0.15); /* licht transparant blauw */
+            border-left: 4px solid var(--autism-blue);
+            border-radius: 6px;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            font-style: italic;
+            color: var(--dark);
+            overflow: hidden;
+            position: relative;
         }
 
+        .quote {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            width: 100%;
+        }
+
+        .quote.active {
+            opacity: 1;
+        }
+
+        /* HERO BOX */
         .hero-box {
             background: #ffffff;
             border-radius: 12px;
             padding: 18px;
-            border: 1px solid #dce3f0;
+            border: 1px solid var(--autism-very-light-blue);
         }
 
         .hero-box h2 {
             font-size: 1.2rem;
             margin-bottom: 10px;
+            color: var(--autism-dark-blue);
         }
 
         .hero-box ul {
@@ -140,7 +170,7 @@
 <header>
     <div class="header-inner">
         <div class="logo-wrapper">
-            <img src="Atsumi/images/atsumi-logo.png" alt="Atsumi logo">
+            <img src="images/pinguin.png" alt="Atsumi logo">
             <div class="logo-title">Atsumi</div>
         </div>
 
@@ -160,11 +190,12 @@
 <section class="hero">
     <div class="hero-inner">
         <div>
-            <h1>Atsumi – Educatieve Oefeningen voor Alle Kinderen 🐧</h1>
-            <p>Speciaal ontwikkeld voor kinderen met autisme, spraak-, lees- en rekenproblemen.</p>
-            <p><em>“Autisme betekent niet dat je niet kunt liefhebben, maar dat je anders liefhebt.” 💙</em></p>
+            <h1>Atsumi – Leren op een manier die bij elk kind past 🐧</h1>
+            <p>Kinderen met autisme, spraak-, lees- en rekenuitdagingen verdienen rust, structuur en plezier tijdens het leren.</p>
+            <p>Bij Atsumi maken we leren toegankelijk, visueel en speels — op het tempo dat bij jouw kind past.</p>
 
-            <span class="hero-badge">Structuur • Voorspelbaarheid • Visuele ondersteuning</span>
+            <!-- QUOTE BALK -->
+            <div id="quotesContainer"></div>
 
             <div class="hero-box">
                 <strong>Ieder kind leert op zijn eigen tempo.</strong>
@@ -187,30 +218,99 @@
         </div>
     </div>
 </section>
+
+<!-- QUOTE SCRIPT -->
+<script>
+    const quotes = [
+        "Autisme is geen fout, het is een andere manier van denken.",
+        "In een wereld die probeert iedereen hetzelfde te maken, is het moedig om anders te zijn.",
+        "Autisme is geen ziekte, het is een andere manier van zijn.",
+        "Kinderen met autisme zien de wereld met andere ogen, en dat is prachtig.",
+        "Autisme is een spectrum, geen lineaire schaal.",
+        "Anders zijn is niet minder zijn.",
+        "Autisme is een andere manier van informatie verwerken.",
+        "Elk kind met autisme is uniek en speciaal op zijn eigen manier.",
+        "Autisme is geen beperking, het is een andere vaardigheid.",
+        "Soms zijn de meest buitengewone geesten verstopt in een stille schil.",
+        "Autisme is geen gebrek aan empathie, maar soms een overvloed aan gevoelens.",
+        "Anders zijn is wat ons bijzonder maakt.",
+        "Autisme betekent niet dat je niet kunt leren, maar dat je anders leert.",
+        "In de stilte van autisme schuilt vaak een wereld van gedachten.",
+        "Autisme is een andere manier van communiceren, niet een gebrek daaraan.",
+        "Kinderen met autisme hebben hun eigen tempo, en dat is oké.",
+        "Autisme is een andere manier van zijn, niet een gebrek aan zijn.",
+        "Soms is de mooiste muziek de stilte tussen de noten.",
+        "Autisme betekent niet dat je niet kunt voelen, maar soms dat je te veel voelt.",
+        "Elk kind met autisme heeft zijn eigen unieke talenten en gaven."
+    ];
+
+    const quotesContainer = document.getElementById('quotesContainer');
+
+    function initQuotes() {
+        const randomStartIndex = Math.floor(Math.random() * quotes.length);
+
+        const firstQuote = document.createElement('div');
+        firstQuote.className = 'quote active';
+        firstQuote.textContent = quotes[randomStartIndex];
+        quotesContainer.appendChild(firstQuote);
+
+        rotateQuotes(randomStartIndex);
+    }
+
+    function rotateQuotes(currentIndex) {
+        setInterval(() => {
+            const currentQuote = document.querySelector('.quote.active');
+            if (currentQuote) {
+                currentQuote.classList.remove('active');
+
+                setTimeout(() => {
+                    currentQuote.remove();
+
+                    let newIndex;
+                    do {
+                        newIndex = Math.floor(Math.random() * quotes.length);
+                    } while (newIndex === currentIndex && quotes.length > 1);
+
+                    currentIndex = newIndex;
+
+                    const newQuote = document.createElement('div');
+                    newQuote.className = 'quote';
+                    newQuote.textContent = quotes[currentIndex];
+                    quotesContainer.appendChild(newQuote);
+
+                    void newQuote.offsetWidth;
+                    newQuote.classList.add('active');
+                }, 1000);
+            }
+        }, 5000);
+    }
+
+    window.addEventListener('load', initQuotes);
+</script>
 <main>
 
     <!-- OEFENINGEN -->
     <section id="oefeningen" style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Speciale oefeningen voor kinderen met autisme</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Speciale oefeningen voor kinderen met autisme</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
             
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>Spraakproblemen</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">Spraakproblemen</h3>
                 <p>Oefeningen voor communicatie, uitspraak en taalontwikkeling.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Bekijk oefeningen</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Bekijk oefeningen</a>
             </div>
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>Leesproblemen</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">Leesproblemen</h3>
                 <p>Stapsgewijze leesoefeningen met visuele ondersteuning.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Bekijk oefeningen</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Bekijk oefeningen</a>
             </div>
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>Rekenproblemen</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">Rekenproblemen</h3>
                 <p>Visuele rekenoefeningen voor beter begrip van getallen.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Bekijk oefeningen</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Bekijk oefeningen</a>
             </div>
 
         </div>
@@ -219,20 +319,20 @@
 
     <!-- NIEUWS & UPDATES -->
     <section style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Nieuws & updates</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Nieuws & updates</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>Twinkel Paws kleurboek</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-purple);">Twinkel Paws kleurboek</h3>
                 <p>
                     Twinkel Paws krijgt een prachtig kleurboek! De illustraties worden nu nog gegenereerd met AI,
                     maar binnenkort brengen we een fysiek kleurboek uit waarmee kinderen hun creativiteit kunnen uiten.
                 </p>
             </div>
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>AtsumiPrints – Eigen ontwerpen</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-purple);">AtsumiPrints – Eigen ontwerpen</h3>
                 <p>
                     Binnenkort kunnen kinderen hun eigen ontwerpen maken voor T‑shirts en andere producten.
                     Creativiteit wordt tastbaar met AtsumiPrints!
@@ -245,46 +345,46 @@
 
     <!-- CATEGORIE TAGS -->
     <section style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Oefeningen per categorie</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Oefeningen per categorie</h2>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <span style="padding:6px 12px;background:#fff;border:1px solid #dce3f0;border-radius:999px;">🎨 Creatief</span>
-            <span style="padding:6px 12px;background:#fff;border:1px solid #dce3f0;border-radius:999px;">🧩 Puzzels</span>
-            <span style="padding:6px 12px;background:#fff;border:1px solid #dce3f0;border-radius:999px;">🎵 Ademhaling & Muziek</span>
-            <span style="padding:6px 12px;background:#fff;border:1px solid #dce3f0;border-radius:999px;">🌍 Wereld</span>
-            <span style="padding:6px 12px;background:#fff;border:1px solid #dce3f0;border-radius:999px;">🔬 Wetenschap</span>
+            <span style="padding:6px 12px;background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:999px;">🎨 Creatief</span>
+            <span style="padding:6px 12px;background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:999px;">🧩 Puzzels</span>
+            <span style="padding:6px 12px;background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:999px;">🎵 Ademhaling & Muziek</span>
+            <span style="padding:6px 12px;background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:999px;">🌍 Wereld</span>
+            <span style="padding:6px 12px;background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:999px;">🔬 Wetenschap</span>
         </div>
     </section>
 
 
     <!-- INTERACTIEVE SPELLETJES -->
     <section style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Interactieve spelletjes</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Interactieve spelletjes</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>📅 Dagelijkse Routine Planner</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">📅 Dagelijkse Routine Planner</h3>
                 <p>Plan je dag met deze visuele planning game.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Spelen</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Spelen</a>
             </div>
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>😊😢😠 Emotie Herkenning Spel</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">😊😢😠 Emotie Herkenning Spel</h3>
                 <p>Leer emoties herkennen met onze vriendelijke pinguïn.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Spelen</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Spelen</a>
             </div>
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>👂👀 Zintuiglijk Memory</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">👂👀 Zintuiglijk Memory</h3>
                 <p>Match geluiden en textures in dit sensorische spel.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Spelen</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Spelen</a>
             </div>
 
-            <div style="background:#fff;border:1px solid #dce3f0;border-radius:10px;padding:18px;">
-                <h3>🎨 Kleurplaten</h3>
+            <div style="background:#fff;border:1px solid var(--autism-very-light-blue);border-radius:10px;padding:18px;">
+                <h3 style="color:var(--autism-blue);">🎨 Kleurplaten</h3>
                 <p>Kleur en ontspan met onze speciale kleurplaten.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Kleuren</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Kleuren</a>
             </div>
 
         </div>
@@ -293,49 +393,49 @@
 
     <!-- FORUM -->
     <section id="forum" style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Community forum</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Community forum</h2>
         <p>Doe mee met de discussie en deel je ervaringen met andere ouders en begeleiders.</p>
 
         <div style="margin-top:20px;">
 
-            <div style="padding:15px 0;border-bottom:1px solid #dce3f0;">
-                <strong>Sanne – Tips voor sensorische verwerking</strong>
+            <div style="padding:15px 0;border-bottom:1px solid var(--autism-very-light-blue);">
+                <strong style="color:var(--autism-blue);">Sanne – Tips voor sensorische verwerking</strong>
                 <div style="font-size:0.85rem;color:#666;">Laatste activiteit: 15 okt 2023 • 3 berichten • 1 antwoord</div>
                 <p>Heeft iemand tips voor kinderen die moeite hebben met sensorische verwerking?</p>
             </div>
 
-            <div style="padding:15px 0;border-bottom:1px solid #dce3f0;">
-                <strong>Lars – Structuur in de ochtend</strong>
+            <div style="padding:15px 0;border-bottom:1px solid var(--autism-very-light-blue);">
+                <strong style="color:var(--autism-blue);">Lars – Structuur in de ochtend</strong>
                 <div style="font-size:0.85rem;color:#666;">Laatste activiteit: 12 okt 2023 • 5 berichten • 2 antwoorden</div>
                 <p>Hoe creëren jullie structuur in de ochtend?</p>
             </div>
 
-            <div style="padding:15px 0;border-bottom:1px solid #dce3f0;">
-                <strong>Eva – Effectieve communicatiemiddelen</strong>
+            <div style="padding:15px 0;border-bottom:1px solid var(--autism-very-light-blue);">
+                <strong style="color:var(--autism-blue);">Eva – Effectieve communicatiemiddelen</strong>
                 <div style="font-size:0.85rem;color:#666;">Laatste activiteit: 10 okt 2023 • 2 berichten • 0 antwoorden</div>
                 <p>Welke communicatiemiddelen gebruiken jullie voor niet‑verbale kinderen?</p>
             </div>
 
         </div>
 
-        <a href="#" style="display:inline-block;margin-top:15px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Naar het forum</a>
+        <a href="#" style="display:inline-block;margin-top:15px;padding:6px 12px;background:var(--autism-blue);color:#fff;border-radius:6px;">Naar het forum</a>
     </section>
 
 
     <!-- SOCIAL MEDIA -->
     <section style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Volg ons op sociale media</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Volg ons op sociale media</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
 
             <div>
-                <h3>YouTube kanaal</h3>
+                <h3 style="color:var(--autism-purple);">YouTube kanaal</h3>
                 <p>Bekijk onze instructievideo's, tutorials en succesverhalen.</p>
-                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Abonneer</a>
+                <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-purple);color:#fff;border-radius:6px;">Abonneer</a>
             </div>
 
             <div>
-                <h3>Social media</h3>
+                <h3 style="color:var(--autism-purple);">Social media</h3>
                 <p>Volg ons op Facebook en Instagram.</p>
             </div>
 
@@ -345,21 +445,21 @@
 
     <!-- DONATIES -->
     <section style="max-width:1200px;margin:40px auto;padding:0 20px;">
-        <h2 style="font-size:1.6rem;color:#003b6f;margin-bottom:15px;">Ondersteun ons</h2>
+        <h2 style="font-size:1.8rem;color:var(--autism-dark-blue);margin-bottom:15px;">Ondersteun ons</h2>
         <p>Help ons om gratis educatieve content te blijven maken.</p>
-        <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#005f9e;color:#fff;border-radius:6px;">Doneer</a>
+        <a href="#" style="display:inline-block;margin-top:10px;padding:6px 12px;background:var(--autism-yellow);color:#000;border-radius:6px;">Doneer</a>
     </section>
 
 </main>
 <!-- FOOTER -->
-<footer id="contact" style="background:#101626;color:#e5e9f5;padding:40px 20px;margin-top:40px;">
+<footer id="contact" style="background:var(--autism-dark-blue);color:#fff;padding:40px 20px;margin-top:40px;">
     <div style="max-width:1200px;margin:auto;">
 
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;">
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px;">
 
             <!-- ATSUMI INFO -->
             <div>
-                <h3 style="font-size:1.3rem;margin-bottom:10px;">Atsumi</h3>
+                <h3 style="font-size:1.3rem;margin-bottom:10px;color:var(--autism-yellow);">Atsumi</h3>
                 <p>
                     Wij bieden educatieve oefeningen speciaal ontwikkeld voor kinderen met autisme en leeruitdagingen.
                     Ons doel is leren toegankelijk en leuk te maken voor elk kind.
@@ -374,31 +474,31 @@
 
             <!-- SNELLE LINKS -->
             <div>
-                <h3 style="font-size:1.1rem;margin-bottom:10px;">Snelle links</h3>
-                <ul style="list-style:none;font-size:0.95rem;">
-                    <li><a href="#" style="color:#e5e9f5;">Home</a></li>
-                    <li><a href="#oefeningen" style="color:#e5e9f5;">Oefeningen</a></li>
-                    <li><a href="#autisme" style="color:#e5e9f5;">Autisme</a></li>
-                    <li><a href="#forum" style="color:#e5e9f5;">Forum</a></li>
-                    <li><a href="#contact" style="color:#e5e9f5;">Contact</a></li>
+                <h3 style="font-size:1.1rem;margin-bottom:10px;color:var(--autism-yellow);">Snelle links</h3>
+                <ul style="list-style:none;font-size:0.95rem;line-height:1.7;">
+                    <li><a href="#" style="color:#fff;">Home</a></li>
+                    <li><a href="#oefeningen" style="color:#fff;">Oefeningen</a></li>
+                    <li><a href="#autisme" style="color:#fff;">Autisme</a></li>
+                    <li><a href="#forum" style="color:#fff;">Forum</a></li>
+                    <li><a href="#contact" style="color:#fff;">Contact</a></li>
                 </ul>
             </div>
 
             <!-- AI FUNCTIONALITEITEN -->
             <div>
-                <h3 style="font-size:1.1rem;margin-bottom:10px;">AI‑functionaliteiten</h3>
-                <ul style="list-style:none;font-size:0.95rem;">
-                    <li><a href="#" style="color:#e5e9f5;">AI‑integratie</a></li>
-                    <li><a href="#" style="color:#e5e9f5;">Automatische oefeningengenerator</a></li>
-                    <li><a href="#" style="color:#e5e9f5;">Nieuws‑monitor</a></li>
-                    <li><a href="#" style="color:#e5e9f5;">Adaptief leerpad</a></li>
+                <h3 style="font-size:1.1rem;margin-bottom:10px;color:var(--autism-yellow);">AI‑functionaliteiten</h3>
+                <ul style="list-style:none;font-size:0.95rem;line-height:1.7;">
+                    <li><a href="#" style="color:#fff;">AI‑integratie</a></li>
+                    <li><a href="#" style="color:#fff;">Automatische oefeningengenerator</a></li>
+                    <li><a href="#" style="color:#fff;">Nieuws‑monitor</a></li>
+                    <li><a href="#" style="color:#fff;">Adaptief leerpad</a></li>
                 </ul>
             </div>
 
         </div>
 
-        <div style="margin-top:25px;border-top:1px solid #30364a;padding-top:10px;font-size:0.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;">
-            <div>© 2025 Atsumi. Alle rechten voorbehouden. 🧩🐧</div>
+        <div style="margin-top:25px;border-top:1px solid rgba(255,255,255,0.3);padding-top:10px;font-size:0.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;">
+            <div>© 2025 Atsumi. Alle rechten voorbehouden. 🐧💙</div>
             <div>Volg ons op sociale media</div>
         </div>
 
@@ -406,20 +506,20 @@
 </footer>
 
 
-<!-- ⭐ MINHO CHATBOX (NIEUWE VERSIE MET RONDE PINGUÏN AVATAR) -->
+<!-- ⭐ MINHO CHATBOX (Atsumi‑stijl + pinguïn avatar) -->
 <style>
     .minho-toggle {
         position: fixed;
         bottom: 25px;
         right: 25px;
-        width: 65px;
-        height: 65px;
-        background: #ffffff;
+        width: 70px;
+        height: 70px;
+        background: #fff;
         border-radius: 50%;
-        border: 2px solid #dce3f0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        border: 3px solid var(--autism-blue);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         cursor: pointer;
-        background-image: url('Atsumi/images/pinguin.png');
+        background-image: url('images/pinguin.png');
         background-size: cover;
         background-position: center;
         transition: 0.2s;
@@ -427,7 +527,7 @@
     }
 
     .minho-toggle:hover {
-        transform: scale(1.08);
+        transform: scale(1.1);
     }
 
     .minho-chatbot {
@@ -435,11 +535,11 @@
         bottom: 110px;
         right: 25px;
         width: 330px;
-        height: 430px;
+        height: 450px;
         background: #ffffff;
         border-radius: 12px;
-        border: 1px solid #dce3f0;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        border: 2px solid var(--autism-light-blue);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.25);
         display: none;
         flex-direction: column;
         overflow: hidden;
@@ -447,7 +547,7 @@
     }
 
     .minho-header {
-        background: #005f9e;
+        background: var(--autism-blue);
         color: #fff;
         padding: 12px;
         display: flex;
@@ -486,7 +586,7 @@
         flex: 1;
         padding: 12px;
         overflow-y: auto;
-        background: #f5f7fb;
+        background: var(--autism-very-light-blue);
     }
 
     .minho-message {
@@ -499,8 +599,8 @@
     }
 
     .minho-bot-message {
-        background: #ffffff;
-        border: 1px solid #dce3f0;
+        background: #fff;
+        border: 1px solid var(--autism-light-blue);
         position: relative;
         padding-left: 50px;
     }
@@ -512,15 +612,15 @@
         top: 8px;
         width: 32px;
         height: 32px;
-        background-image: url('Atsumi/images/pinguin.png');
+        background-image: url('images/pinguin.png');
         background-size: cover;
         background-position: center;
         border-radius: 50%;
-        border: 1px solid #dce3f0;
+        border: 1px solid var(--autism-light-blue);
     }
 
     .minho-user-message {
-        background: #005f9e;
+        background: var(--autism-blue);
         color: #fff;
         margin-left: auto;
     }
@@ -528,7 +628,7 @@
     .minho-footer {
         padding: 10px;
         background: #fff;
-        border-top: 1px solid #dce3f0;
+        border-top: 1px solid var(--autism-light-blue);
         display: flex;
         gap: 8px;
     }
@@ -537,12 +637,12 @@
         flex: 1;
         padding: 8px;
         border-radius: 6px;
-        border: 1px solid #ccd9f0;
+        border: 1px solid var(--autism-light-blue);
     }
 
     .minho-send {
         padding: 8px 12px;
-        background: #005f9e;
+        background: var(--autism-blue);
         color: #fff;
         border: none;
         border-radius: 6px;
@@ -560,7 +660,7 @@
 
 <div class="minho-chatbot">
     <div class="minho-header">
-        <img src="Atsumi/images/pinguin.png" alt="Minho">
+        <img src="images/pinguin.png" alt="Minho">
         <div class="minho-title">
             <h3>Minho AI</h3>
             <p>Jouw pinguïn assistent</p>
@@ -570,7 +670,7 @@
 
     <div class="minho-body" id="minhoBody">
         <div class="minho-message minho-bot-message">
-            Hallo! Ik ben Minho 🐧 Je mag me alles vragen over Atsumi, oefeningen of gewoon een praatje maken.
+            Hallo! Ik ben Minho 🐧 Hoe kan ik je helpen vandaag?
         </div>
     </div>
 
@@ -652,6 +752,8 @@
 </script>
 </body>
 </html>
+
+
 
 
 
