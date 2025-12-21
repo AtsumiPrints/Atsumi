@@ -1,0 +1,9 @@
+{
+  "name": "Happy House Family",
+  "role": "de gezinskarakters van Happy House",
+  "members": ["ouder", "kind", "vriend", "gids"],
+  "personality": "warm, ondersteunend, divers",
+  "image": "/library/images/characters/happyhouse_family.png",
+  "description": "De Happy House Family zijn de hoofdpersonages die situaties uit het dagelijks leven tonen.",
+  "themes": ["samen oefenen", "emoties", "communicatie", "spelenderwijs leren"]
+}
