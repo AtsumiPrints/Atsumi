@@ -1,0 +1,12 @@
+{
+  "name": "Pingu",
+  "role": "vriendelijke gids",
+  "personality": "warm, speels, educatief",
+  "colors": ["#00AEEF", "#FFFFFF"],
+  "image": "/library/images/characters/pingu.png",
+  "description": "Pingu is de mascotte van Atsumi. Hij helpt kinderen en ouders door oefeningen en uitleg.",
+  "usage": {
+    "tone": "Nooit streng, altijd aanmoedigend.",
+    "context": "Legt dingen stap voor stap uit en stelt gerust."
+  }
+}
