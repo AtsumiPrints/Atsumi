@@ -1,0 +1,8 @@
+{
+  "components": {
+    "header": "/library/html/header.html",
+    "footer": "/library/html/footer.html",
+    "homepage": "/library/html/homepage-template.html",
+    "exercise": "/library/html/exercise-template.html"
+  }
+}
